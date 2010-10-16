@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+  <TextView
+  android:id="@+id/txtTitle"
+  android:text="Sorry!"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:layout_alignParentTop="true"
+  android:textAppearance="?android:attr/textAppearanceLarge" />
+  
+  <Button android:id="@+id/btnSubmitReport"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:text="Submit Report"
+  	android:layout_alignParentBottom="true" />
+  <Button android:id="@+id/btnCloseActivity"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:text="Close"
+  	android:layout_above="@+id/btnSubmitReport" />
+
+<EditText
+	android:layout_above="@+id/btnCloseActivity"
+	android:layout_below="@+id/txtTitle"
+	android:id="@+id/txtComment"
+	android:text=""
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content" />
+</RelativeLayout>
