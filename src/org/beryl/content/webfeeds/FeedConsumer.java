@@ -1,6 +1,6 @@
 package org.beryl.content.webfeeds;
 
-import org.beryl.content.webfeeds.rss.RssFeedParser;
+import org.beryl.content.webfeeds.rss.RssFeedConsumer;
 
 public class FeedConsumer {
 	
@@ -12,7 +12,7 @@ public class FeedConsumer {
 		switch(type)
 		{
 		case TYPE_RSS: {
-				consumer = new RssFeedParser();
+				consumer = new RssFeedConsumer();
 			} break;
 		}
 		

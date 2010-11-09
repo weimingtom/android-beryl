@@ -2,10 +2,13 @@ package org.beryl.content;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.util.List;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 
 public class DatabaseUtil
 {
@@ -70,5 +73,82 @@ public class DatabaseUtil
 		result = new String(filebuffer);
 		
 		return result;
+	}
+	
+	public static boolean TableExists(final SQLiteDatabase db, final String tableName)
+	{
+		SQLiteStatement stmt = db.compileStatement("SELECT name FROM sqlite_master WHERE name=\"" + tableName + "\"");
+		long result = stmt.simpleQueryForLong();
+		return result > 0;
+	}
+	
+	public static void CreateTable(final SQLiteDatabase db, final String tableName, List<SchemaField> fields) throws IllegalArgumentException
+	{
+		if(fields == null || fields.size() <= 0)
+			throw new IllegalArgumentException("At least 1 field must be specified for table.");
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("CREATE TABLE ");
+		sb.append(tableName);
+		sb.append(" (");
+		
+		boolean firstField = true;
+		
+		for(SchemaField field : fields)
+		{
+			if(!firstField)
+			{
+				sb.append(", ");
+			}
+			sb.append(field.toFieldSQL());
+			
+			firstField = false;
+		}
+
+		sb.append(")");
+		
+		db.execSQL(sb.toString());
+	}
+	
+	public static void DeleteTableContents(final SQLiteDatabase db, final String tableName)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("TRUNCATE TABLE ");
+		sb.append(tableName);
+		db.execSQL(sb.toString());
+	}
+	
+	public static void DeleteTable(final SQLiteDatabase db, final String tableName)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("DROP TABLE ");
+		sb.append(tableName);
+		db.execSQL(sb.toString());
+	}
+	
+	public static void AddTableColumn(final SQLiteDatabase db, final String tableName, final String columnName, final String type)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("ALTER TABLE ");
+		sb.append(tableName);
+		sb.append(" ADD ");
+		sb.append(columnName);
+		sb.append(" ");
+		sb.append(type);
+		db.execSQL(sb.toString());
+	}
+	
+	public static void RenameTable(final SQLiteDatabase db, final String oldTableName, final String newTableName)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("ALTER TABLE ");
+		sb.append(oldTableName);
+		sb.append(" RENAME TO ");
+		sb.append(newTableName);
+		db.execSQL(sb.toString());
+	}
+
+	public static String ToSQLType(Class<?> dataType) {
+		return "String";
 	}
 }

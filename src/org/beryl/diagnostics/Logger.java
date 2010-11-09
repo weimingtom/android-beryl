@@ -54,7 +54,7 @@ public class Logger
 	public static void d(Intent intent)
 	{
 		Logger.d("Action", intent.getAction());
-		
+
 		if(intent.getComponent() != null)
 		{
 			Logger.d("Component", intent.getComponent().toString());
@@ -63,21 +63,30 @@ public class Logger
 		{
 			Logger.d("Component", null);
 		}
+		
 		Logger.d("DataString", intent.getDataString());
 		Logger.d("Package", intent.getPackage());
 		Logger.d("Scheme", intent.getScheme());
 		Logger.d("Package", intent.getPackage());
 		final Bundle extras = intent.getExtras();
 		Object obj;
-		for(String key : extras.keySet())
+		
+		if(extras == null)
 		{
-			obj = extras.get(key).toString();
-			if(obj == null)
+			Logger.d("Extras", "[empty]");
+		}
+		else
+		{
+			for(String key : extras.keySet())
 			{
-				obj = Logger.StringRepresentation_Null;
+				obj = extras.get(key).toString();
+				if(obj == null)
+				{
+					obj = Logger.StringRepresentation_Null;
+				}
+				
+				Logger.d("Extra", "key= " + key + " data= " + obj.toString());
 			}
-			
-			Logger.d("Extra", "key= " + key + " data= " + obj.toString());
 		}
 	}
 	
