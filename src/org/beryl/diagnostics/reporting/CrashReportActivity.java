@@ -27,8 +27,7 @@ public class CrashReportActivity extends Activity
 		
 		final Intent params = this.getIntent();
 		final Bundle extras = params.getExtras();
-		if (extras != null)
-		{
+		if (extras != null) {
 			_parcel = extras.getParcelable("CrashParcel");
 		}
 		

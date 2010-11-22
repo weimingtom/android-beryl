@@ -13,129 +13,125 @@ import android.sax.RootElement;
 import android.sax.StartElementListener;
 import android.util.Xml;
 
-public class RssFeedParser extends AbstractXmlFeedConsumer {
-	static class RssHolder
-	{
-		final RssChannel Channel = new RssChannel();
-		RssItem CurrentItem = new RssItem();
-		
-		public RssImage getImage()
-		{
-			return Channel.image;
-		}
-		public void sealImage()
-		{
-		}
-		public void sealItem()
-		{
-			Channel.items.add(CurrentItem);
-			CurrentItem = new RssItem();
-		}
-	}
-	
-	private RootElement assembleHandler(final RssHolder holder)
+public class RssFeedConsumer extends AbstractXmlFeedConsumer {
+
+	protected RootElement assembleHandler(final IRssHolder holder)
 	{
 		RootElement root = new RootElement("rss");
 		
 		Element channel = root.getChild("channel");
 		Element item = channel.getChild("item");
 		Element image = channel.getChild("image");
-		
-		
+
+		assembleChannelHandler(holder, channel);
+		assembleItemHandler(holder, item);
+		assmebleImageHandle(holder, image);
+
+		return root;
+	}
+	
+	protected void assembleChannelHandler(final IRssHolder holder, Element channel)
+	{
 		channel.getChild("title").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.title = body; }
+            public void end(String body) { holder.getChannel().title = body; }
         });
 		channel.getChild("link").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.link = body; }
+            public void end(String body) { holder.getChannel().link = body; }
         });
 		channel.getChild("description").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.description = body; }
+            public void end(String body) { holder.getChannel().description = body; }
         });
 		channel.getChild("language").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.language = body; }
+            public void end(String body) { holder.getChannel().language = body; }
         });
 		channel.getChild("copyright").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.copyright = body; }
+            public void end(String body) { holder.getChannel().copyright = body; }
         });
 		channel.getChild("managingEditor").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.managingEditor = body; }
+            public void end(String body) { holder.getChannel().managingEditor = body; }
         });
 		channel.getChild("webMaster").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.webMaster = body; }
+            public void end(String body) { holder.getChannel().webMaster = body; }
         });
 		channel.getChild("pubDate").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.pubDate = body; }
+            public void end(String body) { holder.getChannel().pubDate = body; }
         });
 		channel.getChild("category").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.category = body; }
+            public void end(String body) { holder.getChannel().category = body; }
         });
 		channel.getChild("generator").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.generator = body; }
+            public void end(String body) { holder.getChannel().generator = body; }
         });
 		channel.getChild("docs").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.docs = body; }
+            public void end(String body) { holder.getChannel().docs = body; }
         });
 		channel.getChild("ttl").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { try { holder.Channel.ttl = Integer.parseInt(body); } catch (Exception e) {} }
+            public void end(String body) { try { holder.getChannel().ttl = Integer.parseInt(body); } catch (Exception e) {} }
         });
 		channel.getChild("rating").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.rating = body; }
+            public void end(String body) { holder.getChannel().rating = body; }
         });
 		channel.getChild("lastBuildDate").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.Channel.lastBuildDate = body; }
+            public void end(String body) { holder.getChannel().lastBuildDate = body; }
         });
-		
+	}
+	
+	protected void assembleItemHandler(final IRssHolder holder, Element item)
+	{
 		item.setEndElementListener(new EndElementListener(){
             public void end() {
                 holder.sealItem();
             }
         });
 		item.getChild("title").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.title = body; }
+            public void end(String body) { holder.getRssItem().title = body; }
         });
 		item.getChild("link").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.link = body; }
+            public void end(String body) { holder.getRssItem().link = body; }
         });
 		item.getChild("description").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.description = body; }
+            public void end(String body) { holder.getRssItem().description = body; }
         });
 		item.getChild("author").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.author = body; }
+            public void end(String body) { holder.getRssItem().author = body; }
         });
 		item.getChild("category").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.category = body; }
+            public void end(String body) { holder.getRssItem().category = body; }
         });
 		item.getChild("comments").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.comments = body; }
+            public void end(String body) { holder.getRssItem().comments = body; }
         });
 		item.getChild("enclosure").setStartElementListener(new StartElementListener(){
 			public void start(Attributes attributes) {
-				holder.CurrentItem.enclosure_url = attributes.getValue("url");
-				try { holder.CurrentItem.enclosure_length = Integer.parseInt(attributes.getValue("length")); } catch (Exception e) {}
-				holder.CurrentItem.enclosure_type = attributes.getValue("type");
+				holder.getRssItem().enclosure_url = attributes.getValue("url");
+				try { holder.getRssItem().enclosure_length = Integer.parseInt(attributes.getValue("length")); } catch (Exception e) {}
+				holder.getRssItem().enclosure_type = attributes.getValue("type");
 			}
         });
 		item.getChild("guid").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.guid = body; }
+            public void end(String body) { holder.getRssItem().guid = body; }
         });
 		item.getChild("guid").setStartElementListener(new StartElementListener(){
 			public void start(Attributes attributes) {
-				try { holder.CurrentItem.guid_isPermaLink = Boolean.parseBoolean(attributes.getValue("isPermaLink")); } catch (Exception e) {}
+				try { holder.getRssItem().guid_isPermaLink = Boolean.parseBoolean(attributes.getValue("isPermaLink")); } catch (Exception e) {}
 			}
         });
 		item.getChild("pubDate").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.pubDate = body; }
+            public void end(String body) { holder.getRssItem().pubDate = body; }
         });
 		item.getChild("source").setEndTextElementListener(new EndTextElementListener(){
-            public void end(String body) { holder.CurrentItem.source = body; }
+            public void end(String body) { holder.getRssItem().source = body; }
         });
-		
-		
+	}
+	
+	protected void assmebleImageHandle(final IRssHolder holder, Element image)
+	{
 		image.setEndElementListener(new EndElementListener(){
             public void end() {
                 holder.sealImage();
             }
         });
+		
 		image.getChild("url").setEndTextElementListener(new EndTextElementListener(){
             public void end(String body) { holder.getImage().url = body; }
         });
@@ -154,13 +150,23 @@ public class RssFeedParser extends AbstractXmlFeedConsumer {
 		image.getChild("description").setEndTextElementListener(new EndTextElementListener(){
             public void end(String body) { holder.getImage().description = body; }
         });
-		
-		return root;
 	}
 
+	protected IRssHolder _rssHolder;
+	protected IRssHolder createRssHolder()
+	{
+		_rssHolder = new BasicRssHolder();
+		return _rssHolder;
+	}
+	
+	public IRssHolder getData()
+	{
+		return _rssHolder;
+	}
+	
 	public boolean parseStream(InputStream is) throws WebFeedException
 	{
-		final RssHolder holder = new RssHolder();
+		final IRssHolder holder = createRssHolder();
 		RootElement root = assembleHandler(holder);
 		
 		try {
@@ -170,7 +176,7 @@ public class RssFeedParser extends AbstractXmlFeedConsumer {
 			throw new WebFeedException(e);
 		}
 		
-		if(holder.Channel.title != null) {
+		if(holder.getChannel().title != null) {
 			return true;
 		}
 		return false;
