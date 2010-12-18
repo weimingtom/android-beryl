@@ -12,10 +12,8 @@ import android.os.Bundle;
 import android.view.View;
 
 /**
- * Activity that appears as a dialog. Allows a user to pick an intent.
- * 
- * @author jeremyje
- *
+ * Activity that appears as a dialog. Allows a user to pick from a list of items.
+ * Each item is backed by a ChoosableIntent.
  */
 public class IntentChooser extends Activity implements OnDismissListener {
 	private static final String EXTRA_TITLE = "chooserTitle";

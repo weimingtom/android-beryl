@@ -19,6 +19,8 @@ public class ServiceForegrounder {
 	private final Service _service;
 	private final int _notificationId;
 	private boolean _isForegrounded = false;
+	
+	
 	public ServiceForegrounder(final Service service, final int notificationId) {
 		_service = service;
 		_notificationId = notificationId;
@@ -30,7 +32,7 @@ public class ServiceForegrounder {
 			foregrounderProxy = new DonutAndBelowServiceForegrounder();
 		}
 	}
-
+	
 	public void startForeground(final int resIconId, final int title, final int description, final int tickerText, final PendingIntent onClickIntent) {
 		final CharSequence titleString = _service.getText(title);
 		final CharSequence descriptionString = _service.getText(description);

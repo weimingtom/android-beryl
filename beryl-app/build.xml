@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<project default="main">
+    <target name="main" depends="compile, compress" description="Main target">
+        <echo>
+            Building the .jar file.
+        </echo>
+    </target>
+  
+	<path id="android-sdk">
+	        <pathelement location="${root-dir}" />
+	        <fileset dir="C:\AndroidSDK\android-sdk-windows\platforms\android-8" includes="*.jar" />
+	</path>
+	
+    <target name="compile" description="Compilation target">
+    	<delete dir="bin" />
+    	<mkdir dir="bin" />
+        <javac srcdir="src" destdir="bin">
+        	<classpath refid="android-sdk" />
+        </javac>
+    </target>
+  
+  <target name="compress" description="Compression target">
+        <jar jarfile="org.beryl.app.jar" basedir="bin" includes="**/*.class" compress="true" />
+  		<jar jarfile="org.beryl.app-src.jar" basedir="src" includes="**/*" compress="true"  />
+  </target>
+</project>
