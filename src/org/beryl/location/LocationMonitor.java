@@ -1,236 +1,266 @@
 package org.beryl.location;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.beryl.app.ContextClonable;
 
 import android.content.Context;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
 
-public class LocationMonitor implements LocationListener
+/**
+ * Monitors multiple location providers at the same time and routes the readings to all listeners.
+ * This type is ContextClonable but listeners that are not ContextClonable will need to be reattached.
+ * @author jeremyje
+ *
+ */
+public class LocationMonitor implements LocationListener, ContextClonable
 {
-	private final LocationManager _lm;
+	private final LocationManager _locationManager;
 	private final Context _context;
-	private LocationListenerProxy _gps = null;
-	private LocationListenerProxy _network = null;
-	private boolean _stopListeningToNetworkOnFirstGpsResult = false;
-	private int _numSatellites = 0;
+	private final ArrayList<LocationMonitorController> _controllers = new ArrayList<LocationMonitorController>();
 	private final ArrayList<LocationListener> _listeners = new ArrayList<LocationListener>();
-	private long _minTime;
-	private float _minDistance;
-	private LocationHistory _fineHistory;
-	private LocationHistory _coarseHistory;
+	private final ArrayList<LocationListenerProxy> _proxies = new ArrayList<LocationListenerProxy>();
 
 	public LocationMonitor(final Context context)
 	{
 		_context = context;
-		_lm = (LocationManager)_context.getSystemService(Context.LOCATION_SERVICE);
+		_locationManager = (LocationManager)_context.getSystemService(Context.LOCATION_SERVICE);
 	}
 	
-	public void beginListening(final long min_time, final float min_distance)
+	public LocationMonitor(final Context context, final LocationMonitor cloneFrom)
 	{
-		stopListening();
-		_minTime = min_time;
-		_minDistance = min_distance;
-		beginGpsListening(_minTime, _minDistance);
-		beginNetworkListening(_minTime, _minDistance);
+		_context = context;
+		_locationManager = (LocationManager)_context.getSystemService(Context.LOCATION_SERVICE);
 	}
 	
-	private final int DEFAULT_HISTORY_SIZE = 100;
-	public void startRecordingFineLocation()
-	{
-		startRecordingFineLocation(DEFAULT_HISTORY_SIZE);
+	public Object clone(final Context context) {
+		return new LocationMonitor(context, this);
 	}
 	
-	public void startRecordingFineLocation(int size)
-	{
-		_fineHistory = new LocationHistory(size);
+	public void beginGpsListening(final long minTime, final float minDistance) {
+		beginListening(LocationManager.GPS_PROVIDER, minTime, minDistance);
 	}
 	
-	public LocationHistory getFineHistory()
-	{
-		return _fineHistory;
-	}
-	public LocationHistory stopRecordingFineLocation()
-	{
-		LocationHistory ejectedList = _fineHistory;
-		_fineHistory = null;
-		return ejectedList;
+	public void beginNetworkListening(final long minTime, final float minDistance) {
+		beginListening(LocationManager.NETWORK_PROVIDER, minTime, minDistance);
 	}
 	
-	public boolean isRecordingFineHistory()
-	{
-		return _fineHistory != null;
+	/** Begins listening to a specific location provider.
+	 * If the provider is already running it will be restarted to use the new parameters. */
+	public void beginListening(final String provider, final long minTime, final float minDistance) {
+		final LocationListenerProxy existingProxy = getProxy(provider);
+
+		if(existingProxy != null) {
+			stopProxy(existingProxy);
+		}
+
+		startProxy(provider, minTime, minDistance);
+	}
+
+	/** Stops all location providers that are being listened to. */
+	public void stopListening() {
+		final int numProxies = _proxies.size();
+		LocationListenerProxy proxy;
+		
+		for(int i = 0; i < numProxies; i++) {
+			proxy = _proxies.get(i);
+			proxy.dispose();
+		}
+		
+		_proxies.clear();
 	}
 	
-	public void startRecordingCoarseLocation()
-	{
-		startRecordingCoarseLocation(DEFAULT_HISTORY_SIZE);
+	/** Stops a specific location provider. */
+	public void stopListening(final String provider) {
+		final LocationListenerProxy proxy = getProxy(provider);
+		if(proxy != null) {
+			stopProxy(proxy);
+		}
 	}
 	
-	public void startRecordingCoarseLocation(int size)
-	{
-		_coarseHistory = new LocationHistory(size);
+	/** Attempts to get the most accurate last known location of the device. Based on time and accuracy. */
+	public Location getBestStaleLocation() {
+		Location location = null;
+		
+		final List<String> providers = _locationManager.getAllProviders();
+		
+		for(String provider : providers) {
+			final Location testLocation = _locationManager.getLastKnownLocation(provider);
+			
+			if(testLocation != null) {
+				if(location == null) {
+					location = testLocation;
+				}
+				// Accuracy vs Time Ratio: New - Old > 0
+				else if(testLocation.getTime() / testLocation.getAccuracy() - location.getAccuracy() / location.getTime() > 0) {
+					location = testLocation;
+				}
+			}
+		}
+		
+		return location;
 	}
 	
-	public LocationHistory getCoarseHistory()
-	{
-		return _coarseHistory;
+	public boolean isGpsEnabled() {
+		return _locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 	}
 	
-	public LocationHistory stopRecordingCoarseLocation()
-	{
-		LocationHistory ejectedList = _coarseHistory;
-		_coarseHistory = null;
-		return ejectedList;
+	public boolean isNetworkEnabled() {
+		return _locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 	}
 	
-	public boolean isRecordingCoarseHistory()
-	{
-		return _coarseHistory != null;
+	public boolean isProviderEnabled(final String provider) {
+		return _locationManager.isProviderEnabled(provider);
 	}
 	
-	public void attachListener(LocationListener listener)
-	{
-		if(! _listeners.contains(listener))
-		{
+	public boolean isNetworkOrGpsEnabled() {
+		return isNetworkEnabled() || isGpsEnabled();
+	}
+	
+	public List<String> getEnabledProviders() {
+		return _locationManager.getProviders(true);
+	}
+	
+	public boolean isAnyProviderEnabled() {
+		return getEnabledProviders().size() > 0;
+	}
+
+	public String getBestEnabledProvider() {
+		if(isGpsEnabled())
+			return LocationManager.GPS_PROVIDER;
+		else if(isNetworkEnabled()) {
+			return LocationManager.NETWORK_PROVIDER;
+		}
+		else {
+			final Criteria criteria = new Criteria();
+			criteria.setAccuracy(Criteria.ACCURACY_FINE);
+			criteria.setPowerRequirement(Criteria.NO_REQUIREMENT);
+			criteria.setCostAllowed(false);
+			return _locationManager.getBestProvider(criteria, true);
+		}
+	}
+	
+	private void startProxy(final String provider, final long minTime, final float minDistance) {
+		final LocationListenerProxy proxy = new LocationListenerProxy(_locationManager, provider, this, minTime, minDistance);
+		_proxies.add(proxy);
+	}
+	
+	private void stopProxy(LocationListenerProxy proxy) {
+		proxy.dispose();
+		_proxies.remove(proxy);
+	}
+	
+	public boolean isListening() {
+		return _proxies.size() > 0;
+	}
+	
+	public boolean isListening(final String provider) {
+		return getProxy(provider) != null;
+	}
+	
+	private LocationListenerProxy getProxy(String provider) {
+		final int numProxies = _proxies.size();
+		LocationListenerProxy proxy;
+		for(int i = 0; i < numProxies; i++) {
+			
+			proxy = _proxies.get(i);
+			if(proxy.getProvider().equals(provider)) {
+				return proxy;
+			}
+		}
+		
+		return null;
+	}
+	
+	public void addListener(final LocationListener listener) {
+		if(listener instanceof LocationMonitorController)
+			throw new IllegalArgumentException("LocationMonitorController was passed to addListener() use addController() instead.");
+		
+		if(! _listeners.contains(listener)) {
 			_listeners.add(listener);
 		}
 	}
 	
-	public void detachListener(LocationListener listener)
-	{
+	void addController(final LocationMonitorController controller) {
+		if(! _controllers.contains(controller)) {
+			_controllers.add(controller);
+		}
+	}
+	
+	public void removeController(final LocationMonitorController controller) {
+		_controllers.remove(controller);
+	}
+	
+	public void removeListener(final LocationListener listener) {
 		_listeners.remove(listener);
 	}
-	
-	private void beginGpsListening(final long min_time, final float min_distance)
-	{
-		_gps = new LocationListenerProxy(_lm, LocationManager.GPS_PROVIDER, this, min_time, min_distance);
-	}
-	
-	private void beginNetworkListening(final long min_time, final float min_distance)
-	{
-		_network = new LocationListenerProxy(_lm, LocationManager.NETWORK_PROVIDER, this, min_time, min_distance);
-	}
-	
-	public void stopListeningToNetworkOnFirstGpsResult(boolean param)
-	{
-		_stopListeningToNetworkOnFirstGpsResult = param;
-	}
-	
-	public int numSatellitesInLastFix()
-	{
-		return _numSatellites;
-	}
-	
-	public boolean isListening()
-	{
-		return isGpsListening() || isNetworkListening();
-	}
-	
-	public boolean isGpsListening()
-	{
-		return _gps != null;
-	}
-	
-	public boolean isNetworkListening()
-	{
-		return _network != null;
-	}
 
-	public void dispose()
-	{
-		_listeners.clear();
-		stopListening();
-	}
-	
-	public void stopListening()
-	{
-		disposeGps();
-		disposeNetwork();
-	}
-	
-	private void disposeGps()
-	{
-		if(_gps != null)
-		{
-			_numSatellites = 0;
-			_gps.dispose();
-			_gps = null;
-		}
-	}
-	
-	private void disposeNetwork()
-	{
-		if(_network != null)
-		{
-			_network.dispose();
-			_network = null;
-		}
-	}
-
-	public boolean shouldStopListeningToNetworkOnFirstGpsResult()
-	{
-		return _stopListeningToNetworkOnFirstGpsResult;
-	}
-	
-	public void onLocationChanged(Location location)
-	{
-		// Stop the network service if we aren't using it any more.
-		if(isNetworkListening() && shouldStopListeningToNetworkOnFirstGpsResult() && location.getProvider().equals(LocationManager.GPS_PROVIDER))
-		{
-			disposeNetwork();
-		}
-
-		final String provider = location.getProvider();
+	public void onLocationChanged(final Location location) {
+		final int numControllers = _controllers.size();
+		final int numListeners = _listeners.size();
+		int i;
 		
-		if(isRecordingFineHistory() && provider.equals(LocationManager.GPS_PROVIDER))
-		{
-			_fineHistory.add(location);
+		for(i = 0; i < numControllers; i++) {
+			_controllers.get(i).onLocationChanged(location);
 		}
-		else if(isRecordingCoarseHistory() && provider.equals(LocationManager.NETWORK_PROVIDER))
-		{
-			_coarseHistory.add(location);
+		for(i = 0; i < numListeners; i++) {
+			_listeners.get(i).onLocationChanged(location);
+		}
+	}
+
+	public void onProviderDisabled(final String provider) {
+		final int numControllers = _controllers.size();
+		final int numListeners = _listeners.size();
+		int i;
+		
+		for(i = 0; i < numControllers; i++) {
+			_controllers.get(i).onProviderDisabled(provider);
+		}
+		for(i = 0; i < numListeners; i++) {
+			_listeners.get(i).onProviderDisabled(provider);
+		}
+	}
+
+	public void onProviderEnabled(String provider) {
+		final int numControllers = _controllers.size();
+		final int numListeners = _listeners.size();
+		int i;
+		
+		for(i = 0; i < numControllers; i++) {
+			_controllers.get(i).onProviderEnabled(provider);
+		}
+		for(i = 0; i < numListeners; i++) {
+			_listeners.get(i).onProviderEnabled(provider);
+		}
+	}
+
+	public void onStatusChanged(final String provider, final int status, final Bundle extras) {
+		final int numControllers = _controllers.size();
+		final int numListeners = _listeners.size();
+		int i;
+		
+		for(i = 0; i < numControllers; i++) {
+			_controllers.get(i).onStatusChanged(provider, status, extras);
+		}
+		for(i = 0; i < numListeners; i++) {
+			_listeners.get(i).onStatusChanged(provider, status, extras);
+		}
+	}
+	
+	protected ArrayList<String> getListeningProviders() {
+		final ArrayList<String> providers = new ArrayList<String>();
+		final int numProxies = _proxies.size();
+		providers.ensureCapacity(numProxies);
+		
+		for(int i = 0; i < numProxies; i++) {
+			providers.add(_proxies.get(i).getProvider());
 		}
 		
-		for(LocationListener listener : _listeners)
-		{
-			listener.onLocationChanged(location);
-		}
-	}
-
-	public void onProviderDisabled(String provider)
-	{
-		for(LocationListener listener : _listeners)
-		{
-			listener.onProviderDisabled(provider);
-		}
-	}
-
-	public void onProviderEnabled(String provider)
-	{
-		for(LocationListener listener : _listeners)
-		{
-			listener.onProviderEnabled(provider);
-		}
-	}
-
-	public void onStatusChanged(String provider, int status, Bundle extras)
-	{
-		boolean is_available = LocationProvider.AVAILABLE == status;
-
-		if(is_available && provider.equals(LocationManager.GPS_PROVIDER))
-		{
-			_numSatellites = extras.getInt("satellites");
-		}
-		
-		// TODO This needs to be handled better.
-		
-		for(LocationListener listener : _listeners)
-		{
-			listener.onStatusChanged(provider, status, extras);
-		}
+		return providers;
 	}
 }
