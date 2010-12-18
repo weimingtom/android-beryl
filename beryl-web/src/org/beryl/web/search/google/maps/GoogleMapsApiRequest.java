@@ -2,8 +2,6 @@ package org.beryl.web.search.google.maps;
 
 import java.util.Locale;
 
-import com.google.android.maps.GeoPoint;
-
 import android.location.Location;
 import android.os.Bundle;
 
@@ -18,12 +16,7 @@ public class GoogleMapsApiRequest
 	{
 		return fromLatitudeLongitudePair(point.getLatitude(), point.getLongitude());
 	}
-	
-	public static String fromGeoPoint(GeoPoint point)
-	{
-		return fromLatitudeLongitudePair(point.getLatitudeE6() / 1E6, point.getLongitudeE6() / 1E6);
-	}
-	
+
 	public static Bundle createDirectionsRequest(final String origin, final String destination, final boolean used_sensor)
 	{
 		final Bundle result = new Bundle();

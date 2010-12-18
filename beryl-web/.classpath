@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/AndroidSDK/android-sdk-windows/platforms/android-8/android.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Froyo"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
