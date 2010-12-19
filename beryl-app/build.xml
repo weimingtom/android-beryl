@@ -23,4 +23,7 @@
         <jar jarfile="${project-name}.jar" basedir="bin" includes="**/*.class" compress="true" />
   		<jar jarfile="${project-name}-source.jar" basedir="src" includes="**/*" compress="true"  />
   </target>
+	
+	<path id="android-classpath">
+	</path>
 </project>

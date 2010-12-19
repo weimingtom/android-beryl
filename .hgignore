@@ -5,6 +5,7 @@ syntax: glob
 
 syntax: regexp
 bin\\*
+jars\\*
 obj\\*
 obf\\*
 gen\\*
