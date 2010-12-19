@@ -3,7 +3,17 @@
 	<property file="user.properties" />
 	<property file="build.properties" />
 
-	<target name="main" description="Beryl Project Deployment" depends="init">
+	<target name="main" description="Beryl Project Deployment" depends="init,build-projects,javadoc">
+	</target>
+	
+	<target name="init" depends="jar-clean">
+		<tstamp />
+		
+		<mkdir dir="${beryl.jar.path}" />
+		<mkdir dir="${beryl.jar.sourcepath}" />
+	</target>
+	
+	<target name="build-projects">
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-core" />
 			<param name="package" value="org.beryl" />
@@ -41,13 +51,15 @@
 		</antcall>
 	</target>
 	
-	<target name="init" depends="jar-clean">
-		<tstamp />
-		
-		<mkdir dir="${beryl.jar.path}" />
-		<mkdir dir="${beryl.jar.sourcepath}" />
-		
-		<!-- Later on create those directories -->
+	<target name="javadoc">
+		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API">
+			<fileset refid="all-project-java-files" />
+			<classpath refid="froyo-googleapi-classpath" />
+			
+			<!-- TODO: stylesheetfile -->
+			<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
+			<link href="http://developer.android.com/reference/" offline="true" packagelistloc="${android.sdk.javadoc.offline}" />
+		</javadoc>
 	</target>
 	
 	<target name="beryl-build" depends="java-jar">
@@ -102,4 +114,14 @@
 			<include name="*.jar" />
 		</fileset>
 	</path>
+	
+	<fileset id="all-project-java-files" dir="">
+		<include name="**/*.java" />
+	</fileset>
+	
+	<!--
+	References:
+	http://ant.apache.org/manual/toc.html
+	http://firstclassthoughts.co.uk/ant/javadoc.html
+	-->
 </project>
