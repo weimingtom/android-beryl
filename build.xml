@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<project default="main">
+	<property name="docs" location="javadocs"/>
+	<property name="source-postfix" value="-src" />
+	
+	<target name="main" description="Beryl Project Deployment">
+		<antcall target="beryl-build">
+			<param name="directory" value="beryl-app" />
+			<param name="package" value="org.beryl.app" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="directory" value="beryl-content" />
+			<param name="package" value="org.beryl.content" />
+		</antcall>
+	</target>
+	
+	<target name="init">
+		<tstamp />
+		<!-- Later on create those directories -->
+	</target>
+	
+	<target name="beryl-build">
+		<echo message="directory=${directory}   package=${package}"/>
+	</target>
+</project>
