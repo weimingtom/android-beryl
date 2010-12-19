@@ -1,24 +1,8 @@
 <?xml version="1.0" ?>
-<project default="main">
-	
-	<!-- Edit these properties -->
-	<property name="android-sdk-root" location="C:\AndroidSDK\android-sdk-windows"/>
-	
-	<!-- Properties you might want to touch. -->
-	<property name="docs" location="javadocs"/>
-	<property name="srcjarpostfix" value="-src" />
-	<property name="jarfiles" location="jars"/>
-	<property name="jarsrcfiles" location="jar-sources"/>
-	
+<project default="main">	
+	<property file="user.properties" />
+	<property file="build.properties" />
 
-	<!-- Don't edit these properties. -->
-	<property name="android-sdk-addon" location="${android-sdk-root}\add-ons"/>
-	<property name="android-sdk-platform" location="${android-sdk-root}\platforms"/>
-	
-	
-	<property name="android-sdk-8" location="${android-sdk-platform}\android-8"/>
-	<property name="android-googleapi-8" location="${android-sdk-platform}\addon_google_apis_google_inc_8\libs"/>
-	
 	<target name="main" description="Beryl Project Deployment" depends="init">
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-core" />
@@ -60,8 +44,8 @@
 	<target name="init" depends="jar-clean">
 		<tstamp />
 		
-		<mkdir dir="${jarfiles}" />
-		<mkdir dir="${jarsrcfiles}" />
+		<mkdir dir="${beryl.jar.path}" />
+		<mkdir dir="${beryl.jar.sourcepath}" />
 		
 		<!-- Later on create those directories -->
 	</target>
@@ -80,41 +64,41 @@
 	</target>
 	
 	<target name="java-jar-clean">
-		<delete file="${jarfiles}/${package}.jar" />
-		<delete file="${jarsrcfiles}/${package}${srcjarpostfix}.jar" />
+		<delete file="${beryl.jar.path}/${package}.jar" />
+		<delete file="${beryl.jar.sourcepath}/${package}${beryl.jar.postfix}.jar" />
 	</target>
 	
 	<target name="java-jar" depends="java-compile,java-jar-clean">
-		<jar jarfile="${jarfiles}/${package}.jar" basedir="${projectdir}/bin" includes="**/*.class" compress="true" />
-	  	<jar jarfile="${jarsrcfiles}/${package}${srcjarpostfix}.jar" basedir="${projectdir}/src" includes="**/*" compress="true"  />
+		<jar jarfile="${beryl.jar.path}/${package}.jar" basedir="${projectdir}/bin" includes="**/*.class" compress="true" />
+	  	<jar jarfile="${beryl.jar.sourcepath}/${package}${beryl.jar.postfix}.jar" basedir="${projectdir}/src" includes="**/*" compress="true"  />
 	</target>
 	
 	<target name="jar-clean">
-		<delete dir="${jarfiles}" />
-		<delete dir="${jarsrcfiles}" />
+		<delete dir="${beryl.jar.path}" />
+		<delete dir="${beryl.jar.sourcepath}" />
 	</target>
 
 	<!-- Class Paths -->
 	<path id="froyo-classpath">
-		<fileset dir="${android-sdk-8}">
+		<fileset dir="${android.sdk.platforms.froyo}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
 	
 	<path id="froyo-berylcore-classpath">
-		<fileset dir="${android-sdk-8}">
+		<fileset dir="${android.sdk.platforms.froyo}">
 			<include name="*.jar" />
 		</fileset>
-		<fileset dir="${jarfiles}">
+		<fileset dir="${beryl.jar.path}">
 			<include name="org.beryl.jar" />
 		</fileset>
 	</path>
 	
 	<path id="froyo-googleapi-classpath">
-		<fileset dir="${android-sdk-8}">
+		<fileset dir="${android.sdk.platforms.froyo}">
 			<include name="*.jar" />
 		</fileset>
-		<fileset dir="${android-googleapi-8}">
+		<fileset dir="${android.sdk.addons.googleapi.froyo}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
