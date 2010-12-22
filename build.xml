@@ -57,8 +57,8 @@
 			<classpath refid="froyo-googleapi-classpath" />
 			
 			<!-- TODO: stylesheetfile -->
-			<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
 			<link href="http://developer.android.com/reference/" offline="true" packagelistloc="${android.sdk.javadoc.offline}" />
+				<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
 		</javadoc>
 	</target>
 	
@@ -72,7 +72,7 @@
 	
 	<target name="java-compile" depends="java-compile-clean">
 		<mkdir dir="${projectdir}/bin" />
-		<javac srcdir="${projectdir}/src" destdir="${projectdir}/bin" classpathref="${classpathid}" />
+		<javac srcdir="${projectdir}/src" destdir="${projectdir}/bin" classpathref="${classpathid}" debug="true" optimize="false"  />
 	</target>
 	
 	<target name="java-jar-clean">
@@ -81,6 +81,7 @@
 	</target>
 	
 	<target name="java-jar" depends="java-compile,java-jar-clean">
+		<!-- Build 1 jar with sources and binaries. -->
 		<jar jarfile="${beryl.jar.path}/${package}.jar" basedir="${projectdir}/bin" includes="**/*.class" compress="true" />
 	  	<jar jarfile="${beryl.jar.sourcepath}/${package}${beryl.jar.postfix}.jar" basedir="${projectdir}/src" includes="**/*" compress="true"  />
 	</target>
