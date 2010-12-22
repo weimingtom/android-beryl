@@ -10,9 +10,6 @@ import android.os.Bundle;
 /**
  * Stores a catalog of all the most recent points that came from a Location Provider.
  * Journals only accept locations from 1 provider. Data points from other providers will be ignored.
- * 
- * @author jeremyje
- *
  */
 public class LocationJournal implements LocationListener {
 

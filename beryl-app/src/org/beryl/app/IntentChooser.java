@@ -13,7 +13,17 @@ import android.view.View;
 
 /**
  * Activity that appears as a dialog. Allows a user to pick from a list of items.
- * Each item is backed by a ChoosableIntent.
+ * It attempts to mimic a context menu that could be launched from the Home screen. Similar to the Wallpaper chooser.
+ * Each selectable item is backed by a ChoosableIntent.
+ * 
+ * To use this class you'll need to add this activity declaration to your AndroidManifest.xml file.
+ * 
+ * &lt;activity android:name="org.beryl.app.IntentChooser"
+                  android:label="@string/my_location"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:launchMode="singleTop"
+                  android:noHistory="true"
+                  android:excludeFromRecents="true" /&gt;
  */
 public class IntentChooser extends Activity implements OnDismissListener {
 	private static final String EXTRA_TITLE = "chooserTitle";

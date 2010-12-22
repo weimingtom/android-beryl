@@ -1,13 +1,11 @@
 package org.beryl.app;
 
-/**
- * Version independent class to get the Android version that is currently running on the device.
- */
+/** Version independent class to get the Android version that is currently running on the device. */
 public class AndroidVersion {
 	private static final int _ANDROID_SDK_VERSION;
 	
 	static {
-		int android_sdk = 3;
+		int android_sdk = 3; // 3 is Android 1.5 (Cupcake) which is the earliest Android SDK available.
 		try {
 			android_sdk = Integer.parseInt(android.os.Build.VERSION.SDK);
 		}

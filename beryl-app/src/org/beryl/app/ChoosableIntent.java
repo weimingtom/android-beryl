@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * An intent that represents a selection dialog where each item in the list fires a specific Intent.
- */
+/** A labeled Intent that can be chosen from the IntentChooser activity. */
 public class ChoosableIntent implements Parcelable {
 	
 	protected final CharSequence label;

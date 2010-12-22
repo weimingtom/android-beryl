@@ -1,5 +1,6 @@
 package org.beryl.location;
 
+/** All the constants used internally for the {@link org.beryl.location} package. */
 public class Constants {
 
 	/** 100 meters */
@@ -8,5 +9,6 @@ public class Constants {
 	/** 1 minute */
 	public static final long ONE_MINUTE_IN_MILLIS = 60 * 1000;
 	
+	/** 1 minute */
 	public static final long DEFAULT_INTERVAL_TIME = ONE_MINUTE_IN_MILLIS;
 }

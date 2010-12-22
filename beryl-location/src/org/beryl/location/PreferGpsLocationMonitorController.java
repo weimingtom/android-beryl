@@ -15,9 +15,6 @@ import android.os.Bundle;
  * 1. When GPS is reporting locations, all other providers are disabled to conserve battery.
  * 2. When GPS is not available or not reporting locations. Other providers are wakened to
  *    compensate.
- * 
- * @author jeremyje
- *
  */
 public class PreferGpsLocationMonitorController extends LocationMonitorController {
 

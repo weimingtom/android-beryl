@@ -14,9 +14,7 @@ import android.os.Bundle;
 
 /**
  * Monitors multiple location providers at the same time and routes the readings to all listeners.
- * This type is ContextClonable but listeners that are not ContextClonable will need to be reattached.
- * @author jeremyje
- *
+ * This type is {@link org.beryl.app.ContextClonable} but listeners that are not ContextClonable will need to be reattached.
  */
 public class LocationMonitor implements LocationListener, ContextClonable
 {

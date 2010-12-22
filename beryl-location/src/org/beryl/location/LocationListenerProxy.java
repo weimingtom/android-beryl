@@ -5,7 +5,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-/** A proxy for {@link android.location.LocationListener} so that a parent listener can listen to multiple sources. */
+/** A proxy for {@link android.location.LocationListener} so that a parent listener can listen to multiple sources.
+ * You should not need to use this class directly.
+ */
 class LocationListenerProxy implements LocationListener
 {
 	private final String _provider;

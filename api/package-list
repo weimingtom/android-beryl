@@ -11,4 +11,6 @@ org.beryl.web.search
 org.beryl.web.search.bing
 org.beryl.web.search.google
 org.beryl.web.search.google.maps
+org.beryl.web.url
+org.beryl.web.url.bitly
 org.beryl.widget
