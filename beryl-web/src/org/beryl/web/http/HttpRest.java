@@ -1,4 +1,4 @@
-package org.beryl.web;
+package org.beryl.web.http;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -231,6 +231,11 @@ public class HttpRest
 	
 	public static String executeGet(final String baseUrl, final String refererUrl, final int timeout, final Bundle params) throws Exception
 	{
+		return executeGet(baseUrl, refererUrl, timeout, params, new BasicResponseHandler());
+	}
+	
+	public static String executeGet(final String baseUrl, final String refererUrl, final int timeout, final Bundle params, ResponseHandler<String> handler) throws Exception
+	{
 		final String getUrl = createUriFromGet(baseUrl, params);
 
 		String response = "";
@@ -245,7 +250,6 @@ public class HttpRest
 		if (refererUrl != null)
 			getter.setHeader("Referer", refererUrl);
 		
-		ResponseHandler<String> handler = new BasicResponseHandler();
 		response = client.execute(getter, handler);
 		
 		return response;

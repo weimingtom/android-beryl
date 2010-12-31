@@ -1,6 +1,6 @@
 package org.beryl.location;
 
-/** All the constants used internally for the {@link org.beryl.location} package. */
+/** All the constants used internally for this package. */
 public class Constants {
 
 	/** 100 meters */

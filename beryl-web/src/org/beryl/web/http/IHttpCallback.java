@@ -1,4 +1,4 @@
-package org.beryl.web;
+package org.beryl.web.http;
 
 import android.os.Bundle;
 

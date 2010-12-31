@@ -6,11 +6,10 @@ org.beryl.content.webfeeds.rss
 org.beryl.diagnostics
 org.beryl.diagnostics.reporting
 org.beryl.location
-org.beryl.web
+org.beryl.web.http
 org.beryl.web.search
 org.beryl.web.search.bing
 org.beryl.web.search.google
 org.beryl.web.search.google.maps
 org.beryl.web.url
-org.beryl.web.url.bitly
 org.beryl.widget

@@ -52,7 +52,7 @@
 	</target>
 	
 	<target name="javadoc">
-		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API">
+		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API" additionalparam="-notimestamp">
 			<fileset refid="all-project-java-files" />
 			<classpath refid="froyo-googleapi-classpath" />
 			
