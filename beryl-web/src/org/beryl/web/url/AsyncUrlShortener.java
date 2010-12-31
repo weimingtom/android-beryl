@@ -21,11 +21,13 @@ public class AsyncUrlShortener {
 	
 	public void beginShortenUrl(String longUrl) {
 		final Thread t = new Thread(new UrlShortener(longUrl, _callback, _provider));
+		t.setName("URL Shorten Worker");
 		t.start();
 	}
 	
 	public void beginExpandUrl(String shortUrl) {
 		final Thread t = new Thread(new UrlExpander(shortUrl, _callback, _provider));
+		t.setName("URL Expand Worker");
 		t.start();
 	}
 	

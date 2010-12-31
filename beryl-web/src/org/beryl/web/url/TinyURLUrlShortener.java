@@ -2,13 +2,13 @@ package org.beryl.web.url;
 
 import android.net.Uri;
 
+/** URL Shortening provided by TinyURL. */
 public class TinyURLUrlShortener extends AbstractUrlShortener {
 
-	private static final String API_CREATE_URL = "http://tinyurl.com/api-create.php?url=%s";
+	private static final String API_SHORTEN_URL = "http://tinyurl.com/api-create.php?url=%s";
 	
 	public String shorten(String url) {
-		
-		String requestUrl = String.format(API_CREATE_URL, Uri.encode(url));
+		String requestUrl = String.format(API_SHORTEN_URL, Uri.encode(url));
 		String response = this.executeGet(requestUrl);
 		
 		return response;
