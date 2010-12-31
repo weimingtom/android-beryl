@@ -66,7 +66,7 @@ public class AsyncUrlShortener {
 		
 		public void run() {
 			try {
-				final String longUrl = _provider.shorten(_shortUrl);
+				final String longUrl = _provider.expand(_shortUrl);
 				_callback.onUrlExpand(longUrl);
 			}
 			catch(Exception e) {
