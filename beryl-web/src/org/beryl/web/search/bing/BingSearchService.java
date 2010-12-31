@@ -22,7 +22,7 @@ public class BingSearchService
 	{
 		SearchWorker worker = new SearchWorker(request, handler);
 		Thread t = new Thread(worker);
-		t.run();
+		t.start();
 	}
 	
 	public static void blockingSearchRequest(BingSearchRequest request, IBingSearchResponseHandler handler)

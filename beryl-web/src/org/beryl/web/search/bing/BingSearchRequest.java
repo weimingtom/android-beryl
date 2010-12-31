@@ -6,14 +6,12 @@ import java.util.Set;
 import android.net.Uri;
 import android.os.Bundle;
 
-public class BingSearchRequest
-{
+public class BingSearchRequest {
 	private Bundle _request = new Bundle();
-	
+
 	private static final String SearchRequestBaseUri_Json = "http://api.bing.net/json.aspx";
 
-	protected BingSearchRequest(String query)
-	{
+	protected BingSearchRequest(String query) {
 		setString("AppId", BingSearchService._api_key);
 		setString("Version", "2.2");
 		setString("Market", "en-US");
@@ -22,14 +20,13 @@ public class BingSearchRequest
 		setString("Web.Count", "1");
 		setString("Adult", Adult__Strict);
 	}
-	
-	public void setQuery(String query)
-	{
+
+	public void setQuery(String query) {
 		_request.putString("Query", query);
 	}
 
-	public void setAdRequest(int PageNumber, int MlAdCount, int SbAdCount, int AdUnitId, String ChannelId, int PropertyId)
-	{
+	public void setAdRequest(int PageNumber, int MlAdCount, int SbAdCount,
+			int AdUnitId, String ChannelId, int PropertyId) {
 		attachSearchSource("Ad");
 		setUInt("Ad.PageNumber", PageNumber);
 		setUInt("Ad.MlAdCount", MlAdCount);
@@ -49,58 +46,53 @@ public class BingSearchRequest
 	public static final String Image_Filter__AspectTall = "Aspect:Tall";
 	public static final String Image_Filter__ColorColor = "Color:Color";
 	public static final String Image_Filter__ColorMonochrome = "Color:Monochrome";
-	
-	public void setImageRequest(int Count)
-	{
+
+	public void setImageRequest(int Count) {
 		setImageRequest(Count, 0, null);
 	}
-	
-	public void setImageRequest(int Count, int Offset)
-	{
+
+	public void setImageRequest(int Count, int Offset) {
 		setImageRequest(Count, Offset, null);
 	}
-	
-	public void setImageRequest(int Count, int Offset, ArrayList<String> Filters)
-	{
+
+	public void setImageRequest(int Count, int Offset, ArrayList<String> Filters) {
 		attachSearchSource("Image");
 		setUInt("Image.Count", Count);
 		setUInt("Image.Offset", Offset);
 		appendStringArrayList("Image.Filter", Filters);
 	}
-	
-	public void addImageRequestFilter(String Filter)
-	{
+
+	public void addImageRequestFilter(String Filter) {
 		appendString("Image.Filter", Filter);
 	}
-	
-	public void setInstantAnswerRequest()
-	{
+
+	public void setInstantAnswerRequest() {
 		attachSearchSource("InstantAnswer");
 	}
-	
+
 	public static final String MobileWeb_Option__DisableHostCollapsing = "DisableHostCollapsing";
 	public static final String MobileWeb_Option__DisableQueryAlterations = "DisableQueryAlterations";
-	
-	public void setMobileWebRequest(int Count)
-	{
+
+	public void setMobileWebRequest(int Count) {
 		setMobileWebRequest(Count, 0, null);
 	}
-	public void setMobileWebRequest(int Count, int Offset)
-	{
+
+	public void setMobileWebRequest(int Count, int Offset) {
 		setMobileWebRequest(Count, Offset, null);
 	}
-	public void setMobileWebRequest(int Count, int Offset, ArrayList<String> Options)
-	{
+
+	public void setMobileWebRequest(int Count, int Offset,
+			ArrayList<String> Options) {
 		attachSearchSource("MobileWeb");
 		setUInt("MobileWeb.Count", Count);
 		setUInt("MobileWeb.Offset", Offset);
 		appendStringArrayList("MobileWeb.Options", Options);
 	}
-	public void addMobileWebRequestOptions(String Option)
-	{
+
+	public void addMobileWebRequestOptions(String Option) {
 		appendString("MobileWeb.Options", Option);
 	}
-	
+
 	public static final String News_Category__Business = "rt_Business";
 	public static final String News_Category__Entertainment = "rt_Entertainment";
 	public static final String News_Category__Health = "rt_Health";
@@ -111,20 +103,20 @@ public class BingSearchRequest
 	public static final String News_Category__World = "rt_World";
 	public static final String News_Category_Local = "rt_Local";
 	public static final String News_Category__ScienceAndTechnology = "rt_ScienceAndTechnology";
-	
+
 	public static final String News_SortBy__Date = "Date";
 	public static final String News_SortBy__Relevance = "Relevance";
-	
-	public void setNewsRequest(int Count, String Category)
-	{
+
+	public void setNewsRequest(int Count, String Category) {
 		setNewsRequest(Count, 0, Category);
 	}
-	public void setNewsRequest(int Count, int Offset, String Category)
-	{
+
+	public void setNewsRequest(int Count, int Offset, String Category) {
 		setNewsRequest(Count, Offset, Category, null, null);
 	}
-	public void setNewsRequest(int Count, int Offset, String Category, String LocationOverride, String SortBy)
-	{
+
+	public void setNewsRequest(int Count, int Offset, String Category,
+			String LocationOverride, String SortBy) {
 		attachSearchSource("News");
 		setString("News.Category", Category);
 		setString("News.LocationOverride", LocationOverride);
@@ -133,28 +125,29 @@ public class BingSearchRequest
 		setUInt("News.Offset", Offset);
 		setString("News.SortBy", SortBy);
 	}
-	
+
 	public static final String Phonebook_FileType__YellowPages = "YP";
 	public static final String Phonebook_FileType__WhitePages = "WP";
-	
+
 	public static final String Phonebook_SortBy__Default = "Date";
 	public static final String Phonebook_SortBy__Distance = "Distance";
 	public static final String Phonebook_SortBy__Relevance = "Relevance";
-	
-	public void setPhonebookRequest(int Count)
-	{
+
+	public void setPhonebookRequest(int Count) {
 		setPhonebookRequest(Count, 0);
 	}
-	public void setPhonebookRequest(int Count, int Offset)
-	{
-		setPhonebookRequest(Count, Offset, Phonebook_FileType__YellowPages, null, null);
+
+	public void setPhonebookRequest(int Count, int Offset) {
+		setPhonebookRequest(Count, Offset, Phonebook_FileType__YellowPages,
+				null, null);
 	}
-	public void setPhonebookRequest(int Count, int Offset, String FileType)
-	{
+
+	public void setPhonebookRequest(int Count, int Offset, String FileType) {
 		setPhonebookRequest(Count, Offset, FileType, null, null);
 	}
-	public void setPhonebookRequest(int Count, int Offset, String FileType, String SortBy, String LocId)
-	{
+
+	public void setPhonebookRequest(int Count, int Offset, String FileType,
+			String SortBy, String LocId) {
 		attachSearchSource("Phonebook");
 		setUInt("Phonebook.Count", Count);
 		setUInt("Phonebook.Offset", Offset);
@@ -162,12 +155,11 @@ public class BingSearchRequest
 		setString("Phonebook.SortBy", SortBy);
 		setString("Phonebook.LocId", LocId);
 	}
-	
-	public void setRelatedSearchRequest()
-	{
+
+	public void setRelatedSearchRequest() {
 		attachSearchSource("RelatedSearch");
 	}
-	
+
 	public static final String Market__Arabic_Arabia = "ar-XA";
 	public static final String Market__Bulgarian_Bulgaria = "bg-BG";
 	public static final String Market__Czech_CzechRepublic = "cs-CZ";
@@ -227,12 +219,13 @@ public class BingSearchRequest
 	public static final String Adult__Off = "Off";
 	public static final String Adult__Moderate = "Moderate";
 	public static final String Adult__Strict = "Strict";
-	
+
 	public static final String SearchOption__DisableLocationDetection = "DisableLocationDetection";
 	public static final String SearchOption__EnableHighlighting = "EnableHighlighting";
-	
-	public void setSearchRequestParameters(String Market, String Adult, String UILanguage, double Latitude, double Longitude, double Radius, ArrayList<String> Options)
-	{
+
+	public void setSearchRequestParameters(String Market, String Adult,
+			String UILanguage, double Latitude, double Longitude,
+			double Radius, ArrayList<String> Options) {
 		setString("Market", Market);
 		setString("Adult", Adult);
 		setString("UILanguage", UILanguage);
@@ -241,16 +234,15 @@ public class BingSearchRequest
 		setDouble("Radius", Radius);
 		appendStringArrayList("Options", Options);
 	}
-	public void addSearchRequestOptions(String Option)
-	{
+
+	public void addSearchRequestOptions(String Option) {
 		appendString("Options", Option);
 	}
-	
-	public void setSpellRequest()
-	{
+
+	public void setSpellRequest() {
 		attachSearchSource("Spell");
 	}
-	
+
 	public static final String Translation_Language__Arabic = "Ar";
 	public static final String Translation_Language__SimplifiedChinese = "zh-CHS";
 	public static final String Translation_Language__TraditionalChinese = "zh-CHT";
@@ -265,15 +257,14 @@ public class BingSearchRequest
 	public static final String Translation_Language__Portuguese = "Pt";
 	public static final String Translation_Language__Russian = "Ru";
 	public static final String Translation_Language__Spanish = "Es";
-	
-	
-	public void setTranslationRequest(String SourceLanguage, String TargetLanguage)
-	{
+
+	public void setTranslationRequest(String SourceLanguage,
+			String TargetLanguage) {
 		attachSearchSource("Translation");
 		setString("Translation.SourceLanguage", SourceLanguage);
 		setString("Translation.TargetLanguage", TargetLanguage);
 	}
-	
+
 	public static final String Video_Filter__DurationShort = "Duration:Short";
 	public static final String Video_Filter__DurationMedium = "Duration:Medium";
 	public static final String Video_Filter__DurationLong = "Duration:Long";
@@ -282,31 +273,31 @@ public class BingSearchRequest
 	public static final String Video_Filter__ResolutionLow = "Resolution:Low";
 	public static final String Video_Filter__ResolutionMedium = "Resolution:Medium";
 	public static final String Video_Filter__ResolutionHigh = "Resolution:High";
-	
+
 	public static final String Video_SortBy__Date = "Date";
 	public static final String Video_SortBy__Relevance = "Relevance";
-	
-	public void setVideoRequest(int Count)
-	{
+
+	public void setVideoRequest(int Count) {
 		setVideoRequest(Count, 0);
 	}
-	public void setVideoRequest(int Count, int Offset)
-	{
+
+	public void setVideoRequest(int Count, int Offset) {
 		setVideoRequest(Count, Offset, null, null);
 	}
-	public void setVideoRequest(int Count, int Offset, ArrayList<String> Filters, String SortBy)
-	{
+
+	public void setVideoRequest(int Count, int Offset,
+			ArrayList<String> Filters, String SortBy) {
 		attachSearchSource("Video");
 		setUInt("Video.Count", Count);
 		setUInt("Video.Offset", Offset);
 		setStringArrayList("Video.Filters", Filters);
 		setString("Video.Offset", SortBy);
 	}
-	public void addVideoRequestFilters(String Filter)
-	{
+
+	public void addVideoRequestFilters(String Filter) {
 		appendString("Video.Filters", Filter);
 	}
-	
+
 	public static final String Web_FileType__WordDocument = "DOC";
 	public static final String Web_FileType__AutodeskDrawing = "DWF";
 	public static final String Web_FileType__RSS = "FEED";
@@ -322,18 +313,17 @@ public class BingSearchRequest
 
 	public static final String Web_Option__DisableHostCollapsing = "DisableHostCollapsing";
 	public static final String Web_Option__DisableQueryAlterations = "DisableQueryAlterations";
-	
-	public void setWebRequest(int Count)
-	{
+
+	public void setWebRequest(int Count) {
 		setWebRequest(Count, 0);
 	}
-	public void setWebRequest(int Count, int Offset)
-	{
+
+	public void setWebRequest(int Count, int Offset) {
 		setWebRequest(Count, Offset, null, null, null);
 	}
-	
-	public void setWebRequest(int Count, int Offset, String FileType, ArrayList<String> Options, ArrayList<String> SearchTags)
-	{
+
+	public void setWebRequest(int Count, int Offset, String FileType,
+			ArrayList<String> Options, ArrayList<String> SearchTags) {
 		attachSearchSource("Web");
 		setUInt("Web.Count", Count);
 		setUInt("Web.Offset", Offset);
@@ -341,177 +331,145 @@ public class BingSearchRequest
 		setStringArrayList("Web.Options", Options);
 		setStringArrayList("Web.SearchTags", SearchTags);
 	}
-	
-	private void setStringArrayList(String parameter, ArrayList<String> value)
-	{
-		if(_request.containsKey(parameter))
-		{
+
+	private void setStringArrayList(String parameter, ArrayList<String> value) {
+		if (_request.containsKey(parameter)) {
 			_request.remove(parameter);
 		}
-		
+
 		appendStringArrayList(parameter, value);
 	}
-	private void setString(String parameter, String value)
-	{
-		if(value != null)
-		{
+
+	private void setString(String parameter, String value) {
+		if (value != null) {
 			_request.putString(parameter, value);
 		}
 	}
-	
-	private void setUInt(String parameter, int value)
-	{
-		if(value >= 0)
-		{
+
+	private void setUInt(String parameter, int value) {
+		if (value >= 0) {
 			_request.putInt(parameter, value);
 		}
 	}
-	
-	private void setDouble(String parameter, double value)
-	{
+
+	private void setDouble(String parameter, double value) {
 		_request.putDouble(parameter, value);
 	}
-	
-	private void attachSearchSource(String source_name)
-	{
+
+	private void attachSearchSource(String source_name) {
 		appendString("Sources", source_name);
 	}
-	
-	private void appendString(String parameter, String value)
-	{
-		ArrayList<String> strings;
-		if(_request.containsKey(parameter))
-		{
-			strings = _request.getStringArrayList(parameter);
-			strings.add(value);
-			_request.putStringArrayList(parameter, strings);
-		}
-		else
-		{
-			strings = new ArrayList<String>();
-			strings.add(value);
-			_request.putStringArrayList(parameter, strings);
-		}
-	}
-	
-	private void appendStringArrayList(String parameter, ArrayList<String> value)
-	{
-		ArrayList<String> strings;
-		if(_request.containsKey(parameter))
-		{
-			strings = _request.getStringArrayList(parameter);
-			strings.addAll(value);
-			_request.putStringArrayList(parameter, strings);
-		}
-		else
-		{
-			_request.putStringArrayList(parameter, value);
+
+	private void appendString(String parameter, String value) {
+		
+		if(value != null) {
+			ArrayList<String> strings;
+			if (_request.containsKey(parameter)) {
+				strings = _request.getStringArrayList(parameter);
+				strings.add(value);
+				_request.putStringArrayList(parameter, strings);
+			} else {
+				strings = new ArrayList<String>();
+				strings.add(value);
+				_request.putStringArrayList(parameter, strings);
+			}
 		}
 	}
-	
+
+	private void appendStringArrayList(String parameter, ArrayList<String> value) {
+		if (value != null) {
+			ArrayList<String> strings;
+			if (_request.containsKey(parameter)) {
+				strings = _request.getStringArrayList(parameter);
+				strings.addAll(value);
+				_request.putStringArrayList(parameter, strings);
+			} else {
+				_request.putStringArrayList(parameter, value);
+			}
+		}
+	}
+
 	@SuppressWarnings("unchecked")
-	public String getSearchUri()
-	{
+	public String getSearchUri() {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder sbi;
 		sb.append(SearchRequestBaseUri_Json);
 		sb.append("?");
-		Set<String>keys = _request.keySet();
+		Set<String> keys = _request.keySet();
 		Object data_handle;
 		boolean first_element = true;
 		ArrayList<Object> object_list;
-		
+
 		cleanupBundle();
-		
-		if(_request.containsKey("Sources") == false)
-		{
+
+		if (_request.containsKey("Sources") == false) {
 			sb.append("Sources");
 			sb.append("=");
 			sb.append("Web");
 			first_element = false;
 		}
-		
-		for(String key : keys)
-		{
+
+		for (String key : keys) {
 			data_handle = _request.get(key);
 
-			if(first_element)
-			{
+			if (first_element) {
 				first_element = false;
-			}
-			else
-			{
+			} else {
 				sb.append("&");
 			}
-			
+
 			sb.append(key);
 			sb.append("=");
 
-			if( data_handle instanceof String ||
-				data_handle instanceof Integer ||
-				data_handle instanceof Double)
-			{
+			if (data_handle instanceof String || data_handle instanceof Integer
+					|| data_handle instanceof Double) {
 				sb.append(SanitizeParameter(data_handle.toString()));
-			}
-			else if(data_handle instanceof ArrayList<?>)
-			{
+			} else if (data_handle instanceof ArrayList<?>) {
 				object_list = (ArrayList<Object>) data_handle;
 				sbi = new StringBuilder();
 				int sli;
 				int sllen = object_list.size();
-				for(sli = 0; sli < sllen; sli++)
-				{
-					if(sli > 0)
-					{
+				for (sli = 0; sli < sllen; sli++) {
+					if (sli > 0) {
 						sbi.append("+");
 					}
-					sbi.append(SanitizeParameter(object_list.get(sli).toString()));
+					sbi.append(SanitizeParameter(object_list.get(sli)
+							.toString()));
 				}
 				sb.append(sbi.toString());
-			}
-			else
-			{
+			} else {
 				android.util.Log.i("Request", data_handle.toString());
 			}
 		}
-		
+
 		return sb.toString();
 	}
-	
-	private void cleanupBundle()
-	{
-		Set<String>keys = _request.keySet();
+
+	private void cleanupBundle() {
+		Set<String> keys = _request.keySet();
 		Object data;
 		ArrayList<String> del_targets = new ArrayList<String>();
-		for(String key : keys)
-		{
-			if(_request.get(key) == null)
-			{
+		for (String key : keys) {
+			if (_request.get(key) == null) {
 				del_targets.add(key);
-			}
-			else
-			{
+			} else {
 				data = _request.get(key);
-				if( data instanceof String ||
-					data instanceof Integer ||
-					data instanceof Double)
-				{
-					if(data.toString().length() == 0)
-					{
+				if (data instanceof String || data instanceof Integer
+						|| data instanceof Double) {
+					if (data.toString().length() == 0) {
 						del_targets.add(key);
 					}
 				}
 			}
 		}
-		
+
 		int len = del_targets.size();
-		for(int i = 0; i < len; i++)
-		{
+		for (int i = 0; i < len; i++) {
 			_request.remove(del_targets.get(i));
 		}
 	}
-	private String SanitizeParameter(String param)
-	{
+
+	private String SanitizeParameter(String param) {
 		return Uri.encode(param);
 	}
 }

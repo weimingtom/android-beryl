@@ -4,11 +4,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
-/**
- * Manages the state of a view on the start and end of an animation.
- * @author jeremyje
- *
- */
+/** Manages the state of a view on the start and end of an animation. */
 public class ViewStateAnimationListener implements AnimationListener
 {
 	private final View _view;
