@@ -1,5 +1,6 @@
 package org.beryl.web.url;
 
+/** Exception that indicates that something went wrong with the URL Shortening request. */
 @SuppressWarnings("serial")
 public class UrlShorteningException extends RuntimeException {
 
