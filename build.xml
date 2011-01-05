@@ -22,7 +22,7 @@
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-app" />
 			<param name="package" value="org.beryl.app" />
-			<param name="classpathid" value="froyo-classpath" />
+			<param name="classpathid" value="gingerbread-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-content" />
@@ -96,6 +96,12 @@
 	<!-- Class Paths -->
 	<path id="froyo-classpath">
 		<fileset dir="${android.sdk.platforms.froyo}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="gingerbread-classpath">
+		<fileset dir="${android.sdk.platforms.gingerbread}">
 			<include name="*.jar" />
 		</fileset>
 	</path>

@@ -20,8 +20,23 @@ public class AndroidVersion {
 		return _ANDROID_SDK_VERSION;
 	}
 	
+	/** Returns true if running on Android 1.6 or higher. */
+	public static boolean isDonutOrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.DONUT;
+	}
+	
 	/** Returns true if running on Android 2.1 or higher. */
 	public static boolean isEclairOrHigher() {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.ECLAIR;
+	}
+	
+	/** Returns true if running on Android 2.2 or higher. */
+	public static boolean isFroyoOrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.FROYO;
+	}
+	
+	/** Returns true if running on Android 2.3 or higher. */
+	public static boolean isGingerbreadOrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.GINGERBREAD;
 	}
 }
