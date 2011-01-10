@@ -146,7 +146,21 @@ public class IntentChooser extends Activity implements OnDismissListener {
 	
 	protected void runChoosableIntent(final ChoosableIntent choosableIntent) {
 		if(choosableIntent != null) {
-			startActivity(choosableIntent.intent);
+			
+			switch(choosableIntent.runIntentAs) {
+			case ChoosableIntent.RUNAS_Activity:
+				{
+					startActivity(choosableIntent.intent);
+				} break;
+			case ChoosableIntent.RUNAS_Broadcast:
+				{
+					sendBroadcast(choosableIntent.intent);
+				} break;
+			case ChoosableIntent.RUNAS_Service:
+				{
+					startService(choosableIntent.intent);
+				} break;
+			}
 		}
     	finish();
 	}
