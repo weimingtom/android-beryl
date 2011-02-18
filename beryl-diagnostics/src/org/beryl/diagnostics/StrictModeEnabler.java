@@ -4,8 +4,12 @@ import org.beryl.app.AndroidVersion;
 
 import android.os.StrictMode;
 
+/** Manages the enabling of Strict Mode which will record to a penalty log.
+ * Note: Strict Mode is only supported in Gingerbread or higher.
+ * If methods are called on an unsupported system they will silently be ignored. */
 public class StrictModeEnabler {
 
+	/** Enables strict mode on the current thread. Note: Strict Mode is only supported in Gingerbread or higher. */
 	public static void enableOnThread() {
 		IStrictModeEnabler enabler = getStrictModeEnabler();
 		enabler.startStrictMode();
