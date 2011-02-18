@@ -6,13 +6,9 @@ import android.os.StrictMode;
 
 public class StrictModeEnabler {
 
-	public static final boolean USE_STRICT_MODE = false;
-	
-	public static void setupStrictMode() {
-		if(USE_STRICT_MODE) {
-			IStrictModeEnabler enabler = getStrictModeEnabler();
-			enabler.startStrictMode();
-		}
+	public static void enableOnThread() {
+		IStrictModeEnabler enabler = getStrictModeEnabler();
+		enabler.startStrictMode();
 	}
 	
 	private static IStrictModeEnabler getStrictModeEnabler() {
