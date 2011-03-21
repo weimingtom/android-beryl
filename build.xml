@@ -40,6 +40,11 @@
 			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-webapis" />
+			<param name="package" value="org.beryl.webapis" />
+			<param name="classpathid" value="default-berylweb-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-widget" />
 			<param name="package" value="org.beryl.widget" />
 			<param name="classpathid" value="default-classpath" />
@@ -91,13 +96,13 @@
 	<!-- Class Paths -->
 	
 	<path id="default-classpath">
-		<fileset dir="${android.sdk.platforms.gingerbread}">
+		<fileset dir="${android.sdk.platforms.default}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
 	
 	<path id="default-berylcore-classpath">
-		<fileset dir="${android.sdk.platforms.gingerbread}">
+		<fileset dir="${android.sdk.platforms.default}">
 			<include name="*.jar" />
 		</fileset>
 		<fileset dir="${beryl.jar.path}">
@@ -105,11 +110,21 @@
 		</fileset>
 	</path>
 	
-	<path id="default-googleapi-classpath">
-		<fileset dir="${android.sdk.platforms.gingerbread}">
+	<path id="default-berylweb-classpath">
+		<fileset dir="${android.sdk.platforms.default}">
 			<include name="*.jar" />
 		</fileset>
-		<fileset dir="${android.sdk.addons.googleapi.gingerbread}">
+		<fileset dir="${beryl.jar.path}">
+			<include name="org.beryl.jar" />
+			<include name="org.beryl.web.jar" />
+		</fileset>
+	</path>
+	
+	<path id="default-googleapi-classpath">
+		<fileset dir="${android.sdk.platforms.default}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${android.sdk.addons.googleapi.default}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
