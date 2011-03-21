@@ -1,5 +1,7 @@
 package org.beryl.app;
 
+import java.lang.reflect.Method;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -75,12 +77,38 @@ public class ServiceForegrounder {
 	
 	static class DonutAndBelowServiceForegrounder implements IServiceForegrounder
 	{
+		private static final Class<?>[] service_setForegroundSignature = new Class[] {
+		    boolean.class};
+		static final Method service_setForeground;
+		
+		static {
+			Method try_service_setForeground = null;
+			try {
+				try_service_setForeground = Service.class.getMethod("setForeground", service_setForegroundSignature);
+			} catch (Exception e) {
+				try_service_setForeground = null;
+			}
+			service_setForeground = try_service_setForeground;
+		}
+		
 		private NotificationManager getNotificationManager(final Service service) {
 			return  (NotificationManager) service.getSystemService(Service.NOTIFICATION_SERVICE);
 		}
 		
+		private void setForeground(Service service, boolean mode) {
+			Object[] service_setForeground_Args = new Object[1];
+			service_setForeground_Args[0] = Boolean.valueOf(mode);
+			
+			try {
+				service_setForeground.invoke(service, service_setForeground_Args);
+			} catch(Exception e) {
+				
+			}
+		}
+		
 		public void startForeground(final Service service, final int notificationId, final Notification notification) {
-			service.setForeground(true);
+			
+			setForeground(service, true);
 			final NotificationManager nm = getNotificationManager(service);
 			notification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_AUTO_CANCEL;
 			
@@ -90,7 +118,7 @@ public class ServiceForegrounder {
 		public void stopForeground(final Service service, final int notificationId) {
 			final NotificationManager nm = getNotificationManager(service);
 			nm.cancel(notificationId);
-			service.setForeground(false);
+			setForeground(service, false);
 		}
 	}
 	

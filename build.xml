@@ -17,32 +17,32 @@
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-core" />
 			<param name="package" value="org.beryl" />
-			<param name="classpathid" value="gingerbread-classpath" />
+			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-content" />
 			<param name="package" value="org.beryl.content" />
-			<param name="classpathid" value="gingerbread-classpath" />
+			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-diagnostics" />
 			<param name="package" value="org.beryl.diagnostics" />
-			<param name="classpathid" value="gingerbread-berylcore-classpath" />
+			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-location" />
 			<param name="package" value="org.beryl.location" />
-			<param name="classpathid" value="gingerbread-berylcore-classpath" />
+			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-web" />
 			<param name="package" value="org.beryl.web" />
-			<param name="classpathid" value="gingerbread-classpath" />
+			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-widget" />
 			<param name="package" value="org.beryl.widget" />
-			<param name="classpathid" value="gingerbread-classpath" />
+			<param name="classpathid" value="default-classpath" />
 		</antcall>
 	</target>
 	
@@ -90,15 +90,14 @@
 
 	<!-- Class Paths -->
 	
-	<!--
-	<path id="froyo-classpath">
-		<fileset dir="${android.sdk.platforms.froyo}">
+	<path id="default-classpath">
+		<fileset dir="${android.sdk.platforms.gingerbread}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
 	
-	<path id="froyo-berylcore-classpath">
-		<fileset dir="${android.sdk.platforms.froyo}">
+	<path id="default-berylcore-classpath">
+		<fileset dir="${android.sdk.platforms.gingerbread}">
 			<include name="*.jar" />
 		</fileset>
 		<fileset dir="${beryl.jar.path}">
@@ -106,15 +105,14 @@
 		</fileset>
 	</path>
 	
-	<path id="froyo-googleapi-classpath">
-		<fileset dir="${android.sdk.platforms.froyo}">
+	<path id="default-googleapi-classpath">
+		<fileset dir="${android.sdk.platforms.gingerbread}">
 			<include name="*.jar" />
 		</fileset>
-		<fileset dir="${android.sdk.addons.googleapi.froyo}">
+		<fileset dir="${android.sdk.addons.googleapi.gingerbread}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
-	-->
 	
 	<path id="gingerbread-classpath">
 		<fileset dir="${android.sdk.platforms.gingerbread}">
