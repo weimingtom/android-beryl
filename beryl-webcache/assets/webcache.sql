@@ -1,0 +1,19 @@
+CREATE TABLE [WebCache] (
+[_id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+[Url] TEXT  UNIQUE NOT NULL,
+[Created] TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+[Expires] TIMESTAMP  NULL,
+[FileData] BLOB  NULL
+);
+
+CREATE UNIQUE INDEX [IDX_WEBCACHE_Url] ON [WebCache](
+[Url]  ASC
+);
+
+CREATE INDEX [IDX_WEBCACHE_Expires] ON [WebCache](
+[Expires]  ASC
+);
+
+CREATE INDEX [IDX_WEBCACHE_Created] ON [WebCache](
+[Created]  ASC          -- Comment
+);

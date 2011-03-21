@@ -25,6 +25,11 @@
 			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-database" />
+			<param name="package" value="org.beryl.database" />
+			<param name="classpathid" value="default-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-diagnostics" />
 			<param name="package" value="org.beryl.diagnostics" />
 			<param name="classpathid" value="default-berylcore-classpath" />
