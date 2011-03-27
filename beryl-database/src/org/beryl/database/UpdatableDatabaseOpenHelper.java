@@ -27,6 +27,7 @@ public abstract class UpdatableDatabaseOpenHelper extends SQLiteOpenHelper {
 		final DatabaseUpdateRunner updateRunner = new DatabaseUpdateRunner();
 		final DatabaseUpdateLoader updateLoader = new DatabaseUpdateLoader(updateRunner, params);
 		
+		android.os.Debug.waitForDebugger();
 		final Log log = params.log;
 		
 		log.setTag("db_" + getDbName());
@@ -49,7 +50,7 @@ public abstract class UpdatableDatabaseOpenHelper extends SQLiteOpenHelper {
 		final DatabaseUpdateParameters params = createUpdateParams(db);
 		final DatabaseUpdateRunner updateRunner = new DatabaseUpdateRunner();
 		final DatabaseUpdateLoader updateLoader = new DatabaseUpdateLoader(updateRunner, params);
-		
+		android.os.Debug.waitForDebugger();
 		// TODO: Add logic to wipe out the database and recreate it if there's no upgrade path.
 		updateLoader.queueScriptFromClassNameTemplate(getUpdateScriptClassPathTemplate(), oldVersion, newVersion);
 		updateRunner.run();
