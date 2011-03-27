@@ -117,9 +117,7 @@
 	</path>
 	
 	<path id="default-berylcore-classpath">
-		<fileset dir="${android.sdk.platforms.default}">
-			<include name="*.jar" />
-		</fileset>
+		<path refid="default-classpath" />
 		<fileset dir="${beryl.jar.path}">
 			<include name="org.beryl.jar" />
 		</fileset>
