@@ -25,14 +25,9 @@
 			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-diagnostics" />
-			<param name="package" value="org.beryl.diagnostics" />
-			<param name="classpathid" value="default-berylcore-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-database" />
 			<param name="package" value="org.beryl.database" />
-			<param name="classpathid" value="default-beryldiagnostics-classpath" />
+			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-location" />
@@ -122,13 +117,6 @@
 			<include name="org.beryl.jar" />
 		</fileset>
 	</path>
-	
-	<path id="default-beryldiagnostics-classpath">
-		<path refid="default-berylcore-classpath" />
-		<fileset dir="${beryl.jar.path}">
-			<include name="org.beryl.diagnostics.jar" />
-		</fileset>
-	</path>
 
 	<path id="default-berylweb-classpath">
 		<path refid="default-berylcore-classpath" />
@@ -139,7 +127,6 @@
 	
 	<path id="default-berylweb-database-classpath">
     <path refid="default-berylweb-classpath" />
-    <path refid="default-beryldiagnostics-classpath" />
     <fileset dir="${beryl.jar.path}">
 			<include name="org.beryl.database.jar" />
 		</fileset>
