@@ -25,14 +25,14 @@
 			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-database" />
-			<param name="package" value="org.beryl.database" />
-			<param name="classpathid" value="default-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-diagnostics" />
 			<param name="package" value="org.beryl.diagnostics" />
 			<param name="classpathid" value="default-berylcore-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-database" />
+			<param name="package" value="org.beryl.database" />
+			<param name="classpathid" value="default-beryldiagnostics-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-location" />
@@ -57,7 +57,7 @@
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-webcache" />
 			<param name="package" value="org.beryl.web.cache" />
-			<param name="classpathid" value="default-berylweb-classpath" />
+			<param name="classpathid" value="default-berylweb-database-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-widget" />
@@ -125,6 +125,16 @@
 		</fileset>
 	</path>
 	
+	<path id="default-beryldiagnostics-classpath">
+		<fileset dir="${android.sdk.platforms.default}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${beryl.jar.path}">
+			<include name="org.beryl.jar" />
+			<include name="org.beryl.diagnostics.jar" />
+		</fileset>
+	</path>
+
 	<path id="default-berylweb-classpath">
 		<fileset dir="${android.sdk.platforms.default}">
 			<include name="*.jar" />
@@ -132,6 +142,14 @@
 		<fileset dir="${beryl.jar.path}">
 			<include name="org.beryl.jar" />
 			<include name="org.beryl.web.jar" />
+		</fileset>
+	</path>
+	
+	<path id="default-berylweb-database-classpath">
+    <path refid="default-berylweb-classpath" />
+    <path refid="default-beryldiagnostics-classpath" />
+    <fileset dir="${beryl.jar.path}">
+			<include name="org.beryl.database.jar" />
 		</fileset>
 	</path>
 	
