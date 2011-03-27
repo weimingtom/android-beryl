@@ -14,7 +14,6 @@ class DatabaseUpdateScriptRunner implements Runnable {
 	
 	public void run() {
 		final Log logger = params.log;
-		logger.setTag("DatabaseUpdateScriptRunner");
 		logger.d("onBeforeSchemaUpdate");
 		script.onBeforeSchemaUpdate(params);
 		logger.d("updateSchema");

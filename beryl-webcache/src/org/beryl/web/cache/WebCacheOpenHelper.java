@@ -10,7 +10,7 @@ import android.content.Context;
 public class WebCacheOpenHelper extends UpdatableDatabaseOpenHelper {
 
 	public static final String DB_NAME = "webcache";
-	public static final int DB_VERSION = 1;
+	public static final int DB_VERSION = 2;
 	
 	public WebCacheOpenHelper(Context context) {
 		super(context, DB_NAME, DB_VERSION);
@@ -29,18 +29,18 @@ public class WebCacheOpenHelper extends UpdatableDatabaseOpenHelper {
 		return DB_NAME;
 	}
 	
-	static class WebCacheCreateDatabaseScript extends SqlOnlyCreateScript {
+	public static class WebCacheCreateDatabaseScript extends SqlOnlyCreateScript {
 
 		protected String getSchemaSqlScript() {
-			return "assets/webcache/webcache.sql";
+			return "webcache/webcache.sql";
 		}
 	}
 	
-	static class WebCacheUpdateScript_2 extends SqlOnlyUpdateScript {
+	public static class WebCacheUpdateScript_2 extends SqlOnlyUpdateScript {
 
 		@Override
 		protected String getSchemaSqlScript() {
-			return "assets/webcache/webcache_2.sql";
+			return "webcache/webcache_2.sql";
 		}
 	}
 }

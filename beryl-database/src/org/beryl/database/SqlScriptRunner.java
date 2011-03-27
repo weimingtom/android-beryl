@@ -27,9 +27,10 @@ public class SqlScriptRunner {
 		transactionException = null;
 		
 		try {
-			db.beginTransactionNonExclusive();
+			db.beginTransaction();
 			
 			while((sqlStatement = script.nextStatement()) != null) {
+				android.util.Log.w("Script", sqlStatement);
 				db.execSQL(sqlStatement);
 			}
 
