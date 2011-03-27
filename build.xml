@@ -69,7 +69,7 @@
 	<target name="javadoc">
 		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API" additionalparam="-notimestamp">
 			<fileset refid="all-project-java-files" />
-			<classpath refid="gingerbread-googleapi-classpath" />
+			<classpath refid="default-googleapi-classpath" />
 			
 			<!-- TODO: stylesheetfile -->
 			<link href="http://developer.android.com/reference/" offline="true" packagelistloc="${android.sdk.javadoc.offline}" />
@@ -124,21 +124,15 @@
 	</path>
 	
 	<path id="default-beryldiagnostics-classpath">
-		<fileset dir="${android.sdk.platforms.default}">
-			<include name="*.jar" />
-		</fileset>
+		<path refid="default-berylcore-classpath" />
 		<fileset dir="${beryl.jar.path}">
-			<include name="org.beryl.jar" />
 			<include name="org.beryl.diagnostics.jar" />
 		</fileset>
 	</path>
 
 	<path id="default-berylweb-classpath">
-		<fileset dir="${android.sdk.platforms.default}">
-			<include name="*.jar" />
-		</fileset>
+		<path refid="default-berylcore-classpath" />
 		<fileset dir="${beryl.jar.path}">
-			<include name="org.beryl.jar" />
 			<include name="org.beryl.web.jar" />
 		</fileset>
 	</path>
@@ -156,30 +150,6 @@
 			<include name="*.jar" />
 		</fileset>
 		<fileset dir="${android.sdk.addons.googleapi.default}">
-			<include name="*.jar" />
-		</fileset>
-	</path>
-	
-	<path id="gingerbread-classpath">
-		<fileset dir="${android.sdk.platforms.gingerbread}">
-			<include name="*.jar" />
-		</fileset>
-	</path>
-	
-	<path id="gingerbread-berylcore-classpath">
-		<fileset dir="${android.sdk.platforms.gingerbread}">
-			<include name="*.jar" />
-		</fileset>
-		<fileset dir="${beryl.jar.path}">
-			<include name="org.beryl.jar" />
-		</fileset>
-	</path>
-	
-	<path id="gingerbread-googleapi-classpath">
-		<fileset dir="${android.sdk.platforms.gingerbread}">
-			<include name="*.jar" />
-		</fileset>
-		<fileset dir="${android.sdk.addons.googleapi.gingerbread}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
