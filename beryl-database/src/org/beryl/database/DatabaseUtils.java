@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,9 +25,17 @@ public class DatabaseUtils {
 	}
 	
 	public static boolean runSqlScriptFromAsset(final Context context,
-			final SQLiteDatabase db, final String schemaFilePath) throws IOException {
-		SqlScriptReader script = new SqlScriptReader(readAsset(context, schemaFilePath));
-		SqlScriptRunner sqlRunner = new SqlScriptRunner(db, script);
-		return sqlRunner.run();
+			final SQLiteDatabase db, final String schemaFilePath) {
+		boolean success = false;
+		try {
+		
+			SqlScriptReader script = new SqlScriptReader(readAsset(context, schemaFilePath));
+			SqlScriptRunner sqlRunner = new SqlScriptRunner(db, script);
+			success = sqlRunner.run();
+		} catch(Exception e) {
+			success = false;
+		}
+		
+		return success;
 	}
 }

@@ -2,5 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Honeycomb"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/beryl-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/beryl-diagnostics"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/** Buffered Reader that reads SQL statements from an input stream. */
 public class SqlScriptReader {
 
 	private final BufferedReader scriptFile;

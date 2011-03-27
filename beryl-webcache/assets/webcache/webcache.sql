@@ -13,7 +13,3 @@ CREATE UNIQUE INDEX [IDX_WEBCACHE_Url] ON [WebCache](
 CREATE INDEX [IDX_WEBCACHE_Expires] ON [WebCache](
 [Expires]  ASC
 );
-
-CREATE INDEX [IDX_WEBCACHE_Created] ON [WebCache](
-[Created]  ASC          -- Comment
-);
