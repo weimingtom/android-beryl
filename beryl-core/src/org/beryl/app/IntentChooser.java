@@ -18,12 +18,34 @@ import android.view.View;
  * 
  * To use this class you'll need to add this activity declaration to your AndroidManifest.xml file.
  * 
- * &lt;activity android:name="org.beryl.app.IntentChooser"
+Register IntentChooser Activity in AndroidManifest.xml.
+<pre class="code"><code class="xml">
+&lt;activity android:name="org.beryl.app.IntentChooser"
                   android:label="@string/my_location"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar"
                   android:launchMode="singleTop"
                   android:noHistory="true"
                   android:excludeFromRecents="true" /&gt;
+</code></pre>
+
+Example Code to Call Intent Chooser:
+<pre class="code"><code class="java">
+public Intent getShareIntent() {
+
+    // Create list of Intents to choose from.
+    final ArrayList<ChoosableIntent> intents = new ArrayList<ChoosableIntent>();
+
+    // Add entries to pick.
+    intents.add(createChoosable(R.string.address, getShareAddressIntent()));
+    intents.add(createChoosable(R.string.coordinates, getShareCoordinatesIntent()));
+    
+    // Set the title.
+    final CharSequence title = _context.getText(R.string.share_location);
+
+    // Create the Intent to launch the IntentChooser Activity.
+    return IntentChooser.createChooserIntent(_context, title, intents);
+}
+</code></pre>
  */
 public class IntentChooser extends Activity implements OnDismissListener {
 	private static final String EXTRA_TITLE = "chooserTitle";
