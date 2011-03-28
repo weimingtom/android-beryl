@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="org.beryl" android:versionCode="1" android:versionName="Build 1">
+	<application android:icon="@drawable/beryl_icon"
+		android:label="@string/beryl_app_name" android:debuggable="true">
+		<activity android:name=".BerylTestActivity" android:label="@string/beryl_app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="org.beryl.BerylPreferenceActivity" />
+		<activity android:name="org.beryl.diagnostics.reporting.CrashReportActivity"
+			android:exported="true" />
+		<service android:name="org.beryl.speech.TtsService">
+		</service>
+		<meta-data android:name="BerylCrashReporter_UserKey"
+			android:value="e989b54a-64f0-4b49-a1d4-ca34f11d03b0" />
+		<meta-data android:name="BerylCrashReporter_ReporterMode"
+			android:value="PrefString_CrashReportingMode" />
+		<meta-data android:name="BerylCrashReporter_Enabled"
+			android:value="PrefString_CrashReportingEnabled" />
+		<meta-data android:name="BerylCrashReporter_ServiceEndpoint"
+			android:value="http://192.168.1.102:8888/api/crashreporter/submit" />
+	</application>
+
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-sdk android:targetSdkVersion="8" android:minSdkVersion="8"></uses-sdk>
+</manifest>

@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<project default="main">	
+	<property file="user.properties" />
+	<property file="build.properties" />
+
+	<target name="main" description="Beryl Project Deployment" depends="init,build-projects,javadoc">
+	</target>
+	
+	<target name="init" depends="jar-clean">
+		<tstamp />
+		
+		<mkdir dir="${beryl.jar.path}" />
+		<mkdir dir="${beryl.jar.sourcepath}" />
+	</target>
+	
+	<target name="build-projects">
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-core" />
+			<param name="package" value="org.beryl" />
+			<param name="classpathid" value="default-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-content" />
+			<param name="package" value="org.beryl.content" />
+			<param name="classpathid" value="default-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-database" />
+			<param name="package" value="org.beryl.database" />
+			<param name="classpathid" value="default-berylcore-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-location" />
+			<param name="package" value="org.beryl.location" />
+			<param name="classpathid" value="default-berylcore-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-intents" />
+			<param name="package" value="org.beryl.intents" />
+			<param name="classpathid" value="default-berylcore-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-web" />
+			<param name="package" value="org.beryl.web" />
+			<param name="classpathid" value="default-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-webapis" />
+			<param name="package" value="org.beryl.webapis" />
+			<param name="classpathid" value="default-berylweb-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-webcache" />
+			<param name="package" value="org.beryl.web.cache" />
+			<param name="classpathid" value="default-berylweb-database-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-widget" />
+			<param name="package" value="org.beryl.widget" />
+			<param name="classpathid" value="default-classpath" />
+		</antcall>
+	</target>
+	
+	<target name="javadoc">
+		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API" additionalparam="-notimestamp">
+			<fileset refid="all-project-java-files" />
+			<classpath refid="default-googleapi-classpath" />
+			
+			<!-- TODO: stylesheetfile -->
+			<link href="http://developer.android.com/reference/" offline="true" packagelistloc="${android.sdk.javadoc.offline}" />
+				<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
+		</javadoc>
+	</target>
+	
+	<target name="beryl-build" depends="java-jar">
+		<echo message="projectdir=${projectdir} package=${package}"/>
+	</target>
+	
+	<target name="java-compile-clean" description="Clean Project">
+		<delete dir="${projectdir}/bin" />
+	</target>
+	
+	<target name="java-compile" depends="java-compile-clean">
+		<mkdir dir="${projectdir}/bin" />
+		<javac srcdir="${projectdir}/src" destdir="${projectdir}/bin" classpathref="${classpathid}" debug="true" optimize="false"  />
+	</target>
+	
+	<target name="java-jar-clean">
+		<delete file="${beryl.jar.path}/${package}.jar" />
+		<delete file="${beryl.jar.sourcepath}/${package}${beryl.jar.postfix}.jar" />
+	</target>
+	
+	<target name="java-jar" depends="java-compile,java-jar-clean">
+		<!-- Build 1 jar with sources and binaries. -->
+		<jar jarfile="${beryl.jar.path}/${package}.jar" basedir="${projectdir}/bin" includes="**/*.class" compress="true" />
+	  	<jar jarfile="${beryl.jar.sourcepath}/${package}${beryl.jar.postfix}.jar" basedir="${projectdir}/src" includes="**/*" compress="true">
+        <zipfileset includes="**/*.class" src="${beryl.jar.path}/${package}.jar"/>
+	  	</jar>
+	</target>
+	
+	<target name="jar-clean">
+		<delete dir="${beryl.jar.path}" />
+		<delete dir="${beryl.jar.sourcepath}" />
+	</target>
+
+	<!-- Class Paths -->
+	
+	<path id="default-classpath">
+		<fileset dir="${android.sdk.platforms.default}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="default-berylcore-classpath">
+		<path refid="default-classpath" />
+		<fileset dir="${beryl.jar.path}">
+			<include name="org.beryl.jar" />
+		</fileset>
+	</path>
+
+	<path id="default-berylweb-classpath">
+		<path refid="default-berylcore-classpath" />
+		<fileset dir="${beryl.jar.path}">
+			<include name="org.beryl.web.jar" />
+		</fileset>
+	</path>
+	
+	<path id="default-berylweb-database-classpath">
+    <path refid="default-berylweb-classpath" />
+    <fileset dir="${beryl.jar.path}">
+			<include name="org.beryl.database.jar" />
+		</fileset>
+	</path>
+	
+	<path id="default-googleapi-classpath">
+		<fileset dir="${android.sdk.platforms.default}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${android.sdk.addons.googleapi.default}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<fileset id="all-project-java-files" dir="">
+		<include name="**/*.java" />
+	</fileset>
+	
+	<!--
+	References:
+	http://ant.apache.org/manual/toc.html
+	http://firstclassthoughts.co.uk/ant/javadoc.html
+	-->
+</project>

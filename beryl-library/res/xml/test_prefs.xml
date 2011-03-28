@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  
+  <CheckBoxPreference android:key="PrefString_CrashReportingEnabled"
+		android:title="Enable Crash Reporting" android:summary="Allow crashes to be sent to author." />
+		
+  <ListPreference
+		android:key="PrefString_CrashReportingMode"
+		android:title="Crash Reporting Mode"
+		android:summary="Determine how to send crash reports."
+		android:entries="@array/crashreportmode_display"
+		android:entryValues="@array/crashreportmode_code"
+		android:dialogTitle="Reporting Mode" />
+
+	
+</PreferenceScreen>
