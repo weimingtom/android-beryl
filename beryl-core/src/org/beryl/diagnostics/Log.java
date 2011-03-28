@@ -12,12 +12,17 @@ public class Log implements ILoggerWriter {
 
 	private static final String StringRepresentation_Null = "[Null]";
 	
+	private String tag = "Log";
 	private final ILoggerWriter logDelegate;
 
 	public Log(ILoggerWriter delegate) {
 		this.logDelegate = delegate;
 	}
 
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+	
 	public void d(String tag, String msg) {
 		logDelegate.d(tag, msg);
 	}
@@ -35,29 +40,30 @@ public class Log implements ILoggerWriter {
 	}
 	
 	public void d(String msg) {
-		logDelegate.d(msg);
+		logDelegate.d(tag, msg);
 	}
 
 	public void e(Exception e) {
-		logDelegate.e(e);
+		logDelegate.e(tag, e);
 	}
 
 	public void e(String msg) {
-		logDelegate.e(msg);
+		logDelegate.e(tag, msg);
 	}
 
 	public void i(String msg) {
-		logDelegate.i(msg);
+		logDelegate.i(tag, msg);
 	}
 
 	public void w(String msg) {
-		logDelegate.w(msg);
+		logDelegate.w(tag, msg);
+	}
+	
+	public void e(String tag, Exception e) {
+		logDelegate.e(tag, e);
 	}
 
-	public void setTag(String tag) {
-		logDelegate.setTag(tag);
-	}
-
+	/** Prints out all the details of the Intent object. */
 	public void d(Intent intent) {
 		d("Action", intent.getAction());
 
@@ -88,6 +94,7 @@ public class Log implements ILoggerWriter {
 		}
 	}
 
+	/** Prints all the members of a class. */
 	public void inspectClass(Class<?> clazz) {
 		final String name = clazz.getSimpleName();
 		final String packagename = clazz.getPackage().getName();

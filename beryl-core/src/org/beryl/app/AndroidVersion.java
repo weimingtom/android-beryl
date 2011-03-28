@@ -1,6 +1,26 @@
 package org.beryl.app;
 
-/** Version independent class to get the Android version that is currently running on the device. */
+/** Convenience class for retrieving the current Android version that's running on the device.
+ * 
+ * Code example on how to use AndroidVersion to load a multi-versioned class at runtime for backwards compatibility without using reflection.
+ * <pre class="code"><code class="java">
+import org.beryl.app.AndroidVersion;
+
+public class StrictModeEnabler {
+    public static void enableOnThread() {
+        IStrictModeEnabler enabler = getStrictModeEnabler();
+        enabler.startStrictMode();
+    }
+    
+    private static IStrictModeEnabler getStrictModeEnabler() {
+        if(AndroidVersion.isGingerbreadOrHigher()) {
+                return new GingerbreadAndAboveStrictModeEnabler();
+        } else {
+                return new NoStrictModeEnabler();
+        }
+    }
+}
+</code></pre>*/
 public class AndroidVersion {
 	private static final int _ANDROID_SDK_VERSION;
 	
@@ -38,5 +58,10 @@ public class AndroidVersion {
 	/** Returns true if running on Android 2.3 or higher. */
 	public static boolean isGingerbreadOrHigher() {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.GINGERBREAD;
+	}
+	
+	/** Returns true if running on Android 3.0 or higher. */
+	public static boolean isHoneycombOrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.HONEYCOMB;
 	}
 }
