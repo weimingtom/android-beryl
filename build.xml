@@ -62,10 +62,23 @@
 	</target>
 	
 	<target name="javadoc">
-		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API" additionalparam="-notimestamp">
+		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API" additionalparam="-notimestamp" stylesheetfile="beryl-style.css" useexternalfile="true">
+			<header>
+			<![CDATA[<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Django',
+			brushes: ['Xml', 'Plain', 'Java'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> ]]>
+			</header>
 			<fileset refid="all-project-java-files" />
 			<classpath refid="default-googleapi-classpath" />
-			
 			<!-- TODO: stylesheetfile -->
 			<link href="http://developer.android.com/reference/" offline="true" packagelistloc="${android.sdk.javadoc.offline}" />
 				<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
@@ -149,5 +162,7 @@
 	References:
 	http://ant.apache.org/manual/toc.html
 	http://firstclassthoughts.co.uk/ant/javadoc.html
+	http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js
+	http://startbigthinksmall.wordpress.com/2009/05/28/beautyofcode-jquery-plugin-for-syntax-highlighter-2-0-by-alex-gorbatchev/
 	-->
 </project>
