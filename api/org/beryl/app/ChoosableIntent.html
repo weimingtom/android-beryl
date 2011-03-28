@@ -7,7 +7,7 @@ ChoosableIntent (Beryl API)
 </TITLE>
 
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../beryl-style.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
@@ -47,7 +47,20 @@ function windowTitle()
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 
@@ -160,6 +173,38 @@ A labeled Intent that can be chosen from the IntentChooser activity.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/app/ChoosableIntent.html#RUNAS_Activity">RUNAS_Activity</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/app/ChoosableIntent.html#RUNAS_Broadcast">RUNAS_Broadcast</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/app/ChoosableIntent.html#RUNAS_Service">RUNAS_Service</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/app/ChoosableIntent.html#runIntentAs">runIntentAs</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="fields_inherited_from_class_android.os.Parcelable"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -182,6 +227,14 @@ A labeled Intent that can be chosen from the IntentChooser activity.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../org/beryl/app/ChoosableIntent.html#ChoosableIntent(java.lang.CharSequence, android.content.Intent)">ChoosableIntent</A></B>(<A HREF="http://developer.android.com/reference/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</A>&nbsp;label,
                 <A HREF="http://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content">Intent</A>&nbsp;intent)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../org/beryl/app/ChoosableIntent.html#ChoosableIntent(java.lang.CharSequence, android.content.Intent, int)">ChoosableIntent</A></B>(<A HREF="http://developer.android.com/reference/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</A>&nbsp;label,
+                <A HREF="http://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content">Intent</A>&nbsp;intent,
+                int&nbsp;runAs)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -250,6 +303,46 @@ A labeled Intent that can be chosen from the IntentChooser activity.
 </TR>
 </TABLE>
 
+<A NAME="RUNAS_Activity"><!-- --></A><H3>
+RUNAS_Activity</H3>
+<PRE>
+public static final int <B>RUNAS_Activity</B></PRE>
+<DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#org.beryl.app.ChoosableIntent.RUNAS_Activity">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="RUNAS_Service"><!-- --></A><H3>
+RUNAS_Service</H3>
+<PRE>
+public static final int <B>RUNAS_Service</B></PRE>
+<DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#org.beryl.app.ChoosableIntent.RUNAS_Service">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="RUNAS_Broadcast"><!-- --></A><H3>
+RUNAS_Broadcast</H3>
+<PRE>
+public static final int <B>RUNAS_Broadcast</B></PRE>
+<DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#org.beryl.app.ChoosableIntent.RUNAS_Broadcast">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="runIntentAs"><!-- --></A><H3>
+runIntentAs</H3>
+<PRE>
+protected final int <B>runIntentAs</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+
 <A NAME="label"><!-- --></A><H3>
 label</H3>
 <PRE>
@@ -294,6 +387,16 @@ ChoosableIntent</H3>
 <PRE>
 public <B>ChoosableIntent</B>(<A HREF="http://developer.android.com/reference/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</A>&nbsp;label,
                        <A HREF="http://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content">Intent</A>&nbsp;intent)</PRE>
+<DL>
+</DL>
+<HR>
+
+<A NAME="ChoosableIntent(java.lang.CharSequence, android.content.Intent, int)"><!-- --></A><H3>
+ChoosableIntent</H3>
+<PRE>
+public <B>ChoosableIntent</B>(<A HREF="http://developer.android.com/reference/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</A>&nbsp;label,
+                       <A HREF="http://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content">Intent</A>&nbsp;intent,
+                       int&nbsp;runAs)</PRE>
 <DL>
 </DL>
 <HR>
@@ -381,7 +484,20 @@ public void <B>writeToParcel</B>(<A HREF="http://developer.android.com/reference
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 

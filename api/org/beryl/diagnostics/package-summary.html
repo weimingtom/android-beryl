@@ -7,7 +7,7 @@ org.beryl.diagnostics (Beryl API)
 </TITLE>
 
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../beryl-style.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
@@ -47,13 +47,26 @@ function windowTitle()
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../org/beryl/content/webfeeds/rss/package-summary.html"><B>PREV PACKAGE</B></A>&nbsp;
+&nbsp;<A HREF="../../../org/beryl/database/package-summary.html"><B>PREV PACKAGE</B></A>&nbsp;
 &nbsp;<A HREF="../../../org/beryl/diagnostics/reporting/package-summary.html"><B>NEXT PACKAGE</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../index.html?org/beryl/diagnostics/package-summary.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -80,6 +93,26 @@ function windowTitle()
 <H2>
 Package org.beryl.diagnostics
 </H2>
+Collection of classes that deal with diagnosing problems and bugs on the system.
+<P>
+<B>See:</B>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#package_description"><B>Description</B></A>
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Interface Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../org/beryl/diagnostics/ILoggerWriter.html" title="interface in org.beryl.diagnostics">ILoggerWriter</A></B></TD>
+<TD>Contract for log writers.</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
 
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
@@ -87,11 +120,34 @@ Package org.beryl.diagnostics
 <B>Class Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A></B></TD>
+<TD>&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../org/beryl/diagnostics/LogCatLogWriter.html" title="class in org.beryl.diagnostics">LogCatLogWriter</A></B></TD>
+<TD>A LogWriter that prints to the Android LogCat.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A></B></TD>
 <TD>&nbsp;</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../org/beryl/diagnostics/StrictModeEnabler.html" title="class in org.beryl.diagnostics">StrictModeEnabler</A></B></TD>
+<TD>Manages the enabling of Strict Mode which will record to a penalty log.</TD>
+</TR>
 </TABLE>
 &nbsp;
+
+<P>
+<A NAME="package_description"><!-- --></A><H2>
+Package org.beryl.diagnostics Description
+</H2>
+
+<P>
+Collection of classes that deal with diagnosing problems and bugs on the system.
+          They can also be used to help discern the data that's being processed while the program is running without being attached to a
+          debugger.
+<P>
 
 <P>
 <DL>
@@ -120,13 +176,26 @@ Package org.beryl.diagnostics
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../org/beryl/content/webfeeds/rss/package-summary.html"><B>PREV PACKAGE</B></A>&nbsp;
+&nbsp;<A HREF="../../../org/beryl/database/package-summary.html"><B>PREV PACKAGE</B></A>&nbsp;
 &nbsp;<A HREF="../../../org/beryl/diagnostics/reporting/package-summary.html"><B>NEXT PACKAGE</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../index.html?org/beryl/diagnostics/package-summary.html" target="_top"><B>FRAMES</B></A>  &nbsp;

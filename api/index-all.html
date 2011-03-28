@@ -7,7 +7,7 @@ Index (Beryl API)
 </TITLE>
 
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="./stylesheet.css" TITLE="Style">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="./beryl-style.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
@@ -47,7 +47,20 @@ function windowTitle()
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 
@@ -80,6 +93,9 @@ function windowTitle()
 <A NAME="_A_"><!-- --></A><H2>
 <B>A</B></H2>
 <DL>
+<DT><A HREF="./org/beryl/database/AbstractDatabaseUpdateScript.html" title="class in org.beryl.database"><B>AbstractDatabaseUpdateScript</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>&nbsp;<DT><A HREF="./org/beryl/database/AbstractDatabaseUpdateScript.html#AbstractDatabaseUpdateScript(org.beryl.database.DatabaseUpdateParameters)"><B>AbstractDatabaseUpdateScript(DatabaseUpdateParameters)</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/AbstractDatabaseUpdateScript.html" title="class in org.beryl.database">AbstractDatabaseUpdateScript</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/AbstractSearchResponseSegment.html" title="class in org.beryl.web.search"><B>AbstractSearchResponseSegment</B></A> - Class in <A HREF="./org/beryl/web/search/package-summary.html">org.beryl.web.search</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/search/AbstractSearchResponseSegment.html#AbstractSearchResponseSegment()"><B>AbstractSearchResponseSegment()</B></A> - 
 Constructor for class org.beryl.web.search.<A HREF="./org/beryl/web/search/AbstractSearchResponseSegment.html" title="class in org.beryl.web.search">AbstractSearchResponseSegment</A>
 <DD>&nbsp;
@@ -180,8 +196,23 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DT><A HREF="./org/beryl/Constants.html#AndroidMarket_BaseUriForPackage"><B>AndroidMarket_BaseUriForPackage</B></A> - 
 Static variable in class org.beryl.<A HREF="./org/beryl/Constants.html" title="class in org.beryl">Constants</A>
 <DD>&nbsp;
-<DT><A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app"><B>AndroidVersion</B></A> - Class in <A HREF="./org/beryl/app/package-summary.html">org.beryl.app</A><DD>Version independent class to get the Android version that is currently running on the device.<DT><A HREF="./org/beryl/app/AndroidVersion.html#AndroidVersion()"><B>AndroidVersion()</B></A> - 
+<DT><A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app"><B>AndroidVersion</B></A> - Class in <A HREF="./org/beryl/app/package-summary.html">org.beryl.app</A><DD>Convenience class for retrieving the current Android version that's running on the device.<DT><A HREF="./org/beryl/app/AndroidVersion.html#AndroidVersion()"><B>AndroidVersion()</B></A> - 
 Constructor for class org.beryl.app.<A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app">AndroidVersion</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Settings.html#APP_PKG_NAME"><B>APP_PKG_NAME</B></A> - 
+Static variable in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Settings.html" title="class in org.beryl.intents.android">Settings</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Settings.html#APP_PKG_NAME_CUPCAKE"><B>APP_PKG_NAME_CUPCAKE</B></A> - 
+Static variable in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Settings.html" title="class in org.beryl.intents.android">Settings</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Settings.html#APP_PKG_NAME_GINGERBREAD"><B>APP_PKG_NAME_GINGERBREAD</B></A> - 
+Static variable in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Settings.html" title="class in org.beryl.intents.android">Settings</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Settings.html#APP_PKG_PREFIX_CUPCAKE"><B>APP_PKG_PREFIX_CUPCAKE</B></A> - 
+Static variable in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Settings.html" title="class in org.beryl.intents.android">Settings</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Market.html#Application_BaseMarketUri"><B>Application_BaseMarketUri</B></A> - 
+Static variable in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Market.html" title="class in org.beryl.intents.android">Market</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/widget/CategorizedListAdapter.html#areAllItemsEnabled()"><B>areAllItemsEnabled()</B></A> - 
 Method in class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedListAdapter.html" title="class in org.beryl.widget">CategorizedListAdapter</A>
@@ -397,6 +428,9 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DT><A HREF="./org/beryl/web/search/google/GoogleWebSearchResult.html#CacheUrl"><B>CacheUrl</B></A> - 
 Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/google/GoogleWebSearchResult.html" title="class in org.beryl.web.search.google">GoogleWebSearchResult</A>
 <DD>Supplies a url to Google's cached version of the page responsible for producing this result.
+<DT><A HREF="./org/beryl/intents/Helpers.html#canHandleIntent(android.content.Context, android.content.Intent)"><B>canHandleIntent(Context, Intent)</B></A> - 
+Static method in class org.beryl.intents.<A HREF="./org/beryl/intents/Helpers.html" title="class in org.beryl.intents">Helpers</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/widget/CategorizedExpandableListAdapter.html" title="class in org.beryl.widget"><B>CategorizedExpandableListAdapter</B></A> - Class in <A HREF="./org/beryl/widget/package-summary.html">org.beryl.widget</A><DD>&nbsp;<DT><A HREF="./org/beryl/widget/CategorizedExpandableListAdapter.html#CategorizedExpandableListAdapter()"><B>CategorizedExpandableListAdapter()</B></A> - 
 Constructor for class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedExpandableListAdapter.html" title="class in org.beryl.widget">CategorizedExpandableListAdapter</A>
 <DD>&nbsp;
@@ -410,6 +444,9 @@ Variable in class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/we
 Variable in class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/webfeeds/rss/RssItem.html" title="class in org.beryl.content.webfeeds.rss">RssItem</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app"><B>ChoosableIntent</B></A> - Class in <A HREF="./org/beryl/app/package-summary.html">org.beryl.app</A><DD>A labeled Intent that can be chosen from the IntentChooser activity.<DT><A HREF="./org/beryl/app/ChoosableIntent.html#ChoosableIntent(java.lang.CharSequence, android.content.Intent)"><B>ChoosableIntent(CharSequence, Intent)</B></A> - 
+Constructor for class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/app/ChoosableIntent.html#ChoosableIntent(java.lang.CharSequence, android.content.Intent, int)"><B>ChoosableIntent(CharSequence, Intent, int)</B></A> - 
 Constructor for class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/app/ChoosableIntent.html#ChoosableIntent(android.os.Parcel)"><B>ChoosableIntent(Parcel)</B></A> - 
@@ -490,6 +527,9 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.Thumbnail.html#ContentType"><B>ContentType</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.Thumbnail.html" title="class in org.beryl.web.search.bing">BingSearchResponse.Thumbnail</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateParameters.html#context"><B>context</B></A> - 
+Variable in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/app/ContextClonable.html" title="interface in org.beryl.app"><B>ContextClonable</B></A> - Interface in <A HREF="./org/beryl/app/package-summary.html">org.beryl.app</A><DD>Contract for objects that can create a copy of themselves with a different Context.<DT><A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html#copyright"><B>copyright</B></A> - 
 Variable in class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html" title="class in org.beryl.content.webfeeds.rss">RssChannel</A>
 <DD>&nbsp;
@@ -541,6 +581,9 @@ Static method in class org.beryl.web.search.google.<A HREF="./org/beryl/web/sear
 <DT><A HREF="./org/beryl/content/DatabaseUtil.html#CreateTable(android.database.sqlite.SQLiteDatabase, java.lang.String, java.util.List)"><B>CreateTable(SQLiteDatabase, String, List&lt;SchemaField&gt;)</B></A> - 
 Static method in class org.beryl.content.<A HREF="./org/beryl/content/DatabaseUtil.html" title="class in org.beryl.content">DatabaseUtil</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html#createUpdateScriptClassPathTemplate(java.lang.Class)"><B>createUpdateScriptClassPathTemplate(Class&lt;?&gt;)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/app/ChoosableIntent.html#CREATOR"><B>CREATOR</B></A> - 
 Static variable in class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
 <DD>&nbsp;
@@ -549,14 +592,44 @@ Static variable in class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.
 <A NAME="_D_"><!-- --></A><H2>
 <B>D</B></H2>
 <DL>
+<DT><A HREF="./org/beryl/diagnostics/ILoggerWriter.html#d(java.lang.String, java.lang.String)"><B>d(String, String)</B></A> - 
+Method in interface org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/ILoggerWriter.html" title="interface in org.beryl.diagnostics">ILoggerWriter</A>
+<DD>Log a debug message.
+<DT><A HREF="./org/beryl/diagnostics/Log.html#d(java.lang.String, java.lang.String)"><B>d(String, String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#d(java.lang.String)"><B>d(String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#d(android.content.Intent)"><B>d(Intent)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>Prints out all the details of the Intent object.
+<DT><A HREF="./org/beryl/diagnostics/LogCatLogWriter.html#d(java.lang.String, java.lang.String)"><B>d(String, String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/LogCatLogWriter.html" title="class in org.beryl.diagnostics">LogCatLogWriter</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/diagnostics/Logger.html#d(java.lang.String, java.lang.String)"><B>d(String, String)</B></A> - 
+Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Logger.html#d(java.lang.String)"><B>d(String)</B></A> - 
 Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/diagnostics/Logger.html#d(android.content.Intent)"><B>d(Intent)</B></A> - 
 Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseCreateScript.html" title="class in org.beryl.database"><B>DatabaseCreateScript</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>Base script for creating databases from a sql script file.<DT><A HREF="./org/beryl/database/DatabaseCreateScript.html#DatabaseCreateScript()"><B>DatabaseCreateScript()</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/DatabaseCreateScript.html" title="class in org.beryl.database">DatabaseCreateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database"><B>DatabaseUpdateParameters</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>&nbsp;<DT><A HREF="./org/beryl/database/DatabaseUpdateParameters.html#DatabaseUpdateParameters(android.content.Context, android.database.sqlite.SQLiteDatabase, org.beryl.diagnostics.Log)"><B>DatabaseUpdateParameters(Context, SQLiteDatabase, Log)</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database"><B>DatabaseUpdateScript</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>&nbsp;<DT><A HREF="./org/beryl/database/DatabaseUpdateScript.html#DatabaseUpdateScript()"><B>DatabaseUpdateScript()</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database">DatabaseUpdateScript</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/content/DatabaseUtil.html" title="class in org.beryl.content"><B>DatabaseUtil</B></A> - Class in <A HREF="./org/beryl/content/package-summary.html">org.beryl.content</A><DD>&nbsp;<DT><A HREF="./org/beryl/content/DatabaseUtil.html#DatabaseUtil()"><B>DatabaseUtil()</B></A> - 
 Constructor for class org.beryl.content.<A HREF="./org/beryl/content/DatabaseUtil.html" title="class in org.beryl.content">DatabaseUtil</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUtils.html" title="class in org.beryl.database"><B>DatabaseUtils</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>&nbsp;<DT><A HREF="./org/beryl/database/DatabaseUtils.html#DatabaseUtils()"><B>DatabaseUtils()</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUtils.html" title="class in org.beryl.database">DatabaseUtils</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html#DataFreshness"><B>DataFreshness</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html" title="class in org.beryl.web.search.bing">BingSearchResponse.InstantAnswerFlightStatus</A>
@@ -572,6 +645,15 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.WebResult.html#DateTime"><B>DateTime</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.WebResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.WebResult</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateParameters.html#db"><B>db</B></A> - 
+Variable in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html#DB_NAME"><B>DB_NAME</B></A> - 
+Static variable in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache">WebCacheOpenHelper</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html#DB_VERSION"><B>DB_VERSION</B></A> - 
+Static variable in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache">WebCacheOpenHelper</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.WebResult.html#DeepLinks"><B>DeepLinks</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.WebResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.WebResult</A>
@@ -704,15 +786,45 @@ Variable in class org.beryl.web.search.google.maps.<A HREF="./org/beryl/web/sear
 <A NAME="_E_"><!-- --></A><H2>
 <B>E</B></H2>
 <DL>
+<DT><A HREF="./org/beryl/diagnostics/ILoggerWriter.html#e(java.lang.String, java.lang.Exception)"><B>e(String, Exception)</B></A> - 
+Method in interface org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/ILoggerWriter.html" title="interface in org.beryl.diagnostics">ILoggerWriter</A>
+<DD>Log an exception, with the stack trace, exception type and message.
+<DT><A HREF="./org/beryl/diagnostics/ILoggerWriter.html#e(java.lang.String, java.lang.String)"><B>e(String, String)</B></A> - 
+Method in interface org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/ILoggerWriter.html" title="interface in org.beryl.diagnostics">ILoggerWriter</A>
+<DD>Log an error message.
+<DT><A HREF="./org/beryl/diagnostics/Log.html#e(java.lang.String, java.lang.String)"><B>e(String, String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#e(java.lang.Exception)"><B>e(Exception)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#e(java.lang.String)"><B>e(String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#e(java.lang.String, java.lang.Exception)"><B>e(String, Exception)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/LogCatLogWriter.html#e(java.lang.String, java.lang.Exception)"><B>e(String, Exception)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/LogCatLogWriter.html" title="class in org.beryl.diagnostics">LogCatLogWriter</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/LogCatLogWriter.html#e(java.lang.String, java.lang.String)"><B>e(String, String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/LogCatLogWriter.html" title="class in org.beryl.diagnostics">LogCatLogWriter</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/diagnostics/Logger.html#e(java.lang.String, java.lang.String)"><B>e(String, String)</B></A> - 
 Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/diagnostics/Logger.html#e(java.lang.Exception)"><B>e(Exception)</B></A> - 
 Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
-<DT><A HREF="./org/beryl/diagnostics/Logger.html#e(java.lang.String, java.lang.String, java.lang.Exception)"><B>e(String, String, Exception)</B></A> - 
+<DT><A HREF="./org/beryl/diagnostics/Logger.html#e(java.lang.String)"><B>e(String)</B></A> - 
 Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Logger.html#e(java.lang.String, java.lang.Exception)"><B>e(String, Exception)</B></A> - 
+Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/StrictModeEnabler.html#enableOnThread()"><B>enableOnThread()</B></A> - 
+Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/StrictModeEnabler.html" title="class in org.beryl.diagnostics">StrictModeEnabler</A>
+<DD>Enables strict mode on the current thread.
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerResult.html#Encarta"><B>Encarta</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.InstantAnswerResult</A>
 <DD>&nbsp;
@@ -752,11 +864,20 @@ Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/AbstractUrlShorte
 <DT><A HREF="./org/beryl/web/http/HttpRest.html#executePost(java.lang.String, java.lang.String, int, android.os.Bundle)"><B>executePost(String, String, int, Bundle)</B></A> - 
 Static method in class org.beryl.web.http.<A HREF="./org/beryl/web/http/HttpRest.html" title="class in org.beryl.web.http">HttpRest</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateScript.html#executeScript(org.beryl.database.DatabaseUpdateParameters, java.lang.String)"><B>executeScript(DatabaseUpdateParameters, String)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database">DatabaseUpdateScript</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/url/IUrlShortener.html#expand(java.lang.String)"><B>expand(String)</B></A> - 
 Method in interface org.beryl.web.url.<A HREF="./org/beryl/web/url/IUrlShortener.html" title="interface in org.beryl.web.url">IUrlShortener</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html#expand(java.lang.String)"><B>expand(String)</B></A> - 
 Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url">TinyURLUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/UrlyUrlShortener.html#expand(java.lang.String)"><B>expand(String)</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/UrlyUrlShortener.html" title="class in org.beryl.web.url">UrlyUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/VgdUrlShortener.html#expand(java.lang.String)"><B>expand(String)</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url">VgdUrlShortener</A>
 <DD>&nbsp;
 </DL>
 <HR>
@@ -765,6 +886,9 @@ Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/TinyURLUrlShorten
 <DL>
 <DT><A HREF="./org/beryl/content/webfeeds/FeedConsumer.html" title="class in org.beryl.content.webfeeds"><B>FeedConsumer</B></A> - Class in <A HREF="./org/beryl/content/webfeeds/package-summary.html">org.beryl.content.webfeeds</A><DD>&nbsp;<DT><A HREF="./org/beryl/content/webfeeds/FeedConsumer.html#FeedConsumer()"><B>FeedConsumer()</B></A> - 
 Constructor for class org.beryl.content.webfeeds.<A HREF="./org/beryl/content/webfeeds/FeedConsumer.html" title="class in org.beryl.content.webfeeds">FeedConsumer</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/FileDownloader.html" title="class in org.beryl.web.cache"><B>FileDownloader</B></A> - Class in <A HREF="./org/beryl/web/cache/package-summary.html">org.beryl.web.cache</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/cache/FileDownloader.html#FileDownloader()"><B>FileDownloader()</B></A> - 
+Constructor for class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/FileDownloader.html" title="class in org.beryl.web.cache">FileDownloader</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.ImageResult.html#FileSize"><B>FileSize</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.ImageResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.ImageResult</A>
@@ -831,6 +955,12 @@ Method in class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedListAdap
 <DT><A HREF="./org/beryl/widget/CategorizedListAdapter.html#getAdapterFromPosition(int)"><B>getAdapterFromPosition(int)</B></A> - 
 Method in class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedListAdapter.html" title="class in org.beryl.widget">CategorizedListAdapter</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/FileDownloader.html#getAsByteArray(java.lang.String)"><B>getAsByteArray(String)</B></A> - 
+Method in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/FileDownloader.html" title="class in org.beryl.web.cache">FileDownloader</A>
+<DD>Downloads a remote file in the form of a ByteArray.
+<DT><A HREF="./org/beryl/web/cache/FileDownloader.html#getAsInputStream(java.lang.String)"><B>getAsInputStream(String)</B></A> - 
+Method in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/FileDownloader.html" title="class in org.beryl.web.cache">FileDownloader</A>
+<DD>Downloads a remote file in the form of an InputStream.
 <DT><A HREF="./org/beryl/location/LocationMonitor.html#getBestEnabledProvider()"><B>getBestEnabledProvider()</B></A> - 
 Method in class org.beryl.location.<A HREF="./org/beryl/location/LocationMonitor.html" title="class in org.beryl.location">LocationMonitor</A>
 <DD>&nbsp;
@@ -864,8 +994,20 @@ Static method in class org.beryl.content.webfeeds.<A HREF="./org/beryl/content/w
 <DT><A HREF="./org/beryl/widget/CategorizedListAdapter.html#getCount()"><B>getCount()</B></A> - 
 Method in class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedListAdapter.html" title="class in org.beryl.widget">CategorizedListAdapter</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html#getCreateScript()"><B>getCreateScript()</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html#getCreateScript()"><B>getCreateScript()</B></A> - 
+Method in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache">WebCacheOpenHelper</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/content/webfeeds/rss/RssFeedConsumer.html#getData()"><B>getData()</B></A> - 
 Method in class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/webfeeds/rss/RssFeedConsumer.html" title="class in org.beryl.content.webfeeds.rss">RssFeedConsumer</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html#getDbName()"><B>getDbName()</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html#getDbName()"><B>getDbName()</B></A> - 
+Method in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache">WebCacheOpenHelper</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/location/GeoCoord.html#getDoubleArray()"><B>getDoubleArray()</B></A> - 
 Method in class org.beryl.location.<A HREF="./org/beryl/location/GeoCoord.html" title="class in org.beryl.location">GeoCoord</A>
@@ -873,6 +1015,9 @@ Method in class org.beryl.location.<A HREF="./org/beryl/location/GeoCoord.html" 
 <DT><A HREF="./org/beryl/location/LocationMonitor.html#getEnabledProviders()"><B>getEnabledProviders()</B></A> - 
 Method in class org.beryl.location.<A HREF="./org/beryl/location/LocationMonitor.html" title="class in org.beryl.location">LocationMonitor</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlScriptRunner.html#getException()"><B>getException()</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/SqlScriptRunner.html" title="class in org.beryl.database">SqlScriptRunner</A>
+<DD>Returns the exception that occured during the run of the script.
 <DT><A HREF="./org/beryl/location/GeoCoord.html#getGeoPoint()"><B>getGeoPoint()</B></A> - 
 Method in class org.beryl.location.<A HREF="./org/beryl/location/GeoCoord.html" title="class in org.beryl.location">GeoCoord</A>
 <DD>&nbsp;
@@ -933,6 +1078,12 @@ Method in interface org.beryl.web.url.<A HREF="./org/beryl/web/url/IUrlShortener
 <DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html#getName()"><B>getName()</B></A> - 
 Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url">TinyURLUrlShortener</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/UrlyUrlShortener.html#getName()"><B>getName()</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/UrlyUrlShortener.html" title="class in org.beryl.web.url">UrlyUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/VgdUrlShortener.html#getName()"><B>getName()</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url">VgdUrlShortener</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.html#getNews()"><B>getNews()</B></A> - 
 Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.html" title="class in org.beryl.web.search.bing">BingSearchResponse</A>
 <DD>&nbsp;
@@ -969,6 +1120,15 @@ Method in interface org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/
 <DT><A HREF="./org/beryl/location/GpsSignalStrengthMonitor.html#getSatellites()"><B>getSatellites()</B></A> - 
 Method in class org.beryl.location.<A HREF="./org/beryl/location/GpsSignalStrengthMonitor.html" title="class in org.beryl.location">GpsSignalStrengthMonitor</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateScript.html#getSchemaSqlScript()"><B>getSchemaSqlScript()</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database">DatabaseUpdateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheCreateDatabaseScript.html#getSchemaSqlScript()"><B>getSchemaSqlScript()</B></A> - 
+Method in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheCreateDatabaseScript.html" title="class in org.beryl.web.cache">WebCacheOpenHelper.WebCacheCreateDatabaseScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheUpdateScript_2.html#getSchemaSqlScript()"><B>getSchemaSqlScript()</B></A> - 
+Method in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheUpdateScript_2.html" title="class in org.beryl.web.cache">WebCacheOpenHelper.WebCacheUpdateScript_2</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/app/AndroidVersion.html#getSdkVersion()"><B>getSdkVersion()</B></A> - 
 Static method in class org.beryl.app.<A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app">AndroidVersion</A>
 <DD>Gets the SDK Level available to the device.
@@ -987,11 +1147,23 @@ Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/B
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.html#getTranslation()"><B>getTranslation()</B></A> - 
 Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.html" title="class in org.beryl.web.search.bing">BingSearchResponse</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html#getUpdateScriptClassPathTemplate()"><B>getUpdateScriptClassPathTemplate()</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html#getUpdateScriptClassPathTemplate()"><B>getUpdateScriptClassPathTemplate()</B></A> - 
+Method in class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache">WebCacheOpenHelper</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/url/IUrlShortener.html#getUrl()"><B>getUrl()</B></A> - 
 Method in interface org.beryl.web.url.<A HREF="./org/beryl/web/url/IUrlShortener.html" title="interface in org.beryl.web.url">IUrlShortener</A>
 <DD>Gets the web address of the URL Shortening service.
 <DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html#getUrl()"><B>getUrl()</B></A> - 
 Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url">TinyURLUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/UrlyUrlShortener.html#getUrl()"><B>getUrl()</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/UrlyUrlShortener.html" title="class in org.beryl.web.url">UrlyUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/VgdUrlShortener.html#getUrl()"><B>getUrl()</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url">VgdUrlShortener</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.html#getVersion()"><B>getVersion()</B></A> - 
 Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.html" title="class in org.beryl.web.search.bing">BingSearchResponse</A>
@@ -1001,6 +1173,9 @@ Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/B
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/widget/CategorizedListAdapter.html#getView(int, android.view.View, android.view.ViewGroup)"><B>getView(int, View, ViewGroup)</B></A> - 
 Method in class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedListAdapter.html" title="class in org.beryl.widget">CategorizedListAdapter</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Market.html#getViewPackageOnMarket(java.lang.String)"><B>getViewPackageOnMarket(String)</B></A> - 
+Static method in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Market.html" title="class in org.beryl.intents.android">Market</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/widget/CategorizedListAdapter.html#getViewTypeCount()"><B>getViewTypeCount()</B></A> - 
 Method in class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedListAdapter.html" title="class in org.beryl.widget">CategorizedListAdapter</A>
@@ -1091,6 +1266,9 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.Thumbnail.html#Height"><B>Height</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.Thumbnail.html" title="class in org.beryl.web.search.bing">BingSearchResponse.Thumbnail</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/Helpers.html" title="class in org.beryl.intents"><B>Helpers</B></A> - Class in <A HREF="./org/beryl/intents/package-summary.html">org.beryl.intents</A><DD>&nbsp;<DT><A HREF="./org/beryl/intents/Helpers.html#Helpers()"><B>Helpers()</B></A> - 
+Constructor for class org.beryl.intents.<A HREF="./org/beryl/intents/Helpers.html" title="class in org.beryl.intents">Helpers</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.Error.html#HelpUrl"><B>HelpUrl</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.Error.html" title="class in org.beryl.web.search.bing">BingSearchResponse.Error</A>
 <DD>&nbsp;
@@ -1111,10 +1289,25 @@ Constructor for class org.beryl.web.http.<A HREF="./org/beryl/web/http/HttpRest.
 <A NAME="_I_"><!-- --></A><H2>
 <B>I</B></H2>
 <DL>
+<DT><A HREF="./org/beryl/diagnostics/ILoggerWriter.html#i(java.lang.String, java.lang.String)"><B>i(String, String)</B></A> - 
+Method in interface org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/ILoggerWriter.html" title="interface in org.beryl.diagnostics">ILoggerWriter</A>
+<DD>Log an informative message.
+<DT><A HREF="./org/beryl/diagnostics/Log.html#i(java.lang.String, java.lang.String)"><B>i(String, String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#i(java.lang.String)"><B>i(String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/LogCatLogWriter.html#i(java.lang.String, java.lang.String)"><B>i(String, String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/LogCatLogWriter.html" title="class in org.beryl.diagnostics">LogCatLogWriter</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/diagnostics/Logger.html#i(java.lang.String, java.lang.String)"><B>i(String, String)</B></A> - 
 Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
-<DT><A HREF="./org/beryl/web/search/bing/IBingSearchResponseHandler.html" title="interface in org.beryl.web.search.bing"><B>IBingSearchResponseHandler</B></A> - Interface in <A HREF="./org/beryl/web/search/bing/package-summary.html">org.beryl.web.search.bing</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/http/IHttpCallback.html" title="interface in org.beryl.web.http"><B>IHttpCallback</B></A> - Interface in <A HREF="./org/beryl/web/http/package-summary.html">org.beryl.web.http</A><DD>&nbsp;<DT><A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html#image"><B>image</B></A> - 
+<DT><A HREF="./org/beryl/diagnostics/Logger.html#i(java.lang.String)"><B>i(String)</B></A> - 
+Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/search/bing/IBingSearchResponseHandler.html" title="interface in org.beryl.web.search.bing"><B>IBingSearchResponseHandler</B></A> - Interface in <A HREF="./org/beryl/web/search/bing/package-summary.html">org.beryl.web.search.bing</A><DD>&nbsp;<DT><A HREF="./org/beryl/database/IDatabaseUpdateScript.html" title="interface in org.beryl.database"><B>IDatabaseUpdateScript</B></A> - Interface in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/http/IHttpCallback.html" title="interface in org.beryl.web.http"><B>IHttpCallback</B></A> - Interface in <A HREF="./org/beryl/web/http/package-summary.html">org.beryl.web.http</A><DD>&nbsp;<DT><A HREF="./org/beryl/diagnostics/ILoggerWriter.html" title="interface in org.beryl.diagnostics"><B>ILoggerWriter</B></A> - Interface in <A HREF="./org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A><DD>Contract for log writers.<DT><A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html#image"><B>image</B></A> - 
 Variable in class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html" title="class in org.beryl.content.webfeeds.rss">RssChannel</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchRequest.html#Image_Filter__AspectSquare"><B>Image_Filter__AspectSquare</B></A> - 
@@ -1273,15 +1466,24 @@ Static method in class org.beryl.diagnostics.reporting.<A HREF="./org/beryl/diag
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchService.html#initializeService(java.lang.String)"><B>initializeService(String)</B></A> - 
 Static method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchService.html" title="class in org.beryl.web.search.bing">BingSearchService</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#inspectClass(java.lang.Class)"><B>inspectClass(Class&lt;?&gt;)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>Prints all the members of a class.
 <DT><A HREF="./org/beryl/diagnostics/Logger.html#inspectClass(java.lang.Class)"><B>inspectClass(Class&lt;?&gt;)</B></A> - 
-Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
-<DT><A HREF="./org/beryl/diagnostics/Logger.html#inspectCursorData(android.database.Cursor)"><B>inspectCursorData(Cursor)</B></A> - 
-Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+<DT><A HREF="./org/beryl/diagnostics/Log.html#inspectCursorData(android.database.Cursor)"><B>inspectCursorData(Cursor)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
 <DD>Reports the current cursor item's data to the log.
-<DT><A HREF="./org/beryl/diagnostics/Logger.html#inspectQueryResult(android.database.Cursor)"><B>inspectQueryResult(Cursor)</B></A> - 
-Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+<DT><A HREF="./org/beryl/diagnostics/Logger.html#inspectCursorData(android.database.Cursor)"><B>inspectCursorData(Cursor)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#inspectQueryResult(android.database.Cursor)"><B>inspectQueryResult(Cursor)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
 <DD>Reads all the data from the cursor and reports it to the log.
+<DT><A HREF="./org/beryl/diagnostics/Logger.html#inspectQueryResult(android.database.Cursor)"><B>inspectQueryResult(Cursor)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/app/ChoosableIntent.html#intent"><B>intent</B></A> - 
 Variable in class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
 <DD>&nbsp;
@@ -1297,6 +1499,9 @@ Method in class org.beryl.location.<A HREF="./org/beryl/location/GpsSignalStreng
 <DT><A HREF="./org/beryl/widget/CategorizedExpandableListAdapter.html#isChildSelectable(int, int)"><B>isChildSelectable(int, int)</B></A> - 
 Method in class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedExpandableListAdapter.html" title="class in org.beryl.widget">CategorizedExpandableListAdapter</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/app/AndroidVersion.html#isDonutOrHigher()"><B>isDonutOrHigher()</B></A> - 
+Static method in class org.beryl.app.<A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app">AndroidVersion</A>
+<DD>Returns true if running on Android 1.6 or higher.
 <DT><A HREF="./org/beryl/app/AndroidVersion.html#isEclairOrHigher()"><B>isEclairOrHigher()</B></A> - 
 Static method in class org.beryl.app.<A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app">AndroidVersion</A>
 <DD>Returns true if running on Android 2.1 or higher.
@@ -1309,9 +1514,18 @@ Method in class org.beryl.widget.<A HREF="./org/beryl/widget/CategorizedListAdap
 <DT><A HREF="./org/beryl/app/ServiceForegrounder.html#isForegrounded()"><B>isForegrounded()</B></A> - 
 Method in class org.beryl.app.<A HREF="./org/beryl/app/ServiceForegrounder.html" title="class in org.beryl.app">ServiceForegrounder</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/app/AndroidVersion.html#isFroyoOrHigher()"><B>isFroyoOrHigher()</B></A> - 
+Static method in class org.beryl.app.<A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app">AndroidVersion</A>
+<DD>Returns true if running on Android 2.2 or higher.
+<DT><A HREF="./org/beryl/app/AndroidVersion.html#isGingerbreadOrHigher()"><B>isGingerbreadOrHigher()</B></A> - 
+Static method in class org.beryl.app.<A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app">AndroidVersion</A>
+<DD>Returns true if running on Android 2.3 or higher.
 <DT><A HREF="./org/beryl/location/LocationMonitor.html#isGpsEnabled()"><B>isGpsEnabled()</B></A> - 
 Method in class org.beryl.location.<A HREF="./org/beryl/location/LocationMonitor.html" title="class in org.beryl.location">LocationMonitor</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/app/AndroidVersion.html#isHoneycombOrHigher()"><B>isHoneycombOrHigher()</B></A> - 
+Static method in class org.beryl.app.<A HREF="./org/beryl/app/AndroidVersion.html" title="class in org.beryl.app">AndroidVersion</A>
+<DD>Returns true if running on Android 3.0 or higher.
 <DT><A HREF="./org/beryl/location/LocationMonitor.html#isListening()"><B>isListening()</B></A> - 
 Method in class org.beryl.location.<A HREF="./org/beryl/location/LocationMonitor.html" title="class in org.beryl.location">LocationMonitor</A>
 <DD>&nbsp;
@@ -1332,6 +1546,12 @@ Method in interface org.beryl.web.url.<A HREF="./org/beryl/web/url/IUrlShortener
 <DD>Tests whether this provider was used to shorten a URL.
 <DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html#isUrlShortenedByProvider(java.lang.String)"><B>isUrlShortenedByProvider(String)</B></A> - 
 Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url">TinyURLUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/UrlyUrlShortener.html#isUrlShortenedByProvider(java.lang.String)"><B>isUrlShortenedByProvider(String)</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/UrlyUrlShortener.html" title="class in org.beryl.web.url">UrlyUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/VgdUrlShortener.html#isUrlShortenedByProvider(java.lang.String)"><B>isUrlShortenedByProvider(String)</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url">VgdUrlShortener</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/app/ChoosableIntent.html#isValid()"><B>isValid()</B></A> - 
 Method in class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
@@ -1427,6 +1647,15 @@ Constructor for class org.beryl.location.<A HREF="./org/beryl/location/LocationM
 <DT><A HREF="./org/beryl/location/LocationMonitorController.html" title="class in org.beryl.location"><B>LocationMonitorController</B></A> - Class in <A HREF="./org/beryl/location/package-summary.html">org.beryl.location</A><DD>Base class for controllers that can be attached to a LocationMonitor.<DT><A HREF="./org/beryl/location/LocationMonitorController.html#LocationMonitorController(org.beryl.location.LocationMonitor)"><B>LocationMonitorController(LocationMonitor)</B></A> - 
 Constructor for class org.beryl.location.<A HREF="./org/beryl/location/LocationMonitorController.html" title="class in org.beryl.location">LocationMonitorController</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateParameters.html#log"><B>log</B></A> - 
+Variable in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics"><B>Log</B></A> - Class in <A HREF="./org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A><DD>&nbsp;<DT><A HREF="./org/beryl/diagnostics/Log.html#Log(org.beryl.diagnostics.ILoggerWriter)"><B>Log(ILoggerWriter)</B></A> - 
+Constructor for class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/LogCatLogWriter.html" title="class in org.beryl.diagnostics"><B>LogCatLogWriter</B></A> - Class in <A HREF="./org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A><DD>A LogWriter that prints to the Android LogCat.<DT><A HREF="./org/beryl/diagnostics/LogCatLogWriter.html#LogCatLogWriter()"><B>LogCatLogWriter()</B></A> - 
+Constructor for class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/LogCatLogWriter.html" title="class in org.beryl.diagnostics">LogCatLogWriter</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics"><B>Logger</B></A> - Class in <A HREF="./org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A><DD>&nbsp;<DT><A HREF="./org/beryl/diagnostics/Logger.html#Logger()"><B>Logger()</B></A> - 
 Constructor for class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
@@ -1443,6 +1672,9 @@ Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/go
 <DL>
 <DT><A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html#managingEditor"><B>managingEditor</B></A> - 
 Variable in class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html" title="class in org.beryl.content.webfeeds.rss">RssChannel</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Market.html" title="class in org.beryl.intents.android"><B>Market</B></A> - Class in <A HREF="./org/beryl/intents/android/package-summary.html">org.beryl.intents.android</A><DD>&nbsp;<DT><A HREF="./org/beryl/intents/android/Market.html#Market()"><B>Market()</B></A> - 
+Constructor for class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Market.html" title="class in org.beryl.intents.android">Market</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchRequest.html#Market__Arabic_Arabia"><B>Market__Arabic_Arabia</B></A> - 
 Static variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchRequest.html" title="class in org.beryl.web.search.bing">BingSearchRequest</A>
@@ -1692,6 +1924,9 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.NewsResult.html#NewsCollections"><B>NewsCollections</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.NewsResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.NewsResult</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlScriptReader.html#nextStatement()"><B>nextStatement()</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/SqlScriptReader.html" title="class in org.beryl.database">SqlScriptReader</A>
+<DD>Gets the next command in the sql file.
 </DL>
 <HR>
 <A NAME="_O_"><!-- --></A><H2>
@@ -1718,6 +1953,15 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.Web.html#Offset"><B>Offset</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.Web.html" title="class in org.beryl.web.search.bing">BingSearchResponse.Web</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/IDatabaseUpdateScript.html#onAfterSchemaUpdate(org.beryl.database.DatabaseUpdateParameters)"><B>onAfterSchemaUpdate(DatabaseUpdateParameters)</B></A> - 
+Method in interface org.beryl.database.<A HREF="./org/beryl/database/IDatabaseUpdateScript.html" title="interface in org.beryl.database">IDatabaseUpdateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlOnlyCreateScript.html#onAfterSchemaUpdate(org.beryl.database.DatabaseUpdateParameters)"><B>onAfterSchemaUpdate(DatabaseUpdateParameters)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/SqlOnlyCreateScript.html" title="class in org.beryl.database">SqlOnlyCreateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlOnlyUpdateScript.html#onAfterSchemaUpdate(org.beryl.database.DatabaseUpdateParameters)"><B>onAfterSchemaUpdate(DatabaseUpdateParameters)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/SqlOnlyUpdateScript.html" title="class in org.beryl.database">SqlOnlyUpdateScript</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/widget/ViewStateAnimationListener.html#onAnimationEnd(android.view.animation.Animation)"><B>onAnimationEnd(Animation)</B></A> - 
 Method in class org.beryl.widget.<A HREF="./org/beryl/widget/ViewStateAnimationListener.html" title="class in org.beryl.widget">ViewStateAnimationListener</A>
 <DD>&nbsp;
@@ -1727,8 +1971,20 @@ Method in class org.beryl.widget.<A HREF="./org/beryl/widget/ViewStateAnimationL
 <DT><A HREF="./org/beryl/widget/ViewStateAnimationListener.html#onAnimationStart(android.view.animation.Animation)"><B>onAnimationStart(Animation)</B></A> - 
 Method in class org.beryl.widget.<A HREF="./org/beryl/widget/ViewStateAnimationListener.html" title="class in org.beryl.widget">ViewStateAnimationListener</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseCreateScript.html#onBeforeSchemaUpdate(org.beryl.database.DatabaseUpdateParameters)"><B>onBeforeSchemaUpdate(DatabaseUpdateParameters)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseCreateScript.html" title="class in org.beryl.database">DatabaseCreateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/IDatabaseUpdateScript.html#onBeforeSchemaUpdate(org.beryl.database.DatabaseUpdateParameters)"><B>onBeforeSchemaUpdate(DatabaseUpdateParameters)</B></A> - 
+Method in interface org.beryl.database.<A HREF="./org/beryl/database/IDatabaseUpdateScript.html" title="interface in org.beryl.database">IDatabaseUpdateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlOnlyUpdateScript.html#onBeforeSchemaUpdate(org.beryl.database.DatabaseUpdateParameters)"><B>onBeforeSchemaUpdate(DatabaseUpdateParameters)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/SqlOnlyUpdateScript.html" title="class in org.beryl.database">SqlOnlyUpdateScript</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/app/IntentChooser.html#onCreate(android.os.Bundle)"><B>onCreate(Bundle)</B></A> - 
 Method in class org.beryl.app.<A HREF="./org/beryl/app/IntentChooser.html" title="class in org.beryl.app">IntentChooser</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html#onCreate(android.database.sqlite.SQLiteDatabase)"><B>onCreate(SQLiteDatabase)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/diagnostics/reporting/CrashReportActivity.html#onCreate(android.os.Bundle)"><B>onCreate(Bundle)</B></A> - 
 Method in class org.beryl.diagnostics.reporting.<A HREF="./org/beryl/diagnostics/reporting/CrashReportActivity.html" title="class in org.beryl.diagnostics.reporting">CrashReportActivity</A>
@@ -1817,6 +2073,18 @@ Method in class org.beryl.location.<A HREF="./org/beryl/location/PreferGpsLocati
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html#OnTimeString"><B>OnTimeString</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html" title="class in org.beryl.web.search.bing">BingSearchResponse.InstantAnswerFlightStatus</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateScript.html#onUpdateSchema(org.beryl.database.DatabaseUpdateParameters)"><B>onUpdateSchema(DatabaseUpdateParameters)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database">DatabaseUpdateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlOnlyCreateScript.html#onUpdateSchema(org.beryl.database.DatabaseUpdateParameters)"><B>onUpdateSchema(DatabaseUpdateParameters)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/SqlOnlyCreateScript.html" title="class in org.beryl.database">SqlOnlyCreateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlOnlyUpdateScript.html#onUpdateSchema(org.beryl.database.DatabaseUpdateParameters)"><B>onUpdateSchema(DatabaseUpdateParameters)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/SqlOnlyUpdateScript.html" title="class in org.beryl.database">SqlOnlyUpdateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)"><B>onUpgrade(SQLiteDatabase, int, int)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/url/AsyncUrlShortener.Callback.html#onUrlExpand(java.lang.String)"><B>onUrlExpand(String)</B></A> - 
 Method in interface org.beryl.web.url.<A HREF="./org/beryl/web/url/AsyncUrlShortener.Callback.html" title="interface in org.beryl.web.url">AsyncUrlShortener.Callback</A>
 <DD>&nbsp;
@@ -1826,7 +2094,7 @@ Method in interface org.beryl.web.url.<A HREF="./org/beryl/web/url/AsyncUrlShort
 <DT><A HREF="./org/beryl/web/url/AsyncUrlShortener.Callback.html#onUrlShorteningError(java.lang.Exception)"><B>onUrlShorteningError(Exception)</B></A> - 
 Method in interface org.beryl.web.url.<A HREF="./org/beryl/web/url/AsyncUrlShortener.Callback.html" title="interface in org.beryl.web.url">AsyncUrlShortener.Callback</A>
 <DD>&nbsp;
-<DT><A HREF="./org/beryl/package-summary.html"><B>org.beryl</B></A> - package org.beryl<DD>&nbsp;<DT><A HREF="./org/beryl/app/package-summary.html"><B>org.beryl.app</B></A> - package org.beryl.app<DD>Classes that compliment the android.app package.<DT><A HREF="./org/beryl/content/package-summary.html"><B>org.beryl.content</B></A> - package org.beryl.content<DD>&nbsp;<DT><A HREF="./org/beryl/content/webfeeds/package-summary.html"><B>org.beryl.content.webfeeds</B></A> - package org.beryl.content.webfeeds<DD>&nbsp;<DT><A HREF="./org/beryl/content/webfeeds/rss/package-summary.html"><B>org.beryl.content.webfeeds.rss</B></A> - package org.beryl.content.webfeeds.rss<DD>&nbsp;<DT><A HREF="./org/beryl/diagnostics/package-summary.html"><B>org.beryl.diagnostics</B></A> - package org.beryl.diagnostics<DD>&nbsp;<DT><A HREF="./org/beryl/diagnostics/reporting/package-summary.html"><B>org.beryl.diagnostics.reporting</B></A> - package org.beryl.diagnostics.reporting<DD>&nbsp;<DT><A HREF="./org/beryl/location/package-summary.html"><B>org.beryl.location</B></A> - package org.beryl.location<DD>&nbsp;<DT><A HREF="./org/beryl/web/http/package-summary.html"><B>org.beryl.web.http</B></A> - package org.beryl.web.http<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/package-summary.html"><B>org.beryl.web.search</B></A> - package org.beryl.web.search<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/bing/package-summary.html"><B>org.beryl.web.search.bing</B></A> - package org.beryl.web.search.bing<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/google/package-summary.html"><B>org.beryl.web.search.google</B></A> - package org.beryl.web.search.google<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/google/maps/package-summary.html"><B>org.beryl.web.search.google.maps</B></A> - package org.beryl.web.search.google.maps<DD>&nbsp;<DT><A HREF="./org/beryl/web/url/package-summary.html"><B>org.beryl.web.url</B></A> - package org.beryl.web.url<DD>Collection of classes that deal with the URL manipulation.<DT><A HREF="./org/beryl/widget/package-summary.html"><B>org.beryl.widget</B></A> - package org.beryl.widget<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html#OriginAirportCode"><B>OriginAirportCode</B></A> - 
+<DT><A HREF="./org/beryl/package-summary.html"><B>org.beryl</B></A> - package org.beryl<DD>This is the root package for Beryl.<DT><A HREF="./org/beryl/app/package-summary.html"><B>org.beryl.app</B></A> - package org.beryl.app<DD>Classes that compliment the android.app package.<DT><A HREF="./org/beryl/content/package-summary.html"><B>org.beryl.content</B></A> - package org.beryl.content<DD>&nbsp;<DT><A HREF="./org/beryl/content/webfeeds/package-summary.html"><B>org.beryl.content.webfeeds</B></A> - package org.beryl.content.webfeeds<DD>&nbsp;<DT><A HREF="./org/beryl/content/webfeeds/rss/package-summary.html"><B>org.beryl.content.webfeeds.rss</B></A> - package org.beryl.content.webfeeds.rss<DD>&nbsp;<DT><A HREF="./org/beryl/database/package-summary.html"><B>org.beryl.database</B></A> - package org.beryl.database<DD>Classes that compliment the android.database and android.database.sqlite packages.<DT><A HREF="./org/beryl/diagnostics/package-summary.html"><B>org.beryl.diagnostics</B></A> - package org.beryl.diagnostics<DD>Collection of classes that deal with diagnosing problems and bugs on the system.<DT><A HREF="./org/beryl/diagnostics/reporting/package-summary.html"><B>org.beryl.diagnostics.reporting</B></A> - package org.beryl.diagnostics.reporting<DD>&nbsp;<DT><A HREF="./org/beryl/intents/package-summary.html"><B>org.beryl.intents</B></A> - package org.beryl.intents<DD>&nbsp;<DT><A HREF="./org/beryl/intents/android/package-summary.html"><B>org.beryl.intents.android</B></A> - package org.beryl.intents.android<DD>&nbsp;<DT><A HREF="./org/beryl/location/package-summary.html"><B>org.beryl.location</B></A> - package org.beryl.location<DD>&nbsp;<DT><A HREF="./org/beryl/web/cache/package-summary.html"><B>org.beryl.web.cache</B></A> - package org.beryl.web.cache<DD>&nbsp;<DT><A HREF="./org/beryl/web/http/package-summary.html"><B>org.beryl.web.http</B></A> - package org.beryl.web.http<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/package-summary.html"><B>org.beryl.web.search</B></A> - package org.beryl.web.search<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/bing/package-summary.html"><B>org.beryl.web.search.bing</B></A> - package org.beryl.web.search.bing<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/google/package-summary.html"><B>org.beryl.web.search.google</B></A> - package org.beryl.web.search.google<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/google/maps/package-summary.html"><B>org.beryl.web.search.google.maps</B></A> - package org.beryl.web.search.google.maps<DD>&nbsp;<DT><A HREF="./org/beryl/web/url/package-summary.html"><B>org.beryl.web.url</B></A> - package org.beryl.web.url<DD>Collection of classes that deal with the URL manipulation.<DT><A HREF="./org/beryl/widget/package-summary.html"><B>org.beryl.widget</B></A> - package org.beryl.widget<DD>&nbsp;<DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html#OriginAirportCode"><B>OriginAirportCode</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html" title="class in org.beryl.web.search.bing">BingSearchResponse.InstantAnswerFlightStatus</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html#OriginAirportName"><B>OriginAirportName</B></A> - 
@@ -1932,6 +2200,12 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DT><A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html#rating"><B>rating</B></A> - 
 Variable in class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html" title="class in org.beryl.content.webfeeds.rss">RssChannel</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUtils.html#readAsset(android.content.Context, java.lang.String)"><B>readAsset(Context, String)</B></A> - 
+Static method in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUtils.html" title="class in org.beryl.database">DatabaseUtils</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUtils.html#readBufferedAsset(android.content.Context, java.lang.String)"><B>readBufferedAsset(Context, String)</B></A> - 
+Static method in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUtils.html" title="class in org.beryl.database">DatabaseUtils</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/GoogleLocalSearchResult.html#Region"><B>Region</B></A> - 
 Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/google/GoogleLocalSearchResult.html" title="class in org.beryl.web.search.google">GoogleLocalSearchResult</A>
 <DD>Supplies a region name for the result (e.g., in the U.S., this is typically a state abbreviation, in other regions it might be a province, etc.)
@@ -2008,12 +2282,30 @@ Constructor for class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/conten
 <DT><A HREF="./org/beryl/content/webfeeds/rss/RssItem.html" title="class in org.beryl.content.webfeeds.rss"><B>RssItem</B></A> - Class in <A HREF="./org/beryl/content/webfeeds/rss/package-summary.html">org.beryl.content.webfeeds.rss</A><DD>&nbsp;<DT><A HREF="./org/beryl/content/webfeeds/rss/RssItem.html#RssItem()"><B>RssItem()</B></A> - 
 Constructor for class org.beryl.content.webfeeds.rss.<A HREF="./org/beryl/content/webfeeds/rss/RssItem.html" title="class in org.beryl.content.webfeeds.rss">RssItem</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlScriptRunner.html#run()"><B>run()</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/SqlScriptRunner.html" title="class in org.beryl.database">SqlScriptRunner</A>
+<DD>Runs the SQL statements against the database.
+<DT><A HREF="./org/beryl/app/ChoosableIntent.html#RUNAS_Activity"><B>RUNAS_Activity</B></A> - 
+Static variable in class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/app/ChoosableIntent.html#RUNAS_Broadcast"><B>RUNAS_Broadcast</B></A> - 
+Static variable in class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/app/ChoosableIntent.html#RUNAS_Service"><B>RUNAS_Service</B></A> - 
+Static variable in class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/app/IntentChooser.html#runChoosableIntent(org.beryl.app.ChoosableIntent)"><B>runChoosableIntent(ChoosableIntent)</B></A> - 
 Method in class org.beryl.app.<A HREF="./org/beryl/app/IntentChooser.html" title="class in org.beryl.app">IntentChooser</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/app/ChoosableIntent.html#runIntentAs"><B>runIntentAs</B></A> - 
+Variable in class org.beryl.app.<A HREF="./org/beryl/app/ChoosableIntent.html" title="class in org.beryl.app">ChoosableIntent</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/content/DatabaseUtil.html#RunSqlScriptFromAsset(android.content.Context, android.database.sqlite.SQLiteDatabase, java.lang.String)"><B>RunSqlScriptFromAsset(Context, SQLiteDatabase, String)</B></A> - 
 Static method in class org.beryl.content.<A HREF="./org/beryl/content/DatabaseUtil.html" title="class in org.beryl.content">DatabaseUtil</A>
 <DD>Runs an sql script against a database.
+<DT><A HREF="./org/beryl/database/DatabaseUtils.html#runSqlScriptFromAsset(android.content.Context, android.database.sqlite.SQLiteDatabase, java.lang.String)"><B>runSqlScriptFromAsset(Context, SQLiteDatabase, String)</B></A> - 
+Static method in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUtils.html" title="class in org.beryl.database">DatabaseUtils</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.VideoResult.html#RunTime"><B>RunTime</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.VideoResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.VideoResult</A>
 <DD>&nbsp;
@@ -2057,6 +2349,9 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.Query.html#SearchTerms"><B>SearchTerms</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.Query.html" title="class in org.beryl.web.search.bing">BingSearchResponse.Query</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Sharing.html#sendEmail(java.lang.String, java.lang.String, java.lang.String)"><B>sendEmail(String, String, String)</B></A> - 
+Static method in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Sharing.html" title="class in org.beryl.intents.android">Sharing</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/app/ServiceForegrounder.html" title="class in org.beryl.app"><B>ServiceForegrounder</B></A> - Class in <A HREF="./org/beryl/app/package-summary.html">org.beryl.app</A><DD>Sets an Android Service into foreground state with a notification.<DT><A HREF="./org/beryl/app/ServiceForegrounder.html#ServiceForegrounder(android.app.Service, int)"><B>ServiceForegrounder(Service, int)</B></A> - 
 Constructor for class org.beryl.app.<A HREF="./org/beryl/app/ServiceForegrounder.html" title="class in org.beryl.app">ServiceForegrounder</A>
@@ -2145,8 +2440,14 @@ Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/B
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchRequest.html#setSpellRequest()"><B>setSpellRequest()</B></A> - 
 Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchRequest.html" title="class in org.beryl.web.search.bing">BingSearchRequest</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#setTag(java.lang.String)"><B>setTag(String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/GoogleSearchRequest.html#setTargetLanguage(android.os.Bundle, java.lang.String)"><B>setTargetLanguage(Bundle, String)</B></A> - 
 Static method in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/google/GoogleSearchRequest.html" title="class in org.beryl.web.search.google">GoogleSearchRequest</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Settings.html" title="class in org.beryl.intents.android"><B>Settings</B></A> - Class in <A HREF="./org/beryl/intents/android/package-summary.html">org.beryl.intents.android</A><DD>&nbsp;<DT><A HREF="./org/beryl/intents/android/Settings.html#Settings()"><B>Settings()</B></A> - 
+Constructor for class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Settings.html" title="class in org.beryl.intents.android">Settings</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchRequest.html#setTranslationRequest(java.lang.String, java.lang.String)"><B>setTranslationRequest(String, String)</B></A> - 
 Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchRequest.html" title="class in org.beryl.web.search.bing">BingSearchRequest</A>
@@ -2175,11 +2476,23 @@ Method in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/B
 <DT><A HREF="./org/beryl/web/search/google/GoogleSearchRequest.html#setWebSearch(android.os.Bundle, java.lang.String, java.lang.String)"><B>setWebSearch(Bundle, String, String)</B></A> - 
 Static method in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/google/GoogleSearchRequest.html" title="class in org.beryl.web.search.google">GoogleSearchRequest</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Sharing.html" title="class in org.beryl.intents.android"><B>Sharing</B></A> - Class in <A HREF="./org/beryl/intents/android/package-summary.html">org.beryl.intents.android</A><DD>&nbsp;<DT><A HREF="./org/beryl/intents/android/Sharing.html#Sharing()"><B>Sharing()</B></A> - 
+Constructor for class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Sharing.html" title="class in org.beryl.intents.android">Sharing</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/url/IUrlShortener.html#shorten(java.lang.String)"><B>shorten(String)</B></A> - 
 Method in interface org.beryl.web.url.<A HREF="./org/beryl/web/url/IUrlShortener.html" title="interface in org.beryl.web.url">IUrlShortener</A>
 <DD>Converts a long URL into a shortened version.
 <DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html#shorten(java.lang.String)"><B>shorten(String)</B></A> - 
 Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url">TinyURLUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/UrlyUrlShortener.html#shorten(java.lang.String)"><B>shorten(String)</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/UrlyUrlShortener.html" title="class in org.beryl.web.url">UrlyUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/VgdUrlShortener.html#shorten(java.lang.String)"><B>shorten(String)</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url">VgdUrlShortener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/VgdUrlShortener.html#shorten(java.lang.String, java.lang.String)"><B>shorten(String, String)</B></A> - 
+Method in class org.beryl.web.url.<A HREF="./org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url">VgdUrlShortener</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/content/BatchTransactionManager.html#size()"><B>size()</B></A> - 
 Method in class org.beryl.content.<A HREF="./org/beryl/content/BatchTransactionManager.html" title="class in org.beryl.content">BatchTransactionManager</A>
@@ -2207,6 +2520,21 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.Error.html#SourceTypeErrorCode"><B>SourceTypeErrorCode</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.Error.html" title="class in org.beryl.web.search.bing">BingSearchResponse.Error</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlOnlyCreateScript.html" title="class in org.beryl.database"><B>SqlOnlyCreateScript</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>Database Create Script that only requires a single SQL script file to be run.<DT><A HREF="./org/beryl/database/SqlOnlyCreateScript.html#SqlOnlyCreateScript()"><B>SqlOnlyCreateScript()</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/SqlOnlyCreateScript.html" title="class in org.beryl.database">SqlOnlyCreateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlOnlyUpdateScript.html" title="class in org.beryl.database"><B>SqlOnlyUpdateScript</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>Database Update Script that only requires a single SQL script file to be run.<DT><A HREF="./org/beryl/database/SqlOnlyUpdateScript.html#SqlOnlyUpdateScript()"><B>SqlOnlyUpdateScript()</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/SqlOnlyUpdateScript.html" title="class in org.beryl.database">SqlOnlyUpdateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlScriptReader.html" title="class in org.beryl.database"><B>SqlScriptReader</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>Buffered Reader that reads SQL statements from an input stream.<DT><A HREF="./org/beryl/database/SqlScriptReader.html#SqlScriptReader(java.io.InputStream)"><B>SqlScriptReader(InputStream)</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/SqlScriptReader.html" title="class in org.beryl.database">SqlScriptReader</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlScriptReader.html#SqlScriptReader(java.io.BufferedReader)"><B>SqlScriptReader(BufferedReader)</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/SqlScriptReader.html" title="class in org.beryl.database">SqlScriptReader</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/SqlScriptRunner.html" title="class in org.beryl.database"><B>SqlScriptRunner</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>Runs sql scripts from an SqlScriptReader.<DT><A HREF="./org/beryl/database/SqlScriptRunner.html#SqlScriptRunner(android.database.sqlite.SQLiteDatabase, org.beryl.database.SqlScriptReader)"><B>SqlScriptRunner(SQLiteDatabase, SqlScriptReader)</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/SqlScriptRunner.html" title="class in org.beryl.database">SqlScriptRunner</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/maps/DirectionsLeg.html#StartAddress"><B>StartAddress</B></A> - 
 Variable in class org.beryl.web.search.google.maps.<A HREF="./org/beryl/web/search/google/maps/DirectionsLeg.html" title="class in org.beryl.web.search.google.maps">DirectionsLeg</A>
@@ -2268,6 +2596,9 @@ Method in class org.beryl.location.<A HREF="./org/beryl/location/LocationMonitor
 <DT><A HREF="./org/beryl/web/search/google/GoogleLocalSearchResult.html#StreetAddress"><B>StreetAddress</B></A> - 
 Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/google/GoogleLocalSearchResult.html" title="class in org.beryl.web.search.google">GoogleLocalSearchResult</A>
 <DD>Supplies the street address and number for the given result.
+<DT><A HREF="./org/beryl/diagnostics/StrictModeEnabler.html" title="class in org.beryl.diagnostics"><B>StrictModeEnabler</B></A> - Class in <A HREF="./org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A><DD>Manages the enabling of Strict Mode which will record to a penalty log.<DT><A HREF="./org/beryl/diagnostics/StrictModeEnabler.html#StrictModeEnabler()"><B>StrictModeEnabler()</B></A> - 
+Constructor for class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/StrictModeEnabler.html" title="class in org.beryl.diagnostics">StrictModeEnabler</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/maps/DirectionsRoute.html#Summary"><B>Summary</B></A> - 
 Variable in class org.beryl.web.search.google.maps.<A HREF="./org/beryl/web/search/google/maps/DirectionsRoute.html" title="class in org.beryl.web.search.google.maps">DirectionsRoute</A>
 <DD>&nbsp;
@@ -2291,7 +2622,7 @@ Static variable in class org.beryl.<A HREF="./org/beryl/R.xml.html" title="class
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.ImageResult.html#Thumbnail"><B>Thumbnail</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.ImageResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.ImageResult</A>
 <DD>&nbsp;
-<DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url"><B>TinyURLUrlShortener</B></A> - Class in <A HREF="./org/beryl/web/url/package-summary.html">org.beryl.web.url</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html#TinyURLUrlShortener()"><B>TinyURLUrlShortener()</B></A> - 
+<DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url"><B>TinyURLUrlShortener</B></A> - Class in <A HREF="./org/beryl/web/url/package-summary.html">org.beryl.web.url</A><DD>URL Shortening provided by TinyURL.<DT><A HREF="./org/beryl/web/url/TinyURLUrlShortener.html#TinyURLUrlShortener()"><B>TinyURLUrlShortener()</B></A> - 
 Constructor for class org.beryl.web.url.<A HREF="./org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url">TinyURLUrlShortener</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/content/webfeeds/rss/RssChannel.html#title"><B>title</B></A> - 
@@ -2476,11 +2807,26 @@ Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/go
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.PhonebookResult.html#UniqueId"><B>UniqueId</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.PhonebookResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.PhonebookResult</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database"><B>UpdatableDatabaseOpenHelper</B></A> - Class in <A HREF="./org/beryl/database/package-summary.html">org.beryl.database</A><DD>&nbsp;<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html#UpdatableDatabaseOpenHelper(android.content.Context, java.lang.String, int)"><B>UpdatableDatabaseOpenHelper(Context, String, int)</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html#UpdatableDatabaseOpenHelper(android.content.Context, java.lang.String, android.database.sqlite.SQLiteDatabase.CursorFactory, int)"><B>UpdatableDatabaseOpenHelper(Context, String, SQLiteDatabase.CursorFactory, int)</B></A> - 
+Constructor for class org.beryl.database.<A HREF="./org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html#UpdatedArrival"><B>UpdatedArrival</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html" title="class in org.beryl.web.search.bing">BingSearchResponse.InstantAnswerFlightStatus</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html#UpdatedDeparture"><B>UpdatedDeparture</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.InstantAnswerFlightStatus.html" title="class in org.beryl.web.search.bing">BingSearchResponse.InstantAnswerFlightStatus</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/AbstractDatabaseUpdateScript.html#updateParameters"><B>updateParameters</B></A> - 
+Variable in class org.beryl.database.<A HREF="./org/beryl/database/AbstractDatabaseUpdateScript.html" title="class in org.beryl.database">AbstractDatabaseUpdateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/DatabaseUpdateScript.html#updateSchema(org.beryl.database.DatabaseUpdateParameters)"><B>updateSchema(DatabaseUpdateParameters)</B></A> - 
+Method in class org.beryl.database.<A HREF="./org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database">DatabaseUpdateScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/database/IDatabaseUpdateScript.html#updateSchema(org.beryl.database.DatabaseUpdateParameters)"><B>updateSchema(DatabaseUpdateParameters)</B></A> - 
+Method in interface org.beryl.database.<A HREF="./org/beryl/database/IDatabaseUpdateScript.html" title="interface in org.beryl.database">IDatabaseUpdateScript</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/Constants.html#URI_SEARCH_BLOGS"><B>URI_SEARCH_BLOGS</B></A> - 
 Static variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/google/Constants.html" title="class in org.beryl.web.search.google">Constants</A>
@@ -2551,8 +2897,11 @@ Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/go
 <DT><A HREF="./org/beryl/web/search/google/maps/Constants.html#URL_Directions"><B>URL_Directions</B></A> - 
 Static variable in class org.beryl.web.search.google.maps.<A HREF="./org/beryl/web/search/google/maps/Constants.html" title="class in org.beryl.web.search.google.maps">Constants</A>
 <DD>&nbsp;
-<DT><A HREF="./org/beryl/web/url/UrlShorteningException.html" title="class in org.beryl.web.url"><B>UrlShorteningException</B></A> - Exception in <A HREF="./org/beryl/web/url/package-summary.html">org.beryl.web.url</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/url/UrlShorteningException.html#UrlShorteningException(java.lang.String, java.lang.Exception)"><B>UrlShorteningException(String, Exception)</B></A> - 
+<DT><A HREF="./org/beryl/web/url/UrlShorteningException.html" title="class in org.beryl.web.url"><B>UrlShorteningException</B></A> - Exception in <A HREF="./org/beryl/web/url/package-summary.html">org.beryl.web.url</A><DD>Exception that indicates that something went wrong with the URL Shortening request.<DT><A HREF="./org/beryl/web/url/UrlShorteningException.html#UrlShorteningException(java.lang.String, java.lang.Exception)"><B>UrlShorteningException(String, Exception)</B></A> - 
 Constructor for exception org.beryl.web.url.<A HREF="./org/beryl/web/url/UrlShorteningException.html" title="class in org.beryl.web.url">UrlShorteningException</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/UrlyUrlShortener.html" title="class in org.beryl.web.url"><B>UrlyUrlShortener</B></A> - Class in <A HREF="./org/beryl/web/url/package-summary.html">org.beryl.web.url</A><DD>URL Shortening provided by ur.ly<DT><A HREF="./org/beryl/web/url/UrlyUrlShortener.html#UrlyUrlShortener()"><B>UrlyUrlShortener()</B></A> - 
+Constructor for class org.beryl.web.url.<A HREF="./org/beryl/web/url/UrlyUrlShortener.html" title="class in org.beryl.web.url">UrlyUrlShortener</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.PhonebookResult.html#UserRating"><B>UserRating</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.PhonebookResult.html" title="class in org.beryl.web.search.bing">BingSearchResponse.PhonebookResult</A>
@@ -2570,6 +2919,9 @@ Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchResponse.WebSearchTag.html#Value"><B>Value</B></A> - 
 Variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchResponse.WebSearchTag.html" title="class in org.beryl.web.search.bing">BingSearchResponse.WebSearchTag</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url"><B>VgdUrlShortener</B></A> - Class in <A HREF="./org/beryl/web/url/package-summary.html">org.beryl.web.url</A><DD>URL Shortening provided by v.gd<DT><A HREF="./org/beryl/web/url/VgdUrlShortener.html#VgdUrlShortener()"><B>VgdUrlShortener()</B></A> - 
+Constructor for class org.beryl.web.url.<A HREF="./org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url">VgdUrlShortener</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchRequest.html#Video_Filter__AspectStandard"><B>Video_Filter__AspectStandard</B></A> - 
 Static variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchRequest.html" title="class in org.beryl.web.search.bing">BingSearchRequest</A>
@@ -2601,11 +2953,17 @@ Static variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/sear
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchRequest.html#Video_SortBy__Relevance"><B>Video_SortBy__Relevance</B></A> - 
 Static variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchRequest.html" title="class in org.beryl.web.search.bing">BingSearchRequest</A>
 <DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Settings.html#viewInstalledAppSettings(android.content.Context, java.lang.String)"><B>viewInstalledAppSettings(Context, String)</B></A> - 
+Static method in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Settings.html" title="class in org.beryl.intents.android">Settings</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/GoogleLocalSearchResult.html#ViewportMode"><B>ViewportMode</B></A> - 
 Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/google/GoogleLocalSearchResult.html" title="class in org.beryl.web.search.google">GoogleLocalSearchResult</A>
 <DD>Undocumented
 <DT><A HREF="./org/beryl/widget/ViewStateAnimationListener.html" title="class in org.beryl.widget"><B>ViewStateAnimationListener</B></A> - Class in <A HREF="./org/beryl/widget/package-summary.html">org.beryl.widget</A><DD>Manages the state of a view on the start and end of an animation.<DT><A HREF="./org/beryl/widget/ViewStateAnimationListener.html#ViewStateAnimationListener(android.view.View)"><B>ViewStateAnimationListener(View)</B></A> - 
 Constructor for class org.beryl.widget.<A HREF="./org/beryl/widget/ViewStateAnimationListener.html" title="class in org.beryl.widget">ViewStateAnimationListener</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Web.html#viewUrl(java.lang.String)"><B>viewUrl(String)</B></A> - 
+Static method in class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Web.html" title="class in org.beryl.intents.android">Web</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/GoogleWebSearchResult.html#VisibleUrl"><B>VisibleUrl</B></A> - 
 Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/google/GoogleWebSearchResult.html" title="class in org.beryl.web.search.google">GoogleWebSearchResult</A>
@@ -2615,7 +2973,22 @@ Variable in class org.beryl.web.search.google.<A HREF="./org/beryl/web/search/go
 <A NAME="_W_"><!-- --></A><H2>
 <B>W</B></H2>
 <DL>
+<DT><A HREF="./org/beryl/diagnostics/ILoggerWriter.html#w(java.lang.String, java.lang.String)"><B>w(String, String)</B></A> - 
+Method in interface org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/ILoggerWriter.html" title="interface in org.beryl.diagnostics">ILoggerWriter</A>
+<DD>Log a warning message.
+<DT><A HREF="./org/beryl/diagnostics/Log.html#w(java.lang.String, java.lang.String)"><B>w(String, String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Log.html#w(java.lang.String)"><B>w(String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/LogCatLogWriter.html#w(java.lang.String, java.lang.String)"><B>w(String, String)</B></A> - 
+Method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/LogCatLogWriter.html" title="class in org.beryl.diagnostics">LogCatLogWriter</A>
+<DD>&nbsp;
 <DT><A HREF="./org/beryl/diagnostics/Logger.html#w(java.lang.String, java.lang.String)"><B>w(String, String)</B></A> - 
+Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/diagnostics/Logger.html#w(java.lang.String)"><B>w(String)</B></A> - 
 Static method in class org.beryl.diagnostics.<A HREF="./org/beryl/diagnostics/Logger.html" title="class in org.beryl.diagnostics">Logger</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/maps/DirectionsRoute.html#Warnings"><B>Warnings</B></A> - 
@@ -2623,6 +2996,9 @@ Variable in class org.beryl.web.search.google.maps.<A HREF="./org/beryl/web/sear
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/google/maps/DirectionsRoute.html#WaypointOrder"><B>WaypointOrder</B></A> - 
 Variable in class org.beryl.web.search.google.maps.<A HREF="./org/beryl/web/search/google/maps/DirectionsRoute.html" title="class in org.beryl.web.search.google.maps">DirectionsRoute</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/intents/android/Web.html" title="class in org.beryl.intents.android"><B>Web</B></A> - Class in <A HREF="./org/beryl/intents/android/package-summary.html">org.beryl.intents.android</A><DD>&nbsp;<DT><A HREF="./org/beryl/intents/android/Web.html#Web()"><B>Web()</B></A> - 
+Constructor for class org.beryl.intents.android.<A HREF="./org/beryl/intents/android/Web.html" title="class in org.beryl.intents.android">Web</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchRequest.html#Web_FileType__AutodeskDrawing"><B>Web_FileType__AutodeskDrawing</B></A> - 
 Static variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchRequest.html" title="class in org.beryl.web.search.bing">BingSearchRequest</A>
@@ -2665,6 +3041,15 @@ Static variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/sear
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/web/search/bing/BingSearchRequest.html#Web_Option__DisableQueryAlterations"><B>Web_Option__DisableQueryAlterations</B></A> - 
 Static variable in class org.beryl.web.search.bing.<A HREF="./org/beryl/web/search/bing/BingSearchRequest.html" title="class in org.beryl.web.search.bing">BingSearchRequest</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache"><B>WebCacheOpenHelper</B></A> - Class in <A HREF="./org/beryl/web/cache/package-summary.html">org.beryl.web.cache</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html#WebCacheOpenHelper(android.content.Context)"><B>WebCacheOpenHelper(Context)</B></A> - 
+Constructor for class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache">WebCacheOpenHelper</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheCreateDatabaseScript.html" title="class in org.beryl.web.cache"><B>WebCacheOpenHelper.WebCacheCreateDatabaseScript</B></A> - Class in <A HREF="./org/beryl/web/cache/package-summary.html">org.beryl.web.cache</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheCreateDatabaseScript.html#WebCacheOpenHelper.WebCacheCreateDatabaseScript()"><B>WebCacheOpenHelper.WebCacheCreateDatabaseScript()</B></A> - 
+Constructor for class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheCreateDatabaseScript.html" title="class in org.beryl.web.cache">WebCacheOpenHelper.WebCacheCreateDatabaseScript</A>
+<DD>&nbsp;
+<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheUpdateScript_2.html" title="class in org.beryl.web.cache"><B>WebCacheOpenHelper.WebCacheUpdateScript_2</B></A> - Class in <A HREF="./org/beryl/web/cache/package-summary.html">org.beryl.web.cache</A><DD>&nbsp;<DT><A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheUpdateScript_2.html#WebCacheOpenHelper.WebCacheUpdateScript_2()"><B>WebCacheOpenHelper.WebCacheUpdateScript_2()</B></A> - 
+Constructor for class org.beryl.web.cache.<A HREF="./org/beryl/web/cache/WebCacheOpenHelper.WebCacheUpdateScript_2.html" title="class in org.beryl.web.cache">WebCacheOpenHelper.WebCacheUpdateScript_2</A>
 <DD>&nbsp;
 <DT><A HREF="./org/beryl/content/webfeeds/WebFeedConsumerService.html" title="class in org.beryl.content.webfeeds"><B>WebFeedConsumerService</B></A> - Class in <A HREF="./org/beryl/content/webfeeds/package-summary.html">org.beryl.content.webfeeds</A><DD>Consumes a feed and stores it in a database with the specified name.<DT><A HREF="./org/beryl/content/webfeeds/WebFeedConsumerService.html#WebFeedConsumerService()"><B>WebFeedConsumerService()</B></A> - 
 Constructor for class org.beryl.content.webfeeds.<A HREF="./org/beryl/content/webfeeds/WebFeedConsumerService.html" title="class in org.beryl.content.webfeeds">WebFeedConsumerService</A>
@@ -2735,7 +3120,20 @@ Variable in class org.beryl.content.webfeeds.<A HREF="./org/beryl/content/webfee
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 

@@ -7,7 +7,7 @@ Overview List (Beryl API)
 </TITLE>
 
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="beryl-style.css" TITLE="Style">
 
 
 </HEAD>
@@ -17,7 +17,20 @@ Overview List (Beryl API)
 <TABLE BORDER="0" WIDTH="100%" SUMMARY="">
 <TR>
 <TH ALIGN="left" NOWRAP><FONT size="+1" CLASS="FrameTitleFont">
-<B></B></FONT></TH>
+<B>
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</B></FONT></TH>
 </TR>
 </TABLE>
 
@@ -38,11 +51,19 @@ Packages</FONT>
 <BR>
 <FONT CLASS="FrameItemFont"><A HREF="org/beryl/content/webfeeds/rss/package-frame.html" target="packageFrame">org.beryl.content.webfeeds.rss</A></FONT>
 <BR>
+<FONT CLASS="FrameItemFont"><A HREF="org/beryl/database/package-frame.html" target="packageFrame">org.beryl.database</A></FONT>
+<BR>
 <FONT CLASS="FrameItemFont"><A HREF="org/beryl/diagnostics/package-frame.html" target="packageFrame">org.beryl.diagnostics</A></FONT>
 <BR>
 <FONT CLASS="FrameItemFont"><A HREF="org/beryl/diagnostics/reporting/package-frame.html" target="packageFrame">org.beryl.diagnostics.reporting</A></FONT>
 <BR>
+<FONT CLASS="FrameItemFont"><A HREF="org/beryl/intents/package-frame.html" target="packageFrame">org.beryl.intents</A></FONT>
+<BR>
+<FONT CLASS="FrameItemFont"><A HREF="org/beryl/intents/android/package-frame.html" target="packageFrame">org.beryl.intents.android</A></FONT>
+<BR>
 <FONT CLASS="FrameItemFont"><A HREF="org/beryl/location/package-frame.html" target="packageFrame">org.beryl.location</A></FONT>
+<BR>
+<FONT CLASS="FrameItemFont"><A HREF="org/beryl/web/cache/package-frame.html" target="packageFrame">org.beryl.web.cache</A></FONT>
 <BR>
 <FONT CLASS="FrameItemFont"><A HREF="org/beryl/web/http/package-frame.html" target="packageFrame">org.beryl.web.http</A></FONT>
 <BR>
