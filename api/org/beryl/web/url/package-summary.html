@@ -7,7 +7,7 @@ org.beryl.web.url (Beryl API)
 </TITLE>
 
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../beryl-style.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
@@ -47,7 +47,20 @@ function windowTitle()
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 
@@ -120,7 +133,15 @@ Collection of classes that deal with the URL manipulation.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../../org/beryl/web/url/TinyURLUrlShortener.html" title="class in org.beryl.web.url">TinyURLUrlShortener</A></B></TD>
-<TD>&nbsp;</TD>
+<TD>URL Shortening provided by TinyURL.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../org/beryl/web/url/UrlyUrlShortener.html" title="class in org.beryl.web.url">UrlyUrlShortener</A></B></TD>
+<TD>URL Shortening provided by ur.ly</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../org/beryl/web/url/VgdUrlShortener.html" title="class in org.beryl.web.url">VgdUrlShortener</A></B></TD>
+<TD>URL Shortening provided by v.gd</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -134,7 +155,7 @@ Collection of classes that deal with the URL manipulation.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../../org/beryl/web/url/UrlShorteningException.html" title="class in org.beryl.web.url">UrlShorteningException</A></B></TD>
-<TD>&nbsp;</TD>
+<TD>Exception that indicates that something went wrong with the URL Shortening request.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -175,7 +196,20 @@ Collection of classes that deal with the URL manipulation.
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 

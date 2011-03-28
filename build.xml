@@ -68,8 +68,8 @@
 <script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
 <script type="text/javascript">                                         
 $.beautyOfCode.init({
-      theme: 'Django',
-			brushes: ['Xml', 'Plain', 'Java'],
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
 			defaults: { gutter: false },
 			ready: function() {
 				$.beautyOfCode.beautifyAll();

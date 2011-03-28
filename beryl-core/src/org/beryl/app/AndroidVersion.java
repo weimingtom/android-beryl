@@ -9,9 +9,8 @@ import org.beryl.app.AndroidVersion;
 public class StrictModeEnabler {
     public static void enableOnThread() {
         IStrictModeEnabler enabler = getStrictModeEnabler();
-        enabler.startStrictMode();
     }
-    
+    // Strict Mode is only supported on Gingerbread or higher.
     private static IStrictModeEnabler getStrictModeEnabler() {
         if(AndroidVersion.isGingerbreadOrHigher()) {
                 return new GingerbreadAndAboveStrictModeEnabler();

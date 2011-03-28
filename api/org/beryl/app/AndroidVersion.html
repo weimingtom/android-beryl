@@ -7,7 +7,7 @@ AndroidVersion (Beryl API)
 </TITLE>
 
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../beryl-style.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
@@ -47,7 +47,20 @@ function windowTitle()
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 
@@ -99,7 +112,26 @@ Class AndroidVersion</H2>
 </PRE>
 
 <P>
-Version independent class to get the Android version that is currently running on the device.
+Convenience class for retrieving the current Android version that's running on the device.
+ 
+ Code example on how to use AndroidVersion to load a multi-versioned class at runtime for backwards compatibility without using reflection.
+ <pre class="code"><code class="java">
+import org.beryl.app.AndroidVersion;
+
+public class StrictModeEnabler {
+    public static void enableOnThread() {
+        IStrictModeEnabler enabler = getStrictModeEnabler();
+    }
+    // Strict Mode is only supported on Gingerbread or higher.
+    private static IStrictModeEnabler getStrictModeEnabler() {
+        if(AndroidVersion.isGingerbreadOrHigher()) {
+                return new GingerbreadAndAboveStrictModeEnabler();
+        } else {
+                return new NoStrictModeEnabler();
+        }
+    }
+}
+</code></pre>
 <P>
 
 <P>
@@ -142,10 +174,42 @@ Version independent class to get the Android version that is currently running o
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/app/AndroidVersion.html#isDonutOrHigher()">isDonutOrHigher</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns true if running on Android 1.6 or higher.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../org/beryl/app/AndroidVersion.html#isEclairOrHigher()">isEclairOrHigher</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns true if running on Android 2.1 or higher.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/app/AndroidVersion.html#isFroyoOrHigher()">isFroyoOrHigher</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns true if running on Android 2.2 or higher.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/app/AndroidVersion.html#isGingerbreadOrHigher()">isGingerbreadOrHigher</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns true if running on Android 2.3 or higher.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/app/AndroidVersion.html#isHoneycombOrHigher()">isHoneycombOrHigher</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns true if running on Android 3.0 or higher.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -200,12 +264,64 @@ public static int <B>getSdkVersion</B>()</PRE>
 </DL>
 <HR>
 
+<A NAME="isDonutOrHigher()"><!-- --></A><H3>
+isDonutOrHigher</H3>
+<PRE>
+public static boolean <B>isDonutOrHigher</B>()</PRE>
+<DL>
+<DD>Returns true if running on Android 1.6 or higher.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="isEclairOrHigher()"><!-- --></A><H3>
 isEclairOrHigher</H3>
 <PRE>
 public static boolean <B>isEclairOrHigher</B>()</PRE>
 <DL>
 <DD>Returns true if running on Android 2.1 or higher.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isFroyoOrHigher()"><!-- --></A><H3>
+isFroyoOrHigher</H3>
+<PRE>
+public static boolean <B>isFroyoOrHigher</B>()</PRE>
+<DL>
+<DD>Returns true if running on Android 2.2 or higher.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isGingerbreadOrHigher()"><!-- --></A><H3>
+isGingerbreadOrHigher</H3>
+<PRE>
+public static boolean <B>isGingerbreadOrHigher</B>()</PRE>
+<DL>
+<DD>Returns true if running on Android 2.3 or higher.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isHoneycombOrHigher()"><!-- --></A><H3>
+isHoneycombOrHigher</H3>
+<PRE>
+public static boolean <B>isHoneycombOrHigher</B>()</PRE>
+<DL>
+<DD>Returns true if running on Android 3.0 or higher.
 <P>
 <DD><DL>
 </DL>
@@ -236,7 +352,20 @@ public static boolean <B>isEclairOrHigher</B>()</PRE>
 </TABLE>
 </TD>
 <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
+
+			<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+<script type="text/javascript">                                         
+$.beautyOfCode.init({
+      theme: 'Default',
+			brushes: ['Java', 'Xml', 'Plain'],
+			defaults: { gutter: false },
+			ready: function() {
+				$.beautyOfCode.beautifyAll();
+			}
+		});
+ </script> 
+			</EM>
 </TD>
 </TR>
 
