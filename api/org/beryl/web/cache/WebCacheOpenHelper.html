@@ -182,6 +182,13 @@ Class WebCacheOpenHelper</H2>
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../org/beryl/web/cache/WebCacheOpenHelper.html#WebCacheOpenHelper(android.content.Context, int)">WebCacheOpenHelper</A></B>(<A HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                   int&nbsp;testVersion)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
+</TR>
 </TABLE>
 &nbsp;
 <!-- ========== METHOD SUMMARY =========== -->
@@ -198,7 +205,7 @@ Class WebCacheOpenHelper</H2>
 <TD><CODE><B><A HREF="../../../../org/beryl/web/cache/WebCacheOpenHelper.html#getCreateScript()">getCreateScript</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DatabaseCreateScript that is used to create the database.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -206,7 +213,7 @@ Class WebCacheOpenHelper</H2>
 <TD><CODE><B><A HREF="../../../../org/beryl/web/cache/WebCacheOpenHelper.html#getDbName()">getDbName</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of the database.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -214,7 +221,7 @@ Class WebCacheOpenHelper</H2>
 <TD><CODE><B><A HREF="../../../../org/beryl/web/cache/WebCacheOpenHelper.html#getUpdateScriptClassPathTemplate()">getUpdateScriptClassPathTemplate</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Used by the Update Script Loader engine.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_org.beryl.database.UpdatableDatabaseOpenHelper"><!-- --></A>
@@ -292,6 +299,18 @@ WebCacheOpenHelper</H3>
 public <B>WebCacheOpenHelper</B>(<A HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context)</PRE>
 <DL>
 </DL>
+<HR>
+
+<A NAME="WebCacheOpenHelper(android.content.Context, int)"><!-- --></A><H3>
+WebCacheOpenHelper</H3>
+<PRE>
+<FONT SIZE="-1"><A HREF="http://developer.android.com/reference/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</A>
+</FONT>public <B>WebCacheOpenHelper</B>(<A HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context,
+                                     int&nbsp;testVersion)</PRE>
+<DL>
+<DD><B>Deprecated.</B>&nbsp;
+<P>
+</DL>
 
 <!-- ============ METHOD DETAIL ========== -->
 
@@ -308,6 +327,9 @@ getCreateScript</H3>
 <PRE>
 protected <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A HREF="../../../../org/beryl/database/IDatabaseUpdateScript.html" title="interface in org.beryl.database">IDatabaseUpdateScript</A>&gt; <B>getCreateScript</B>()</PRE>
 <DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getCreateScript()">UpdatableDatabaseOpenHelper</A></CODE></B></DD>
+<DD>The DatabaseCreateScript that is used to create the database.
+<P>
 <DD><DL>
 <DT><B>Specified by:</B><DD><CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getCreateScript()">getCreateScript</A></CODE> in class <CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A></CODE></DL>
 </DD>
@@ -322,6 +344,15 @@ getUpdateScriptClassPathTemplate</H3>
 <PRE>
 protected <A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getUpdateScriptClassPathTemplate</B>()</PRE>
 <DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getUpdateScriptClassPathTemplate()">UpdatableDatabaseOpenHelper</A></CODE></B></DD>
+<DD>Used by the Update Script Loader engine. Return the update script _2 class name.
+ Example:
+<pre class="code"><code class="java">
+protected String getUpdateScriptClassPathTemplate() {
+        return WebCacheUpdateScript_2.class.getName();
+}
+</code></pre>
+<P>
 <DD><DL>
 <DT><B>Specified by:</B><DD><CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getUpdateScriptClassPathTemplate()">getUpdateScriptClassPathTemplate</A></CODE> in class <CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A></CODE></DL>
 </DD>
@@ -336,6 +367,9 @@ getDbName</H3>
 <PRE>
 public <A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getDbName</B>()</PRE>
 <DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getDbName()">UpdatableDatabaseOpenHelper</A></CODE></B></DD>
+<DD>Name of the database. When entries are logged against it, they will be tagged as db_DbName.
+<P>
 <DD><DL>
 <DT><B>Specified by:</B><DD><CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getDbName()">getDbName</A></CODE> in class <CODE><A HREF="../../../../org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A></CODE></DL>
 </DD>

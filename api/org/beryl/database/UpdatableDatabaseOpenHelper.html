@@ -116,6 +116,25 @@ Class UpdatableDatabaseOpenHelper</H2>
 </PRE>
 
 <P>
+Base class for providing functionality to have managed database upgrades.
+ Once subclassed the database will be upgraded to the latest version using DatabaseUpdateScript objects.
+ 
+<h3>These objects must be defined with the following criteria.</h3>
+<ul>
+        <li>All in the same package.</li>
+        <li>Publicly accessible and have a public default constructor. Other constructors will never be used.</li>
+        <li>Update Scripts must have the convention "ScriptName_VersionNumber" this is important.</li>
+        <li>Otherwise the script will not be found and a failure exception will be thrown. (This does not apply to the create script.)</li>
+        <li>There must be an update script for each incremental version. starting with _2.</li>
+</ul>
+<h3>Tips and Notes</h3>
+<ul>
+        <li>Never call getReadableDatabase() or getWritableDatabase() on the UI thread. Upgrades take a long time to run.</li>
+        <li>This class is kinda weird. Check out the <A HREF="../../../org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache"><CODE>WebCacheOpenHelper</CODE></A> class implementation to see how upgrades are done. This class is a simple version.</li>
+</ul>
+<P>
+
+<P>
 <HR>
 
 <P>
@@ -169,7 +188,7 @@ Class UpdatableDatabaseOpenHelper</H2>
 <TD><CODE><B><A HREF="../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getCreateScript()">getCreateScript</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DatabaseCreateScript that is used to create the database.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -177,7 +196,7 @@ Class UpdatableDatabaseOpenHelper</H2>
 <TD><CODE><B><A HREF="../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getDbName()">getDbName</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of the database.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -185,7 +204,7 @@ Class UpdatableDatabaseOpenHelper</H2>
 <TD><CODE><B><A HREF="../../../org/beryl/database/UpdatableDatabaseOpenHelper.html#getUpdateScriptClassPathTemplate()">getUpdateScriptClassPathTemplate</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Used by the Update Script Loader engine.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -313,6 +332,8 @@ getDbName</H3>
 <PRE>
 public abstract <A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getDbName</B>()</PRE>
 <DL>
+<DD>Name of the database. When entries are logged against it, they will be tagged as db_DbName.
+<P>
 <DD><DL>
 </DL>
 </DD>
@@ -324,6 +345,8 @@ getCreateScript</H3>
 <PRE>
 protected abstract <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;? extends <A HREF="../../../org/beryl/database/IDatabaseUpdateScript.html" title="interface in org.beryl.database">IDatabaseUpdateScript</A>&gt; <B>getCreateScript</B>()</PRE>
 <DL>
+<DD>The DatabaseCreateScript that is used to create the database.
+<P>
 <DD><DL>
 </DL>
 </DD>
@@ -335,6 +358,14 @@ getUpdateScriptClassPathTemplate</H3>
 <PRE>
 protected abstract <A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getUpdateScriptClassPathTemplate</B>()</PRE>
 <DL>
+<DD>Used by the Update Script Loader engine. Return the update script _2 class name.
+ Example:
+<pre class="code"><code class="java">
+protected String getUpdateScriptClassPathTemplate() {
+        return WebCacheUpdateScript_2.class.getName();
+}
+</code></pre>
+<P>
 <DD><DL>
 </DL>
 </DD>
