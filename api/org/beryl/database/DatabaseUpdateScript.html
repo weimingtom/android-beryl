@@ -118,6 +118,12 @@ Class DatabaseUpdateScript</H2>
 </PRE>
 
 <P>
+Base class for database update scripts.
+ Assumes that the schema patch is in the assets/ directory as an .sql file.
+ This base class also provides convenience methods for performing database updates.
+<P>
+
+<P>
 <HR>
 
 <P>
@@ -153,7 +159,7 @@ Class DatabaseUpdateScript</H2>
               <A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;sqlScriptAssetFilePath)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Executes an .sql script file that is stored in the application's asset directory.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -161,7 +167,7 @@ Class DatabaseUpdateScript</H2>
 <TD><CODE><B><A HREF="../../../org/beryl/database/DatabaseUpdateScript.html#getSchemaSqlScript()">getSchemaSqlScript</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specify the location of where the .sql script file is located.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -169,7 +175,7 @@ Class DatabaseUpdateScript</H2>
 <TD><CODE><B><A HREF="../../../org/beryl/database/DatabaseUpdateScript.html#onUpdateSchema(org.beryl.database.DatabaseUpdateParameters)">onUpdateSchema</A></B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handler for code that should be applied immediately after a schema update.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -177,7 +183,7 @@ Class DatabaseUpdateScript</H2>
 <TD><CODE><B><A HREF="../../../org/beryl/database/DatabaseUpdateScript.html#updateSchema(org.beryl.database.DatabaseUpdateParameters)">updateSchema</A></B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handles the actual update of the database schema.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -231,8 +237,10 @@ public <B>DatabaseUpdateScript</B>()</PRE>
 <A NAME="updateSchema(org.beryl.database.DatabaseUpdateParameters)"><!-- --></A><H3>
 updateSchema</H3>
 <PRE>
-public void <B>updateSchema</B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</PRE>
+public final void <B>updateSchema</B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</PRE>
 <DL>
+<DD>Handles the actual update of the database schema. This method cannot be overriden. Use onUpdateSchema instead.
+<P>
 <DD><DL>
 <DT><B>Specified by:</B><DD><CODE><A HREF="../../../org/beryl/database/IDatabaseUpdateScript.html#updateSchema(org.beryl.database.DatabaseUpdateParameters)">updateSchema</A></CODE> in interface <CODE><A HREF="../../../org/beryl/database/IDatabaseUpdateScript.html" title="interface in org.beryl.database">IDatabaseUpdateScript</A></CODE></DL>
 </DD>
@@ -248,6 +256,8 @@ executeScript</H3>
 protected boolean <B>executeScript</B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params,
                                 <A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;sqlScriptAssetFilePath)</PRE>
 <DL>
+<DD>Executes an .sql script file that is stored in the application's asset directory.
+<P>
 <DD><DL>
 </DL>
 </DD>
@@ -262,11 +272,15 @@ onUpdateSchema</H3>
 <PRE>
 public abstract void <B>onUpdateSchema</B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</PRE>
 <DL>
+<DD>Handler for code that should be applied immediately after a schema update.
+ Honestly, this is just here to allow the developer to put code that would otherwise be put in updateSchema as an override.
+ It is preferable to use onAfterSchemaUpdate.
+<P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>params</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -276,6 +290,9 @@ getSchemaSqlScript</H3>
 <PRE>
 protected abstract <A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getSchemaSqlScript</B>()</PRE>
 <DL>
+<DD>Specify the location of where the .sql script file is located.
+ If this database version does not have a schema update then return null.
+<P>
 <DD><DL>
 </DL>
 </DD>

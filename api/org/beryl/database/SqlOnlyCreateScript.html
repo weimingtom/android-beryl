@@ -159,7 +159,7 @@ Database Create Script that only requires a single SQL script file to be run.
 <TD><CODE><B><A HREF="../../../org/beryl/database/SqlOnlyCreateScript.html#onAfterSchemaUpdate(org.beryl.database.DatabaseUpdateParameters)">onAfterSchemaUpdate</A></B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event handler for when the database's schema has been updated to this version.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -167,7 +167,7 @@ Database Create Script that only requires a single SQL script file to be run.
 <TD><CODE><B><A HREF="../../../org/beryl/database/SqlOnlyCreateScript.html#onUpdateSchema(org.beryl.database.DatabaseUpdateParameters)">onUpdateSchema</A></B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handler for code that should be applied immediately after a schema update.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_org.beryl.database.DatabaseCreateScript"><!-- --></A>
@@ -232,6 +232,11 @@ onUpdateSchema</H3>
 <PRE>
 public void <B>onUpdateSchema</B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</PRE>
 <DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../org/beryl/database/DatabaseUpdateScript.html#onUpdateSchema(org.beryl.database.DatabaseUpdateParameters)">DatabaseUpdateScript</A></CODE></B></DD>
+<DD>Handler for code that should be applied immediately after a schema update.
+ Honestly, this is just here to allow the developer to put code that would otherwise be put in updateSchema as an override.
+ It is preferable to use onAfterSchemaUpdate.
+<P>
 <DD><DL>
 <DT><B>Specified by:</B><DD><CODE><A HREF="../../../org/beryl/database/DatabaseUpdateScript.html#onUpdateSchema(org.beryl.database.DatabaseUpdateParameters)">onUpdateSchema</A></CODE> in class <CODE><A HREF="../../../org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database">DatabaseUpdateScript</A></CODE></DL>
 </DD>
@@ -246,6 +251,10 @@ onAfterSchemaUpdate</H3>
 <PRE>
 public void <B>onAfterSchemaUpdate</B>(<A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A>&nbsp;params)</PRE>
 <DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../org/beryl/database/IDatabaseUpdateScript.html#onAfterSchemaUpdate(org.beryl.database.DatabaseUpdateParameters)">IDatabaseUpdateScript</A></CODE></B></DD>
+<DD>Event handler for when the database's schema has been updated to this version.
+ Use this to populate new data pertinent to this new version.
+<P>
 <DD><DL>
 </DL>
 </DD>

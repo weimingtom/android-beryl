@@ -154,7 +154,7 @@ Class WebCacheOpenHelper.WebCacheUpdateScript_2</H2>
 <TD><CODE><B><A HREF="../../../../org/beryl/web/cache/WebCacheOpenHelper.WebCacheUpdateScript_2.html#getSchemaSqlScript()">getSchemaSqlScript</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specify the location of where the .sql script file is located.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_org.beryl.database.SqlOnlyUpdateScript"><!-- --></A>
@@ -219,6 +219,10 @@ getSchemaSqlScript</H3>
 <PRE>
 protected <A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getSchemaSqlScript</B>()</PRE>
 <DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../org/beryl/database/DatabaseUpdateScript.html#getSchemaSqlScript()">DatabaseUpdateScript</A></CODE></B></DD>
+<DD>Specify the location of where the .sql script file is located.
+ If this database version does not have a schema update then return null.
+<P>
 <DD><DL>
 <DT><B>Specified by:</B><DD><CODE><A HREF="../../../../org/beryl/database/DatabaseUpdateScript.html#getSchemaSqlScript()">getSchemaSqlScript</A></CODE> in class <CODE><A HREF="../../../../org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database">DatabaseUpdateScript</A></CODE></DL>
 </DD>

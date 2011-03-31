@@ -107,7 +107,7 @@ Classes that compliment the android.database and android.database.sqlite package
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/IDatabaseUpdateScript.html" title="interface in org.beryl.database">IDatabaseUpdateScript</A></B></TD>
-<TD>&nbsp;</TD>
+<TD>Contract for database update routines.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -120,24 +120,20 @@ Classes that compliment the android.database and android.database.sqlite package
 <B>Class Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/AbstractDatabaseUpdateScript.html" title="class in org.beryl.database">AbstractDatabaseUpdateScript</A></B></TD>
-<TD>&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/DatabaseCreateScript.html" title="class in org.beryl.database">DatabaseCreateScript</A></B></TD>
 <TD>Base script for creating databases from a sql script file.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/DatabaseUpdateParameters.html" title="class in org.beryl.database">DatabaseUpdateParameters</A></B></TD>
-<TD>&nbsp;</TD>
+<TD>Holder class for parameters that are used to perform a database update.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/DatabaseUpdateScript.html" title="class in org.beryl.database">DatabaseUpdateScript</A></B></TD>
-<TD>&nbsp;</TD>
+<TD>Base class for database update scripts.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/DatabaseUtils.html" title="class in org.beryl.database">DatabaseUtils</A></B></TD>
-<TD>&nbsp;</TD>
+<TD>Utility methods for database operations.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/SqlOnlyCreateScript.html" title="class in org.beryl.database">SqlOnlyCreateScript</A></B></TD>
@@ -157,7 +153,21 @@ Classes that compliment the android.database and android.database.sqlite package
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/UpdatableDatabaseOpenHelper.html" title="class in org.beryl.database">UpdatableDatabaseOpenHelper</A></B></TD>
-<TD>&nbsp;</TD>
+<TD>Base class for providing functionality to have managed database upgrades.</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Exception Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../org/beryl/database/DatabaseUpdateFailedException.html" title="class in org.beryl.database">DatabaseUpdateFailedException</A></B></TD>
+<TD>Exception that indicates that the database update failed.</TD>
 </TR>
 </TABLE>
 &nbsp;
