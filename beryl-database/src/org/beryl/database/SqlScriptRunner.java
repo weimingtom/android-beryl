@@ -18,7 +18,6 @@ public class SqlScriptRunner {
 	/** Runs the SQL statements against the database.
 	 * All exceptions are suppressed.
 	 * Use getException() if this method returns false to get the exception.
-	 * @return
 	 */
 	public boolean run() {
 		String sqlStatement;
@@ -54,7 +53,6 @@ public class SqlScriptRunner {
 
 	/** Returns the exception that occured during the run of the script.
 	 * If the script was successful the exception will be null.
-	 * @return
 	 */
 	public Exception getException() {
 		return transactionException;
