@@ -1,5 +1,7 @@
 package org.beryl.database;
 
+import org.beryl.diagnostics.Log;
+
 import android.database.sqlite.SQLiteDatabase;
 
 /** Runs sql scripts from an SqlScriptReader.
@@ -9,10 +11,18 @@ public class SqlScriptRunner {
 	private final SQLiteDatabase db;
 	private final SqlScriptReader script;
 	private Exception transactionException = null;
+	private final Log log;
 	
 	public SqlScriptRunner(SQLiteDatabase db, SqlScriptReader script) {
 		this.db = db;
 		this.script = script;
+		this.log = null;
+	}
+	
+	public SqlScriptRunner(SQLiteDatabase db, SqlScriptReader script, Log log) {
+		this.db = db;
+		this.script = script;
+		this.log = log;
 	}
 	
 	/** Runs the SQL statements against the database.
@@ -29,7 +39,7 @@ public class SqlScriptRunner {
 			db.beginTransaction();
 			
 			while((sqlStatement = script.nextStatement()) != null) {
-				android.util.Log.w("Script", sqlStatement);
+				if(log != null) log.w("Script", sqlStatement);
 				db.execSQL(sqlStatement);
 			}
 
