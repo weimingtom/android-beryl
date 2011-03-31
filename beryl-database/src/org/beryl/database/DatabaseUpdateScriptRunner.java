@@ -2,6 +2,8 @@ package org.beryl.database;
 
 import org.beryl.diagnostics.Log;
 
+/** Wrappers a {@link org.beryl.database.DatabaseUpdateScript} so that it can be run.
+ */
 class DatabaseUpdateScriptRunner implements Runnable {
 
 	private final IDatabaseUpdateScript script;
@@ -14,12 +16,11 @@ class DatabaseUpdateScriptRunner implements Runnable {
 	
 	public void run() {
 		final Log logger = params.log;
-		logger.d("onBeforeSchemaUpdate");
+		logger.d("DatabaseUpdateScriptRunner: onBeforeSchemaUpdate");
 		script.onBeforeSchemaUpdate(params);
-		logger.d("updateSchema");
+		logger.d("DatabaseUpdateScriptRunner: updateSchema");
 		script.updateSchema(params);
-		logger.d("onAfterSchemaUpdate");
+		logger.d("DatabaseUpdateScriptRunner: onAfterSchemaUpdate");
 		script.onAfterSchemaUpdate(params);
 	}
-
 }

@@ -2,6 +2,7 @@ package org.beryl.database;
 
 import org.beryl.diagnostics.Log;
 
+/** Loads database update scripts and en-queues them in the DatabaseUpdateRunner to be run. */
 class DatabaseUpdateLoader {
 
 	private final DatabaseUpdateRunner runner;
@@ -12,13 +13,22 @@ class DatabaseUpdateLoader {
 		this.updateParams = params;
 	}
 
-	public void queueScriptFromClassName(String className) {
+	@SuppressWarnings("unchecked")
+	public void queueScriptFromClassName(String className){
+		final Log log = updateParams.log;
 		try {
-			ClassLoader loader = this.getClass().getClassLoader();
+			final ClassLoader loader = this.getClass().getClassLoader();
 			Class<?> scriptClass = loader.loadClass(className);
-			// TODO: Do some runtime validation on the Class<? extends IDatabaseUpdateScript>
+			
+			if(! scriptClass.isInstance(IDatabaseUpdateScript.class)) {
+				throw new ClassCastException(String.format("While attempting to load update script [%s] it does not implement the %s interface and cannot be loaded.",
+						scriptClass, IDatabaseUpdateScript.class.getName()));
+			}
+			
 			queueScriptFromClass((Class<? extends IDatabaseUpdateScript>)scriptClass);
-		} catch (Exception e) {
+		} catch(Exception e) {
+			log.e(e);
+			throw new DatabaseUpdateFailedException(e);
 		}
 	}
 	
@@ -26,14 +36,15 @@ class DatabaseUpdateLoader {
 		IDatabaseUpdateScript script;
 		final Log log = updateParams.log;
 		final String scriptName = createScriptClass.getName();
+		
 		try {
-			log.i("UpdateLoader: Loading " + scriptName);
+			log.i("UpdateLoader: Enqueue script, " + scriptName);
 			script = createScriptClass.newInstance();
 			DatabaseUpdateScriptRunner scriptRunner = new DatabaseUpdateScriptRunner(updateParams, script);
 			runner.add(scriptRunner);
-		} catch (Exception e) {
-			log.e("UpdateLoader: Loading Update Script: " + scriptName + " failed.");
+		} catch(Exception e) {
 			log.e(e);
+			throw new DatabaseUpdateFailedException(e);
 		}
 	}
 

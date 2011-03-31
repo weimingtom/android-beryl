@@ -2,7 +2,6 @@ package org.beryl.content;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.util.List;
 
 
@@ -11,6 +10,10 @@ import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+/**
+ * @deprecated Use org.beryl.database.DatabaseUtils instead.
+ */
+@Deprecated
 public class DatabaseUtil
 {
 	/**

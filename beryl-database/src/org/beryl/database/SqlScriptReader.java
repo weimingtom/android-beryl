@@ -23,7 +23,6 @@ public class SqlScriptReader {
 	/** Gets the next command in the sql file.
 	 * Ignores comments by simply chomping on "--".
 	 * Does not support having more than 1 statement per line.
-	 * @return
 	 * @throws IOException
 	 */
 	public String nextStatement() throws IOException {

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 
+/** Utility methods for database operations. */
 public class DatabaseUtils {
 	
 	public static InputStream readAsset(final Context context, final String path) throws IOException {
