@@ -95,7 +95,7 @@ $.beautyOfCode.init({
 	
 	<target name="java-compile" depends="java-compile-clean">
 		<mkdir dir="${projectdir}/bin" />
-		<javac srcdir="${projectdir}/src" destdir="${projectdir}/bin" classpathref="${classpathid}" debug="true" optimize="false"  />
+		<javac srcdir="${projectdir}/src" destdir="${projectdir}/bin" classpathref="${classpathid}" debug="true" optimize="false" includeantruntime="false" />
 	</target>
 	
 	<target name="java-jar-clean">
