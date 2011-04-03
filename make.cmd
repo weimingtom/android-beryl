@@ -1,2 +1,2 @@
 ant
-xcopy /E /H /Y jar-sources F:\android-development\test-projects\webcachetest\libs
+xcopy /E /H /Y jar-sources D:\android-development\test-projects\webcachetest\libs
