@@ -1,6 +1,7 @@
 package org.beryl.widget;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.beryl.diagnostics.Log;
 import org.beryl.diagnostics.Logger;
 
 import android.view.View;
+import android.view.View.OnClickListener;
 
 public class GenericViewBinder implements ViewBindable {
 
@@ -28,7 +30,7 @@ public class GenericViewBinder implements ViewBindable {
 	}
 	
 	protected Object getObject() {
-		return objectClass;
+		return object;
 	}
 
 	protected Class<?> getType() {
@@ -69,8 +71,7 @@ public class GenericViewBinder implements ViewBindable {
 	
 	public List<ViewData> getViews(final Log log) {
 		final Class<?> myType = getType();
-		
-		
+
 		ArrayList<ViewData> views = new ArrayList<ViewData>();
 		Field[] fields = myType.getDeclaredFields();
 		
@@ -113,8 +114,69 @@ public class GenericViewBinder implements ViewBindable {
 	}
 	
 	private void bindView(View root, ViewData viewData, int rId) throws IllegalArgumentException, IllegalAccessException {
-		final Object myObject = getObject();
+		final Object parent = getObject();
 		final View foundView = root.findViewById(rId);
-		viewData.field.set(myObject, foundView);
+		viewData.field.set(parent, foundView);
+		
+		attemptListenerBind(parent, foundView, viewData, "onClick", GenericOnClickListener.class);
+	}
+
+	private void attemptListenerBind(Object parent, View foundView, ViewData viewData, String methodSuffix, Class<GenericOnClickListener> listenerClass) {
+		try {
+			final StringBuilder sb = new StringBuilder();
+			sb.append(viewData.field.getName());
+			sb.append("_");
+			sb.append(methodSuffix);
+			
+			final String methodName = sb.toString();
+			final Method attachListenerMethod = listenerClass.getMethod("attachListener", Object.class, View.class, String.class);
+			attachListenerMethod.setAccessible(true);
+			attachListenerMethod.invoke(null, parent, foundView, methodName);
+		} catch(NoSuchMethodException e) {
+			// This was an attempt so whatever.
+		} catch(Exception e) {
+			// Logit.
+		}
+	}
+
+	static abstract class GenericListener {
+		final Object parent;
+		final Method method;
+		
+		GenericListener(Object parent, Method method) {
+			this.parent = parent;
+			this.method = method;
+		}
+		
+		Class<?> getParentClass() {
+			return parent.getClass();
+		}
+	}
+	
+	static class GenericOnClickListener 
+		extends GenericListener
+		implements OnClickListener {
+		
+		public static void attachListener(Object parent, View target, String methodName) {
+			try {
+				final Method handlerMethod = parent.getClass().getDeclaredMethod(methodName, View.class);
+				target.setOnClickListener(new GenericOnClickListener(parent, handlerMethod));
+			} catch(Exception e) {
+				
+			}
+		}
+		
+		GenericOnClickListener(Object parent, Method method) {
+			super(parent, method);
+		}
+
+		@Override
+		public void onClick(View v) {
+			try {
+				method.invoke(parent, v);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
 	}
 }
