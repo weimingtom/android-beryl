@@ -35,9 +35,18 @@ class MyFragment extends Fragment {
 	
 		// Bind Views
 		TestCreateButton = (Button) view.findViewById(R.id.TestCreateButton);
+		TestCreateButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) { android.util.Log.i("Test", "Clicked TestCreateButton"); }
+		});
 		TestUpdateButton = (Button) view.findViewById(R.id.TestUpdateButton);
+		TestUpdateButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) { android.util.Log.i("Test", "Clicked TestUpdateButton"); }
+		});
 		TestDeleteButton = (Button) view.findViewById(R.id.TestDeleteButton);
-			// And so on...
+		TestDeleteButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) { android.util.Log.i("Test", "Clicked TestDeleteButton"); }
+		});
+		// And so on...
 		
 		return view;
 	}
@@ -54,12 +63,15 @@ class MyFragment extends Fragment {
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_testpanel, container, false);
-	
 		// Bind Views
-		ViewBinder.bind(view, this, R.id.class);
-		
+		ViewBinder.bind(view, this, R.id.class);	// Yeah, that's it.
 		return view;
 	}
+	
+	// Look ma no explicit binding!
+	public void TestCreateButton_onClick(View view) { android.util.Log.i("Test", "Clicked TestCreateButton"); }
+	public void TestUpdateButton_onClick(View view) { android.util.Log.i("Test", "Clicked TestUpdateButton"); }
+	public void TestDeleteButton_onClick(View view) { android.util.Log.i("Test", "Clicked TestDeleteButton"); }
 }
 </code></pre>
  */

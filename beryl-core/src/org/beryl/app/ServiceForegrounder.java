@@ -11,9 +11,6 @@ import android.app.Service;
  * Sets an Android Service into foreground state with a notification.
  * Since 2.0, Android requires that all foregrounded service have a pending notification shown.
  * This class provides backwards compatibility to older Android handsets that do not have this API.
- * 
- * @author jeremyje
- *
  */
 public class ServiceForegrounder {
 	
