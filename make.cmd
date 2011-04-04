@@ -1,2 +1,2 @@
 call ant
-call xcopy /E /H /Y jar-sources D:\android-development\test-projects\webcachetest\libs
+call xcopy /E /H /Y jar-sources examples\webcache\libs
