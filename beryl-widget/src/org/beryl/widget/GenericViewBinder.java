@@ -169,8 +169,7 @@ public class GenericViewBinder implements ViewBindable {
 		GenericOnClickListener(Object parent, Method method) {
 			super(parent, method);
 		}
-
-		@Override
+		
 		public void onClick(View v) {
 			try {
 				method.invoke(parent, v);
