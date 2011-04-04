@@ -14,7 +14,7 @@ import org.apache.http.util.EntityUtils;
 public class FileDownloader {
 
 	/** Downloads a remote file in the form of a ByteArray. */
-	public byte[] getAsByteArray(String url) {
+	public static byte[] getAsByteArray(String url) {
 		byte[] result = null;
 		
 		try {
@@ -33,7 +33,7 @@ public class FileDownloader {
 	}
 
 	/** Downloads a remote file in the form of an InputStream. */
-	public InputStream getAsInputStream(String url) {
+	public static InputStream getAsInputStream(String url) {
 		InputStream result = null;
 		try
 		{

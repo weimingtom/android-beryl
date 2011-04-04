@@ -6,7 +6,7 @@ public class LogCatLogWriter implements ILoggerWriter {
 	public LogCatLogWriter() {
 		
 	}
-	
+
 	public void d(String tag, String msg) {
 		android.util.Log.d(tag, msg);
 	}
