@@ -20,7 +20,7 @@ class DatabaseUpdateLoader {
 			final ClassLoader loader = this.getClass().getClassLoader();
 			Class<?> scriptClass = loader.loadClass(className);
 			
-			if(! scriptClass.isInstance(IDatabaseUpdateScript.class)) {
+			if(! IDatabaseUpdateScript.class.isAssignableFrom(scriptClass)) {
 				throw new ClassCastException(String.format("While attempting to load update script [%s] it does not implement the %s interface and cannot be loaded.",
 						scriptClass, IDatabaseUpdateScript.class.getName()));
 			}
