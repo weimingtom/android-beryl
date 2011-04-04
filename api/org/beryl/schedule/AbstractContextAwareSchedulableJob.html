@@ -3,17 +3,17 @@
 <HTML>
 <HEAD>
 <TITLE>
-FileDownloader (Beryl API)
+AbstractContextAwareSchedulableJob (Beryl API)
 </TITLE>
 
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../beryl-style.css" TITLE="Style">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../beryl-style.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="FileDownloader (Beryl API)";
+        parent.document.title="AbstractContextAwareSchedulableJob (Beryl API)";
     }
 }
 </SCRIPT>
@@ -35,14 +35,14 @@ function windowTitle()
 <A NAME="navbar_top_firstrow"><!-- --></A>
 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
   <TR ALIGN="center" VALIGN="top">
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/FileDownloader.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AbstractContextAwareSchedulableJob.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
   </TR>
 </TABLE>
 </TD>
@@ -67,19 +67,19 @@ $.beautyOfCode.init({
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;PREV CLASS&nbsp;
-&nbsp;<A HREF="../../../../org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?org/beryl/web/cache/FileDownloader.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="FileDownloader.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?org/beryl/schedule/AbstractContextAwareSchedulableJob.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AbstractContextAwareSchedulableJob.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
-    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+    document.writeln('<A HREF="../../../allclasses-noframe.html"><B>All Classes</B></A>');
   }
   //-->
 </SCRIPT>
 <NOSCRIPT>
-  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+  <A HREF="../../../allclasses-noframe.html"><B>All Classes</B></A>
 </NOSCRIPT>
 
 
@@ -99,17 +99,28 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <!-- ======== START OF CLASS DATA ======== -->
 <H2>
 <FONT SIZE="-1">
-org.beryl.web.cache</FONT>
+org.beryl.schedule</FONT>
 <BR>
-Class FileDownloader</H2>
+Class AbstractContextAwareSchedulableJob</H2>
 <PRE>
 <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>org.beryl.web.cache.FileDownloader</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule">org.beryl.schedule.AbstractSchedulableJob</A>
+      <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>org.beryl.schedule.AbstractContextAwareSchedulableJob</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="http://developer.android.com/reference/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</A>, <A HREF="../../../org/beryl/schedule/IJob.html" title="interface in org.beryl.schedule">IJob</A></DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>FileDownloader</B><DT>extends <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></DL>
+<DT><PRE>public abstract class <B>AbstractContextAwareSchedulableJob</B><DT>extends <A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule">AbstractSchedulableJob</A></DL>
 </PRE>
+
+<P>
+A scheduled job that will automatically be abandoned if the Context that it works against becomes garbage collected.
+ Inherit from this class any time there's a job that references a Context object.
+ This prevents Context based memory leaks which are expensive.
+ Note: Do not save your own reference to Context, use the getContext() method and make sure to check for nulls.
+<P>
 
 <P>
 <HR>
@@ -125,7 +136,7 @@ Class FileDownloader</H2>
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../org/beryl/web/cache/FileDownloader.html#FileDownloader()">FileDownloader</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../org/beryl/schedule/AbstractContextAwareSchedulableJob.html#AbstractContextAwareSchedulableJob(android.content.Context)">AbstractContextAwareSchedulableJob</A></B>(<A HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -142,19 +153,28 @@ Class FileDownloader</H2>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;byte[]</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../org/beryl/web/cache/FileDownloader.html#getAsByteArray(java.lang.String)">getAsByteArray</A></B>(<A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;url)</CODE>
+<CODE>protected &nbsp;<A HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/schedule/AbstractContextAwareSchedulableJob.html#getContext()">getContext</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Downloads a remote file in the form of a ByteArray.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;<A HREF="http://developer.android.com/reference/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../org/beryl/web/cache/FileDownloader.html#getAsInputStream(java.lang.String)">getAsInputStream</A></B>(<A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;url)</CODE>
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/schedule/AbstractContextAwareSchedulableJob.html#isAbandoned()">isAbandoned</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Downloads a remote file in the form of an InputStream.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_org.beryl.schedule.AbstractSchedulableJob"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class org.beryl.schedule.<A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule">AbstractSchedulableJob</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html#cancel()">cancel</A>, <A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html#canWorkJob()">canWorkJob</A>, <A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html#checkRunnability()">checkRunnability</A>, <A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html#isCanceled()">isCanceled</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -164,6 +184,15 @@ Class FileDownloader</H2>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Runnable"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface java.lang.<A HREF="http://developer.android.com/reference/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://developer.android.com/reference/java/lang/Runnable.html?is-external=true#run()" title="class or interface in java.lang">run</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -179,10 +208,10 @@ Class FileDownloader</H2>
 </TR>
 </TABLE>
 
-<A NAME="FileDownloader()"><!-- --></A><H3>
-FileDownloader</H3>
+<A NAME="AbstractContextAwareSchedulableJob(android.content.Context)"><!-- --></A><H3>
+AbstractContextAwareSchedulableJob</H3>
 <PRE>
-public <B>FileDownloader</B>()</PRE>
+public <B>AbstractContextAwareSchedulableJob</B>(<A HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A>&nbsp;context)</PRE>
 <DL>
 </DL>
 
@@ -196,26 +225,22 @@ public <B>FileDownloader</B>()</PRE>
 </TR>
 </TABLE>
 
-<A NAME="getAsByteArray(java.lang.String)"><!-- --></A><H3>
-getAsByteArray</H3>
+<A NAME="getContext()"><!-- --></A><H3>
+getContext</H3>
 <PRE>
-public static byte[] <B>getAsByteArray</B>(<A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;url)</PRE>
+protected <A HREF="http://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</A> <B>getContext</B>()</PRE>
 <DL>
-<DD>Downloads a remote file in the form of a ByteArray.
-<P>
 <DD><DL>
 </DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getAsInputStream(java.lang.String)"><!-- --></A><H3>
-getAsInputStream</H3>
+<A NAME="isAbandoned()"><!-- --></A><H3>
+isAbandoned</H3>
 <PRE>
-public static <A HREF="http://developer.android.com/reference/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</A> <B>getAsInputStream</B>(<A HREF="http://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;url)</PRE>
+public boolean <B>isAbandoned</B>()</PRE>
 <DL>
-<DD>Downloads a remote file in the form of an InputStream.
-<P>
 <DD><DL>
 </DL>
 </DD>
@@ -233,14 +258,14 @@ public static <A HREF="http://developer.android.com/reference/java/io/InputStrea
 <A NAME="navbar_bottom_firstrow"><!-- --></A>
 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
   <TR ALIGN="center" VALIGN="top">
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/FileDownloader.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AbstractContextAwareSchedulableJob.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
   </TR>
 </TABLE>
 </TD>
@@ -265,19 +290,19 @@ $.beautyOfCode.init({
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;PREV CLASS&nbsp;
-&nbsp;<A HREF="../../../../org/beryl/web/cache/WebCacheOpenHelper.html" title="class in org.beryl.web.cache"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?org/beryl/web/cache/FileDownloader.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="FileDownloader.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?org/beryl/schedule/AbstractContextAwareSchedulableJob.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AbstractContextAwareSchedulableJob.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
-    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+    document.writeln('<A HREF="../../../allclasses-noframe.html"><B>All Classes</B></A>');
   }
   //-->
 </SCRIPT>
 <NOSCRIPT>
-  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+  <A HREF="../../../allclasses-noframe.html"><B>All Classes</B></A>
 </NOSCRIPT>
 
 

@@ -6,8 +6,8 @@ import android.view.View;
 
 /** Methods that automatically assign member variables that are of type {@link android.view.View} or a subclass of it.
  * Running ViewBinder against a Fragment or Activity replaces the manual <code>view.findViewById()</code> calls.
- * 
- * Requirements:
+ * This method can also be used for container objects that have Views inside of them.
+<h2>Requirements</h2>
 <ul>
 	<li>The View's field name in the Fragment or Activity class must match the R.id.* entry defined in the layout.</li>
 	<li>Listeners must have the format FieldName_onEvent.
@@ -16,24 +16,23 @@ import android.view.View;
 </ul>
 <h2>Layout XML for Example</h2>
 <pre class="code"><code class="xml">
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android">
-		<Button android:id="@+id/TestCreateButton" android:text="Create" />
-		   <Button android:id="@+id/TestUpdateButton" android:text="Update" />
-		<Button android:id="@+id/TestDeleteButton" android:text="Delete" />
-	</LinearLayout>
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+	&lt;Button android:id="@+id/TestCreateButton" android:text="Create" /&gt;
+	&lt;Button android:id="@+id/TestUpdateButton" android:text="Update" /&gt;
+	&lt;Button android:id="@+id/TestDeleteButton" android:text="Delete" /&gt;
+&lt;/LinearLayout&gt;
 </code></pre>
 <h2>Old way of binding layout views.</h2>
 <pre class="code"><code class="java">
-
+class MyFragment extends Fragment {
 	Button TestCreateButton;
 	Button TestUpdateButton;
 	Button TestDeleteButton;
 	// And other View/Widgets...
 
-	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_testpanel, container, false);
-
+	
 		// Bind Views
 		TestCreateButton = (Button) view.findViewById(R.id.TestCreateButton);
 		TestUpdateButton = (Button) view.findViewById(R.id.TestUpdateButton);
@@ -42,25 +41,26 @@ import android.view.View;
 		
 		return view;
 	}
+}
 </code></pre>
 
 <h2>New View Binder Method</h2>
 <pre class="code"><code class="java">
-
+class MyFragment extends Fragment {
 	Button TestCreateButton;
 	Button TestUpdateButton;
 	Button TestDeleteButton;
 	// And other View/Widgets...
 	
-	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_testpanel, container, false);
-
+	
 		// Bind Views
 		ViewBinder.bind(view, this, R.id.class);
 		
 		return view;
 	}
+}
 </code></pre>
  */
 public class ViewBinder {

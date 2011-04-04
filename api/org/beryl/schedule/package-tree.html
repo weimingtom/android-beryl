@@ -3,7 +3,7 @@
 <HTML>
 <HEAD>
 <TITLE>
-org.beryl.widget Class Hierarchy (Beryl API)
+org.beryl.schedule Class Hierarchy (Beryl API)
 </TITLE>
 
 
@@ -13,7 +13,7 @@ org.beryl.widget Class Hierarchy (Beryl API)
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="org.beryl.widget Class Hierarchy (Beryl API)";
+        parent.document.title="org.beryl.schedule Class Hierarchy (Beryl API)";
     }
 }
 </SCRIPT>
@@ -66,10 +66,10 @@ $.beautyOfCode.init({
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../org/beryl/web/url/package-tree.html"><B>PREV</B></A>&nbsp;
-&nbsp;NEXT</FONT></TD>
+&nbsp;<A HREF="../../../org/beryl/location/package-tree.html"><B>PREV</B></A>&nbsp;
+&nbsp;<A HREF="../../../org/beryl/web/cache/package-tree.html"><B>NEXT</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?org/beryl/widget/package-tree.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?org/beryl/schedule/package-tree.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="package-tree.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
@@ -92,7 +92,7 @@ $.beautyOfCode.init({
 <HR>
 <CENTER>
 <H2>
-Hierarchy For Package org.beryl.widget
+Hierarchy For Package org.beryl.schedule
 </H2>
 </CENTER>
 <DL>
@@ -103,15 +103,22 @@ Class Hierarchy
 </H2>
 <UL>
 <LI TYPE="circle">java.lang.<A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang"><B>Object</B></A><UL>
-<LI TYPE="circle">android.widget.<A HREF="http://developer.android.com/reference/android/widget/BaseAdapter.html?is-external=true" title="class or interface in android.widget"><B>BaseAdapter</B></A> (implements android.widget.<A HREF="http://developer.android.com/reference/android/widget/ListAdapter.html?is-external=true" title="class or interface in android.widget">ListAdapter</A>, android.widget.<A HREF="http://developer.android.com/reference/android/widget/SpinnerAdapter.html?is-external=true" title="class or interface in android.widget">SpinnerAdapter</A>)
+<LI TYPE="circle">org.beryl.schedule.<A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule"><B>AbstractSchedulableJob</B></A> (implements org.beryl.schedule.<A HREF="../../../org/beryl/schedule/IJob.html" title="interface in org.beryl.schedule">IJob</A>)
 <UL>
-<LI TYPE="circle">org.beryl.widget.<A HREF="../../../org/beryl/widget/CategorizedListAdapter.html" title="class in org.beryl.widget"><B>CategorizedListAdapter</B></A> (implements android.widget.<A HREF="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html?is-external=true" title="class or interface in android.widget">AdapterView.OnItemClickListener</A>)
-</UL>
-<LI TYPE="circle">android.widget.<A HREF="http://developer.android.com/reference/android/widget/BaseExpandableListAdapter.html?is-external=true" title="class or interface in android.widget"><B>BaseExpandableListAdapter</B></A> (implements android.widget.<A HREF="http://developer.android.com/reference/android/widget/ExpandableListAdapter.html?is-external=true" title="class or interface in android.widget">ExpandableListAdapter</A>, android.widget.<A HREF="http://developer.android.com/reference/android/widget/HeterogeneousExpandableList.html?is-external=true" title="class or interface in android.widget">HeterogeneousExpandableList</A>)
+<LI TYPE="circle">org.beryl.schedule.<A HREF="../../../org/beryl/schedule/AbstractContextAwareSchedulableJob.html" title="class in org.beryl.schedule"><B>AbstractContextAwareSchedulableJob</B></A></UL>
+<LI TYPE="circle">java.lang.<A HREF="http://developer.android.com/reference/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang"><B>Throwable</B></A> (implements java.io.<A HREF="http://developer.android.com/reference/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</A>)
 <UL>
-<LI TYPE="circle">org.beryl.widget.<A HREF="../../../org/beryl/widget/CategorizedExpandableListAdapter.html" title="class in org.beryl.widget"><B>CategorizedExpandableListAdapter</B></A></UL>
-<LI TYPE="circle">org.beryl.widget.<A HREF="../../../org/beryl/widget/GenericViewBinder.html" title="class in org.beryl.widget"><B>GenericViewBinder</B></A><LI TYPE="circle">org.beryl.widget.<A HREF="../../../org/beryl/widget/ViewBinder.html" title="class in org.beryl.widget"><B>ViewBinder</B></A><LI TYPE="circle">org.beryl.widget.<A HREF="../../../org/beryl/widget/ViewStateAnimationListener.html" title="class in org.beryl.widget"><B>ViewStateAnimationListener</B></A> (implements android.view.animation.<A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true" title="class or interface in android.view.animation">Animation.AnimationListener</A>)
+<LI TYPE="circle">java.lang.<A HREF="http://developer.android.com/reference/java/lang/Exception.html?is-external=true" title="class or interface in java.lang"><B>Exception</B></A><UL>
+<LI TYPE="circle">org.beryl.schedule.<A HREF="../../../org/beryl/schedule/UnrunnableJobException.html" title="class in org.beryl.schedule"><B>UnrunnableJobException</B></A></UL>
 </UL>
+</UL>
+</UL>
+<H2>
+Interface Hierarchy
+</H2>
+<UL>
+<LI TYPE="circle">java.lang.<A HREF="http://developer.android.com/reference/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang"><B>Runnable</B></A><UL>
+<LI TYPE="circle">org.beryl.schedule.<A HREF="../../../org/beryl/schedule/IJob.html" title="interface in org.beryl.schedule"><B>IJob</B></A></UL>
 </UL>
 <HR>
 
@@ -156,10 +163,10 @@ $.beautyOfCode.init({
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../org/beryl/web/url/package-tree.html"><B>PREV</B></A>&nbsp;
-&nbsp;NEXT</FONT></TD>
+&nbsp;<A HREF="../../../org/beryl/location/package-tree.html"><B>PREV</B></A>&nbsp;
+&nbsp;<A HREF="../../../org/beryl/web/cache/package-tree.html"><B>NEXT</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?org/beryl/widget/package-tree.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?org/beryl/schedule/package-tree.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="package-tree.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
