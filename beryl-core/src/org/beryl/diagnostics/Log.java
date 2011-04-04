@@ -19,6 +19,11 @@ public class Log implements ILoggerWriter {
 		this.logDelegate = delegate;
 	}
 
+	public Log(ILoggerWriter delegate, String tag) {
+		this.logDelegate = delegate;
+		this.tag = tag;
+	}
+	
 	public void setTag(String tag) {
 		this.tag = tag;
 	}

@@ -4,8 +4,13 @@ import android.content.Intent;
 import android.database.Cursor;
 
 public class Logger {
+
+	/** Creates a new default Logger instance. */
+	public static final Log newInstance(String tag) {
+		return new Log(new LogCatLogWriter(), tag);
+	}
 	
-	private static final Log logDelegate = new Log(new LogCatLogWriter());
+	private static final Log logDelegate = newInstance("Log");
 
 	public static void d(String tag, String msg) {
 		logDelegate.d(tag, msg);

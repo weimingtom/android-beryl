@@ -1,7 +1,7 @@
 package org.beryl.database;
 
 import org.beryl.diagnostics.Log;
-import org.beryl.diagnostics.LogCatLogWriter;
+import org.beryl.diagnostics.Logger;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -87,9 +87,9 @@ public abstract class UpdatableDatabaseOpenHelper extends SQLiteOpenHelper {
 	
 	private Log getLogger() {
 		if(logger == null) {
-			logger = new Log(new LogCatLogWriter());
-			logger.setTag("db_" + getDbName());
+			logger = Logger.newInstance("db_" + getDbName());
 		}
+		
 		return logger;
 	}
 
