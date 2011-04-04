@@ -22,7 +22,7 @@
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-content" />
 			<param name="package" value="org.beryl.content" />
-			<param name="classpathid" value="default-classpath" />
+			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-database" />
@@ -42,7 +42,7 @@
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-web" />
 			<param name="package" value="org.beryl.web" />
-			<param name="classpathid" value="default-classpath" />
+			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-webapis" />
@@ -57,7 +57,7 @@
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-widget" />
 			<param name="package" value="org.beryl.widget" />
-			<param name="classpathid" value="default-classpath" />
+			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
 	</target>
 	
