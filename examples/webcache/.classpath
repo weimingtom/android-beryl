@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry kind="lib" path="libs/org.beryl-src.jar"/>
+	<classpathentry kind="lib" path="libs/org.beryl.content-src.jar"/>
+	<classpathentry kind="lib" path="libs/org.beryl.database-src.jar"/>
+	<classpathentry kind="lib" path="libs/org.beryl.intents-src.jar"/>
+	<classpathentry kind="lib" path="libs/org.beryl.location-src.jar"/>
+	<classpathentry kind="lib" path="libs/org.beryl.web-src.jar"/>
+	<classpathentry kind="lib" path="libs/org.beryl.web.cache-src.jar"/>
+	<classpathentry kind="lib" path="libs/org.beryl.webapis-src.jar"/>
+	<classpathentry kind="lib" path="libs/org.beryl.widget-src.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
