@@ -3,7 +3,7 @@
 <HTML>
 <HEAD>
 <TITLE>
-ViewStateAnimationListener (Beryl API)
+GenericViewBinder (Beryl API)
 </TITLE>
 
 
@@ -13,7 +13,7 @@ ViewStateAnimationListener (Beryl API)
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="ViewStateAnimationListener (Beryl API)";
+        parent.document.title="GenericViewBinder (Beryl API)";
     }
 }
 </SCRIPT>
@@ -38,7 +38,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ViewStateAnimationListener.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GenericViewBinder.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -66,11 +66,11 @@ $.beautyOfCode.init({
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../org/beryl/widget/ViewBinder.html" title="class in org.beryl.widget"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;NEXT CLASS</FONT></TD>
+&nbsp;<A HREF="../../../org/beryl/widget/CategorizedListAdapter.html" title="class in org.beryl.widget"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../org/beryl/widget/ViewBinder.html" title="class in org.beryl.widget"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?org/beryl/widget/ViewStateAnimationListener.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="ViewStateAnimationListener.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?org/beryl/widget/GenericViewBinder.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="GenericViewBinder.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -87,9 +87,9 @@ $.beautyOfCode.init({
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -101,44 +101,21 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 org.beryl.widget</FONT>
 <BR>
-Class ViewStateAnimationListener</H2>
+Class GenericViewBinder</H2>
 <PRE>
 <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
-  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>org.beryl.widget.ViewStateAnimationListener</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>org.beryl.widget.GenericViewBinder</B>
 </PRE>
-<DL>
-<DT><B>All Implemented Interfaces:</B> <DD><A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true" title="class or interface in android.view.animation">Animation.AnimationListener</A></DD>
-</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>ViewStateAnimationListener</B><DT>extends <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A><DT>implements <A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true" title="class or interface in android.view.animation">Animation.AnimationListener</A></DL>
+<DT><PRE>public class <B>GenericViewBinder</B><DT>extends <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></DL>
 </PRE>
-
-<P>
-Manages the state of a view on the start and end of an animation.
-<P>
 
 <P>
 <HR>
 
 <P>
 
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-
-<A NAME="constructor_summary"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-<B>Constructor Summary</B></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../org/beryl/widget/ViewStateAnimationListener.html#ViewStateAnimationListener(android.view.View)">ViewStateAnimationListener</A></B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;v)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-</TABLE>
-&nbsp;
 <!-- ========== METHOD SUMMARY =========== -->
 
 <A NAME="method_summary"><!-- --></A>
@@ -150,7 +127,7 @@ Manages the state of a view on the start and end of an animation.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../org/beryl/widget/ViewStateAnimationListener.html#onAnimationEnd(android.view.animation.Animation)">onAnimationEnd</A></B>(<A HREF="http://developer.android.com/reference/android/view/animation/Animation.html?is-external=true" title="class or interface in android.view.animation">Animation</A>&nbsp;animation)</CODE>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/GenericViewBinder.html#bindViews()">bindViews</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -158,23 +135,55 @@ Manages the state of a view on the start and end of an animation.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../org/beryl/widget/ViewStateAnimationListener.html#onAnimationRepeat(android.view.animation.Animation)">onAnimationRepeat</A></B>(<A HREF="http://developer.android.com/reference/android/view/animation/Animation.html?is-external=true" title="class or interface in android.view.animation">Animation</A>&nbsp;animation)</CODE>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/GenericViewBinder.html#bindViews(org.beryl.diagnostics.Log)">bindViews</A></B>(<A HREF="../../../org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>&nbsp;log)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../org/beryl/widget/ViewStateAnimationListener.html#onAnimationStart(android.view.animation.Animation)">onAnimationStart</A></B>(<A HREF="http://developer.android.com/reference/android/view/animation/Animation.html?is-external=true" title="class or interface in android.view.animation">Animation</A>&nbsp;animation)</CODE>
+<CODE>protected &nbsp;<A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/GenericViewBinder.html#getObject()">getObject</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../org/beryl/widget/ViewStateAnimationListener.html#setVisibilityOnEnd(int)">setVisibilityOnEnd</A></B>(int&nbsp;visibility)</CODE>
+<CODE>protected &nbsp;<A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/GenericViewBinder.html#getRdotId()">getRdotId</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/GenericViewBinder.html#getRootView()">getRootView</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;<A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/GenericViewBinder.html#getType()">getType</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util">List</A>&lt;org.beryl.widget.GenericViewBinder.ViewData&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/GenericViewBinder.html#getViews()">getViews</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util">List</A>&lt;org.beryl.widget.GenericViewBinder.ViewData&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/GenericViewBinder.html#getViews(org.beryl.diagnostics.Log)">getViews</A></B>(<A HREF="../../../org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>&nbsp;log)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -192,23 +201,6 @@ Manages the state of a view on the start and end of an animation.
 &nbsp;
 <P>
 
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-
-<A NAME="constructor_detail"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
-<B>Constructor Detail</B></FONT></TH>
-</TR>
-</TABLE>
-
-<A NAME="ViewStateAnimationListener(android.view.View)"><!-- --></A><H3>
-ViewStateAnimationListener</H3>
-<PRE>
-public <B>ViewStateAnimationListener</B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;v)</PRE>
-<DL>
-</DL>
-
 <!-- ============ METHOD DETAIL ========== -->
 
 <A NAME="method_detail"><!-- --></A>
@@ -219,10 +211,10 @@ public <B>ViewStateAnimationListener</B>(<A HREF="http://developer.android.com/r
 </TR>
 </TABLE>
 
-<A NAME="setVisibilityOnEnd(int)"><!-- --></A><H3>
-setVisibilityOnEnd</H3>
+<A NAME="getRootView()"><!-- --></A><H3>
+getRootView</H3>
 <PRE>
-public void <B>setVisibilityOnEnd</B>(int&nbsp;visibility)</PRE>
+protected <A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A> <B>getRootView</B>()</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -233,13 +225,13 @@ public void <B>setVisibilityOnEnd</B>(int&nbsp;visibility)</PRE>
 </DL>
 <HR>
 
-<A NAME="onAnimationEnd(android.view.animation.Animation)"><!-- --></A><H3>
-onAnimationEnd</H3>
+<A NAME="getObject()"><!-- --></A><H3>
+getObject</H3>
 <PRE>
-public void <B>onAnimationEnd</B>(<A HREF="http://developer.android.com/reference/android/view/animation/Animation.html?is-external=true" title="class or interface in android.view.animation">Animation</A>&nbsp;animation)</PRE>
+protected <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A> <B>getObject</B>()</PRE>
 <DL>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true#onAnimationEnd(android.view.animation.Animation)" title="class or interface in android.view.animation">onAnimationEnd</A></CODE> in interface <CODE><A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true" title="class or interface in android.view.animation">Animation.AnimationListener</A></CODE></DL>
+</DL>
 </DD>
 <DD><DL>
 </DL>
@@ -247,13 +239,13 @@ public void <B>onAnimationEnd</B>(<A HREF="http://developer.android.com/referenc
 </DL>
 <HR>
 
-<A NAME="onAnimationRepeat(android.view.animation.Animation)"><!-- --></A><H3>
-onAnimationRepeat</H3>
+<A NAME="getType()"><!-- --></A><H3>
+getType</H3>
 <PRE>
-public void <B>onAnimationRepeat</B>(<A HREF="http://developer.android.com/reference/android/view/animation/Animation.html?is-external=true" title="class or interface in android.view.animation">Animation</A>&nbsp;animation)</PRE>
+protected <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt; <B>getType</B>()</PRE>
 <DL>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true#onAnimationRepeat(android.view.animation.Animation)" title="class or interface in android.view.animation">onAnimationRepeat</A></CODE> in interface <CODE><A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true" title="class or interface in android.view.animation">Animation.AnimationListener</A></CODE></DL>
+</DL>
 </DD>
 <DD><DL>
 </DL>
@@ -261,13 +253,69 @@ public void <B>onAnimationRepeat</B>(<A HREF="http://developer.android.com/refer
 </DL>
 <HR>
 
-<A NAME="onAnimationStart(android.view.animation.Animation)"><!-- --></A><H3>
-onAnimationStart</H3>
+<A NAME="getRdotId()"><!-- --></A><H3>
+getRdotId</H3>
 <PRE>
-public void <B>onAnimationStart</B>(<A HREF="http://developer.android.com/reference/android/view/animation/Animation.html?is-external=true" title="class or interface in android.view.animation">Animation</A>&nbsp;animation)</PRE>
+protected <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt; <B>getRdotId</B>()</PRE>
 <DL>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true#onAnimationStart(android.view.animation.Animation)" title="class or interface in android.view.animation">onAnimationStart</A></CODE> in interface <CODE><A HREF="http://developer.android.com/reference/android/view/animation/Animation.AnimationListener.html?is-external=true" title="class or interface in android.view.animation">Animation.AnimationListener</A></CODE></DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getViews()"><!-- --></A><H3>
+getViews</H3>
+<PRE>
+public <A HREF="http://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util">List</A>&lt;org.beryl.widget.GenericViewBinder.ViewData&gt; <B>getViews</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getViews(org.beryl.diagnostics.Log)"><!-- --></A><H3>
+getViews</H3>
+<PRE>
+public <A HREF="http://developer.android.com/reference/java/util/List.html?is-external=true" title="class or interface in java.util">List</A>&lt;org.beryl.widget.GenericViewBinder.ViewData&gt; <B>getViews</B>(<A HREF="../../../org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>&nbsp;log)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="bindViews()"><!-- --></A><H3>
+bindViews</H3>
+<PRE>
+public void <B>bindViews</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="bindViews(org.beryl.diagnostics.Log)"><!-- --></A><H3>
+bindViews</H3>
+<PRE>
+public void <B>bindViews</B>(<A HREF="../../../org/beryl/diagnostics/Log.html" title="class in org.beryl.diagnostics">Log</A>&nbsp;log)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 <DD><DL>
 </DL>
@@ -289,7 +337,7 @@ public void <B>onAnimationStart</B>(<A HREF="http://developer.android.com/refere
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ViewStateAnimationListener.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GenericViewBinder.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -317,11 +365,11 @@ $.beautyOfCode.init({
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../org/beryl/widget/ViewBinder.html" title="class in org.beryl.widget"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;NEXT CLASS</FONT></TD>
+&nbsp;<A HREF="../../../org/beryl/widget/CategorizedListAdapter.html" title="class in org.beryl.widget"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../org/beryl/widget/ViewBinder.html" title="class in org.beryl.widget"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?org/beryl/widget/ViewStateAnimationListener.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="ViewStateAnimationListener.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?org/beryl/widget/GenericViewBinder.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="GenericViewBinder.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -338,9 +386,9 @@ $.beautyOfCode.init({
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

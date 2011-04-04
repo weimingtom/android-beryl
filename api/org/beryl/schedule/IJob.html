@@ -3,7 +3,7 @@
 <HTML>
 <HEAD>
 <TITLE>
-Uses of Package org.beryl.diagnostics (Beryl API)
+IJob (Beryl API)
 </TITLE>
 
 
@@ -13,7 +13,7 @@ Uses of Package org.beryl.diagnostics (Beryl API)
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="Uses of Package org.beryl.diagnostics (Beryl API)";
+        parent.document.title="IJob (Beryl API)";
     }
 }
 </SCRIPT>
@@ -37,8 +37,8 @@ function windowTitle()
   <TR ALIGN="center" VALIGN="top">
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1">Class</FONT>&nbsp;</TD>
-  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Use</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/IJob.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -66,11 +66,11 @@ $.beautyOfCode.init({
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;PREV&nbsp;
-&nbsp;NEXT</FONT></TD>
+&nbsp;<A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../org/beryl/schedule/UnrunnableJobException.html" title="class in org.beryl.schedule"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?org/beryl/diagnostics/package-use.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="package-use.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?org/beryl/schedule/IJob.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="IJob.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -85,87 +85,113 @@ $.beautyOfCode.init({
 
 </FONT></TD>
 </TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
 <!-- ========= END OF TOP NAVBAR ========= -->
 
 <HR>
-<CENTER>
+<!-- ======== START OF CLASS DATA ======== -->
 <H2>
-<B>Uses of Package<br>org.beryl.diagnostics</B></H2>
-</CENTER>
+<FONT SIZE="-1">
+org.beryl.schedule</FONT>
+<BR>
+Interface IJob</H2>
+<DL>
+<DT><B>All Superinterfaces:</B> <DD><A HREF="http://developer.android.com/reference/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</A></DD>
+</DL>
+<DL>
+<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../org/beryl/schedule/AbstractContextAwareSchedulableJob.html" title="class in org.beryl.schedule">AbstractContextAwareSchedulableJob</A>, <A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule">AbstractSchedulableJob</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public interface <B>IJob</B><DT>extends <A HREF="http://developer.android.com/reference/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</A></DL>
+</PRE>
 
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Packages that use <A HREF="../../../org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><A HREF="#org.beryl.database"><B>org.beryl.database</B></A></TD>
-<TD>Classes that compliment the android.database and android.database.sqlite packages.&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><A HREF="#org.beryl.diagnostics"><B>org.beryl.diagnostics</B></A></TD>
-<TD>Collection of classes that deal with diagnosing problems and bugs on the system.&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><A HREF="#org.beryl.widget"><B>org.beryl.widget</B></A></TD>
-<TD>&nbsp;&nbsp;</TD>
-</TR>
-</TABLE>
-&nbsp;
 <P>
-<A NAME="org.beryl.database"><!-- --></A>
+<HR>
+
+<P>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Classes in <A HREF="../../../org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A> used by <A HREF="../../../org/beryl/database/package-summary.html">org.beryl.database</A></FONT></TH>
+<B>Method Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../org/beryl/diagnostics/class-use/Log.html#org.beryl.database"><B>Log</B></A></B>
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/schedule/IJob.html#cancel()">cancel</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/schedule/IJob.html#isAbandoned()">isAbandoned</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
-&nbsp;
-<P>
-<A NAME="org.beryl.diagnostics"><!-- --></A>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Runnable"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Classes in <A HREF="../../../org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A> used by <A HREF="../../../org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A></FONT></TH>
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface java.lang.<A HREF="http://developer.android.com/reference/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../org/beryl/diagnostics/class-use/ILoggerWriter.html#org.beryl.diagnostics"><B>ILoggerWriter</B></A></B>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contract for log writers.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../org/beryl/diagnostics/class-use/Log.html#org.beryl.diagnostics"><B>Log</B></A></B>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TD><CODE><A HREF="http://developer.android.com/reference/java/lang/Runnable.html?is-external=true#run()" title="class or interface in java.lang">run</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
 <P>
-<A NAME="org.beryl.widget"><!-- --></A>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Classes in <A HREF="../../../org/beryl/diagnostics/package-summary.html">org.beryl.diagnostics</A> used by <A HREF="../../../org/beryl/widget/package-summary.html">org.beryl.widget</A></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../org/beryl/diagnostics/class-use/Log.html#org.beryl.widget"><B>Log</B></A></B>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
 </TR>
 </TABLE>
-&nbsp;
-<P>
+
+<A NAME="isAbandoned()"><!-- --></A><H3>
+isAbandoned</H3>
+<PRE>
+boolean <B>isAbandoned</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="cancel()"><!-- --></A><H3>
+cancel</H3>
+<PRE>
+void <B>cancel</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
 <HR>
 
 
@@ -180,8 +206,8 @@ Classes in <A HREF="../../../org/beryl/diagnostics/package-summary.html">org.ber
   <TR ALIGN="center" VALIGN="top">
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1">Class</FONT>&nbsp;</TD>
-  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Use</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/IJob.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -209,11 +235,11 @@ $.beautyOfCode.init({
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;PREV&nbsp;
-&nbsp;NEXT</FONT></TD>
+&nbsp;<A HREF="../../../org/beryl/schedule/AbstractSchedulableJob.html" title="class in org.beryl.schedule"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../org/beryl/schedule/UnrunnableJobException.html" title="class in org.beryl.schedule"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?org/beryl/diagnostics/package-use.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="package-use.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?org/beryl/schedule/IJob.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="IJob.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -227,6 +253,12 @@ $.beautyOfCode.init({
 
 
 </FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

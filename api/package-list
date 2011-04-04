@@ -9,10 +9,10 @@ org.beryl.diagnostics.reporting
 org.beryl.intents
 org.beryl.intents.android
 org.beryl.location
+org.beryl.schedule
 org.beryl.web.cache
 org.beryl.web.http
 org.beryl.web.search
-org.beryl.web.search.bing
 org.beryl.web.search.google
 org.beryl.web.search.google.maps
 org.beryl.web.url
