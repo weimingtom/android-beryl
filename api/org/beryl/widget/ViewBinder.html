@@ -113,11 +113,11 @@ Class ViewBinder</H2>
 
 <P>
 Methods that automatically assign member variables that are of type <A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view"><CODE>View</CODE></A> or a subclass of it.
- Running ViewBinder against a Fragment or Activity replaces the manual <code>view.findViewById()</code> calls.
- This method can also be used for container objects that have Views inside of them.
-<h2>Requirements</h2>
+ Running ViewBinder.bind() against any object that contains View objects eliminates the need to do manual <code>view.findViewById()</code> calls.
+ This method will also attempt to attach View's listener methods if the parent object's methods are defined properly.
+<h2>Notes</h2>
 <ul>
-        <li>The View's field name in the Fragment or Activity class must match the R.id.* entry defined in the layout.</li>
+        <li>The View's field name in the parent class must match the R.id.* entry defined in the layout.</li>
         <li>Listeners must have the format FieldName_onEvent.
         For instance TestCreateButton's onClickListener will be defined as <code>public void TestCreateButton_onClick(View v)</code>
         This is similar to Visual C#'s naming standards.</li>
@@ -216,32 +216,12 @@ class MyFragment extends Fragment {
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../org/beryl/widget/ViewBinder.html#bind(android.view.View, android.app.Activity, java.lang.Class)">bind</A></B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;root,
-     <A HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&nbsp;activity,
-     <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;rDotId)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../org/beryl/widget/ViewBinder.html#bind(android.view.View, android.app.Fragment, java.lang.Class)">bind</A></B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;root,
-     <A HREF="http://developer.android.com/reference/android/app/Fragment.html?is-external=true" title="class or interface in android.app">Fragment</A>&nbsp;fragment,
-     <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;rDotId)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bind all the views defined in the <A HREF="http://developer.android.com/reference/android/app/Fragment.html?is-external=true" title="class or interface in android.app"><CODE>Fragment</CODE></A> object to the layout defined.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../org/beryl/widget/ViewBinder.html#bind(android.view.View, java.lang.Object, java.lang.Class)">bind</A></B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;root,
      <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>&nbsp;object,
      <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;rDotId)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bind all the views defined in the <A HREF="http://developer.android.com/reference/android/app/Fragment.html?is-external=true" title="class or interface in android.app"><CODE>Fragment</CODE></A> object to the layout defined.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -283,34 +263,6 @@ public <B>ViewBinder</B>()</PRE>
 </TR>
 </TABLE>
 
-<A NAME="bind(android.view.View, android.app.Fragment, java.lang.Class)"><!-- --></A><H3>
-bind</H3>
-<PRE>
-public static void <B>bind</B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;root,
-                        <A HREF="http://developer.android.com/reference/android/app/Fragment.html?is-external=true" title="class or interface in android.app">Fragment</A>&nbsp;fragment,
-                        <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;rDotId)</PRE>
-<DL>
-<DD>Bind all the views defined in the <A HREF="http://developer.android.com/reference/android/app/Fragment.html?is-external=true" title="class or interface in android.app"><CODE>Fragment</CODE></A> object to the layout defined.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>root</CODE> - The root of the layout. root.findViewById(R.id.*); is called.<DD><CODE>fragment</CODE> - The fragment that contains all the<DD><CODE>rDotId</CODE> - </DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="bind(android.view.View, android.app.Activity, java.lang.Class)"><!-- --></A><H3>
-bind</H3>
-<PRE>
-public static void <B>bind</B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;root,
-                        <A HREF="http://developer.android.com/reference/android/app/Activity.html?is-external=true" title="class or interface in android.app">Activity</A>&nbsp;activity,
-                        <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;rDotId)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="bind(android.view.View, java.lang.Object, java.lang.Class)"><!-- --></A><H3>
 bind</H3>
 <PRE>
@@ -318,8 +270,10 @@ public static void <B>bind</B>(<A HREF="http://developer.android.com/reference/a
                         <A HREF="http://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>&nbsp;object,
                         <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;rDotId)</PRE>
 <DL>
+<DD>Bind all the views defined in the <A HREF="http://developer.android.com/reference/android/app/Fragment.html?is-external=true" title="class or interface in android.app"><CODE>Fragment</CODE></A> object to the layout defined.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>root</CODE> - The root layout. Used to make the call, root.findViewById(R.id.*);<DD><CODE>object</CODE> - The object that contains member variables of type View or subclasses that bill be bound.<DD><CODE>rDotId</CODE> - The R.id class that is defined for resources in your project.</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
