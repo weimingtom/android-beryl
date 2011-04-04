@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<fragment class="org.beryl.webcachetest.fragments.SearchFragment"
+		android:id="@+id/SearchFragment"
+		android:layout_width="fill_parent" android:layout_height="@dimen/toolbar_height"
+		/>
+	<LinearLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent" android:layout_height="@dimen/use_weight"
+		android:layout_weight="70"
+	    >
+		<fragment class="org.beryl.webcachetest.fragments.ImageDisplayFragment"
+			android:id="@+id/ImageDisplayFragment"
+			android:layout_width="@dimen/use_weight" android:layout_height="fill_parent"
+			android:layout_weight="50"
+			/>
+		<fragment class="org.beryl.webcachetest.fragments.ResultListFragment"
+			android:id="@+id/ResultListFragment"
+			android:layout_width="@dimen/use_weight" android:layout_height="fill_parent"
+			android:layout_weight="50"
+			/>
+	</LinearLayout>
+	<fragment class="org.beryl.webcachetest.fragments.TestPanelFragment"
+		android:id="@+id/TestPanelFragment"
+		android:layout_width="fill_parent" android:layout_height="@dimen/toolbar_height"
+		/>
+</LinearLayout>

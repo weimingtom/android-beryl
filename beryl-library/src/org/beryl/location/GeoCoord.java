@@ -6,8 +6,6 @@ import com.google.android.maps.GeoPoint;
 
 /**
  * Represents a coordinate on a geographic mapping surface.
- * @author jeremyje
- *
  */
 public class GeoCoord
 {
