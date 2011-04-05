@@ -7,8 +7,6 @@ import android.content.Intent;
 /**
  * Consumes a feed and stores it in a database with the specified name.
  * This operation occurs in a background service that runs on a separate thread.
- * @author jeremyje
- *
  */
 public class WebFeedConsumerService extends IntentService {
 

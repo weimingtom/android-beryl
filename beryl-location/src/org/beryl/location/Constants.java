@@ -11,4 +11,13 @@ public class Constants {
 	
 	/** 1 minute */
 	public static final long DEFAULT_INTERVAL_TIME = ONE_MINUTE_IN_MILLIS;
+	
+	/** Street Accuracy */
+	public static final int ACCURACY_STREETLEVEL = 8; // in meters.
+	
+	/** City Level Accuracy */
+	public static final int ACCURACY_CITYLEVEL = 150; // in meters.
+	
+	/** Reasonable accuracy for most location aware activities. */
+	public static final int ACCURACY_REASONABLE = ACCURACY_CITYLEVEL;
 }
