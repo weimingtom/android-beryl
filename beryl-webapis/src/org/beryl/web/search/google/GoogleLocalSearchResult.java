@@ -8,8 +8,6 @@ import org.json.JSONObject;
 
 /**
  * http://code.google.com/apis/ajaxsearch/documentation/reference.html#_intro_fonje
- * @author jeremyje
- *
  */
 public class GoogleLocalSearchResult extends GoogleSearchResult
 {
