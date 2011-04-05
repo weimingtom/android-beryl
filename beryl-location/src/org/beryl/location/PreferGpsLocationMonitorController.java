@@ -11,10 +11,11 @@ import android.os.Bundle;
 /**
  * Configures a LocationMonitor to prefer GPS over all other methods of acquiring locations.
  * 
- * This provides the following features:
- * 1. When GPS is reporting locations, all other providers are disabled to conserve battery.
- * 2. When GPS is not available or not reporting locations. Other providers are wakened to
- *    compensate.
+<h2>Features</h2>
+<ol>
+	<li>When GPS is reporting locations, all other providers are disabled to conserve battery.</li>
+	<li>When GPS is not available or not reporting locations. Other providers are wakened to compensate.</li>
+</ol> 
  */
 public class PreferGpsLocationMonitorController extends LocationMonitorController {
 
