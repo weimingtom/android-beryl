@@ -1,8 +1,11 @@
 package org.beryl.widget;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-/** Methods that automatically assign member variables that are of type {@link android.view.View} or a subclass of it.
+/** Methods that auto-wireup member variables that are of type {@link android.view.View} or a subclass of it.
  * Running ViewBinder.bind() against any object that contains View objects eliminates the need to do manual <code>view.findViewById()</code> calls.
  * This method will also attempt to attach View's listener methods if the parent object's methods are defined properly.
 <h2>Notes</h2>
@@ -84,5 +87,72 @@ public class ViewBinder {
 	public static void bind(View root, Object object, Class<?> rDotId) {
 		ViewBindable bindable = new GenericViewBinder(object, root, rDotId);
 		bindable.bindViews();
+	}
+	
+	/**
+	 * Helper method to assist in BaseAdapter.getView method. Ensures that convertView is populated and that the associated ViewHolder class is tagged to the
+	 * view if it is created.
+	 * @param convertView 
+	 * @param parent
+	 * @param layoutId
+	 * @param viewHolderClass
+	 * @param rDotId
+	 * @return convertView
+<i>Suppose you had a BaseAdapter for listing articles from an RSS Feed. Your class may look like something below.</i>
+<h2>Example Class</h2>
+<pre class="code"><code class="java">
+class ArticleAdapter extends BaseAdapter {
+	static class ViewHolder {
+		Button OpenWebsiteButton;
+		ImageView ArticlePicture;
+		TextView ArticleCaption;
+	}
+	
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// Need to do something here.
+	}
+}
+</code></pre>
+<h2>New View Binder Method</h2>
+<pre class="code"><code class="java">
+public View getView(int position, View convertView, ViewGroup parent) {
+	convertView = ViewBinder.bind(convertView, parent, R.id.lineitem_article, ViewHolder.class, R.id.class);
+	final ViewHolder holder = (ViewHolder)convertView.getTag();
+		// Mess with the state of the view to fit the list item.
+	return convertView;
+}
+</code></pre>
+<h2>Old Method</h2>
+<pre class="code"><code class="java">
+public View getView(int position, View convertView, ViewGroup parent) {
+	ViewHolder holder;
+	if(convertView == null) {
+		final LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		convertView = inflater.inflate(layoutId, parent, false);
+		holder = new ViewHolder();
+		convertView.setTag(holder);
+		holder.OpenWebsiteButton = (Button)convertView.findViewById(R.id.OpenWebsiteButton);
+		holder.ArticlePicture = (ImageView)convertView.findViewById(R.id.ArticlePicture);
+		holder.ArticleCaption = (TextView)convertView.findViewById(R.id.ArticleCaption);
+	} else {
+		holder = (ViewHolder)convertView.getTag();
+	}
+		// Mess with the state of the view to fit the list item.
+	return convertView;
+}
+</code></pre>
+	 */
+	public static View bind(View convertView, final ViewGroup parent, final int layoutId, final Class<?> viewHolderClass, final Class<?> rDotId) {
+		if(convertView == null) {
+			final LayoutInflater inflater = (LayoutInflater)parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = inflater.inflate(layoutId, parent, false);
+			try {
+				final Object tag = viewHolderClass.newInstance();
+				ViewBinder.bind(convertView, tag, rDotId);
+				convertView.setTag(tag);
+			} catch(Exception e) {}
+		}
+		
+		return convertView;
 	}
 }
