@@ -112,7 +112,7 @@ Class ViewBinder</H2>
 </PRE>
 
 <P>
-Methods that automatically assign member variables that are of type <A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view"><CODE>View</CODE></A> or a subclass of it.
+Methods that auto-wireup member variables that are of type <A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view"><CODE>View</CODE></A> or a subclass of it.
  Running ViewBinder.bind() against any object that contains View objects eliminates the need to do manual <code>view.findViewById()</code> calls.
  This method will also attempt to attach View's listener methods if the parent object's methods are defined properly.
 <h2>Notes</h2>
@@ -223,6 +223,18 @@ class MyFragment extends Fragment {
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bind all the views defined in the <A HREF="http://developer.android.com/reference/android/app/Fragment.html?is-external=true" title="class or interface in android.app"><CODE>Fragment</CODE></A> object to the layout defined.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../org/beryl/widget/ViewBinder.html#bind(android.view.View, android.view.ViewGroup, int, java.lang.Class, java.lang.Class)">bind</A></B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;convertView,
+     <A HREF="http://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view">ViewGroup</A>&nbsp;parent,
+     int&nbsp;layoutId,
+     <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;viewHolderClass,
+     <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;rDotId)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Helper method to assist in BaseAdapter.getView method.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -274,6 +286,68 @@ public static void <B>bind</B>(<A HREF="http://developer.android.com/reference/a
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>root</CODE> - The root layout. Used to make the call, root.findViewById(R.id.*);<DD><CODE>object</CODE> - The object that contains member variables of type View or subclasses that bill be bound.<DD><CODE>rDotId</CODE> - The R.id class that is defined for resources in your project.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="bind(android.view.View, android.view.ViewGroup, int, java.lang.Class, java.lang.Class)"><!-- --></A><H3>
+bind</H3>
+<PRE>
+public static <A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A> <B>bind</B>(<A HREF="http://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</A>&nbsp;convertView,
+                        <A HREF="http://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view">ViewGroup</A>&nbsp;parent,
+                        int&nbsp;layoutId,
+                        <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;viewHolderClass,
+                        <A HREF="http://developer.android.com/reference/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</A>&lt;?&gt;&nbsp;rDotId)</PRE>
+<DL>
+<DD>Helper method to assist in BaseAdapter.getView method. Ensures that convertView is populated and that the associated ViewHolder class is tagged to the
+ view if it is created.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>convertView</CODE> - <DD><CODE>parent</CODE> - <DD><CODE>layoutId</CODE> - <DD><CODE>viewHolderClass</CODE> - <DD><CODE>rDotId</CODE> - 
+<DT><B>Returns:</B><DD>convertView
+<i>Suppose you had a BaseAdapter for listing articles from an RSS Feed. Your class may look like something below.</i>
+<h2>Example Class</h2>
+<pre class="code"><code class="java">
+class ArticleAdapter extends BaseAdapter {
+        static class ViewHolder {
+                Button OpenWebsiteButton;
+                ImageView ArticlePicture;
+                TextView ArticleCaption;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+                // Need to do something here.
+        }
+}
+</code></pre>
+<h2>New View Binder Method</h2>
+<pre class="code"><code class="java">
+public View getView(int position, View convertView, ViewGroup parent) {
+        convertView = ViewBinder.bind(convertView, parent, R.id.lineitem_article, ViewHolder.class, R.id.class);
+        final ViewHolder holder = (ViewHolder)convertView.getTag();
+                // Mess with the state of the view to fit the list item.
+        return convertView;
+}
+</code></pre>
+<h2>Old Method</h2>
+<pre class="code"><code class="java">
+public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        if(convertView == null) {
+                final LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(layoutId, parent, false);
+                holder = new ViewHolder();
+                convertView.setTag(holder);
+                holder.OpenWebsiteButton = (Button)convertView.findViewById(R.id.OpenWebsiteButton);
+                holder.ArticlePicture = (ImageView)convertView.findViewById(R.id.ArticlePicture);
+                holder.ArticleCaption = (TextView)convertView.findViewById(R.id.ArticleCaption);
+        } else {
+                holder = (ViewHolder)convertView.getTag();
+        }
+                // Mess with the state of the view to fit the list item.
+        return convertView;
+}
+</code></pre></DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
