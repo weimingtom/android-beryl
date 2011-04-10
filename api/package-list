@@ -1,15 +1,13 @@
 org.beryl
 org.beryl.app
-org.beryl.content
 org.beryl.content.webfeeds
 org.beryl.content.webfeeds.rss
 org.beryl.database
 org.beryl.diagnostics
-org.beryl.diagnostics.reporting
 org.beryl.intents
 org.beryl.intents.android
 org.beryl.location
-org.beryl.schedule
+org.beryl.util
 org.beryl.web.cache
 org.beryl.web.http
 org.beryl.web.search
