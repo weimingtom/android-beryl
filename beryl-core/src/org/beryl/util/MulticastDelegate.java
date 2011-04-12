@@ -1,6 +1,7 @@
 package org.beryl.util;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,50 +100,26 @@ public class MulticastDelegate {
 		}
 		
 		try {
-			Method method = findMethod(clazz, methodName, clazzParams);
+			Method method = Reflection.findDeclaredMethod(clazz, methodName, clazzParams);
 			for(T delegate : delegateList) {
 				method.invoke(delegate, params);
 			}
-		} catch(RuntimeException e) {
-			throw e;
-		} catch(Exception e) {
+		} catch(InvocationTargetException e) {
+			final Throwable cause = e.getCause();
+			if(cause != null) {
+				if(cause instanceof RuntimeException) {
+					throw (RuntimeException)cause;
+				} else {
+					throw new RuntimeException(cause);
+				}
+			} else
+				throw new RuntimeException(e);
+		}
+		catch(Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	private Method findMethod(final Class<?> clazz, final String methodName, final List<Class<?>> paramTypes) throws SecurityException, NoSuchMethodException {
-		Method method = null;
-		Method [] methods = clazz.getDeclaredMethods();
-		for(Method candidate : methods) {
-			if(candidate.getName().equals(methodName)) {
-				
-				Class<?>[] candidateParamTypes = candidate.getParameterTypes();
-				if(candidateParamTypes.length == paramTypes.size()) {
-					final int length = candidateParamTypes.length;
-					boolean parametersMatch = true;
-					for(int i = 0; i < length && parametersMatch; i++) {
-						if(! candidateParamTypes[i].isAssignableFrom(paramTypes.get(i))) {
-							parametersMatch = false;
-						}
-					}
-					if(parametersMatch) {
-						method = candidate;
-						method.setAccessible(true);
-						break;
-					}
-				}
-			}
-		}
-		
-		/* Try this to:
-		method = clazz.getDeclaredMethod(methodName, (Class<?>[]) paramTypes.toArray());
-		if(method != null) {
-			method.setAccessible(true);
-		}
-		*/
-		return method;
-	}
-	
+
 	private void compact(final ArrayList<WeakReference<Object>> deadObjects) {
 		if(deadObjects != null) {
 			if(deadObjects != null) {
