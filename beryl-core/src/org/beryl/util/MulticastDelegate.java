@@ -91,7 +91,7 @@ public class MulticastDelegate {
 	}
 
 	/** For the super lazy. Invoke the method without doing the manual leg work of iterating through all the objects.
-	 * <i>This method can throw a runtime exceptions if the methodName cannot be resolved or an invoke of the method fails.</i> */
+	 * @throws WrappedException This method can throw a runtime exceptions if the methodName cannot be resolved or an invoke of the method fails. */
 	public <T> void invoke(final Class<T> clazz, final String methodName, final Object... params) {
 		List<T> delegateList = get(clazz);
 		List<Class<?>> clazzParams = new ArrayList<Class<?>>();
@@ -104,19 +104,10 @@ public class MulticastDelegate {
 			for(T delegate : delegateList) {
 				method.invoke(delegate, params);
 			}
-		} catch(InvocationTargetException e) {
-			final Throwable cause = e.getCause();
-			if(cause != null) {
-				if(cause instanceof RuntimeException) {
-					throw (RuntimeException)cause;
-				} else {
-					throw new RuntimeException(cause);
-				}
-			} else
-				throw new RuntimeException(e);
-		}
-		catch(Exception e) {
-			throw new RuntimeException(e);
+		} catch (InvocationTargetException e) {
+			Exceptions.wrapCauseAndThrow(e);
+		} catch(Exception e) {
+			Exceptions.wrapAndThrow(e);
 		}
 	}
 
