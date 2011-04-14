@@ -6,7 +6,7 @@ package org.beryl.util;
  * WrappedExceptions basically wrapper any {@link Exception} into a {@link RuntimeException} this relaxes the need to have
  * throws clauses in method signatures.
  * 
- * <h2>Notes</h2> You cannot instantiate this class directly. Use {@link Exceptions#throwAsWrappedException(Exception)}.
+ * <h2>Notes</h2> You cannot instantiate this class directly. Use {@link WrappedException#wrap(Exception)} or {@link Exceptions#wrapAndThrow(Exception)}.
  * 
 <h2>Recommended Usage</h2>
 <pre class="code"><code class="java">

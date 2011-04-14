@@ -9,10 +9,6 @@ public class Reflection {
 	public static final ArrayList<Class<?>> ZeroParameters = new ArrayList<Class<?>>();
 	/**
 	 * Basically Class.getMethod but allows for a list of parameter types instead of a variable arguments list.
-	 * @param clazz
-	 * @param methodName
-	 * @param paramTypes
-	 * @return
 	 * @throws SecurityException
 	 * @throws NoSuchMethodException
 	 */
