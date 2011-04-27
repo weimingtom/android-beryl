@@ -45,6 +45,11 @@
 			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-deployment" />
+			<param name="package" value="org.beryl.deployment" />
+			<param name="classpathid" value="default-berylcore-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-webapis" />
 			<param name="package" value="org.beryl.webapis" />
 			<param name="classpathid" value="default-berylweb-classpath" />
@@ -64,8 +69,8 @@
 	<target name="javadoc">
 		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API" additionalparam="-notimestamp" stylesheetfile="beryl-style.css" useexternalfile="true">
 			<header>
-			<![CDATA[<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.js"></script>     
-<script type="text/javascript" src="http://android-beryl.googlecode.com/hg/api/resources/jquery.beautyOfCode.js"></script> 
+			<![CDATA[<script type="text/javascript" src="http://docs.android-beryl.googlecode.com/hg/resources/jquery.js"></script>     
+<script type="text/javascript" src="http://docs.android-beryl.googlecode.com/hg/resources/jquery.beautyOfCode.js"></script> 
 <script type="text/javascript">                                         
 $.beautyOfCode.init({
       theme: 'Default',
