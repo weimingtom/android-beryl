@@ -13,7 +13,7 @@ public class UpdateChecker {
 
 	private final UpdateRequestParams params;
 	
-	public UpdateChecker(UpdateRequestParams params) {
+	UpdateChecker(UpdateRequestParams params) {
 		this.params = params;
 	}
 
@@ -31,6 +31,7 @@ public class UpdateChecker {
 			this.params = params;
 			this.callback = callback;
 		}
+		
 		public void run() {
 			try {
 				final String url = params.getManifestUrl();
