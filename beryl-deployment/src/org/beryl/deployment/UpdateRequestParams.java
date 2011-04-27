@@ -5,7 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 
-public class UpdateRequestParams {
+class UpdateRequestParams {
 
 	private final String manifestUrl;
 	private final String applicationPackage;
