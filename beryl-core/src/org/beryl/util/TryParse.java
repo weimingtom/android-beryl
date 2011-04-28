@@ -23,20 +23,20 @@ public class TryParse {
 		
 		return result;
 	}
-	
-	public static boolean toBoolean(JSONObject json, String name, boolean defaultValue) {
-		boolean result;
+
+	public static int toInt(JSONObject json, String name, int defaultValue) {
+		int result;
 		try {
-			result = json.getBoolean(name);
+			result = json.getInt(name);
 		} catch(JSONException e) { result = defaultValue; }
 		
 		return result;
 	}
 	
-	public static int toInt(JSONObject json, String name, int defaultValue) {
-		int result;
+	public static boolean toBoolean(JSONObject json, String name, boolean defaultValue) {
+		boolean result;
 		try {
-			result = json.getInt(name);
+			result = json.getBoolean(name);
 		} catch(JSONException e) { result = defaultValue; }
 		
 		return result;

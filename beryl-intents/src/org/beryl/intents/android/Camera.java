@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 
 public class Camera {
 
+	//http://achorniy.wordpress.com/2010/04/26/howto-launch-android-camera-using-intents/
 	public static Intent requestHighQualityPicture(Context context, String title, String fileName, String description) {
 		ContentValues values = new ContentValues();
 		values.put(MediaStore.Images.Media.TITLE, fileName);
