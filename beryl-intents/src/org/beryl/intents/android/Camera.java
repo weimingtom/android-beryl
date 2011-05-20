@@ -3,6 +3,8 @@ package org.beryl.intents.android;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 
@@ -20,5 +22,20 @@ public class Camera {
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 		intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); // High Quality.
 		return intent;
+	}
+	
+	/**
+	 * 
+	 * @param context
+	 * @param fileUri Comes from the original Intent. Uri intent.getExtra(MediaStore.EXTRA_OUTPUT).
+	 * @return
+	 */
+	public static Bitmap onActivityResult_requestHighQualityPicture(Context context, Uri fileUri) {
+		Bitmap result = null;
+		final String filePath = Gallery.findPictureFilePath(context, fileUri);
+		if(filePath != null) {
+			result = BitmapFactory.decodeFile(filePath);
+		}
+		return result;
 	}
 }

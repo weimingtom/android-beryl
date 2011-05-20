@@ -5,6 +5,8 @@ import android.database.Cursor;
 
 public class Logger {
 
+	static final String NullString = "[NULL]";
+	
 	/** Creates a new default Logger instance. */
 	public static final Log newInstance(String tag) {
 		return new Log(new LogCatLogWriter(), tag);
@@ -12,6 +14,22 @@ public class Logger {
 	
 	private static final Log logDelegate = newInstance("Log");
 
+	public static void d(String tag, Object obj) {
+		logDelegate.d(tag, obj);
+	}
+
+	public static void e(String tag, Object obj) {
+		logDelegate.e(tag, obj);
+	}
+
+	public static void i(String tag, Object obj) {
+		logDelegate.i(tag, obj);
+	}
+
+	public static void w(String tag, Object obj) {
+		logDelegate.w(tag, obj);
+	}
+	
 	public static void d(String tag, String msg) {
 		logDelegate.d(tag, msg);
 	}
@@ -48,6 +66,21 @@ public class Logger {
 		logDelegate.w(msg);
 	}
 	
+	public static void d(Object obj) {
+		logDelegate.d(obj);
+	}
+
+	public static void e(Object obj) {
+		logDelegate.e(obj);
+	}
+
+	public static void i(Object obj) {
+		logDelegate.i(obj);
+	}
+
+	public static void w(Object obj) {
+		logDelegate.w(obj);
+	}
 	public static void e(String tag, Exception e) {
 		logDelegate.e(tag, e);
 	}

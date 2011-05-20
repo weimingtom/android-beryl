@@ -12,14 +12,25 @@ import android.provider.MediaStore;
 
 public class Gallery {
 
+	// TODO: Support remote resources, http://stackoverflow.com/questions/5944282/retrieve-picasa-image-for-upload-from-gallery
 	// TODO: Need an intent to handle SEND from Gallery.
 	
 	public static final Intent getImage() {
 		return getImage("image/*");
 	}
 	
+	public static final Intent getImageDefaultOnly() {
+		return getImageDefaultOnly("image/*");
+	}
+	
 	public static final Intent getImage(String imageType) {
 		return IntentHelper.getContentByType(imageType);
+	}
+	
+	public static final Intent getImageDefaultOnly(String imageType) {
+		final Intent intent = IntentHelper.getContentByType(imageType);
+		intent.addCategory(Intent.CATEGORY_DEFAULT);
+		return intent;
 	}
 	
 	public static Bitmap onActivityResult_getImage(Context context, Intent data) {
@@ -32,7 +43,7 @@ public class Gallery {
 		return result;
 	}
 
-	private static String findPictureFilePath(Context context, Uri dataUri) {
+	static String findPictureFilePath(Context context, Uri dataUri) {
 		String filePath = null;
 		final String[] projection = { MediaStore.Images.Media.DATA };
 		Cursor cursor = null;
