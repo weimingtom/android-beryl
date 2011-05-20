@@ -4,14 +4,14 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import org.beryl.util.StringUtils;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
 public class Log implements ILoggerWriter {
 
-	private static final String StringRepresentation_Null = "[Null]";
-	
 	private String tag = "Log";
 	private final ILoggerWriter logDelegate;
 
@@ -26,6 +26,22 @@ public class Log implements ILoggerWriter {
 	
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+	
+	public void d(String tag, Object obj) {
+		logDelegate.d(tag, StringUtils.objectToStringNoNull(obj));
+	}
+
+	public void e(String tag, Object obj) {
+		logDelegate.e(tag, StringUtils.objectToStringNoNull(obj));
+	}
+
+	public void i(String tag, Object obj) {
+		logDelegate.i(tag, StringUtils.objectToStringNoNull(obj));
+	}
+
+	public void w(String tag, Object obj) {
+		logDelegate.w(tag, StringUtils.objectToStringNoNull(obj));
 	}
 	
 	public void d(String tag, String msg) {
@@ -68,6 +84,22 @@ public class Log implements ILoggerWriter {
 		logDelegate.e(tag, e);
 	}
 
+	public void d(Object obj) {
+		logDelegate.d(tag, probeObjectToString(obj));
+	}
+
+	public void e(Object obj) {
+		logDelegate.e(tag, StringUtils.objectToStringNoNull(obj));
+	}
+
+	public void i(Object obj) {
+		logDelegate.i(tag, StringUtils.objectToStringNoNull(obj));
+	}
+
+	public void w(Object obj) {
+		logDelegate.w(tag, StringUtils.objectToStringNoNull(obj));
+	}
+	
 	/** Prints out all the details of the Intent object. */
 	public void d(Intent intent) {
 		d("Action", intent.getAction());
@@ -89,10 +121,7 @@ public class Log implements ILoggerWriter {
 			d("Extras", "[empty]");
 		} else {
 			for (String key : extras.keySet()) {
-				obj = extras.get(key).toString();
-				if (obj == null) {
-					obj = StringRepresentation_Null;
-				}
+				obj = StringUtils.objectToStringNoNull(extras.get(key));
 
 				d("Extra", "key= " + key + " data= " + obj.toString());
 			}
@@ -151,5 +180,36 @@ public class Log implements ILoggerWriter {
 			d("[" + Integer.toString(cur.getPosition()) + "] "
 					+ column_names[i], cur.getString(i));
 		}
+	}
+	
+	/** Probe's an object's fields . */
+	public static String probeObjectToString(Object obj) {
+		
+		String msg = "";
+		if (obj != null) {
+			final StringBuilder sb = new StringBuilder();
+			Class<?> clazz = obj.getClass();
+			Field[] fields = clazz.getDeclaredFields();
+			for(Field field : fields) {
+				field.setAccessible(true);
+				sb.append(field.getName());
+				sb.append("= ");
+				
+				try {
+					final Object fieldData = field.get(obj);
+					if(fieldData == null) {
+						sb.append("null");
+					} else {
+						sb.append(fieldData.toString());
+					}
+				} catch(Exception e) {
+					sb.append(e.getClass().getName());
+				}
+				sb.append(" | ");
+			}
+			
+			msg = sb.toString();
+		}
+		return msg;
 	}
 }
