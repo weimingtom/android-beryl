@@ -89,15 +89,15 @@ public class Logger {
 		logDelegate.d(intent);
 	}
 
-	public void inspectClass(Class<?> clazz) {
+	public static void inspectClass(Class<?> clazz) {
 		logDelegate.inspectClass(clazz);
 	}
 
-	public void inspectQueryResult(final Cursor cur) {
+	public static void inspectQueryResult(final Cursor cur) {
 		logDelegate.inspectQueryResult(cur);
 	}
 
-	public void inspectCursorData(final Cursor cur) {
+	public static void inspectCursorData(final Cursor cur) {
 		logDelegate.inspectCursorData(cur);
 	}
 }
