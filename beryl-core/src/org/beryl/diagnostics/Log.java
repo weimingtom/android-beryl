@@ -182,6 +182,16 @@ public class Log implements ILoggerWriter {
 		}
 	}
 	
+	public void probe(final Object obj) {
+		String objProbeString = "";
+		
+		if(obj != null) {
+			objProbeString = probeObjectToString(obj);
+		}
+		
+		d("Probe Object", objProbeString);
+	}
+	
 	/** Probe's an object's fields . */
 	public static String probeObjectToString(Object obj) {
 		

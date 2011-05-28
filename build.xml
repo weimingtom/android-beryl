@@ -20,6 +20,11 @@
 			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-io" />
+			<param name="package" value="org.beryl.io" />
+			<param name="classpathid" value="default-berylcore-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-content" />
 			<param name="package" value="org.beryl.content" />
 			<param name="classpathid" value="default-berylcore-classpath" />

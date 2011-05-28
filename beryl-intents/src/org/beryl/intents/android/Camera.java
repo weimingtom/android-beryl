@@ -28,7 +28,6 @@ public class Camera {
 	 * 
 	 * @param context
 	 * @param fileUri Comes from the original Intent. Uri intent.getExtra(MediaStore.EXTRA_OUTPUT).
-	 * @return
 	 */
 	public static Bitmap onActivityResult_requestHighQualityPictureAndRegisterMedia(Context context, Uri fileUri) {
 		Bitmap result = null;

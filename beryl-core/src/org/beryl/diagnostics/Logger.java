@@ -100,4 +100,8 @@ public class Logger {
 	public static void inspectCursorData(final Cursor cur) {
 		logDelegate.inspectCursorData(cur);
 	}
+	
+	public static void probe(final Object obj) {
+		logDelegate.probe(obj);
+	}
 }
