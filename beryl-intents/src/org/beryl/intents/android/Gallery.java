@@ -36,10 +36,17 @@ public class Gallery {
 	public static Bitmap fromSEND_getImage(Context context, Intent data) {
 		Bitmap result = null;
 		Uri dataUri = data.getParcelableExtra(Intent.EXTRA_STREAM);
-		final String filePath = findPictureFilePath(context, dataUri);
+		String filePath = null;
+		if(dataUri.getScheme().equals("file")) {
+			filePath = dataUri.getPath();
+		} else if(dataUri.getScheme().equals("content")) {
+			filePath = findPictureFilePath(context, dataUri);
+		}
+		
 		if(filePath != null) {
 			result = BitmapFactory.decodeFile(filePath);
 		}
+		
 		return result;
 	}
 	

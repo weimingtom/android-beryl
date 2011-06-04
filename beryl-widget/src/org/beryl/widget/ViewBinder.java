@@ -84,11 +84,15 @@ public class ViewBinder {
 	 * @param object The object that contains member variables of type View or subclasses that bill be bound.
 	 * @param rDotId The R.id class that is defined for resources in your project.
 	 */
-	public static void bind(View root, Object object, Class<?> rDotId) {
-		ViewBindable bindable = new GenericViewBinder(object, root, rDotId);
+	public static void bind(View root, Object object, String packageName) {
+		ViewBindable bindable = new GenericViewBinder(object, root, packageName);
 		bindable.bindViews();
 	}
 	
+	public static void bind(View root, Object object, Class<?> rDotId) {
+		bind(root, object, rDotId.getPackage().getName());
+	}
+	;
 	/**
 	 * Helper method to assist in BaseAdapter.getView method. Ensures that convertView is populated and that the associated ViewHolder class is tagged to the
 	 * view if it is created.
