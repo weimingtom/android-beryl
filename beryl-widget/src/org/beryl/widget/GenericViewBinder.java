@@ -8,25 +8,32 @@ import java.util.List;
 import org.beryl.diagnostics.Log;
 import org.beryl.diagnostics.Logger;
 
+import android.content.res.Resources;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class GenericViewBinder implements ViewBindable {
+class GenericViewBinder implements ViewBindable {
 
 	final Class<?> objectClass;
 	final Object object;
 	final View rootView;
-	final Class<?> rDotId;
+	final Resources res;
+	final String packageName;
 	
-	GenericViewBinder(Object object, View rootView, Class<?> rDotId) {
+	GenericViewBinder(Object object, View rootView, String packageName) {
 		this.object = object;
 		objectClass = this.object.getClass();
 		this.rootView = rootView;
-		this.rDotId = rDotId;
+		res = rootView.getResources();
+		this.packageName = packageName;
 	}
 	
 	protected View getRootView() {
 		return rootView;
+	}
+	
+	private int getRdotId(String name) {
+		return res.getIdentifier(name, "id", packageName);
 	}
 	
 	protected Object getObject() {
@@ -36,11 +43,7 @@ public class GenericViewBinder implements ViewBindable {
 	protected Class<?> getType() {
 		return objectClass;
 	}
-	
-	protected Class<?> getRdotId() {
-		return this.rDotId;
-	}
-	
+
 	static class ViewData {
 		final Field field;
 		public ViewData(Field field) {
@@ -48,23 +51,7 @@ public class GenericViewBinder implements ViewBindable {
 			this.field.setAccessible(true);
 		}
 	}
-	
-	static class RdotIdData {
-		final Class<?> rDotId;
-		public RdotIdData(Class<?> rDotId) {
-			this.rDotId = rDotId;
-		}
-		
-		public int getId(String idName) throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-			int id = 0;
-			Field idField = this.rDotId.getDeclaredField(idName);
-			idField.setAccessible(true);
-			Integer objId = (Integer)idField.get(null);
-			id = objId.intValue();
-			return id;
-		}
-	}
-	
+
 	public List<ViewData> getViews() {
 		return getViews(Logger.newInstance("ViewBinder"));
 	}
@@ -97,14 +84,14 @@ public class GenericViewBinder implements ViewBindable {
 	
 	public void bindViews(final Log log) {
 		final View root = getRootView();
-		List<ViewData> viewDatas = getViews();
-		RdotIdData rIds = new RdotIdData(getRdotId());
+		final List<ViewData> viewDatas = getViews();
 
 		for(ViewData viewData : viewDatas) {
 			String viewName = "<Unknown>";
 			try {
+				
 				viewName = viewData.field.getName();
-				final int rId = rIds.getId(viewName);
+				final int rId = getRdotId(viewName);
 				bindView(root, viewData, rId);
 			} catch(Exception e) {
 				log.e("Failed to bind on View " + viewName);
@@ -122,6 +109,8 @@ public class GenericViewBinder implements ViewBindable {
 	}
 
 	private void attemptListenerBind(Object parent, View foundView, ViewData viewData, String methodSuffix, Class<GenericOnClickListener> listenerClass) {
+		final Log log = Logger.newInstance("attemptListenerBind");
+		log.i(String.format("FoundView= %s, MethodSuffix= %s, ListenerClass= %s", foundView.toString(), methodSuffix, listenerClass.getName()));
 		try {
 			final StringBuilder sb = new StringBuilder();
 			sb.append(viewData.field.getName());
@@ -129,12 +118,16 @@ public class GenericViewBinder implements ViewBindable {
 			sb.append(methodSuffix);
 			
 			final String methodName = sb.toString();
+			log.i("Attempt MethodName = " + methodName);
 			final Method attachListenerMethod = listenerClass.getMethod("attachListener", Object.class, View.class, String.class);
+			log.probe(attachListenerMethod);
 			attachListenerMethod.setAccessible(true);
 			attachListenerMethod.invoke(null, parent, foundView, methodName);
 		} catch(NoSuchMethodException e) {
+			Logger.e(e);
 			// This was an attempt so whatever.
 		} catch(Exception e) {
+			Logger.e(e);
 			// Logit.
 		}
 	}
@@ -162,16 +155,20 @@ public class GenericViewBinder implements ViewBindable {
 				final Method handlerMethod = parent.getClass().getDeclaredMethod(methodName, View.class);
 				target.setOnClickListener(new GenericOnClickListener(parent, handlerMethod));
 			} catch(Exception e) {
-				
+				Logger.probe(parent);
+				Logger.inspectClass(parent.getClass());
+				Logger.e(e);
 			}
 		}
 		
 		GenericOnClickListener(Object parent, Method method) {
 			super(parent, method);
+			Logger.i("Create GenericOnClickListener");
 		}
 		
 		public void onClick(View v) {
 			try {
+				Logger.i("OnClick");
 				method.invoke(parent, v);
 			} catch (Exception e) {
 				throw new RuntimeException(e);
