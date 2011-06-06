@@ -175,8 +175,6 @@ public class HttpRest
 					else
 					{
 						String temps = temp.getClass().getName();
-						android.os.Debug.waitForDebugger();
-						android.util.Log.i("Error", temps);
 					}
 				}
 			}

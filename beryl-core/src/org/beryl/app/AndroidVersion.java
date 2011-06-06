@@ -39,6 +39,11 @@ public class AndroidVersion {
 		return _ANDROID_SDK_VERSION;
 	}
 	
+	/** Returns true if running on Android 1.5 or higher. */
+	public static boolean isCupcakeOrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.CUPCAKE;
+	}
+	
 	/** Returns true if running on Android 1.6 or higher. */
 	public static boolean isDonutOrHigher() {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.DONUT;
@@ -62,5 +67,35 @@ public class AndroidVersion {
 	/** Returns true if running on Android 3.0 or higher. */
 	public static boolean isHoneycombOrHigher() {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.HONEYCOMB;
+	}
+	
+	/** Returns true if running on an earlier version than Android 3.0. */
+	public static boolean isBeforeHoneycomb() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.HONEYCOMB;
+	}
+	
+	/** Returns true if running on an earlier version than Android 2.3. */
+	public static boolean isBeforeGingerbread() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.GINGERBREAD;
+	}
+	
+	/** Returns true if running on an earlier version than Android 2.2. */
+	public static boolean isBeforeFroyo() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.FROYO;
+	}
+	
+	/** Returns true if running on an earlier version than Android 2.1. */
+	public static boolean isBeforeEclair() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.ECLAIR;
+	}
+	
+	/** Returns true if running on an earlier version than Android 1.6. */
+	public static boolean isBeforeDonut() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.DONUT;
+	}
+	
+	/** Returns true if running on an earlier version than Android 1.5. */
+	public static boolean isBeforeCupcake() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.CUPCAKE;
 	}
 }
