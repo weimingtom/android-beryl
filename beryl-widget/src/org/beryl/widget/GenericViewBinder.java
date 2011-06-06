@@ -155,9 +155,9 @@ class GenericViewBinder implements ViewBindable {
 				final Method handlerMethod = parent.getClass().getDeclaredMethod(methodName, View.class);
 				target.setOnClickListener(new GenericOnClickListener(parent, handlerMethod));
 			} catch(Exception e) {
-				Logger.probe(parent);
-				Logger.inspectClass(parent.getClass());
-				Logger.e(e);
+				//Logger.probe(parent);
+				//Logger.inspectClass(parent.getClass());
+				//Logger.e(e);
 			}
 		}
 		
