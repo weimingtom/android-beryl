@@ -124,10 +124,10 @@ class GenericViewBinder implements ViewBindable {
 			attachListenerMethod.setAccessible(true);
 			attachListenerMethod.invoke(null, parent, foundView, methodName);
 		} catch(NoSuchMethodException e) {
-			Logger.e(e);
+			log.e(e);
 			// This was an attempt so whatever.
 		} catch(Exception e) {
-			Logger.e(e);
+			log.e(e);
 			// Logit.
 		}
 	}
@@ -163,12 +163,10 @@ class GenericViewBinder implements ViewBindable {
 		
 		GenericOnClickListener(Object parent, Method method) {
 			super(parent, method);
-			Logger.i("Create GenericOnClickListener");
 		}
 		
 		public void onClick(View v) {
 			try {
-				Logger.i("OnClick");
 				method.invoke(parent, v);
 			} catch (Exception e) {
 				throw new RuntimeException(e);
