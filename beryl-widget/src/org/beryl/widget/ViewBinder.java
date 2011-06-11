@@ -82,7 +82,7 @@ public class ViewBinder {
 	 * Bind all the views defined in the {@link android.app.Fragment} object to the layout defined.
 	 * @param root The root layout. Used to make the call, root.findViewById(R.id.*);
 	 * @param object The object that contains member variables of type View or subclasses that bill be bound.
-	 * @param rDotId The R.id class that is defined for resources in your project.
+	 * @param packageName The package name where the R.java file is located in.
 	 */
 	public static void bind(View root, Object object, String packageName) {
 		ViewBindable bindable = new GenericViewBinder(object, root, packageName);

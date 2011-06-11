@@ -28,7 +28,7 @@ public class AndroidVersion {
 		try {
 			android_sdk = Integer.parseInt(android.os.Build.VERSION.SDK);
 		}
-		catch (Exception e) { }
+		catch (Exception e) {}
 		finally {}
 		
 		_ANDROID_SDK_VERSION = android_sdk;
@@ -97,5 +97,9 @@ public class AndroidVersion {
 	/** Returns true if running on an earlier version than Android 1.5. */
 	public static boolean isBeforeCupcake() {
 		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.CUPCAKE;
+	}
+	
+	private AndroidVersion() {
+		// Prevent users from instantiating this class.
 	}
 }

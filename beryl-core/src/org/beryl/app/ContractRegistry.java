@@ -5,19 +5,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Registry of objects categorized by their interfaces that extend {@link org.beryl.app.RegisterableContract}.
- * Objects stored in the registry can be retrieved by users to be called against.
+ * Registry of interfaces that can be queried by other objects. The primary goal is to provide a way to decouple {@link android.app.Fragment}s while allowing them to communicate with each other through these exposed interfaces.
+ * This class is not specific to Activities and Fragments but can be used in any situation where multiple components need to communicate.
  * 
- * 
- * This class is mainly used for decoupling {@link android.app.Fragment}s from their parent activities as well as enabling communication between Fragments.
- * 
- * 
- * The example below shows how a fragment can talk to another fragment without any communication to the Activity.
- * 
+<h2>Pattern Setup</h2>
+<ol>
+	<li>Create a class that implements the {@link org.beryl.app.IContractMediator} interface. This class will hold the ContractRegistry object.</li>
+	<li>Determine and create the contracts (interface) that the classes would want exposed. These interfaces must extend {@link org.beryl.app.RegisterableContract}.</li>
+	<li>For each component, create non-static inner classes for the each interface they will expose. This is preferred over having the component itself implement the interface but that is supported as well.</li>
+	<li>When wiring up the objects together get the handle of the ContractsRegistry from the class that implements {@link org.beryl.app.IContractMediator}. Add the object to the registry via the .add(Object) method.</li>
+	<li>Likewise when removing the object call .remove(object) against the registry otherwise a GC memory-leak will occur.</li>
+</ol>
+
+<h2>Example</h2>
 <pre class="code"><code class="java">
 
 public class MainActivity extends FragmentActivity implements IContractMediator {
-	final private ContractRegistry contracts = new ContractRegistry(this);
+	final private ContractRegistry contracts = new ContractRegistry();
+	
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		contracts.add(this);
+	}
+	
 	public ContractRegistry getContractRegistry() {
 		return contracts;
 	}
@@ -35,12 +45,12 @@ public class WorkerFragment extends Fragment {
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		contractSource = ContractRegistry.getContractRegistry(activity);
-		contractSource.attachMembers(this);
+		contractSource.add(this);
 	}
 
 	public void onDetach() {
 		super.onDetach();
-		contractSource.detachMembers(this);
+		contractSource.remove(this);
 		contractSource = null;
 	}
 	
@@ -57,12 +67,12 @@ public class RequesterFragment extends Fragment {
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		contractSource = ContractRegistry.getContractRegistry(activity);
-		contractSource.attachMembers(this);
+		contractSource.add(this);
 	}
 
 	public void onDetach() {
 		super.onDetach();
-		contractSource.detachMembers(this);
+		contractSource.remove(this);
 		contractSource = null;
 	}
 
@@ -74,26 +84,69 @@ public class RequesterFragment extends Fragment {
 	}
 }
 </code></pre>*/
-public class ContractRegistry {
+public final class ContractRegistry {
 
 	private final HashMap<Class<?>, ArrayList<?>> contractsContainer = new HashMap<Class<?>, ArrayList<?>>();
 	
 	public ContractRegistry() {
 	}
-	
-	/** Constructs a new contract registry and attaches all ContractRegisterable fields from the class passed in. */
-	public ContractRegistry(Object parent) {
-		attachMembers(parent);
+
+	/** Adds an object and it's members variables to the registry if they implement a RegisterableContact interface. */
+	public void add(Object object) {
+		attach(object);
+		attachMembers(object);
 	}
-	
+
+	/** Removes the an object and its members from the registry. */
+	public void remove(Object object) {
+		detach(object);
+		detachMembers(object);
+	}
+
 	@SuppressWarnings("unchecked")
-	public void attach(Object object) {
+	private void attach(Object object) {
 		Class<?> clazz = object.getClass();
 		Class<?> [] ifaces = clazz.getInterfaces();
 		for(Class<?> iface : ifaces) {
 			if(isRegisterableContractInterface(iface)) {
-				ArrayList/* <LOL> */ contacts = getAll(iface);
-				contacts.add(object);
+				@SuppressWarnings("rawtypes")
+				ArrayList/* <LOL> */ contracts = getAll(iface);
+				
+				if(! contracts.contains(object)) {
+					contracts.add(object);
+				}
+			}
+		}
+	}
+	
+	private void detach(Object object) {
+		for(Class<?> key : contractsContainer.keySet()) {
+			final ArrayList<?> contractList = contractsContainer.get(key);
+			contractList.remove(object);
+		}
+	}
+	
+	private void attachMembers(Object obj) {
+		final ArrayList<Field> fields = getContractFields(obj);
+		for(Field field : fields) {
+			try {
+				Object contractMember = field.get(obj);
+				if(contractMember != null) {
+					attach(contractMember);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void detachMembers(Object obj) {
+		final ArrayList<Field> fields = getContractFields(obj);
+		for(Field field : fields) {
+			try {
+				detach(field.get(obj));
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -105,15 +158,7 @@ public class ContractRegistry {
 	private boolean hasInterface(Class<?> target, Class<?> iface) {
 		return iface.isAssignableFrom(target);
 	}
-	
-	/** Unregisters an object from the manager. */
-	public void detach(Object object) {
-		for(Class<?> key : contractsContainer.keySet()) {
-			final ArrayList<?> contractList = contractsContainer.get(key);
-			contractList.remove(object);
-		}
-	}
-	
+
 	public <T> T get(Class<T> clazz) {
 		final ArrayList<T> elements = getAll(clazz);
 		
@@ -124,6 +169,7 @@ public class ContractRegistry {
 		}
 	}
 	
+	/** Returns all instances of the contract class. */
 	@SuppressWarnings("unchecked")
 	public <T> ArrayList<T> getAll(Class<T> clazz) {
 		ArrayList<T> results = (ArrayList<T>)contractsContainer.get(clazz);
@@ -141,31 +187,6 @@ public class ContractRegistry {
 		return results;
 	}
 
-	public void attachMembers(Object obj) {
-		final ArrayList<Field> fields = getContractFields(obj);
-		for(Field field : fields) {
-			try {
-				Object contractMember = field.get(obj);
-				if(contractMember != null) {
-					attach(contractMember);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void detachMembers(Object obj) {
-		final ArrayList<Field> fields = getContractFields(obj);
-		for(Field field : fields) {
-			try {
-				detach(field.get(obj));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
 	private ArrayList<Field> getContractFields(Object obj) {
 		ArrayList<Field> result = new ArrayList<Field>();
 		Class<?> clazz = obj.getClass();
@@ -188,7 +209,7 @@ public class ContractRegistry {
 		try {
 			registry = ((IContractMediator)maybeContractMediator).getContractRegistry();
 		} catch(ClassCastException e) {
-			throw new ClassCastException("maybeContractMediator must implement interface, " + IContractMediator.class.getName());
+			throw new ClassCastException("Parameter must implement interface, " + IContractMediator.class.getName());
 		}
 		
 		return registry;
