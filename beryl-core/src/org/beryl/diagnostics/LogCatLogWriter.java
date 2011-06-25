@@ -1,7 +1,7 @@
 package org.beryl.diagnostics;
 
 /** A LogWriter that prints to the Android LogCat. */
-public class LogCatLogWriter implements ILoggerWriter {
+public class LogCatLogWriter implements ILogWriter {
 
 	public LogCatLogWriter() {
 		

@@ -1,13 +1,29 @@
 package org.beryl.intents.android;
 
+import org.beryl.intents.IIntentBuilder;
+
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
 public class Web {
 
+	public static class View implements IIntentBuilder {
+		public String Url;
+
+		public Intent getIntent() {
+			final Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse(Url));
+			return intent;
+		}
+
+		public void prepareIntent(Context context) {
+			// Do Nothing
+		}
+	}
 	public static final Intent viewUrl(final String url) {
-		final Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setData(Uri.parse(url));
-		return intent;
+		View viewer = new View();
+		viewer.Url = url;
+		return viewer.getIntent();
 	}
 }

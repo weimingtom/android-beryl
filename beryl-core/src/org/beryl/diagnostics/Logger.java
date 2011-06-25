@@ -2,6 +2,7 @@ package org.beryl.diagnostics;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 
 public class Logger {
 
@@ -87,6 +88,10 @@ public class Logger {
 
 	public static void d(Intent intent) {
 		logDelegate.d(intent);
+	}
+	
+	public static void d(Bundle bundle) {
+		logDelegate.d(bundle);
 	}
 
 	public static void inspectClass(Class<?> clazz) {

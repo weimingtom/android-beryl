@@ -1,7 +1,7 @@
 package org.beryl.diagnostics;
 
 /** Contract for log writers. LogWriters are wrapped around the Log object for advanced logging output. */
-public interface ILoggerWriter {
+public interface ILogWriter {
 	
 	/** Log an exception, with the stack trace, exception type and message. */
 	void e(String tag, Exception e);

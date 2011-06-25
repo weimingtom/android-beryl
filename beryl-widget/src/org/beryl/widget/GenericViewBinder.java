@@ -5,20 +5,22 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.beryl.diagnostics.ILogWriter;
 import org.beryl.diagnostics.Log;
-import org.beryl.diagnostics.Logger;
+import org.beryl.diagnostics.SuppressLogWriter;
 
 import android.content.res.Resources;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-class GenericViewBinder implements ViewBindable {
+class GenericViewBinder implements IViewBindable {
 
 	final Class<?> objectClass;
 	final Object object;
 	final View rootView;
 	final Resources res;
 	final String packageName;
+	Log logger = new Log(new SuppressLogWriter());
 	
 	GenericViewBinder(Object object, View rootView, String packageName) {
 		this.object = object;
@@ -26,6 +28,13 @@ class GenericViewBinder implements ViewBindable {
 		this.rootView = rootView;
 		res = rootView.getResources();
 		this.packageName = packageName;
+	}
+	
+	public void setLogger(ILogWriter logWriter) {
+		if(logger != null) {
+			logger = new Log(logger);
+			logger.setTag("GenericViewBinder");
+		}
 	}
 	
 	protected View getRootView() {
@@ -53,10 +62,6 @@ class GenericViewBinder implements ViewBindable {
 	}
 
 	public List<ViewData> getViews() {
-		return getViews(Logger.newInstance("ViewBinder"));
-	}
-	
-	public List<ViewData> getViews(final Log log) {
 		final Class<?> myType = getType();
 
 		ArrayList<ViewData> views = new ArrayList<ViewData>();
@@ -69,20 +74,16 @@ class GenericViewBinder implements ViewBindable {
 				try {
 					views.add(new ViewData(field));
 				} catch(Exception e){
-					log.e("Failed to assign field=" + field.getName());
-					log.e(e);
+					logger.e("Failed to assign field=" + field.getName());
+					logger.e(e);
 				}
 			}
 		}
 		
 		return views;
 	}
-	
+
 	public void bindViews() {
-		bindViews(Logger.newInstance("ViewBinder"));
-	}
-	
-	public void bindViews(final Log log) {
 		final View root = getRootView();
 		final List<ViewData> viewDatas = getViews();
 
@@ -94,8 +95,8 @@ class GenericViewBinder implements ViewBindable {
 				final int rId = getRdotId(viewName);
 				bindView(root, viewData, rId);
 			} catch(Exception e) {
-				log.e("Failed to bind on View " + viewName);
-				log.e(e);
+				logger.e("Failed to bind on View " + viewName);
+				logger.e(e);
 			}
 		}
 	}
@@ -109,8 +110,7 @@ class GenericViewBinder implements ViewBindable {
 	}
 
 	private void attemptListenerBind(Object parent, View foundView, ViewData viewData, String methodSuffix, Class<GenericOnClickListener> listenerClass) {
-		final Log log = Logger.newInstance("attemptListenerBind");
-		log.i(String.format("FoundView= %s, MethodSuffix= %s, ListenerClass= %s", foundView.toString(), methodSuffix, listenerClass.getName()));
+		logger.i(String.format("FoundView= %s, MethodSuffix= %s, ListenerClass= %s", foundView.toString(), methodSuffix, listenerClass.getName()));
 		try {
 			final StringBuilder sb = new StringBuilder();
 			sb.append(viewData.field.getName());
@@ -118,17 +118,16 @@ class GenericViewBinder implements ViewBindable {
 			sb.append(methodSuffix);
 			
 			final String methodName = sb.toString();
-			log.i("Attempt MethodName = " + methodName);
+			logger.i("Attempt MethodName = " + methodName);
 			final Method attachListenerMethod = listenerClass.getMethod("attachListener", Object.class, View.class, String.class);
-			log.probe(attachListenerMethod);
+			logger.probe(attachListenerMethod);
 			attachListenerMethod.setAccessible(true);
 			attachListenerMethod.invoke(null, parent, foundView, methodName);
 		} catch(NoSuchMethodException e) {
-			log.e(e);
+			logger.e(e);
 			// This was an attempt so whatever.
 		} catch(Exception e) {
-			log.e(e);
-			// Logit.
+			logger.e(e);
 		}
 	}
 
@@ -155,9 +154,6 @@ class GenericViewBinder implements ViewBindable {
 				final Method handlerMethod = parent.getClass().getDeclaredMethod(methodName, View.class);
 				target.setOnClickListener(new GenericOnClickListener(parent, handlerMethod));
 			} catch(Exception e) {
-				//Logger.probe(parent);
-				//Logger.inspectClass(parent.getClass());
-				//Logger.e(e);
 			}
 		}
 		
