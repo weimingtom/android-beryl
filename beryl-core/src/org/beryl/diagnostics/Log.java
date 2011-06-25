@@ -10,16 +10,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
-public class Log implements ILoggerWriter {
+public class Log implements ILogWriter {
 
 	private String tag = "Log";
-	private final ILoggerWriter logDelegate;
+	private final ILogWriter logDelegate;
 
-	public Log(ILoggerWriter delegate) {
+	public Log(ILogWriter delegate) {
 		this.logDelegate = delegate;
 	}
 
-	public Log(ILoggerWriter delegate, String tag) {
+	public Log(ILogWriter delegate, String tag) {
 		this.logDelegate = delegate;
 		this.tag = tag;
 	}
@@ -115,13 +115,16 @@ public class Log implements ILoggerWriter {
 		d("Scheme", intent.getScheme());
 		d("Package", intent.getPackage());
 		final Bundle extras = intent.getExtras();
+		d(extras);
+	}
+	
+	public void d(Bundle bundle) {
 		Object obj;
-
-		if (extras == null) {
+		if (bundle == null) {
 			d("Extras", "[empty]");
 		} else {
-			for (String key : extras.keySet()) {
-				obj = StringUtils.objectToStringNoNull(extras.get(key));
+			for (String key : bundle.keySet()) {
+				obj = StringUtils.objectToStringNoNull(bundle.get(key));
 
 				d("Extra", "key= " + key + " data= " + obj.toString());
 			}

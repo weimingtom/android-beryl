@@ -1,5 +1,7 @@
 package org.beryl.widget;
 
+import org.beryl.diagnostics.ILogWriter;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,14 +87,22 @@ public class ViewBinder {
 	 * @param packageName The package name where the R.java file is located in.
 	 */
 	public static void bind(View root, Object object, String packageName) {
-		ViewBindable bindable = new GenericViewBinder(object, root, packageName);
+		IViewBindable bindable = new GenericViewBinder(object, root, packageName);
+		bindable.bindViews();
+	}
+	/**
+	 * Same as bind() but with an option to output debugging information as the Views are being bound. Useful for Proguard debugging.
+	 */
+	public static void bind(View root, Object object, String packageName, ILogWriter logWriter) {
+		IViewBindable bindable = new GenericViewBinder(object, root, packageName);
+		bindable.setLogger(logWriter);
 		bindable.bindViews();
 	}
 	
 	public static void bind(View root, Object object, Class<?> rDotId) {
 		bind(root, object, rDotId.getPackage().getName());
 	}
-	;
+
 	/**
 	 * Helper method to assist in BaseAdapter.getView method. Ensures that convertView is populated and that the associated ViewHolder class is tagged to the
 	 * view if it is created.

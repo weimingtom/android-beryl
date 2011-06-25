@@ -1,7 +1,7 @@
 package org.beryl.diagnostics;
 
 /** Suppresses all logging. */
-public class SuppressLogWriter implements ILoggerWriter {
+public class SuppressLogWriter implements ILogWriter {
 
 	public SuppressLogWriter() {
 	}
