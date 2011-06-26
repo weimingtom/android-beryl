@@ -5,9 +5,9 @@ import android.os.AsyncTask;
 
 public class IntentPrepareTask extends AsyncTask<Void, Void, Void> {
 
-	final IIntentBuilder builder;
-	final ActivityIntentLauncher launcher;
-	final int requestCode;
+	IIntentBuilder builder;
+	ActivityIntentLauncher launcher;
+	int requestCode;
 	
 	public IntentPrepareTask(final ActivityIntentLauncher launcher, final IIntentBuilder builder, int requestCode) {
 		this.builder = builder;
@@ -31,5 +31,8 @@ public class IntentPrepareTask extends AsyncTask<Void, Void, Void> {
 			launcher.startActivity(intent);
 		}
 		launcher.onLaunchTaskComplete();
+		
+		builder = null;
+		launcher = null;
 	}
 }

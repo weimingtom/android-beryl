@@ -6,10 +6,10 @@ import android.os.AsyncTask;
 
 public class ActivityResultTask extends AsyncTask<Void, Void, Void> {
 
-	final ActivityIntentLauncher launcher;
-	final IActivityResultHandler handler;
-	final int resultCode;
-	final Intent data;
+	ActivityIntentLauncher launcher;
+	IActivityResultHandler handler;
+	int resultCode;
+	Intent data;
 	
 	public ActivityResultTask(ActivityIntentLauncher launcher, IActivityResultHandler handler, int resultCode, Intent data) {
 		this.launcher = launcher;
@@ -31,5 +31,9 @@ public class ActivityResultTask extends AsyncTask<Void, Void, Void> {
 		} else {
 			handler.onResultCustomCode(resultCode);
 		}
+		
+		launcher = null;
+		handler = null;
+		data = null;
 	}
 }

@@ -102,6 +102,10 @@ public class ViewBinder {
 	public static void bind(View root, Object object, Class<?> rDotId) {
 		bind(root, object, rDotId.getPackage().getName());
 	}
+	
+	public static void bind(View root, Object object, Class<?> rDotId, ILogWriter logWriter) {
+		bind(root, object, rDotId.getPackage().getName(), logWriter);
+	}
 
 	/**
 	 * Helper method to assist in BaseAdapter.getView method. Ensures that convertView is populated and that the associated ViewHolder class is tagged to the

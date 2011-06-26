@@ -1,6 +1,6 @@
 package org.beryl.intents.android;
 
-import org.beryl.intents.ActivityResultHandlerHelper;
+import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 
 import android.content.ContentValues;
@@ -57,16 +57,16 @@ public class Camera {
 		}
 	}
 	
-	public abstract static class GetCameraCaptureResult extends ActivityResultHandlerHelper {
+	public abstract static class GetCameraCaptureResult implements IActivityResultHandler {
 
 		public Bitmap bitmapResult = null;
 		
-		public void onPrepareResult() {
+		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			Uri imageUri = null;
 			
-			if(resultBundle.containsKey("captureImageUri")) {
+			if(resultBundle != null && resultBundle.containsKey("captureImageUri")) {
 				imageUri = resultBundle.getParcelable("captureImageUri");
-			} else {
+			} else if(data != null) {
 				imageUri = data.getParcelableExtra(MediaStore.EXTRA_OUTPUT);
 			}
 			
