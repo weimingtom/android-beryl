@@ -2,8 +2,9 @@ package org.beryl.intents.android;
 
 import java.io.File;
 
+import org.beryl.app.AndroidVersion;
 import org.beryl.diagnostics.Logger;
-import org.beryl.intents.ActivityResultHandlerHelper;
+import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 import org.beryl.intents.IntentHelper;
 
@@ -16,7 +17,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Config;
 
 public class Gallery {
 
@@ -68,31 +68,35 @@ public class Gallery {
 
 		public void prepareIntent(Context context) {
 			try {
-				File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-				dir.mkdirs();
-				File tempFile = new File(dir, "galleryresult-temp.png");
-				
-				//.createTempFile("GalleryResult", ".png");
-				TemporaryImagePath = tempFile.getAbsolutePath();
-
-				tempFile.getParentFile().mkdirs();
-				
-				tempFile.createNewFile();
-				Logger.d("IsFile= " + tempFile.isFile());
-				tempFile.setWritable(true, false);
-				tempFile.setReadable(true, false);
-				
-				intent = new Intent(Intent.ACTION_GET_CONTENT);
-				intent.setType(TypeFilter);
-
-				if (ForceDefaultHandlers) {
-					intent.addCategory(Intent.CATEGORY_DEFAULT);
+				if(AndroidVersion.isBeforeHoneycomb()) {
+					File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+					dir.mkdirs();
+					File tempFile = new File(dir, "galleryresult-temp.png");
+					
+					//.createTempFile("GalleryResult", ".png");
+					TemporaryImagePath = tempFile.getAbsolutePath();
+	
+					tempFile.getParentFile().mkdirs();
+					
+					tempFile.createNewFile();
+					Logger.d("IsFile= " + tempFile.isFile());
+					tempFile.setWritable(true, false);
+					tempFile.setReadable(true, false);
+	
+					intent = new Intent(Intent.ACTION_GET_CONTENT);
+					intent.setType(TypeFilter);
+	
+					if (ForceDefaultHandlers) {
+						intent.addCategory(Intent.CATEGORY_DEFAULT);
+					}
+	
+					final Uri uri = Uri.fromFile(tempFile);
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+					final String formatName = CompressFormat.name();
+					intent.putExtra("outputFormat", formatName);
+				} else {
+					intent = IntentHelper.getContentByType("image/*");
 				}
-
-				final Uri uri = Uri.fromFile(tempFile);
-				intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-				final String formatName = CompressFormat.name();
-				intent.putExtra("outputFormat", formatName);
 			} catch (Exception e) {
 
 			}
@@ -161,38 +165,40 @@ public class Gallery {
 		return intent;
 	}
 
-	public abstract static class SendImageResult extends ActivityResultHandlerHelper {
+	public abstract static class SendImageResult implements IActivityResultHandler {
 		
 		public Bitmap bitmapResult = null;
 		
-		public void onPrepareResult() {
+		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			Uri dataUri = data.getParcelableExtra(Intent.EXTRA_STREAM);
 			bitmapResult = Gallery.loadBitmapFromUri(context, dataUri);
 		}
 	}
 
-	public abstract static class GetImageResult extends ActivityResultHandlerHelper {
+	public abstract static class GetImageResult implements IActivityResultHandler {
 		
 		public Bitmap bitmapResult = null;
 		
-		public void onPrepareResult() {
+		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			bitmapResult = null;
 			Uri imageUri = null;
 			String filePath = null;
 			boolean fromTransientPath = false;
-			Logger.d(data);
-			Logger.d(resultBundle);
 			String tempFilePath = null;
 
 			if(resultBundle != null) {
 				tempFilePath = resultBundle.getString("transientImagePath");
-				File tempFile = new File(tempFilePath);
-				imageUri = Uri.fromFile(tempFile);
+				if(tempFilePath != null) {
+					File tempFile = new File(tempFilePath);
+					imageUri = Uri.fromFile(tempFile);
+					fromTransientPath = true;
+				}
 			}
+			
 			if(imageUri == null || imageUri.toString().length() == 0) {
-				imageUri = data.getData();
-			} else {
-				fromTransientPath = true;
+				if(data != null) {
+					imageUri = data.getData();
+				}
 			}
 			
 			if(imageUri != null) {
@@ -206,8 +212,8 @@ public class Gallery {
 				if(filePath != null) {
 					bitmapResult = BitmapFactory.decodeFile(filePath);
 					if(fromTransientPath) {
-						//File delTarget = new File(filePath);
-						//delTarget.delete();
+						File delTarget = new File(filePath);
+						delTarget.delete();
 					}
 				}
 			}

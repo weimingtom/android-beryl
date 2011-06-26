@@ -31,10 +31,8 @@ class GenericViewBinder implements IViewBindable {
 	}
 	
 	public void setLogger(ILogWriter logWriter) {
-		if(logger != null) {
-			logger = new Log(logger);
-			logger.setTag("GenericViewBinder");
-		}
+		logger = new Log(logWriter);
+		logger.setTag("GenericViewBinder");
 	}
 	
 	protected View getRootView() {
