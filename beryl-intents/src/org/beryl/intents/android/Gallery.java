@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.beryl.app.AndroidVersion;
 import org.beryl.diagnostics.Logger;
+import org.beryl.graphics.BitmapLoader;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 import org.beryl.intents.IntentHelper;
@@ -12,7 +13,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -30,7 +30,7 @@ public class Gallery {
 		}
 
 		if (filePath != null) {
-			result = BitmapFactory.decodeFile(filePath);
+			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, 2);
 		}
 
 		return result;
@@ -143,9 +143,11 @@ public class Gallery {
 		Bitmap result = null;
 		Uri dataUri = data.getData();
 		final String filePath = Gallery.findPictureFilePath(context, dataUri);
+		
 		if (filePath != null) {
-			result = BitmapFactory.decodeFile(filePath);
+			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, 2);
 		}
+		
 		return result;
 	}
 
@@ -210,7 +212,7 @@ public class Gallery {
 				}
 				
 				if(filePath != null) {
-					bitmapResult = BitmapFactory.decodeFile(filePath);
+					bitmapResult = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, 2);
 					if(fromTransientPath) {
 						File delTarget = new File(filePath);
 						delTarget.delete();

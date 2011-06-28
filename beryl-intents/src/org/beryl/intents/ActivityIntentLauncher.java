@@ -20,7 +20,7 @@ public class ActivityIntentLauncher implements Parcelable {
 		readFromParcel(in);
 	}
 	
-	public void setActivityLauncher(Activity activity) {
+	public void setActivityLauncherFromActivity(Activity activity) {
 		setActivityLauncher(new ActivityLauncherProxy(activity));
 	}
 	

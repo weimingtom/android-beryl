@@ -1,5 +1,6 @@
 package org.beryl.intents.android;
 
+import org.beryl.graphics.BitmapLoader;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 
@@ -7,7 +8,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -96,7 +96,7 @@ public class Camera {
 		Bitmap result = null;
 		final String filePath = Gallery.findPictureFilePath(context, fileUri);
 		if(filePath != null) {
-			result = BitmapFactory.decodeFile(filePath);
+			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, 2);
 		}
 		return result;
 	}
@@ -110,7 +110,7 @@ public class Camera {
 
 	public static Bitmap onActivityResult_requestHighQualityPicture(Uri fileUri) {
 		final String filePath = fileUri.getPath();
-		final Bitmap result = BitmapFactory.decodeFile(filePath);
+		final Bitmap result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, 2);
 		return result;
 	}
 }
