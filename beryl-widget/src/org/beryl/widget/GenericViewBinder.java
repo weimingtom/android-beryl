@@ -104,7 +104,7 @@ class GenericViewBinder implements IViewBindable {
 		final View foundView = root.findViewById(rId);
 		viewData.field.set(parent, foundView);
 		
-		attemptListenerBind(parent, foundView, viewData, "onClick", GenericOnClickListener.class);
+		//attemptListenerBind(parent, foundView, viewData, "onClick", GenericOnClickListener.class);
 	}
 
 	private void attemptListenerBind(Object parent, View foundView, ViewData viewData, String methodSuffix, Class<GenericOnClickListener> listenerClass) {
