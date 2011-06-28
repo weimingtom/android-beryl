@@ -73,6 +73,7 @@ public class Camera {
 			bitmapResult = Gallery.loadBitmapFromUri(context, imageUri);
 		}
 	}
+	
 	//http://achorniy.wordpress.com/2010/04/26/howto-launch-android-camera-using-intents/
 	public static Intent requestHighQualityPictureAndRegisterMedia(Context context, String title, String fileName, String description) {
 		ContentValues values = new ContentValues();

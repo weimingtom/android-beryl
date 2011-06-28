@@ -14,7 +14,7 @@ public class BitmapLoader {
 	/** Loads a bitmap scaled to accommodate for a number of possible bitmaps sized the same as well as consider memory padding. */
 	public static Bitmap tryDecodeBitmapFile(String filePath, long memoryCushion, int numPossibleInstances) {
 		Bitmap result = null;
-		long freeMem = Memory.freeMemory() - memoryCushion;
+		long freeMem = Memory.memoryLimit() - memoryCushion;
 		long safeSize = freeMem / numPossibleInstances;
 		
 		// Don't load the bitmap if it's constraint is lower than 64KB.
