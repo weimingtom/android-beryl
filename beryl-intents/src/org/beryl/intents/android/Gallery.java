@@ -20,6 +20,8 @@ import android.provider.MediaStore;
 
 public class Gallery {
 
+	private static final int NUM_INSTANCES = 4;
+	
 	public static final Bitmap loadBitmapFromUri(Context context, Uri fileUri) {
 		Bitmap result = null;
 		String filePath = null;
@@ -30,7 +32,7 @@ public class Gallery {
 		}
 
 		if (filePath != null) {
-			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, 2);
+			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
 		}
 
 		return result;
@@ -145,7 +147,7 @@ public class Gallery {
 		final String filePath = Gallery.findPictureFilePath(context, dataUri);
 		
 		if (filePath != null) {
-			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, 2);
+			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
 		}
 		
 		return result;
@@ -212,7 +214,7 @@ public class Gallery {
 				}
 				
 				if(filePath != null) {
-					bitmapResult = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, 2);
+					bitmapResult = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
 					if(fromTransientPath) {
 						File delTarget = new File(filePath);
 						delTarget.delete();
