@@ -3,11 +3,11 @@ package org.beryl.intents.android;
 import java.io.File;
 
 import org.beryl.app.AndroidVersion;
-import org.beryl.diagnostics.Logger;
 import org.beryl.graphics.BitmapLoader;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 import org.beryl.intents.IntentHelper;
+import org.beryl.io.DirectoryUtils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,22 +20,30 @@ import android.provider.MediaStore;
 
 public class Gallery {
 
+	private static final String StockAndroidGalleryPackageName = "com.google.android.gallery3d";
+	private static final String StockAndroidGallery3dClassName = "com.cooliris.media.Gallery";
 	private static final int NUM_INSTANCES = 4;
 	
 	public static final Bitmap loadBitmapFromUri(Context context, Uri fileUri) {
 		Bitmap result = null;
+		String filePath = uriToPhysicalPath(context, fileUri);
+		
+		if (filePath != null) {
+			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
+		}
+
+		return result;
+	}
+	
+	public static String uriToPhysicalPath(Context context, Uri fileUri) {
 		String filePath = null;
 		if (fileUri.getScheme().equals("file")) {
 			filePath = fileUri.getPath();
 		} else if (fileUri.getScheme().equals("content")) {
 			filePath = findPictureFilePath(context, fileUri);
 		}
-
-		if (filePath != null) {
-			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
-		}
-
-		return result;
+		
+		return filePath;
 	}
 
 	public static final String findPictureFilePath(Context context, Uri dataUri) {
@@ -68,39 +76,64 @@ public class Gallery {
 		private Intent intent = null;
 		private String TemporaryImagePath = null;
 
-		public void prepareIntent(Context context) {
+		private boolean createPicasaSupportedIntent(Context context) {
+			boolean success = false;
 			try {
-				if(AndroidVersion.isBeforeHoneycomb()) {
-					File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-					dir.mkdirs();
-					File tempFile = new File(dir, "galleryresult-temp.png");
-					
-					//.createTempFile("GalleryResult", ".png");
-					TemporaryImagePath = tempFile.getAbsolutePath();
+				
+				File dir = DirectoryUtils.getPublicPictures();
+				File tempFile = new File(dir, "galleryresult-temp.png");
+				
+				//.createTempFile("GalleryResult", ".png");
+				TemporaryImagePath = tempFile.getAbsolutePath();
 	
-					tempFile.getParentFile().mkdirs();
-					
-					tempFile.createNewFile();
-					Logger.d("IsFile= " + tempFile.isFile());
+				tempFile.getParentFile().mkdirs();
+				
+				tempFile.createNewFile();
+				if(AndroidVersion.isGingerbreadOrHigher()) {
 					tempFile.setWritable(true, false);
 					tempFile.setReadable(true, false);
-	
-					intent = new Intent(Intent.ACTION_GET_CONTENT);
-					intent.setType(TypeFilter);
-	
-					if (ForceDefaultHandlers) {
-						intent.addCategory(Intent.CATEGORY_DEFAULT);
-					}
-	
-					final Uri uri = Uri.fromFile(tempFile);
-					intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-					final String formatName = CompressFormat.name();
-					intent.putExtra("outputFormat", formatName);
-				} else {
-					intent = IntentHelper.getContentByType("image/*");
 				}
+	
+				intent = new Intent(Intent.ACTION_GET_CONTENT);
+				intent.setType(TypeFilter);
+	
+				if (ForceDefaultHandlers) {
+					intent.addCategory(Intent.CATEGORY_DEFAULT);
+				}
+	
+				final Uri uri = Uri.fromFile(tempFile);
+				intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+				final String formatName = CompressFormat.name();
+				intent.putExtra("outputFormat", formatName);
+				intent.setClassName(StockAndroidGalleryPackageName, StockAndroidGallery3dClassName);
+				success = true;
 			} catch (Exception e) {
-
+				success = false;
+				// Delete the file if create failed.
+			}
+			
+			return success;
+		}
+		
+		
+		private boolean isPicasaSupported(Context context) {
+			if(AndroidVersion.isBeforeHoneycomb()) {
+				Intent testStockGallery = new Intent(Intent.ACTION_GET_CONTENT);
+				testStockGallery.setType(TypeFilter);
+				testStockGallery.putExtra(MediaStore.EXTRA_OUTPUT, "");
+				testStockGallery.putExtra("outputFormat", Bitmap.CompressFormat.PNG.name());
+				testStockGallery.setClassName(StockAndroidGalleryPackageName, StockAndroidGallery3dClassName);
+				return IntentHelper.canHandleIntent(context, testStockGallery);
+			} else {
+				return false;
+			}
+		}
+		
+		public void prepareIntent(Context context) {
+			if(isPicasaSupported(context)) {
+				createPicasaSupportedIntent(context);
+			} else {
+				intent = IntentHelper.getContentByType("image/*");
 			}
 		}
 
@@ -112,6 +145,14 @@ public class Gallery {
 			Bundle data = new Bundle();
 			data.putString("transientImagePath", TemporaryImagePath);
 			return data;
+		}
+
+		public boolean isChoosable() {
+			return false;
+		}
+
+		public CharSequence getChooserTitle() {
+			return "Which Gallery?";
 		}
 	}
 
@@ -207,11 +248,7 @@ public class Gallery {
 			
 			if(imageUri != null) {
 
-				if(imageUri.getScheme().equals("file")) {
-					filePath = imageUri.getPath();
-				} else if(imageUri.getScheme().equals("content")) {
-					filePath = findPictureFilePath(context, imageUri);
-				}
+				filePath = uriToPhysicalPath(context, imageUri);
 				
 				if(filePath != null) {
 					bitmapResult = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
@@ -221,6 +258,15 @@ public class Gallery {
 					}
 				}
 			}
+		}
+	}
+
+	public static void deleteImageUri(Context context, Uri imageUri) {
+		String filePath = uriToPhysicalPath(context, imageUri);
+		context.getContentResolver().delete(imageUri, null, null);
+		if(filePath != null) {
+			File delTarget = new File(filePath);
+			delTarget.delete();
 		}
 	}
 }

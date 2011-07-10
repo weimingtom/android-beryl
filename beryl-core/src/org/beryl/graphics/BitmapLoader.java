@@ -1,5 +1,6 @@
 package org.beryl.graphics;
 
+import org.beryl.app.AndroidVersion;
 import org.beryl.util.Memory;
 
 import android.graphics.Bitmap;
@@ -30,7 +31,9 @@ public class BitmapLoader {
 		Bitmap result = null;
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
-		options.inPreferQualityOverSpeed = true;
+		if(AndroidVersion.isGingerbreadMr1OrHigher()) {
+			options.inPreferQualityOverSpeed = true;
+		}
 		BitmapFactory.decodeFile(filePath, options);
 		
 		BitmapMetrics metrics = new BitmapMetrics(options);
@@ -41,5 +44,13 @@ public class BitmapLoader {
 		result = BitmapFactory.decodeFile(filePath, options);
 		
 		return result;
+	}
+	
+	public static void safeRecycle(Bitmap bitmap) {
+		if(bitmap != null) {
+			if(! bitmap.isRecycled()) {
+				bitmap.recycle();
+			}
+		}
 	}
 }

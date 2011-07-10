@@ -27,6 +27,16 @@ public class Email {
 	    	
 	    	return intent;
 		}
+
+		@Override
+		public boolean isChoosable() {
+			return true;
+		}
+
+		@Override
+		public CharSequence getChooserTitle() {
+			return "Send Email via...";
+		}
 	}
 	
 	public static final Intent sendEmail(final String address, final String subject, final String body) {

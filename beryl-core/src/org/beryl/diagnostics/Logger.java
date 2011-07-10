@@ -94,18 +94,22 @@ public class Logger {
 		logDelegate.d(bundle);
 	}
 
+	/** Reports methods, fields, annotations, and other information of the class to the log. */
 	public static void inspectClass(Class<?> clazz) {
 		logDelegate.inspectClass(clazz);
 	}
 
+	/** Dump data out all the data from a Cursor to the log. */
 	public static void inspectQueryResult(final Cursor cur) {
 		logDelegate.inspectQueryResult(cur);
 	}
 
+	/** Dump only the data within context of the Cursor object. */
 	public static void inspectCursorData(final Cursor cur) {
 		logDelegate.inspectCursorData(cur);
 	}
 	
+	/** Reports methods, fields, annotations, and other information and their values from the object. */
 	public static void probe(final Object obj) {
 		logDelegate.probe(obj);
 	}

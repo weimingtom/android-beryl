@@ -64,6 +64,11 @@ public class AndroidVersion {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.GINGERBREAD;
 	}
 	
+	/** Returns true if running on Android 2.3.3 or higher. */
+	public static boolean isGingerbreadMr1OrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.GINGERBREAD_MR1;
+	}
+	
 	/** Returns true if running on Android 3.0 or higher. */
 	public static boolean isHoneycombOrHigher() {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.HONEYCOMB;
@@ -72,6 +77,11 @@ public class AndroidVersion {
 	/** Returns true if running on an earlier version than Android 3.0. */
 	public static boolean isBeforeHoneycomb() {
 		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.HONEYCOMB;
+	}
+	
+	/** Returns true if running on an earlier version than Android 2.3. */
+	public static boolean isBeforeGingerbreadMr1() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.GINGERBREAD_MR1;
 	}
 	
 	/** Returns true if running on an earlier version than Android 2.3. */
