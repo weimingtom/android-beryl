@@ -7,6 +7,7 @@ import org.beryl.app.AndroidVersion;
 import android.content.Context;
 import android.os.Environment;
 
+//http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES
 public class DirectoryUtils {
 
 	/** */
