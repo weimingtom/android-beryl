@@ -42,7 +42,7 @@
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-intents" />
 			<param name="package" value="org.beryl.intents" />
-			<param name="classpathid" value="default-berylcore-classpath" />
+			<param name="classpathid" value="beryl-intents-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-web" />
@@ -91,7 +91,7 @@ $.beautyOfCode.init({
 			<classpath refid="default-googleapi-classpath" />
 			<!-- TODO: stylesheetfile -->
 			<link href="http://developer.android.com/reference/" offline="true" packagelistloc="${android.sdk.javadoc.offline}" />
-				<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
+				<link href="http://download.oracle.com/javase/1.5.0/docs/api/" />
 		</javadoc>
 	</target>
 	
@@ -154,6 +154,15 @@ $.beautyOfCode.init({
 			<include name="org.beryl.database.jar" />
 		</fileset>
 	</path>
+	
+	<path id="beryl-intents-classpath">
+    <path refid="default-berylweb-classpath" />
+    <fileset dir="${beryl.jar.path}">
+			<include name="org.beryl.database.jar" />
+			<include name="org.beryl.io.jar" />
+		</fileset>
+	</path>
+	
 	
 	<path id="default-googleapi-classpath">
 		<fileset dir="${android.sdk.platforms.default}">

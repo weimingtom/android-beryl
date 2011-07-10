@@ -1,5 +1,7 @@
 package org.beryl.intents;
 
+import org.beryl.diagnostics.Logger;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 
@@ -21,18 +23,40 @@ public class IntentPrepareTask extends AsyncTask<Void, Void, Void> {
 	}
 	
 	protected void onPostExecute(Void result) {
-		final Intent intent = builder.getIntent();
 		
-		if(builder instanceof IIntentBuilderForResult) {
-			IIntentBuilderForResult builderForResult = (IIntentBuilderForResult) builder;
-			launcher.obtainResultBundle(builderForResult.getResultBundle());
-			launcher.startActivityForResult(intent, this.requestCode);
-		} else {
-			launcher.startActivity(intent);
+		try {
+			final Intent baseIntent = builder.getIntent();
+			Intent intent;
+			
+			if(builder.isChoosable()) {
+				intent = Intent.createChooser(baseIntent, builder.getChooserTitle());
+			} else {
+				intent = baseIntent;
+			}
+			
+			if(builder instanceof IIntentBuilderForResult) {
+				IIntentBuilderForResult builderForResult = (IIntentBuilderForResult) builder;
+				launcher.obtainResultBundle(builderForResult.getResultBundle());
+				
+				if(IntentHelper.canHandleIntent(launcher.getContext(), intent)) {
+					launcher.startActivityForResult(intent, this.requestCode);
+				} else {
+					launcher.onStartActivityForResultFailed(intent, this.requestCode);
+				}
+			} else {
+				if(IntentHelper.canHandleIntent(launcher.getContext(), intent)) {
+					launcher.startActivity(intent);
+				} else {
+					launcher.onStartActivityFailed(intent);
+				}
+			}
+		} catch(Exception e) {
+			Logger.e(e);
+		} finally {
+			launcher.onLaunchTaskComplete();
+			
+			builder = null;
+			launcher = null;
 		}
-		launcher.onLaunchTaskComplete();
-		
-		builder = null;
-		launcher = null;
 	}
 }

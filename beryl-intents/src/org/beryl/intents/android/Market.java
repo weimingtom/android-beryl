@@ -22,6 +22,14 @@ public class Market {
 			intent.setData(Uri.parse(MARKET_Scheme + "details?id=" + packageName));
 			return intent;
 		}
+		
+		public boolean isChoosable() {
+			return false;
+		}
+
+		public CharSequence getChooserTitle() {
+			return "View App on Market with";
+		}
 	}
 	
 	public static class Search implements IIntentBuilder {
@@ -34,6 +42,14 @@ public class Market {
 			intent.setData(Uri.parse(MARKET_Scheme + "search?q=" + queryString));
 			return intent;
 		}
+
+		public boolean isChoosable() {
+			return false;
+		}
+
+		public CharSequence getChooserTitle() {
+			return "Search Market using";
+		}
 	}
 	
 	public static class SearchPublisher implements IIntentBuilder {
@@ -45,6 +61,14 @@ public class Market {
 			final Intent intent = new Intent(Intent.ACTION_VIEW);
 			intent.setData(Uri.parse(MARKET_Scheme + "search?q=pub:" + publisherName));
 			return intent;
+		}
+		
+		public boolean isChoosable() {
+			return false;
+		}
+
+		public CharSequence getChooserTitle() {
+			return "Search Publisher using";
 		}
 	}
 

@@ -1,5 +1,7 @@
 package org.beryl.intents;
 
+import org.beryl.diagnostics.Logger;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -24,16 +26,20 @@ public class ActivityResultTask extends AsyncTask<Void, Void, Void> {
 	}
 	
 	protected final void onPostExecute(Void result) {
-		if(resultCode == Activity.RESULT_OK) {
-			handler.onResultCompleted();
-		} else if(resultCode == Activity.RESULT_CANCELED) {
-			handler.onResultCanceled();
-		} else {
-			handler.onResultCustomCode(resultCode);
+		try {
+			if(resultCode == Activity.RESULT_OK) {
+				handler.onResultCompleted();
+			} else if(resultCode == Activity.RESULT_CANCELED) {
+				handler.onResultCanceled();
+			} else {
+				handler.onResultCustomCode(resultCode);
+			}
+		} catch(Exception e) {
+			Logger.e(e);
+		} finally {
+			launcher = null;
+			handler = null;
+			data = null;
 		}
-		
-		launcher = null;
-		handler = null;
-		data = null;
 	}
 }

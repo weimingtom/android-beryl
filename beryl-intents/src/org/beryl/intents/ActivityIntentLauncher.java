@@ -1,6 +1,5 @@
 package org.beryl.intents;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,10 +17,6 @@ public class ActivityIntentLauncher implements Parcelable {
 	
 	public ActivityIntentLauncher(Parcel in) {
 		readFromParcel(in);
-	}
-	
-	public void setActivityLauncherFromActivity(Activity activity) {
-		setActivityLauncher(new ActivityLauncherProxy(activity));
 	}
 	
 	public void setActivityLauncher(IActivityLauncherProxy proxy) {
@@ -64,6 +59,14 @@ public class ActivityIntentLauncher implements Parcelable {
 		launcherProxy.startActivityForResult(intent, requestCode);
 	}
 	
+	public void onStartActivityForResultFailed(Intent intent, int requestCode) {
+		launcherProxy.onStartActivityForResultFailed(intent, requestCode);
+	}
+
+	public void onStartActivityFailed(Intent intent) {
+		launcherProxy.onStartActivityFailed(intent);
+	}
+	
 	void onLaunchTaskComplete() {
 		currentPrepareTask = null;
 	}
@@ -94,5 +97,7 @@ public class ActivityIntentLauncher implements Parcelable {
 		void startActivity(Intent intent);
 		void startActivityForResult(Intent intent, int requestCode);
 		Context getContext();
+		void onStartActivityFailed(Intent intent);
+		void onStartActivityForResultFailed(Intent intent, int requestCode);
 	}
 }

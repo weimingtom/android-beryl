@@ -4,6 +4,7 @@ import org.beryl.graphics.BitmapLoader;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -55,6 +56,14 @@ public class Camera {
 			bundle.putParcelable("captureImageUri", imageUri);
 			return bundle;
 		}
+
+		public boolean isChoosable() {
+			return false;
+		}
+
+		public CharSequence getChooserTitle() {
+			return "";
+		}
 	}
 	
 	public abstract static class GetCameraCaptureResult implements IActivityResultHandler {
@@ -70,7 +79,11 @@ public class Camera {
 				imageUri = data.getParcelableExtra(MediaStore.EXTRA_OUTPUT);
 			}
 			
-			bitmapResult = Gallery.loadBitmapFromUri(context, imageUri);
+			if(resultCode == Activity.RESULT_OK) {
+				bitmapResult = Gallery.loadBitmapFromUri(context, imageUri);
+			} else if(resultCode == Activity.RESULT_CANCELED) {
+				Gallery.deleteImageUri(context, imageUri);
+			}
 		}
 	}
 	

@@ -20,6 +20,14 @@ public class Web {
 		public void prepareIntent(Context context) {
 			// Do Nothing
 		}
+		
+		public boolean isChoosable() {
+			return false;
+		}
+
+		public CharSequence getChooserTitle() {
+			return "View Website with";
+		}
 	}
 	public static final Intent viewUrl(final String url) {
 		View viewer = new View();
