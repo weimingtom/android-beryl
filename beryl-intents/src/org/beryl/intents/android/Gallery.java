@@ -15,7 +15,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 
 public class Gallery {
@@ -114,27 +113,34 @@ public class Gallery {
 			
 			return success;
 		}
-		
-		
+
 		private boolean isPicasaSupported(Context context) {
+			boolean picasaSupported = false;
+			/*
 			if(AndroidVersion.isBeforeHoneycomb()) {
 				Intent testStockGallery = new Intent(Intent.ACTION_GET_CONTENT);
 				testStockGallery.setType(TypeFilter);
 				testStockGallery.putExtra(MediaStore.EXTRA_OUTPUT, "");
 				testStockGallery.putExtra("outputFormat", Bitmap.CompressFormat.PNG.name());
 				testStockGallery.setClassName(StockAndroidGalleryPackageName, StockAndroidGallery3dClassName);
-				return IntentHelper.canHandleIntent(context, testStockGallery);
-			} else {
-				return false;
+				picasaSupported = IntentHelper.canHandleIntent(context, testStockGallery);
 			}
+			*/
+			// FIXME: For now picasa support is disabled until we can sort out the issues with lockups from gallery apps.
+			picasaSupported = false;
+			return picasaSupported;
 		}
 		
 		public void prepareIntent(Context context) {
 			if(isPicasaSupported(context)) {
 				createPicasaSupportedIntent(context);
 			} else {
-				intent = IntentHelper.getContentByType("image/*");
+				createGenericGetImageIntent();
 			}
+		}
+
+		private void createGenericGetImageIntent() {
+			intent = IntentHelper.getContentByType("image/*");
 		}
 
 		public Intent getIntent() {
@@ -228,9 +234,11 @@ public class Gallery {
 			bitmapResult = null;
 			Uri imageUri = null;
 			String filePath = null;
+
+			//FIXME: When picasa support comes back restore this line of code.
+			/*
 			boolean fromTransientPath = false;
 			String tempFilePath = null;
-
 			if(resultBundle != null) {
 				tempFilePath = resultBundle.getString("transientImagePath");
 				if(tempFilePath != null) {
@@ -239,7 +247,7 @@ public class Gallery {
 					fromTransientPath = true;
 				}
 			}
-			
+			*/
 			if(imageUri == null || imageUri.toString().length() == 0) {
 				if(data != null) {
 					imageUri = data.getData();
@@ -252,10 +260,14 @@ public class Gallery {
 				
 				if(filePath != null) {
 					bitmapResult = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
+					
+					//FIXME: When picasa support comes back restore this line of code.
+					/*
 					if(fromTransientPath) {
 						File delTarget = new File(filePath);
 						delTarget.delete();
 					}
+					*/
 				}
 			}
 		}
