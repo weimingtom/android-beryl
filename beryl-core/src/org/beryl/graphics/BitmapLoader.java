@@ -5,6 +5,7 @@ import org.beryl.util.Memory;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 
 public class BitmapLoader {
 	
@@ -42,15 +43,35 @@ public class BitmapLoader {
 		options.inJustDecodeBounds = false;
 		
 		result = BitmapFactory.decodeFile(filePath, options);
-		
 		return result;
 	}
 	
-	public static void safeRecycle(Bitmap bitmap) {
+	public static boolean isUsable(Bitmap bitmap) {
 		if(bitmap != null) {
 			if(! bitmap.isRecycled()) {
-				bitmap.recycle();
+				return true;
 			}
 		}
+		return false;
+	}
+	
+	public static void safeRecycle(Bitmap bitmap) {
+		if(isUsable(bitmap)) {
+			bitmap.recycle();
+		}
+	}
+
+	public static Bitmap rotateBitmap(Bitmap bitmap, float angle) {
+		
+		int width;
+		int height;
+		
+		width = bitmap.getWidth();
+		height = bitmap.getHeight();
+		
+		Matrix rotationMatrix = new Matrix();
+		rotationMatrix.setRotate(angle);
+		Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, rotationMatrix, true);
+		return rotatedBitmap;
 	}
 }
