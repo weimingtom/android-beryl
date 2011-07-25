@@ -5,6 +5,7 @@ import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -36,12 +37,13 @@ public class Camera {
 		}
 		
 		public void prepareIntent(Context context) {
-			ContentValues values = new ContentValues();
+			final ContentValues values = new ContentValues();
 			values.put(MediaStore.Images.Media.TITLE, title);
 			values.put(MediaStore.Images.Media.DESCRIPTION, description);
 			values.put(MediaStore.Images.Media.DISPLAY_NAME, getDisplayName());
 			
-			this.imageUri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+			final ContentResolver cr = context.getContentResolver();
+			this.imageUri = cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 		}
 
 		public Intent getIntent() {
@@ -89,12 +91,13 @@ public class Camera {
 	
 	//http://achorniy.wordpress.com/2010/04/26/howto-launch-android-camera-using-intents/
 	public static Intent requestHighQualityPictureAndRegisterMedia(Context context, String title, String fileName, String description) {
-		ContentValues values = new ContentValues();
+		final ContentValues values = new ContentValues();
 		values.put(MediaStore.Images.Media.TITLE, fileName);
 		values.put(MediaStore.Images.Media.DESCRIPTION, description);
 		values.put(MediaStore.Images.Media.DISPLAY_NAME, title);
 		
-		final Uri imageUri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+		final ContentResolver cr = context.getContentResolver();
+		final Uri imageUri = cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 		intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); // High Quality.
