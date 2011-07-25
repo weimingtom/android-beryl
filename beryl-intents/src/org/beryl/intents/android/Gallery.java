@@ -9,6 +9,7 @@ import org.beryl.intents.IIntentBuilderForResult;
 import org.beryl.intents.IntentHelper;
 import org.beryl.io.DirectoryUtils;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -50,13 +51,15 @@ public class Gallery {
 		final String[] projection = { MediaStore.Images.Media.DATA };
 		Cursor cursor = null;
 		try {
-			cursor = context.getContentResolver().query(dataUri, projection,
-					null, null, null);
-			int data_index = cursor
-					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			final ContentResolver cr = context.getContentResolver();
+			cursor = cr.query(dataUri, projection, null, null, null);
+			int data_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			
 			if (cursor.moveToFirst()) {
 				filePath = cursor.getString(data_index);
 			}
+		} catch(Exception e) {
+			
 		} finally {
 			if (cursor != null) {
 				cursor.close();
@@ -275,7 +278,8 @@ public class Gallery {
 
 	public static void deleteImageUri(Context context, Uri imageUri) {
 		String filePath = uriToPhysicalPath(context, imageUri);
-		context.getContentResolver().delete(imageUri, null, null);
+		final ContentResolver cr = context.getContentResolver();
+		cr.delete(imageUri, null, null);
 		if(filePath != null) {
 			File delTarget = new File(filePath);
 			delTarget.delete();
