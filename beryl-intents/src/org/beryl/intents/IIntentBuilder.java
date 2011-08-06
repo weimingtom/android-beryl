@@ -11,6 +11,7 @@ public interface IIntentBuilder {
 	
 	/** Returns the Intent that represents the request. */
 	Intent getIntent();
+	boolean isValid();
 	
 	boolean isChoosable();
 	CharSequence getChooserTitle();

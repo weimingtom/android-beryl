@@ -1,7 +1,9 @@
 package org.beryl.graphics;
 
+import org.beryl.app.AndroidVersion;
 import org.beryl.util.Memory;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class BitmapMetrics {
@@ -61,5 +63,13 @@ public class BitmapMetrics {
 	
 	public static long getMemoryFootprintForRgba8888(long width, long height) {
 		return getNumberOfPixels(width, height) * 4;
+	}
+	
+	public static long getSizeInBytes(final Bitmap bitmap) {
+		if(AndroidVersion.isHoneycombMr1OrHigher()) {
+			return bitmap.getByteCount();
+		} else {
+			return bitmap.getRowBytes() * bitmap.getHeight();
+		}
 	}
 }

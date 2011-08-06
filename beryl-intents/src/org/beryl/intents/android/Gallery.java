@@ -146,6 +146,10 @@ public class Gallery {
 			intent = IntentHelper.getContentByType("image/*");
 		}
 
+		public boolean isValid() {
+			return intent != null;
+		}
+		
 		public Intent getIntent() {
 			return intent;
 		}
