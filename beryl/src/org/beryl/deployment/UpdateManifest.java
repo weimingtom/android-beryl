@@ -15,10 +15,6 @@ class UpdateManifest {
 		jsonManifest = new JSONObject(jsonString);
 	}
 	
-	public void Stuff() {
-		
-	}
-
 	public UpdateManifestApplication findApplication(String applicationPackage, String type) throws JSONException {
 		UpdateManifestApplication manifestApplication = new UpdateManifestApplication();
 		
