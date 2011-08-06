@@ -14,7 +14,7 @@ public class UpdateManifestApplication {
 	private String updateUrl;
 	private boolean mandatory;
 	private String type;
-	
+
 	static boolean isMatch(JSONObject jsonApp, String packageName, String type) throws JSONException {
 		return packageName.equals(jsonApp.getString("packageName").toLowerCase()) &&
 				type.equals(jsonApp.getString("type").toLowerCase());
@@ -58,11 +58,11 @@ public class UpdateManifestApplication {
 	public boolean getMandatory() {
 		return mandatory;
 	}
-	
+
 	public boolean isTest() {
 		return type.equals(Constants.TYPE_TEST);
 	}
-	
+
 	public boolean isProduction() {
 		return type.equals(Constants.TYPE_PRODUCTION);
 	}

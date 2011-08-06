@@ -5,12 +5,12 @@ import org.beryl.diagnostics.Logger;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
 
 /** Base class for providing functionality to have managed database upgrades.
  * Once subclassed the database will be upgraded to the latest version using DatabaseUpdateScript objects.
- * 
+ *
 <h3>These objects must be defined with the following criteria.</h3>
 <ul>
 	<li>All in the same package.</li>
@@ -28,12 +28,12 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 public abstract class UpdatableDatabaseOpenHelper extends SQLiteOpenHelper {
 	private final Context context;
 	private Log logger = null;
-	
+
 	public UpdatableDatabaseOpenHelper(Context context, String name, int version) {
 		super(context, name, null, version);
 		this.context = context;
 	}
-	
+
 	public UpdatableDatabaseOpenHelper(Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);
 		this.context = context;
@@ -45,7 +45,7 @@ public abstract class UpdatableDatabaseOpenHelper extends SQLiteOpenHelper {
 		final DatabaseUpdateRunner updateRunner = new DatabaseUpdateRunner();
 		final DatabaseUpdateLoader updateLoader = new DatabaseUpdateLoader(updateRunner, params);
 		final Log log = params.log;
-		
+
 		try {
 			log.i("onCreate: Load create database scripts...");
 			Class<? extends IDatabaseUpdateScript> createScript = getCreateScript();
@@ -56,7 +56,7 @@ public abstract class UpdatableDatabaseOpenHelper extends SQLiteOpenHelper {
 			log.e(e);
 		}
 		finally {
-			
+
 		}
 	}
 
@@ -66,10 +66,10 @@ public abstract class UpdatableDatabaseOpenHelper extends SQLiteOpenHelper {
 		final DatabaseUpdateRunner updateRunner = new DatabaseUpdateRunner();
 		final DatabaseUpdateLoader updateLoader = new DatabaseUpdateLoader(updateRunner, params);
 		final Log log = params.log;
-		
+
 		try {
 			log.i("onUpgrade: Load update database scripts...");
-			
+
 			updateLoader.queueScriptFromClassNameTemplate(getUpdateScriptClassPathTemplate(), oldVersion, newVersion);
 			updateRunner.run();
 		} catch(Exception e) {
@@ -77,39 +77,39 @@ public abstract class UpdatableDatabaseOpenHelper extends SQLiteOpenHelper {
 			log.e(e);
 		}
 		finally {
-			
+
 		}
 	}
-	
+
 	private DatabaseUpdateParameters createUpdateParams(SQLiteDatabase db) {
 		return new DatabaseUpdateParameters(context, db, getLogger());
 	}
-	
+
 	private Log getLogger() {
 		if(logger == null) {
 			logger = Logger.newInstance("db_" + getDbName());
 		}
-		
+
 		return logger;
 	}
 
 	protected String createUpdateScriptClassPathTemplate(Class<?> exampleUpdateClass) {
 		String template = null;
-		
+
 		if(exampleUpdateClass != null) {
 			String className = exampleUpdateClass.getName();
 			template = className.replace("_2", "_%d");
 		}
-		
+
 		return template;
 	}
-	
+
 	/** Name of the database. When entries are logged against it, they will be tagged as db_DbName. */
 	public abstract String getDbName();
-	
+
 	/** The DatabaseCreateScript that is used to create the database. */
 	protected abstract Class<? extends IDatabaseUpdateScript> getCreateScript();
-	
+
 	/** Used by the Update Script Loader engine. Return the update script _2 class name.
 	 * Example:
 <pre class="code"><code class="java">

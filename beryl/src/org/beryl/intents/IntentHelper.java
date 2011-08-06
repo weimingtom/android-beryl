@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.webkit.MimeTypeMap;
 
 public class IntentHelper {
-	
+
 	public static boolean canHandleIntent(final Context context, final Intent intent) {
 
 		if (intent != null) {
@@ -21,17 +21,17 @@ public class IntentHelper {
 
 		return false;
 	}
-	
+
 	public static String getMimeTypeFromUrl(Uri url) {
 		return getMimeTypeFromUrl(url.getPath());
 	}
-	
+
 	public static String getMimeTypeFromUrl(String url) {
 		final MimeTypeMap mimeMap = MimeTypeMap.getSingleton();
 		final String extension = MimeTypeMap.getFileExtensionFromUrl(url);
 		return mimeMap.getMimeTypeFromExtension(extension);
 	}
-	
+
 	public static final Intent getContentByType(String mimeType) {
 		final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setType(mimeType);

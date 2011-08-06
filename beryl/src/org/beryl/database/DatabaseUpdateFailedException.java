@@ -6,14 +6,14 @@ package org.beryl.database;
 public class DatabaseUpdateFailedException extends RuntimeException {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1618583774440141160L;
 
 	public DatabaseUpdateFailedException(String message) {
 		super(message);
 	}
-	
+
 	public DatabaseUpdateFailedException(Throwable t) {
 		super(t);
 	}

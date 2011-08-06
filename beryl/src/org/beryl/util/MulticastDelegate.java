@@ -28,12 +28,12 @@ interface OnPictureTakenListener {
 
 class PictureTaker {
 	final MulticastDelegate listeners = new MulticastDelegate();
-	
+
 	public void addListener(Object obj) {
 		listeners.add(obj);
 	}
-	
-	// If you're calling a fire and forget delegate then use this. 
+
+	// If you're calling a fire and forget delegate then use this.
 	public void takePictureForLazyDevelopers() {
 		Bitmap picture = takePicture();
 		listeners.invoke(OnPictureTakenListener.class, "onPictureTaken", picture);
@@ -52,21 +52,21 @@ class PictureTaker {
 public class MulticastDelegate {
 
 	final private ArrayList<WeakReference<Object>> delegates = new ArrayList<WeakReference<Object>>();
-	
+
 	/** Adds a delegate object. */
 	public void add(final Object delegate) {
 		if(!delegates.contains(delegate)) {
 			delegates.add(new WeakReference<Object>(delegate));
 		}
 	}
-	
+
 	/** Gets a list of all delegate objects that implement the class/interface passed in. */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> get(final Class<T> clazz) {
 		final List<T> delegateList = new ArrayList<T>();
-		
+
 		ArrayList<WeakReference<Object>> deadObjects = null;
-		
+
 		for(WeakReference<Object> weakRef : delegates) {
 			Object delegate = weakRef.get();
 			if(delegate == null) {
@@ -80,11 +80,11 @@ public class MulticastDelegate {
 				}
 			}
 		}
-		
+
 		compact(deadObjects);
 		return delegateList;
 	}
-	
+
 	/** Removes all delegates. */
 	public void clear() {
 		delegates.clear();
@@ -98,7 +98,7 @@ public class MulticastDelegate {
 		for(Object param : params) {
 			clazzParams.add(param.getClass());
 		}
-		
+
 		try {
 			Method method = Reflection.findDeclaredMethod(clazz, methodName, clazzParams);
 			for(T delegate : delegateList) {

@@ -10,7 +10,7 @@ public class FileUtils {
 		final File deleteTarget = new File(path);
 		return delete(deleteTarget);
 	}
-	
+
 	public static boolean delete(File targetFile) {
 		boolean deleted = true;
 		try {
@@ -23,10 +23,10 @@ public class FileUtils {
 			deleted = false;
 			ExceptionReporter.report(e);
 		}
-		
+
 		return deleted;
 	}
-	
+
 	public static boolean createDirectory(File directory) {
 		boolean created = true;
 		try {
@@ -39,7 +39,7 @@ public class FileUtils {
 			created = false;
 			ExceptionReporter.report(e);
 		}
-		
+
 		return created;
 	}
 }

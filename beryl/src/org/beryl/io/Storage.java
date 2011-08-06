@@ -14,7 +14,7 @@ public class Storage {
 			return false;
 		}
 	}
-	
+
 	/** Checks to see if the external storage media is <b>available for reading</b>.
 	 * To check for read-write access use isExternalStorageAvailable() instead. */
 	public static boolean isExternalStorageReadable() {

@@ -10,12 +10,12 @@ import java.io.InputStreamReader;
 public class SqlScriptReader {
 
 	private final BufferedReader scriptFile;
-	
+
 	public SqlScriptReader(InputStream stream) {
 		final InputStreamReader isr = new InputStreamReader(new BufferedInputStream(stream));
 		scriptFile = new BufferedReader(isr);
 	}
-	
+
 	public SqlScriptReader(BufferedReader reader) {
 		scriptFile = reader;
 	}
@@ -27,20 +27,20 @@ public class SqlScriptReader {
 	 */
 	public String nextStatement() throws IOException {
 		StringBuilder sb = new StringBuilder();
-		
+
 		boolean hasStatement = false;
 		int statementBreak;
 		int commentPosition;
 		String line;
-		
+
 		while((line = scriptFile.readLine()) != null) {
-			
+
 			// Remove comments.
 			commentPosition = line.indexOf("--");
 			if(commentPosition != -1) {
 				line = line.substring(0, commentPosition);
 			}
-			
+
 			// Clean the line.
 			line = line.trim();
 			statementBreak = line.indexOf(";");
@@ -52,7 +52,7 @@ public class SqlScriptReader {
 				break;
 			}
 		}
-		
+
 		if(hasStatement)
 			return sb.toString();
 		else

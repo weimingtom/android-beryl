@@ -10,32 +10,32 @@ import android.os.Bundle;
 
 /**
  * Configures a LocationMonitor to prefer GPS over all other methods of acquiring locations.
- * 
+ *
 <h2>Features</h2>
 <ol>
 	<li>When GPS is reporting locations, all other providers are disabled to conserve battery.</li>
 	<li>When GPS is not available or not reporting locations. Other providers are wakened to compensate.</li>
-</ol> 
+</ol>
  */
 public class PreferGpsLocationMonitorController extends LocationMonitorController {
 
 	private float _defaultRestartProviderMinDistance = Constants.DEFAULT_INTERVAL_DISTANCE;
 	private long _defaultRestartProviderMinTime = Constants.DEFAULT_INTERVAL_TIME;
-	
-	private ArrayList<String> _providersIStopped = new ArrayList<String>();
-	
+
+	private final ArrayList<String> _providersIStopped = new ArrayList<String>();
+
 	public PreferGpsLocationMonitorController(LocationMonitor monitor) {
 		super(monitor);
 	}
 
 	public void startMonitor() {
 		List<String> providers = Monitor.getEnabledProviders();
-		
+
 		for(String provider : providers) {
 			Monitor.beginListening(provider, _defaultRestartProviderMinTime, _defaultRestartProviderMinDistance);
 		}
 	}
-	
+
 	public void setLocationTimeAndDistanceIntervals(long minTime, float minDistance) {
 		_defaultRestartProviderMinTime = minTime;
 		_defaultRestartProviderMinDistance = minDistance;
@@ -57,7 +57,7 @@ public class PreferGpsLocationMonitorController extends LocationMonitorControlle
 		final ArrayList<String> activeProviders = getListeningProviders();
 		final int numProviders = activeProviders.size();
 		String provider;
-		
+
 		_providersIStopped.ensureCapacity(numProviders);
 
 		for(int i = 0; i < numProviders; i++) {
@@ -70,13 +70,13 @@ public class PreferGpsLocationMonitorController extends LocationMonitorControlle
 	private void enableNonGpsProviders() {
 		final int numProviders = _providersIStopped.size();
 		String provider;
-		
+
 		for(int i = 0; i < numProviders; i++) {
 			provider = _providersIStopped.get(i);
 			Monitor.beginListening(provider, _defaultRestartProviderMinTime, _defaultRestartProviderMinDistance);
 		}
 	}
-	
+
 	public void onProviderEnabled(String provider) {
 	}
 

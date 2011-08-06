@@ -1,7 +1,5 @@
 package org.beryl.intents.android;
 
-import java.io.File;
-
 import org.beryl.diagnostics.ExceptionReporter;
 import org.beryl.graphics.BitmapLoader;
 import org.beryl.intents.IActivityResultHandler;
@@ -20,18 +18,18 @@ import android.provider.MediaStore;
 
 public class Gallery {
 	private static final int NUM_INSTANCES = 4;
-	
+
 	public static final Bitmap loadBitmapFromUri(Context context, Uri fileUri) {
 		Bitmap result = null;
 		String filePath = uriToPhysicalPath(context, fileUri);
-		
+
 		if (filePath != null) {
 			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
 		}
 
 		return result;
 	}
-	
+
 	public static String uriToPhysicalPath(Context context, Uri fileUri) {
 		String filePath = null;
 		if (fileUri.getScheme().equals("file")) {
@@ -39,7 +37,7 @@ public class Gallery {
 		} else if (fileUri.getScheme().equals("content")) {
 			filePath = findPictureFilePath(context, fileUri);
 		}
-		
+
 		return filePath;
 	}
 
@@ -51,7 +49,7 @@ public class Gallery {
 			final ContentResolver cr = context.getContentResolver();
 			cursor = cr.query(dataUri, projection, null, null, null);
 			int data_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-			
+
 			if (cursor.moveToFirst()) {
 				filePath = cursor.getString(data_index);
 			}
@@ -85,7 +83,7 @@ public class Gallery {
 		public boolean isValid() {
 			return intent != null;
 		}
-		
+
 		public Intent getIntent() {
 			return intent;
 		}
@@ -122,26 +120,6 @@ public class Gallery {
 		return intent;
 	}
 
-	public final static Bitmap fromSEND_getImage(Context context, Intent data) {
-		Bitmap result = null;
-		Uri dataUri = data.getParcelableExtra(Intent.EXTRA_STREAM);
-		result = Gallery.loadBitmapFromUri(context, dataUri);
-
-		return result;
-	}
-
-	public static Bitmap onActivityResult_getImage(Context context, Intent data) {
-		Bitmap result = null;
-		Uri dataUri = data.getData();
-		final String filePath = Gallery.findPictureFilePath(context, dataUri);
-		
-		if (filePath != null) {
-			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
-		}
-		
-		return result;
-	}
-
 	public static final Intent sendImage(final String filePath) {
 		final Uri uri = Uri.parse(filePath);
 		return sendImage(uri);
@@ -159,9 +137,9 @@ public class Gallery {
 	}
 
 	public abstract static class SendImageResult implements IActivityResultHandler {
-		
+
 		public Bitmap bitmapResult = null;
-		
+
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			Uri dataUri = data.getParcelableExtra(Intent.EXTRA_STREAM);
 			bitmapResult = Gallery.loadBitmapFromUri(context, dataUri);
@@ -169,9 +147,9 @@ public class Gallery {
 	}
 
 	public abstract static class GetImageResult implements IActivityResultHandler {
-		
+
 		public Bitmap bitmapResult = null;
-		
+
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			bitmapResult = null;
 			Uri imageUri = null;
@@ -181,11 +159,11 @@ public class Gallery {
 			if(data != null) {
 				imageUri = data.getData();
 			}
-			
+
 			if(imageUri != null) {
 
 				filePath = uriToPhysicalPath(context, imageUri);
-				
+
 				if(filePath != null) {
 					bitmapResult = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
 				}

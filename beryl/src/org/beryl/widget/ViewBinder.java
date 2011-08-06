@@ -35,7 +35,7 @@ class MyFragment extends Fragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_testpanel, container, false);
-	
+
 		// Bind Views
 		TestCreateButton = (Button) view.findViewById(R.id.TestCreateButton);
 		TestCreateButton.setOnClickListener(new OnClickListener() {
@@ -50,7 +50,7 @@ class MyFragment extends Fragment {
 			public void onClick(View v) { android.util.Log.i("Test", "Clicked TestDeleteButton"); }
 		});
 		// And so on...
-		
+
 		return view;
 	}
 }
@@ -63,14 +63,14 @@ class MyFragment extends Fragment {
 	Button TestUpdateButton;
 	Button TestDeleteButton;
 	// And other View/Widgets...
-	
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_testpanel, container, false);
 		// Bind Views
 		ViewBinder.bind(view, this, R.id.class);	// Yeah, that's it.
 		return view;
 	}
-	
+
 	// Look ma no explicit binding!
 	public void TestCreateButton_onClick(View view) { android.util.Log.i("Test", "Clicked TestCreateButton"); }
 	public void TestUpdateButton_onClick(View view) { android.util.Log.i("Test", "Clicked TestUpdateButton"); }
@@ -97,7 +97,7 @@ public class ViewBinder {
 	/**
 	 * Helper method to assist in BaseAdapter.getView method. Ensures that convertView is populated and that the associated ViewHolder class is tagged to the
 	 * view if it is created.
-	 * @param convertView 
+	 * @param convertView
 	 * @param parent
 	 * @param layoutId
 	 * @param viewHolderClass
@@ -112,7 +112,7 @@ class ArticleAdapter extends BaseAdapter {
 		ImageView ArticlePicture;
 		TextView ArticleCaption;
 	}
-	
+
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// Need to do something here.
 	}
@@ -159,7 +159,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 				ExceptionReporter.report(e);
 			}
 		}
-		
+
 		return convertView;
 	}
 }

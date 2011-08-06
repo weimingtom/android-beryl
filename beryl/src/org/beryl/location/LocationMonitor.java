@@ -29,25 +29,25 @@ public class LocationMonitor implements LocationListener, ContextClonable
 		_context = context;
 		_locationManager = (LocationManager)_context.getSystemService(Context.LOCATION_SERVICE);
 	}
-	
+
 	public LocationMonitor(final Context context, final LocationMonitor cloneFrom)
 	{
 		_context = context;
 		_locationManager = (LocationManager)_context.getSystemService(Context.LOCATION_SERVICE);
 	}
-	
+
 	public Object clone(final Context context) {
 		return new LocationMonitor(context, this);
 	}
-	
+
 	public void beginGpsListening(final long minTime, final float minDistance) {
 		beginListening(LocationManager.GPS_PROVIDER, minTime, minDistance);
 	}
-	
+
 	public void beginNetworkListening(final long minTime, final float minDistance) {
 		beginListening(LocationManager.NETWORK_PROVIDER, minTime, minDistance);
 	}
-	
+
 	/** Begins listening to a specific location provider.
 	 * If the provider is already running it will be restarted to use the new parameters. */
 	public void beginListening(final String provider, final long minTime, final float minDistance) {
@@ -64,15 +64,15 @@ public class LocationMonitor implements LocationListener, ContextClonable
 	public void stopListening() {
 		final int numProxies = _proxies.size();
 		LocationListenerProxy proxy;
-		
+
 		for(int i = 0; i < numProxies; i++) {
 			proxy = _proxies.get(i);
 			proxy.dispose();
 		}
-		
+
 		_proxies.clear();
 	}
-	
+
 	/** Stops a specific location provider. */
 	public void stopListening(final String provider) {
 		final LocationListenerProxy proxy = getProxy(provider);
@@ -80,16 +80,16 @@ public class LocationMonitor implements LocationListener, ContextClonable
 			stopProxy(proxy);
 		}
 	}
-	
+
 	/** Attempts to get the most accurate last known location of the device. Based on time and accuracy. */
 	public Location getBestStaleLocation() {
 		Location location = null;
-		
+
 		final List<String> providers = _locationManager.getAllProviders();
-		
+
 		for(String provider : providers) {
 			final Location testLocation = _locationManager.getLastKnownLocation(provider);
-			
+
 			if(testLocation != null) {
 				if(location == null) {
 					location = testLocation;
@@ -100,30 +100,30 @@ public class LocationMonitor implements LocationListener, ContextClonable
 				}
 			}
 		}
-		
+
 		return location;
 	}
-	
+
 	public boolean isGpsEnabled() {
 		return _locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 	}
-	
+
 	public boolean isNetworkEnabled() {
 		return _locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 	}
-	
+
 	public boolean isProviderEnabled(final String provider) {
 		return _locationManager.isProviderEnabled(provider);
 	}
-	
+
 	public boolean isNetworkOrGpsEnabled() {
 		return isNetworkEnabled() || isGpsEnabled();
 	}
-	
+
 	public List<String> getEnabledProviders() {
 		return _locationManager.getProviders(true);
 	}
-	
+
 	public boolean isAnyProviderEnabled() {
 		return getEnabledProviders().size() > 0;
 	}
@@ -142,58 +142,58 @@ public class LocationMonitor implements LocationListener, ContextClonable
 			return _locationManager.getBestProvider(criteria, true);
 		}
 	}
-	
+
 	private void startProxy(final String provider, final long minTime, final float minDistance) {
 		final LocationListenerProxy proxy = new LocationListenerProxy(_locationManager, provider, this, minTime, minDistance);
 		_proxies.add(proxy);
 	}
-	
+
 	private void stopProxy(LocationListenerProxy proxy) {
 		proxy.dispose();
 		_proxies.remove(proxy);
 	}
-	
+
 	public boolean isListening() {
 		return _proxies.size() > 0;
 	}
-	
+
 	public boolean isListening(final String provider) {
 		return getProxy(provider) != null;
 	}
-	
+
 	private LocationListenerProxy getProxy(String provider) {
 		final int numProxies = _proxies.size();
 		LocationListenerProxy proxy;
 		for(int i = 0; i < numProxies; i++) {
-			
+
 			proxy = _proxies.get(i);
 			if(proxy.getProvider().equals(provider)) {
 				return proxy;
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	public void addListener(final LocationListener listener) {
 		if(listener instanceof LocationMonitorController)
 			throw new IllegalArgumentException("LocationMonitorController was passed to addListener() use addController() instead.");
-		
+
 		if(! _listeners.contains(listener)) {
 			_listeners.add(listener);
 		}
 	}
-	
+
 	void addController(final LocationMonitorController controller) {
 		if(! _controllers.contains(controller)) {
 			_controllers.add(controller);
 		}
 	}
-	
+
 	public void removeController(final LocationMonitorController controller) {
 		_controllers.remove(controller);
 	}
-	
+
 	public void removeListener(final LocationListener listener) {
 		_listeners.remove(listener);
 	}
@@ -202,7 +202,7 @@ public class LocationMonitor implements LocationListener, ContextClonable
 		final int numControllers = _controllers.size();
 		final int numListeners = _listeners.size();
 		int i;
-		
+
 		for(i = 0; i < numControllers; i++) {
 			_controllers.get(i).onLocationChanged(location);
 		}
@@ -215,7 +215,7 @@ public class LocationMonitor implements LocationListener, ContextClonable
 		final int numControllers = _controllers.size();
 		final int numListeners = _listeners.size();
 		int i;
-		
+
 		for(i = 0; i < numControllers; i++) {
 			_controllers.get(i).onProviderDisabled(provider);
 		}
@@ -228,7 +228,7 @@ public class LocationMonitor implements LocationListener, ContextClonable
 		final int numControllers = _controllers.size();
 		final int numListeners = _listeners.size();
 		int i;
-		
+
 		for(i = 0; i < numControllers; i++) {
 			_controllers.get(i).onProviderEnabled(provider);
 		}
@@ -241,7 +241,7 @@ public class LocationMonitor implements LocationListener, ContextClonable
 		final int numControllers = _controllers.size();
 		final int numListeners = _listeners.size();
 		int i;
-		
+
 		for(i = 0; i < numControllers; i++) {
 			_controllers.get(i).onStatusChanged(provider, status, extras);
 		}
@@ -249,16 +249,16 @@ public class LocationMonitor implements LocationListener, ContextClonable
 			_listeners.get(i).onStatusChanged(provider, status, extras);
 		}
 	}
-	
+
 	protected ArrayList<String> getListeningProviders() {
 		final ArrayList<String> providers = new ArrayList<String>();
 		final int numProxies = _proxies.size();
 		providers.ensureCapacity(numProxies);
-		
+
 		for(int i = 0; i < numProxies; i++) {
 			providers.add(_proxies.get(i).getProvider());
 		}
-		
+
 		return providers;
 	}
 }

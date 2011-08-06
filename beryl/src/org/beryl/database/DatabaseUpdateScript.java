@@ -14,22 +14,22 @@ public abstract class DatabaseUpdateScript implements IDatabaseUpdateScript {
 		final Log log = params.log;
 		String sqlScript = getSchemaSqlScript();
 		boolean scriptSuccess = true;
-		
+
 		if(sqlScript != null) {
 			scriptSuccess = executeScript(params, sqlScript);
 		} else {
 			log.d("No schema script specified for this version.");
 		}
-		
+
 		if(! scriptSuccess) {
 			String failureMessage = sqlScript + " did not run successfully.";
 			params.log.e(failureMessage);
 			throw new DatabaseUpdateFailedException(failureMessage);
 		}
-		
+
 		onUpdateSchema(params);
 	}
-	
+
 	/** Executes an .sql script file that is stored in the application's asset directory. */
 	protected boolean executeScript(DatabaseUpdateParameters params, String sqlScriptAssetFilePath) {
 		boolean success = false;
@@ -38,14 +38,14 @@ public abstract class DatabaseUpdateScript implements IDatabaseUpdateScript {
 		success = DatabaseUtils.runSqlScriptFromAsset(params.context, params.db, sqlScriptAssetFilePath);
 		return success;
 	}
-	
+
 	/** Handler for code that should be applied immediately after a schema update.
 	 * Honestly, this is just here to allow the developer to put code that would otherwise be put in updateSchema as an override.
 	 * It is preferable to use onAfterSchemaUpdate.
 	 * @param params
 	 */
 	public abstract void onUpdateSchema(DatabaseUpdateParameters params);
-	
+
 	/** Specify the location of where the .sql script file is located.
 	 * If this database version does not have a schema update then return null. */
 	protected abstract String getSchemaSqlScript();

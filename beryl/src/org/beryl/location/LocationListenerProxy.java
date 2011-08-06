@@ -13,20 +13,20 @@ class LocationListenerProxy implements LocationListener
 	private final String _provider;
 	private final LocationListener _listener;
 	private final LocationManager _lm;
-	
+
 	public LocationListenerProxy(final LocationManager lm, final String provider, final LocationListener listener, final long minTime, final float minDistance)
 	{
 		_provider = provider;
 		_listener = listener;
-		
+
 		_lm = lm;
 		_lm.requestLocationUpdates(_provider, minTime, minDistance, this);
 	}
-	
+
 	public String getProvider() {
 		return _provider;
 	}
-	
+
 	public void dispose()
 	{
 		_lm.removeUpdates(this);

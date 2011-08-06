@@ -14,7 +14,7 @@ public class Email {
 		public final ArrayList<String> sendToEmailAddress = new ArrayList<String>();
 		public String subject = null;
 		public String body = null;
-		
+
 		public void prepareIntent(Context context) {
 		}
 
@@ -24,11 +24,11 @@ public class Email {
 	    	if(subject != null) intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 	    	if(body != null) intent.putExtra(Intent.EXTRA_TEXT, body);
 	    	intent.setType("message/rfc822");
-	    	
+
 	    	return intent;
 		}
 
-		
+
 		public boolean isChoosable() {
 			return true;
 		}
@@ -36,12 +36,12 @@ public class Email {
 		public CharSequence getChooserTitle() {
 			return "Send Email via...";
 		}
-		
+
 		public boolean isValid() {
 			return true;
 		}
 	}
-	
+
 	public static final Intent sendEmail(final String address, final String subject, final String body) {
 		Send emailer = new Send();
 		emailer.sendToEmailAddress.add(address);

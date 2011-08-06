@@ -77,8 +77,10 @@ $.beautyOfCode.init({
 		<!-- Build 1 jar with sources and binaries. -->
 		<jar jarfile="${beryl.jar.path}/${package}.jar" basedir="${projectdir}/bin" includes="**/*.class" compress="true" />
 	  	<jar jarfile="${beryl.jar.sourcepath}/${package}${beryl.jar.postfix}.jar" basedir="${projectdir}/src" includes="**/*" compress="true">
-        <zipfileset includes="**/*.class" src="${beryl.jar.path}/${package}.jar"/>
+        	<zipfileset includes="**/*.class" src="${beryl.jar.path}/${package}.jar"/>
 	  	</jar>
+	  	<copy file="proguard.cfg" tofile="jars/proguard.cfg" />
+	  	<copy file="proguard.cfg" tofile="jar-sources/proguard.cfg" />
 	</target>
 	
 	<target name="jar-clean">

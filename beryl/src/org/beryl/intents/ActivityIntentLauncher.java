@@ -14,22 +14,22 @@ public class ActivityIntentLauncher implements Parcelable {
 
 	public ActivityIntentLauncher() {
 	}
-	
+
 	public ActivityIntentLauncher(Parcel in) {
 		readFromParcel(in);
 	}
-	
+
 	public void setActivityLauncher(IActivityLauncherProxy proxy) {
 		this.launcherProxy = proxy;
 	}
-	
+
 	public void beginStartActivity(IIntentBuilder builder) {
 		if(currentPrepareTask == null) {
 			currentPrepareTask = new IntentPrepareTask(this, builder, 0);
 			currentPrepareTask.execute();
 		}
 	}
-	
+
 	public void beginStartActivity(IIntentBuilderForResult builder, int requestCode) {
 		if(currentPrepareTask == null) {
 			currentPrepareTask = new IntentPrepareTask(this, builder, requestCode);
@@ -40,25 +40,25 @@ public class ActivityIntentLauncher implements Parcelable {
 	public Context getContext() {
 		return launcherProxy.getContext();
 	}
-	
+
 	void obtainResultBundle(Bundle bundle) {
 		pendingResultBundle = bundle;
 	}
-	
+
 	Bundle getResultBundle() {
 		Bundle bundle = pendingResultBundle;
 		pendingResultBundle = null;
 		return bundle;
 	}
-	
+
 	void startActivity(Intent intent) {
 		launcherProxy.startActivity(intent);
 	}
-	
+
 	void startActivityForResult(Intent intent, int requestCode) {
 		launcherProxy.startActivityForResult(intent, requestCode);
 	}
-	
+
 	public void onStartActivityForResultFailed(Intent intent, int requestCode) {
 		launcherProxy.onStartActivityForResultFailed(intent, requestCode);
 	}
@@ -66,11 +66,11 @@ public class ActivityIntentLauncher implements Parcelable {
 	public void onStartActivityFailed(Intent intent) {
 		launcherProxy.onStartActivityFailed(intent);
 	}
-	
+
 	void onLaunchTaskComplete() {
 		currentPrepareTask = null;
 	}
-	
+
 	public int describeContents() {
 		return 0;
 	}
@@ -78,7 +78,7 @@ public class ActivityIntentLauncher implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
     	dest.writeBundle(pendingResultBundle);
     }
- 
+
     public void readFromParcel(Parcel in) {
     	pendingResultBundle = in.readBundle();
     }

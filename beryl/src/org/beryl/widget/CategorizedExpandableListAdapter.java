@@ -10,7 +10,7 @@ import android.widget.ListAdapter;
 public class CategorizedExpandableListAdapter extends BaseExpandableListAdapter
 {
 	// TODO This implementation is not complete and needs to be optimized.
-	
+
 	private final ArrayList<String> _headers = new ArrayList<String>();
 	private final ArrayList<ListAdapter> _adapters = new ArrayList<ListAdapter>();
 	private boolean _hasStableIds = true;
@@ -20,14 +20,14 @@ public class CategorizedExpandableListAdapter extends BaseExpandableListAdapter
 		_adapters.clear();
 		_hasStableIds = true;
 	}
-	
+
 	public void addGroup(String groupName, ListAdapter groupAdapter)
 	{
 		_headers.add(groupName);
 		_adapters.add(groupAdapter);
 		_hasStableIds = _hasStableIds && groupAdapter.hasStableIds();
 	}
-	
+
 	public Object getChild(int groupPosition, int childPosition)
 	{
 		return getChildObject(groupPosition, childPosition);
@@ -41,12 +41,12 @@ public class CategorizedExpandableListAdapter extends BaseExpandableListAdapter
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent)
 	{
 		ListAdapter adapter = getAdapter(groupPosition);
-		
+
 		if(adapter != null)
 		{
 			return adapter.getView(childPosition, convertView, parent);
 		}
-		
+
 		return null;
 	}
 
@@ -56,7 +56,7 @@ public class CategorizedExpandableListAdapter extends BaseExpandableListAdapter
 		{
 			return _adapters.get(groupPosition).getCount();
 		}
-		
+
 		return 0;
 	}
 
@@ -64,15 +64,15 @@ public class CategorizedExpandableListAdapter extends BaseExpandableListAdapter
 	public Object getChildObject(int groupPosition, int childPosition)
 	{
 		ListAdapter adapter = getAdapter(groupPosition);
-		
+
 		if(adapter != null && adapter.getCount() > childPosition)
 		{
 			return adapter.getItem(childPosition);
 		}
-		
+
 		return null;
 	}
-	
+
 	// Not an overriden method.
 	public ListAdapter getAdapter(int groupPosition)
 	{
@@ -80,10 +80,10 @@ public class CategorizedExpandableListAdapter extends BaseExpandableListAdapter
 		{
 			return _adapters.get(groupPosition);
 		}
-		
+
 		return null;
 	}
-	
+
 	public Object getGroup(int groupPosition)
 	{
 		return getAdapter(groupPosition);
@@ -113,7 +113,7 @@ public class CategorizedExpandableListAdapter extends BaseExpandableListAdapter
 	public boolean isChildSelectable(int groupPosition, int childPosition)
 	{
 		boolean result = false;
-	
+
 		ListAdapter adapter = this.getAdapter(groupPosition);
 		if(adapter != null)
 		{
@@ -122,7 +122,7 @@ public class CategorizedExpandableListAdapter extends BaseExpandableListAdapter
 				result = adapter.isEnabled(childPosition);
 			}
 		}
-		
+
 		return result;
 	}
 }
