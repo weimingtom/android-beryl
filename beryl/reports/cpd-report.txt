@@ -1,0 +1,333 @@
+Found a 20 line (110 tokens) duplication in the following files: 
+Starting at line 22 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\search\google\maps\DirectionsSteps.java
+Starting at line 27 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\search\google\maps\DirectionsLeg.java
+
+	@Override
+	public void inflateResponse(JSONObject jo) throws JSONException
+	{
+		JSONObject o;
+		
+		o = jo.getJSONObject("distance");
+		Distance = o.getLong("value");
+		DistanceText = o.getString("text");
+		
+		o = jo.getJSONObject("duration");
+		Duration = o.getLong("value");
+		DurationText = o.getString("text");
+		
+		o = jo.getJSONObject("end_location");
+		EndLatitude = o.getDouble("lat");
+		EndLongitude = o.getDouble("lng");
+		
+		o = jo.getJSONObject("start_location");
+		StartLatitude = o.getDouble("lat");
+		StartLongitude = o.getDouble("lng");
+=====================================================================
+Found a 9 line (55 tokens) duplication in the following files: 
+Starting at line 55 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\widget\CategorizedListAdapter.java
+Starting at line 70 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\widget\CategorizedListAdapter.java
+
+	public ListAdapter removeAdapter(String header)
+	{
+		header = header.toLowerCase();
+		int sect_len = _headers.size();
+		int i;
+		for(i = 0; i < sect_len; i++)
+		{
+			if(_headers.get(i).toLowerCase().compareTo(header) == 0)
+			{
+=====================================================================
+Found a 11 line (48 tokens) duplication in the following files: 
+Starting at line 43 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\VgdUrlShortener.java
+Starting at line 15 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\TinyURLUrlShortener.java
+
+	}
+
+	public String expand(String shortUrl) {
+		if(! isUrlShortenedByProvider(shortUrl))
+			throw new UrlShorteningException(UrlShorteningException.MESSAGE_NOTSUPPORTED, null);
+		
+		return this.getRedirectUrl(shortUrl);
+	}
+
+	public boolean isUrlShortenedByProvider(String shortUrl) {
+		return shortUrl.contains("tinyurl.com/");
+=====================================================================
+Found a 7 line (43 tokens) duplication in the following files: 
+Starting at line 214 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationMonitor.java
+Starting at line 227 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationMonitor.java
+
+	public void onProviderEnabled(String provider) {
+		final int numControllers = _controllers.size();
+		final int numListeners = _listeners.size();
+		int i;
+		
+		for(i = 0; i < numControllers; i++) {
+			_controllers.get(i).onProviderEnabled(provider);
+=====================================================================
+Found a 8 line (42 tokens) duplication in the following files: 
+Starting at line 43 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\database\UpdatableDatabaseOpenHelper.java
+Starting at line 64 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\database\UpdatableDatabaseOpenHelper.java
+
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		final DatabaseUpdateParameters params = createUpdateParams(db);
+		final DatabaseUpdateRunner updateRunner = new DatabaseUpdateRunner();
+		final DatabaseUpdateLoader updateLoader = new DatabaseUpdateLoader(updateRunner, params);
+		final Log log = params.log;
+		
+		try {
+			log.i("onUpgrade: Load update database scripts...");
+=====================================================================
+Found a 7 line (41 tokens) duplication in the following files: 
+Starting at line 201 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationMonitor.java
+Starting at line 214 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationMonitor.java
+Starting at line 240 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationMonitor.java
+
+	public void onStatusChanged(final String provider, final int status, final Bundle extras) {
+		final int numControllers = _controllers.size();
+		final int numListeners = _listeners.size();
+		int i;
+		
+		for(i = 0; i < numControllers; i++) {
+			_controllers.get(i).onStatusChanged(provider, status, extras);
+=====================================================================
+Found a 6 line (39 tokens) duplication in the following files: 
+Starting at line 29 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\deployment\ActivityUpdateCheckCallback.java
+Starting at line 40 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\deployment\ActivityUpdateCheckCallback.java
+
+	public void onUpdateNotAvailable(final UpdateManifestApplication response) {
+		final Activity activity = activityRef.get();
+		if(activity != null) {
+			activity.runOnUiThread(new Runnable() {
+				public void run() {
+					callback.onUpdateNotAvailable(response);
+=====================================================================
+Found a 8 line (38 tokens) duplication in the following files: 
+Starting at line 12 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\VgdUrlShortener.java
+Starting at line 10 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\TinyURLUrlShortener.java
+
+	public String shorten(String url) {
+		String requestUrl = String.format(API_SHORTEN_URL, Uri.encode(url));
+		String response = this.executeGet(requestUrl);
+		
+		return response;
+	}
+
+	public String expand(String shortUrl) {
+=====================================================================
+Found a 6 line (37 tokens) duplication in the following files: 
+Starting at line 208 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\diagnostics\Log.java
+Starting at line 191 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\app\ContractRegistry.java
+
+		ArrayList<Field> result = new ArrayList<Field>();
+		Class<?> clazz = obj.getClass();
+		Field [] fields = clazz.getDeclaredFields();
+		
+		for(Field field : fields) {
+			field.setAccessible(true);
+=====================================================================
+Found a 5 line (36 tokens) duplication in the following files: 
+Starting at line 18 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Market.java
+Starting at line 42 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Market.java
+Starting at line 66 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Market.java
+
+		public void prepareIntent(Context context) {}
+
+		public Intent getIntent() {
+			final Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse(MARKET_Scheme + "search?q=pub:" + publisherName));
+=====================================================================
+Found a 6 line (35 tokens) duplication in the following files: 
+Starting at line 18 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\deployment\ActivityUpdateCheckCallback.java
+Starting at line 29 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\deployment\ActivityUpdateCheckCallback.java
+
+	public void onUpdateAvailable(final UpdateManifestApplication response) {
+		final Activity activity = activityRef.get();
+		if(activity != null) {
+			activity.runOnUiThread(new Runnable() {
+				public void run() {
+					callback.onUpdateAvailable(response);
+=====================================================================
+Found a 3 line (35 tokens) duplication in the following files: 
+Starting at line 34 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\http\HttpRest.java
+Starting at line 41 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\http\HttpRest.java
+
+	public static void beginExecutePost(final String baseUrl, final String refererUrl, final IHttpCallback callback, final Bundle params)
+	{
+		Thread t = new Thread(new HttpWorker (baseUrl, refererUrl, callback, params, HTTP_COMMAND_POST));
+=====================================================================
+Found a 6 line (34 tokens) duplication in the following files: 
+Starting at line 64 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationMonitor.java
+Starting at line 164 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationMonitor.java
+
+	private LocationListenerProxy getProxy(String provider) {
+		final int numProxies = _proxies.size();
+		LocationListenerProxy proxy;
+		for(int i = 0; i < numProxies; i++) {
+			
+			proxy = _proxies.get(i);
+=====================================================================
+Found a 3 line (33 tokens) duplication in the following files: 
+Starting at line 74 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\deployment\UpdateChecker.java
+Starting at line 79 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\deployment\UpdateChecker.java
+
+	public static UpdateChecker checkForProductionUpdate(String manifestUrl, Activity activity, IUpdateCheckCallback callback) {
+		final ActivityUpdateCheckCallback contextAwareCallback = new ActivityUpdateCheckCallback(activity, callback);
+		return checkForUpdate(manifestUrl, activity, contextAwareCallback, Constants.TYPE_PRODUCTION);
+=====================================================================
+Found a 4 line (32 tokens) duplication in the following files: 
+Starting at line 10 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\diagnostics\LogCatLogWriter.java
+Starting at line 22 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\diagnostics\LogCatLogWriter.java
+Starting at line 28 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\diagnostics\LogCatLogWriter.java
+Starting at line 34 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\diagnostics\LogCatLogWriter.java
+
+	public void w(String tag, String msg) {
+		if(tag == null) tag = "";
+		if(msg == null) msg = "";
+		android.util.Log.w(tag, msg);
+=====================================================================
+Found a 7 line (32 tokens) duplication in the following files: 
+Starting at line 20 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\VgdUrlShortener.java
+Starting at line 14 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\UrlyUrlShortener.java
+
+		String requestUrl = String.format(API_SHORTEN_URL, Uri.encode(url));
+		String shortUrl = null;
+		
+		JSONObject json;
+		try {
+			String response = this.executeGet(requestUrl);
+			json = new JSONObject(response);
+=====================================================================
+Found a 3 line (31 tokens) duplication in the following files: 
+Starting at line 20 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\widget\CategorizedListAdapter.java
+Starting at line 14 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\widget\CategorizedExpandableListAdapter.java
+
+	private final ArrayList<String> _headers = new ArrayList<String>();
+	private final ArrayList<ListAdapter> _adapters = new ArrayList<ListAdapter>();
+	private boolean _hasStableIds = true;
+=====================================================================
+Found a 9 line (30 tokens) duplication in the following files: 
+Starting at line 37 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\VgdUrlShortener.java
+Starting at line 22 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\UrlyUrlShortener.java
+
+			shortUrl = String.format(API_URL_PATTERN, code);
+		} catch (Exception e) {
+			throw new UrlShorteningException(UrlShorteningException.MESSAGE_FORMAT, e);
+		}
+		
+		return shortUrl;
+	}
+
+	public String expand(String shortUrl) {
+=====================================================================
+Found a 13 line (29 tokens) duplication in the following files: 
+Starting at line 7 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\search\google\maps\DirectionsSteps.java
+Starting at line 10 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\search\google\maps\DirectionsLeg.java
+
+public class DirectionsLeg extends AbstractSearchResponseSegment
+{
+	public long Distance;
+	public String DistanceText;
+	public long Duration;
+	public String DurationText;
+	
+	public double StartLatitude;
+	public double StartLongitude;
+	public double EndLatitude;
+	public double EndLongitude;
+	
+	public String StartAddress;
+=====================================================================
+Found a 3 line (27 tokens) duplication in the following files: 
+Starting at line 45 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Camera.java
+Starting at line 107 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Camera.java
+
+		values.put(MediaStore.Images.Media.TITLE, fileName);
+		values.put(MediaStore.Images.Media.DESCRIPTION, description);
+		values.put(MediaStore.Images.Media.DISPLAY_NAME, title);
+=====================================================================
+Found a 4 line (26 tokens) duplication in the following files: 
+Starting at line 129 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\app\ContractRegistry.java
+Starting at line 143 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\app\ContractRegistry.java
+
+	private void detachMembers(Object obj) {
+		final ArrayList<Field> fields = getContractFields(obj);
+		for(Field field : fields) {
+			try {
+=====================================================================
+Found a 6 line (26 tokens) duplication in the following files: 
+Starting at line 226 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Gallery.java
+Starting at line 83 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Camera.java
+
+	public abstract static class GetCameraCaptureResult implements IActivityResultHandler {
+
+		public Bitmap bitmapResult = null;
+		
+		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
+			Uri imageUri = null;
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 144 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\content\webfeeds\rss\RssFeedConsumer.java
+Starting at line 147 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\content\webfeeds\rss\RssFeedConsumer.java
+
+		image.getChild("height").setEndTextElementListener(new EndTextElementListener(){
+            public void end(String body) { try { holder.getImage().height = Integer.parseInt(body); } catch (Exception e) {} }
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 226 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Gallery.java
+Starting at line 236 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Gallery.java
+
+	public abstract static class GetImageResult implements IActivityResultHandler {
+		
+		public Bitmap bitmapResult = null;
+		
+		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
+=====================================================================
+Found a 4 line (25 tokens) duplication in the following files: 
+Starting at line 24 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Settings.java
+Starting at line 28 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Settings.java
+
+		} else {
+			intent = new Intent(Intent.ACTION_VIEW);
+			intent.setComponent(ComponentName.unflattenFromString(ComponentName_InstalledAppDetails));
+			intent.putExtra(APP_PKG_NAME_CUPCAKE, package_name);
+=====================================================================
+Found a 3 line (25 tokens) duplication in the following files: 
+Starting at line 14 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Web.java
+Starting at line 20 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\intents\android\Market.java
+
+		public Intent getIntent() {
+			final Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse(MARKET_Scheme + "details?id=" + packageName));
+=====================================================================
+Found a 6 line (25 tokens) duplication in the following files: 
+Starting at line 26 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationJournal.java
+Starting at line 35 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\LocationJournal.java
+
+		final ArrayList<Location> locations = new ArrayList<Location>();
+		locations.ensureCapacity(_maxLocations);
+		History = locations;
+	}
+	
+	public void onLocationChanged(final Location location) {
+=====================================================================
+Found a 7 line (25 tokens) duplication in the following files: 
+Starting at line 77 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\PreferGpsLocationMonitorController.java
+Starting at line 20 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\location\GpsSignalStrengthMonitor.java
+
+		}
+	}
+
+	public void onProviderEnabled(String provider) {
+	}
+
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+=====================================================================
+Found a 4 line (25 tokens) duplication in the following files: 
+Starting at line 12 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\VgdUrlShortener.java
+Starting at line 12 of D:\android-development\app-patching\projects\android\libraries\beryl\code\beryl\src\org\beryl\web\url\UrlyUrlShortener.java
+
+	public String shorten(String url) {
+		
+		String requestUrl = String.format(API_SHORTEN_URL, Uri.encode(url));
+		String shortUrl = null;

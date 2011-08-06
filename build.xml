@@ -20,6 +20,11 @@
 			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-experimental" />
+			<param name="package" value="org.beryl.experimental" />
+			<param name="classpathid" value="default-berylcore-classpath" />
+		</antcall>
+		<antcall target="beryl-build">
 			<param name="projectdir" value="beryl-ext" />
 			<param name="package" value="org.beryl.ext" />
 			<param name="classpathid" value="default-berylcore-classpath" />
@@ -96,29 +101,6 @@ $.beautyOfCode.init({
 		</fileset>
 	</path>
 
-	<path id="default-berylweb-classpath">
-		<path refid="default-berylcore-classpath" />
-		<fileset dir="${beryl.jar.path}">
-			<include name="org.beryl.web.jar" />
-		</fileset>
-	</path>
-	
-	<path id="default-berylweb-database-classpath">
-    <path refid="default-berylweb-classpath" />
-    <fileset dir="${beryl.jar.path}">
-			<include name="org.beryl.database.jar" />
-		</fileset>
-	</path>
-	
-	<path id="beryl-intents-classpath">
-    <path refid="default-berylweb-classpath" />
-    <fileset dir="${beryl.jar.path}">
-			<include name="org.beryl.database.jar" />
-			<include name="org.beryl.io.jar" />
-		</fileset>
-	</path>
-	
-	
 	<path id="default-googleapi-classpath">
 		<fileset dir="${android.sdk.platforms.default}">
 			<include name="*.jar" />
