@@ -16,6 +16,10 @@ import android.provider.MediaStore;
 
 public class Camera {
 
+	
+	// For the future allow camera captures to not have to register in the ContentProvider.
+	// TODO: http://stackoverflow.com/questions/2729267/android-camera-intent
+	// TODO: http://www.monkeycancode.com/taking-a-picture-with-camera-using-built-in-intent
 	public static class CaptureRequest implements IIntentBuilderForResult {
 		public static final int PICTUREQUALITY_Lowest = 0;
 		public static final int PICTUREQUALITY_Highest = 1;
@@ -42,8 +46,12 @@ public class Camera {
 			values.put(MediaStore.Images.Media.DESCRIPTION, description);
 			values.put(MediaStore.Images.Media.DISPLAY_NAME, getDisplayName());
 			
-			final ContentResolver cr = context.getContentResolver();
-			this.imageUri = cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+			try {
+				final ContentResolver cr = context.getContentResolver();
+				this.imageUri = cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+			} catch(Exception e) {
+				this.imageUri = null;
+			}
 		}
 
 		public Intent getIntent() {
@@ -65,6 +73,10 @@ public class Camera {
 
 		public CharSequence getChooserTitle() {
 			return "";
+		}
+		
+		public boolean isValid() {
+			return this.imageUri != null;
 		}
 	}
 	

@@ -12,8 +12,8 @@ public class Email {
 	public static class Send implements IIntentBuilder {
 
 		public final ArrayList<String> sendToEmailAddress = new ArrayList<String>();
-		public String subject;
-		public String body;
+		public String subject = null;
+		public String body = null;
 		
 		public void prepareIntent(Context context) {
 		}
@@ -21,8 +21,8 @@ public class Email {
 		public Intent getIntent() {
 			final Intent intent = new Intent(Intent.ACTION_SEND);
 	    	intent.putExtra(Intent.EXTRA_EMAIL, (String[])sendToEmailAddress.toArray());
-	    	intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-	    	intent.putExtra(Intent.EXTRA_TEXT, body);
+	    	if(subject != null) intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+	    	if(body != null) intent.putExtra(Intent.EXTRA_TEXT, body);
 	    	intent.setType("message/rfc822");
 	    	
 	    	return intent;
@@ -36,6 +36,10 @@ public class Email {
 		@Override
 		public CharSequence getChooserTitle() {
 			return "Send Email via...";
+		}
+		
+		public boolean isValid() {
+			return true;
 		}
 	}
 	

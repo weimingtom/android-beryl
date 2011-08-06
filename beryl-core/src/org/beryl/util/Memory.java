@@ -1,5 +1,7 @@
 package org.beryl.util;
 
+import java.util.Locale;
+
 public class Memory {
 
 	public static final long KB_IN_BYTES = 1024;
@@ -8,6 +10,9 @@ public class Memory {
 	public static final long TB_IN_BYTES = 1024 * GB_IN_BYTES;
 	
 	public static final long FOUR_MB_IN_BYTES = 4 * MB_IN_BYTES;
+	
+	final static long [] sizeArray = { TB_IN_BYTES, GB_IN_BYTES, MB_IN_BYTES, KB_IN_BYTES, 1 };
+	final static String [] sizeUnitsArray = { "TB", "GB", "MB", "KB", "bytes" };
 	
 	public static long getReasonableMemoryCushion() {
 		return FOUR_MB_IN_BYTES;
@@ -43,4 +48,21 @@ public class Memory {
 		return freeMemory() / (double)memoryLimit();
 	}
 	
+	public static String toString(long bytes) {
+		String byteSizeString = "<unknown> bytes";
+		final int length = sizeArray.length;
+		double size;
+		double dBytes = (double) bytes;
+		
+		for(int i = 0; i < length; i++) {
+			size = dBytes / sizeArray[i];
+			
+			if(size >= 1.0) {
+				byteSizeString = String.format(Locale.ENGLISH, "%.4f %s", size, sizeUnitsArray[i]);
+				break;
+			}
+		}
+		
+		return byteSizeString;
+	}
 }

@@ -25,29 +25,38 @@ public class IntentPrepareTask extends AsyncTask<Void, Void, Void> {
 	protected void onPostExecute(Void result) {
 		
 		try {
-			final Intent baseIntent = builder.getIntent();
-			Intent intent;
-			
-			if(builder.isChoosable()) {
-				intent = Intent.createChooser(baseIntent, builder.getChooserTitle());
-			} else {
-				intent = baseIntent;
-			}
-			
-			if(builder instanceof IIntentBuilderForResult) {
-				IIntentBuilderForResult builderForResult = (IIntentBuilderForResult) builder;
-				launcher.obtainResultBundle(builderForResult.getResultBundle());
+			final boolean canLaunchIntent = builder.isValid();
+			if(canLaunchIntent) {
+				final Intent baseIntent = builder.getIntent();
+				Intent intent = null;
 				
-				if(IntentHelper.canHandleIntent(launcher.getContext(), intent)) {
-					launcher.startActivityForResult(intent, this.requestCode);
+				if(builder.isChoosable()) {
+					intent = Intent.createChooser(baseIntent, builder.getChooserTitle());
 				} else {
-					launcher.onStartActivityForResultFailed(intent, this.requestCode);
+					intent = baseIntent;
+				}
+				
+				if(builder instanceof IIntentBuilderForResult) {
+					IIntentBuilderForResult builderForResult = (IIntentBuilderForResult) builder;
+					launcher.obtainResultBundle(builderForResult.getResultBundle());
+					
+					if(IntentHelper.canHandleIntent(launcher.getContext(), intent)) {
+						launcher.startActivityForResult(intent, this.requestCode);
+					} else {
+						launcher.onStartActivityForResultFailed(intent, this.requestCode);
+					}
+				} else {
+					if(IntentHelper.canHandleIntent(launcher.getContext(), intent)) {
+						launcher.startActivity(intent);
+					} else {
+						launcher.onStartActivityFailed(intent);
+					}
 				}
 			} else {
-				if(IntentHelper.canHandleIntent(launcher.getContext(), intent)) {
-					launcher.startActivity(intent);
+				if(builder instanceof IIntentBuilderForResult) {
+					launcher.onStartActivityForResultFailed(null, this.requestCode);
 				} else {
-					launcher.onStartActivityFailed(intent);
+					launcher.onStartActivityFailed(null);
 				}
 			}
 		} catch(Exception e) {

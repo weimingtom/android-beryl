@@ -43,6 +43,8 @@ public class BitmapLoader {
 		options.inJustDecodeBounds = false;
 		
 		result = BitmapFactory.decodeFile(filePath, options);
+		
+		BitmapStats.addBitmap(result);
 		return result;
 	}
 	
@@ -72,6 +74,7 @@ public class BitmapLoader {
 		Matrix rotationMatrix = new Matrix();
 		rotationMatrix.setRotate(angle);
 		Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, rotationMatrix, true);
+		BitmapStats.addBitmap(rotatedBitmap);
 		return rotatedBitmap;
 	}
 }

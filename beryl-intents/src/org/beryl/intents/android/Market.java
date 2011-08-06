@@ -30,6 +30,10 @@ public class Market {
 		public CharSequence getChooserTitle() {
 			return "View App on Market with";
 		}
+		
+		public boolean isValid() {
+			return packageName != null;
+		}
 	}
 	
 	public static class Search implements IIntentBuilder {
@@ -50,6 +54,10 @@ public class Market {
 		public CharSequence getChooserTitle() {
 			return "Search Market using";
 		}
+		
+		public boolean isValid() {
+			return queryString != null;
+		}
 	}
 	
 	public static class SearchPublisher implements IIntentBuilder {
@@ -69,6 +77,10 @@ public class Market {
 
 		public CharSequence getChooserTitle() {
 			return "Search Publisher using";
+		}
+		
+		public boolean isValid() {
+			return publisherName != null;
 		}
 	}
 
