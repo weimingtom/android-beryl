@@ -14,7 +14,7 @@ public class StrictModeEnabler {
 		IStrictModeEnabler enabler = getStrictModeEnabler();
 		enabler.startStrictMode();
 	}
-	
+
 	private static IStrictModeEnabler getStrictModeEnabler() {
 		if(AndroidVersion.isGingerbreadOrHigher()) {
 			return new GingerbreadAndAboveStrictModeEnabler();
@@ -26,7 +26,7 @@ public class StrictModeEnabler {
 	static interface IStrictModeEnabler {
 		void startStrictMode();
 	}
-	
+
 	static class GingerbreadAndAboveStrictModeEnabler implements IStrictModeEnabler {
 		public void startStrictMode() {
 			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());

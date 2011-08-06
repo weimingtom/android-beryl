@@ -9,7 +9,7 @@ import org.beryl.diagnostics.ExceptionReporter;
 /**
  * Registry of interfaces that can be queried by other objects. The primary goal is to provide a way to decouple {@link android.app.Fragment}s while allowing them to communicate with each other through these exposed interfaces.
  * This class is not specific to Activities and Fragments but can be used in any situation where multiple components need to communicate.
- * 
+ *
 <h2>Pattern Setup</h2>
 <ol>
 	<li>Create a class that implements the {@link org.beryl.app.IContractMediator} interface. This class will hold the ContractRegistry object.</li>
@@ -24,12 +24,12 @@ import org.beryl.diagnostics.ExceptionReporter;
 
 public class MainActivity extends FragmentActivity implements IContractMediator {
 	final private ContractRegistry contracts = new ContractRegistry();
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		contracts.add(this);
 	}
-	
+
 	public ContractRegistry getContractRegistry() {
 		return contracts;
 	}
@@ -42,7 +42,7 @@ public interface IDoWorkCommand extends RegisterableContract {
 public class WorkerFragment extends Fragment {
 
 	ContractRegistry contractSource = null;
-	
+
 	// Standard boilerplate code for attaching/detaching the Contract members of code.
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -55,7 +55,7 @@ public class WorkerFragment extends Fragment {
 		contractSource.remove(this);
 		contractSource = null;
 	}
-	
+
 	final IDoWorkCommand fragmentISavePosterCommand = new IDoWorkCommand() {
 		public void doWork() {
 			// Do something.
@@ -89,7 +89,7 @@ public class RequesterFragment extends Fragment {
 public final class ContractRegistry {
 
 	private final HashMap<Class<?>, ArrayList<?>> contractsContainer = new HashMap<Class<?>, ArrayList<?>>();
-	
+
 	public ContractRegistry() {
 	}
 
@@ -113,21 +113,21 @@ public final class ContractRegistry {
 			if(isRegisterableContractInterface(iface)) {
 				@SuppressWarnings("rawtypes")
 				ArrayList/* <LOL> */ contracts = getAll(iface);
-				
+
 				if(! contracts.contains(object)) {
 					contracts.add(object);
 				}
 			}
 		}
 	}
-	
+
 	private void detach(Object object) {
 		for(Class<?> key : contractsContainer.keySet()) {
 			final ArrayList<?> contractList = contractsContainer.get(key);
 			contractList.remove(object);
 		}
 	}
-	
+
 	private void attachMembers(Object obj) {
 		final ArrayList<Field> fields = getContractFields(obj);
 		for(Field field : fields) {
@@ -152,37 +152,37 @@ public final class ContractRegistry {
 			}
 		}
 	}
-	
+
 	private boolean isRegisterableContractInterface(Class<?> clazz) {
 		return hasInterface(clazz, RegisterableContract.class);
 	}
-	
+
 	private boolean hasInterface(Class<?> target, Class<?> iface) {
 		return iface.isAssignableFrom(target);
 	}
 
 	public <T> T get(Class<T> clazz) {
 		final ArrayList<T> elements = getAll(clazz);
-		
+
 		if(! elements.isEmpty()) {
 			return elements.get(0);
 		} else {
 			return null;
 		}
 	}
-	
+
 	/** Returns all instances of the contract class. */
 	@SuppressWarnings("unchecked")
 	public <T> ArrayList<T> getAll(Class<T> clazz) {
 		ArrayList<T> results = (ArrayList<T>)contractsContainer.get(clazz);
-		
+
 		if(results == null) {
 			results = createContractList(clazz);
 		}
-		
+
 		return results;
 	}
-	
+
 	private <T> ArrayList<T> createContractList(Class<T> clazz) {
 		final ArrayList<T> results = new ArrayList<T>();
 		contractsContainer.put(clazz, results);
@@ -193,7 +193,7 @@ public final class ContractRegistry {
 		ArrayList<Field> result = new ArrayList<Field>();
 		Class<?> clazz = obj.getClass();
 		Field [] fields = clazz.getDeclaredFields();
-		
+
 		for(Field field : fields) {
 			field.setAccessible(true);
 			Class<?> fieldType = field.getType();
@@ -202,10 +202,10 @@ public final class ContractRegistry {
 				result.add(field);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	public static ContractRegistry getContractRegistry(Object maybeContractMediator) {
 		ContractRegistry registry = null;
 		try {
@@ -214,7 +214,7 @@ public final class ContractRegistry {
 			ExceptionReporter.report(e);
 			throw new ClassCastException("Parameter must implement interface, " + IContractMediator.class.getName());
 		}
-		
+
 		return registry;
 	}
 }

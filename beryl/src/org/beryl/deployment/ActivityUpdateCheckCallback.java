@@ -9,12 +9,12 @@ public class ActivityUpdateCheckCallback implements IUpdateCheckCallback {
 
 	final private WeakReference<Activity> activityRef;
 	final private IUpdateCheckCallback callback;
-	
+
 	public ActivityUpdateCheckCallback(Activity activity, IUpdateCheckCallback callback) {
 		this.activityRef = new WeakReference<Activity>(activity);
 		this.callback = callback;
 	}
-	
+
 	public void onError(final Exception e) {
 		final Activity activity = activityRef.get();
 		if(activity != null) {

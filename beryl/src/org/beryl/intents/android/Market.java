@@ -11,10 +11,10 @@ public class Market {
 
 	public static final String MARKET_Prefix = "http://market.android.com/";
 	public static final String MARKET_Scheme = "market://";
-	
+
 	public static class ViewDetails implements IIntentBuilder {
 		public String packageName;
-		
+
 		public void prepareIntent(Context context) {}
 
 		public Intent getIntent() {
@@ -22,7 +22,7 @@ public class Market {
 			intent.setData(Uri.parse(MARKET_Scheme + "details?id=" + packageName));
 			return intent;
 		}
-		
+
 		public boolean isChoosable() {
 			return false;
 		}
@@ -30,15 +30,15 @@ public class Market {
 		public CharSequence getChooserTitle() {
 			return "View App on Market with";
 		}
-		
+
 		public boolean isValid() {
 			return packageName != null;
 		}
 	}
-	
+
 	public static class Search implements IIntentBuilder {
 		public String queryString;
-		
+
 		public void prepareIntent(Context context) {}
 
 		public Intent getIntent() {
@@ -54,15 +54,15 @@ public class Market {
 		public CharSequence getChooserTitle() {
 			return "Search Market using";
 		}
-		
+
 		public boolean isValid() {
 			return queryString != null;
 		}
 	}
-	
+
 	public static class SearchPublisher implements IIntentBuilder {
 		public String publisherName;
-		
+
 		public void prepareIntent(Context context) {}
 
 		public Intent getIntent() {
@@ -70,7 +70,7 @@ public class Market {
 			intent.setData(Uri.parse(MARKET_Scheme + "search?q=pub:" + publisherName));
 			return intent;
 		}
-		
+
 		public boolean isChoosable() {
 			return false;
 		}
@@ -78,7 +78,7 @@ public class Market {
 		public CharSequence getChooserTitle() {
 			return "Search Publisher using";
 		}
-		
+
 		public boolean isValid() {
 			return publisherName != null;
 		}
@@ -89,13 +89,13 @@ public class Market {
 		builder.packageName = packageName;
 		return builder.getIntent();
 	}
-	
+
 	public static final Intent search(final String queryString) {
 		final Search builder = new Search();
 		builder.queryString = queryString;
 		return builder.getIntent();
 	}
-	
+
 	public static final Intent searchPublisher(final String publisherName) {
 		final SearchPublisher builder = new SearchPublisher();
 		builder.publisherName = publisherName;

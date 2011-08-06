@@ -8,33 +8,33 @@ public class ExceptionReporter {
 
 	public static final NonCriticalThrowableHandler suppressExceptionHandler = new DoNothingHandler();
 	public static final NonCriticalThrowableHandler logcatExceptionHandler = new LogEHandler();
-	
+
 	public static NonCriticalThrowableHandler globalHandler = suppressExceptionHandler;
-	
+
 	public static void disable() {
 		globalHandler = suppressExceptionHandler;
 	}
-	
+
 	public static void enable() {
 		globalHandler = logcatExceptionHandler;
 	}
-	
+
 	public static void setCustomHandler(NonCriticalThrowableHandler handler) {
 		globalHandler = handler;
 	}
-	
+
 	public static void report(String message, Throwable tr) {
 		globalHandler.onThrow(tr);
 	}
-	
+
 	public static void report(Exception e) {
 		globalHandler.onException(e);
 	}
-	
+
 	public static void report(String message, Exception e) {
 		globalHandler.onException(e);
 	}
-	
+
 
 	static class DoNothingHandler implements NonCriticalThrowableHandler {
 		public void onThrow(Throwable tr) {
@@ -43,15 +43,15 @@ public class ExceptionReporter {
 		public void onException(Exception e) {
 		}
 	}
-	
+
 	static class LogEHandler implements NonCriticalThrowableHandler {
 		private final Log logger;
-		
+
 		public LogEHandler() {
 			logger = new Log(new LogCatLogWriter());
 			logger.setTag("NonCritical");
 		}
-		
+
 		public void onThrow(Throwable tr) {
 			logger.e(tr);
 		}

@@ -9,7 +9,7 @@ public class ViewStateAnimationListener implements AnimationListener
 {
 	private final View _view;
 	private int _endVisibility = View.VISIBLE;
-	
+
 	public ViewStateAnimationListener(final View v)
 	{
 		_view = v;
@@ -19,7 +19,7 @@ public class ViewStateAnimationListener implements AnimationListener
 	{
 		_endVisibility = visibility;
 	}
-	
+
 	public void onAnimationEnd(Animation animation)
 	{
 		_view.setVisibility(_endVisibility);

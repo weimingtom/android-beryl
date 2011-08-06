@@ -12,19 +12,19 @@ public class ActivityResultTask extends AsyncTask<Void, Void, Void> {
 	IActivityResultHandler handler;
 	int resultCode;
 	Intent data;
-	
+
 	public ActivityResultTask(ActivityIntentLauncher launcher, IActivityResultHandler handler, int resultCode, Intent data) {
 		this.launcher = launcher;
 		this.handler = handler;
 		this.resultCode = resultCode;
 		this.data = data;
 	}
-	
+
 	protected final Void doInBackground(Void... params) {
 		handler.prepareResult(launcher.getContext(), launcher.getResultBundle(), resultCode, data);
 		return null;
 	}
-	
+
 	protected final void onPostExecute(Void result) {
 		try {
 			if(resultCode == Activity.RESULT_OK) {

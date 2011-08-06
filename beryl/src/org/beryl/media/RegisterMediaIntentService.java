@@ -21,11 +21,11 @@ public class RegisterMediaIntentService extends IntentService {
 
 	private static final String EXTRA_FilePath = "EXTRA_FilePath";
 	private static final String EXTRA_MimeType = "EXTRA_MimeType";
-	
+
 	public RegisterMediaIntentService() {
 		this("RegisterMediaIntentService");
 	}
-	
+
 	public RegisterMediaIntentService(String name) {
 		super(name);
 	}
@@ -35,7 +35,7 @@ public class RegisterMediaIntentService extends IntentService {
 
 		final String filePath = intent.getStringExtra(EXTRA_FilePath);
 		final String mimeType = intent.getStringExtra(EXTRA_MimeType);
-		
+
 		MediaScannerClient client = new MediaScannerClient();
 		MediaScannerConnection scanner = new MediaScannerConnection(this, client);
 		client.setScanner(scanner);
@@ -50,7 +50,7 @@ public class RegisterMediaIntentService extends IntentService {
 		private String filePath;
 		private String mimeType;
 		private final AtomicBoolean hasScanCompleted = new AtomicBoolean(false);
-		
+
 		public void setScanner(MediaScannerConnection scanner) {
 			this.scanner = scanner;
 		}
@@ -79,21 +79,21 @@ public class RegisterMediaIntentService extends IntentService {
 			hasScanCompleted.set(true);
 		}
 	}
-	
+
 	public static final void addFileToAndroidMediaCollection(Context context, String filePath) {
 		final MimeTypeMap mimeMap = MimeTypeMap.getSingleton();
 		final String extension = getFileExtension(filePath);
 		final String mimeType = mimeMap.getMimeTypeFromExtension(extension);
 		addFileToAndroidMediaCollection(context, filePath, mimeType);
 	}
-	
+
 	public static final void addFileToAndroidMediaCollection(Context context, String filePath, String mimeType) {
 		final Intent startScannerService = new Intent(context, RegisterMediaIntentService.class);
 		startScannerService.putExtra(EXTRA_FilePath, filePath);
 		startScannerService.putExtra(EXTRA_MimeType, mimeType);
 		context.startService(startScannerService);
 	}
-	
+
 	// TODO: Create a beryl file utils class.
 	public static String getFileExtension(String filePath) {
 		return filePath.substring(filePath.lastIndexOf(".") + 1);

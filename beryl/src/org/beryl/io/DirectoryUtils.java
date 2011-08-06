@@ -20,59 +20,59 @@ public class DirectoryUtils {
 			File baseDirectory = Environment.getExternalStorageDirectory();
 			directory = appendDirectoryName(baseDirectory, privateDataDirectory);
 		}
-		
+
 		return directory;
 	}
-	
+
 	public static File getExternalStoragePublicDirectoryByType(String type, boolean autoCreate) {
 		File directory = null;
 		directory = Environment.getExternalStoragePublicDirectory(type);
 		attemptAutoCreate(autoCreate, directory);
-		
+
 		return directory;
 	}
-	
+
 	public static File getExternalStoragePublicDirectoryByName(String name, boolean autoCreate) {
 		File directory = null;
 		File baseDirectory = Environment.getExternalStorageDirectory();
 		directory = appendDirectoryName(baseDirectory, name);
 		attemptAutoCreate(autoCreate, directory);
-		
+
 		return directory;
 	}
-	
+
 	public static File getPublicPictures() {
 		return getPublicPictures(true);
 	}
-	
+
 	public static File getPublicPictures(boolean autoCreate) {
 		File directory = null;
-		
+
 		if(AndroidVersion.isFroyoOrHigher()) {
 			directory = getExternalStoragePublicDirectoryByType(Environment.DIRECTORY_PICTURES, autoCreate);
 		} else {
 			directory = getExternalStoragePublicDirectoryByName("Pictures", autoCreate);
 		}
-		
+
 		return directory;
 	}
-	
+
 	public static File createPictureLibraryFolder(String libraryName) {
 		return createPictureLibraryFolder(libraryName, true);
 	}
-	
+
 	public static File createPictureLibraryFolder(String libraryName, boolean autoCreate) {
 		final File basePicturesPath = getPublicPictures();
 		final File libraryPath = appendDirectoryName(basePicturesPath, libraryName);
 		attemptAutoCreate(autoCreate, libraryPath);
 		return libraryPath;
 	}
-	
+
 	public static File appendDirectoryName(File baseDir, String appendDirName) {
 		File appendedDir = new File(baseDir, appendDirName);
 		return appendedDir;
 	}
-	
+
 	private static void attemptAutoCreate(boolean autoCreate, File directory) {
 		if(autoCreate || directory != null) {
 			FileUtils.createDirectory(directory);

@@ -4,7 +4,7 @@ package org.beryl.diagnostics;
 public class LogCatLogWriter implements ILogWriter {
 
 	public LogCatLogWriter() {
-		
+
 	}
 
 	public void d(String tag, String msg) {
@@ -24,7 +24,7 @@ public class LogCatLogWriter implements ILogWriter {
 		if(tr == null) tr = new Throwable("");
 		android.util.Log.e(tag, tr.getMessage(), tr);
 	}
-	
+
 	public void e(String tag, String msg) {
 		if(tag == null) tag = "";
 		if(msg == null) msg = "";

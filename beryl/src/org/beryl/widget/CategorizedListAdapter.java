@@ -6,13 +6,13 @@ import java.util.HashMap;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class CategorizedListAdapter extends BaseAdapter implements OnItemClickListener
 {
@@ -23,7 +23,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 	private final CategorizedListAdapterDataSetObserver _observer = new CategorizedListAdapterDataSetObserver();
 	private int _viewTypeIdCounter = 1;
 	private final HashMap<String, AdapterDescriptor> _adapterDescriptors = new HashMap<String, AdapterDescriptor>(10);
-	
+
 	public CategorizedListAdapter(Context context)
 	{
 		_context = context;
@@ -45,13 +45,13 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 		{
 			_adapters.get(i).unregisterDataSetObserver(_observer);
 		}
-		
+
 		_adapters.clear();
 		_headers.clear();
 		_viewTypeIdCounter = 1;
 		_adapterDescriptors.clear();
 	}
-	
+
 	public ListAdapter getAdapter(String header)
 	{
 		header = header.toLowerCase();
@@ -66,7 +66,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 		}
 		return null;
 	}
-	
+
 	public ListAdapter removeAdapter(String header)
 	{
 		header = header.toLowerCase();
@@ -95,10 +95,10 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 	public int getCount()
 	{
 		int result = 0;
@@ -112,7 +112,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 				result += sect_len + 1;
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -121,7 +121,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 		PositionSpec ps = getInternalPosition(position);
 		return ps.adapter;
 	}
-	
+
 	public Object getItem(int position)
 	{
 		PositionSpec ps = getInternalPosition(position);
@@ -139,7 +139,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 	{
 		return position;
 	}
-	
+
 	@Override
 	public int getItemViewType(int position)
 	{
@@ -153,20 +153,20 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 			return getInternalViewTypeId(ps.adapter, ps.position);
 		}
 	}
-	
+
 	private int getInternalViewTypeId(ListAdapter adapter, int position)
 	{
 		int result;
 		int adapter_viewtypeid = adapter.getItemViewType(position);
 		result = _adapterDescriptors.get(adapter.getClass().getName()).viewTypeIdBase + adapter_viewtypeid;
-		
+
 		return result;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		PositionSpec ps = getInternalPosition(position);
-		
+
 		// If this is for a position that actually categorized then...
 		if(ps.adapter != null)
 		{
@@ -175,7 +175,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 		else
 		{
 			// This view is a category header.
-			 
+
 			Context context = this._context;
 			ViewHolder holder = null;
 			if(convertView == null)
@@ -188,19 +188,19 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 			else
 			{
 				holder = (ViewHolder) convertView.getTag();
-				
+
 			}
-			
+
 			holder.caption.setText(_headers.get(ps.position));
 		}
 		return convertView;
 	}
-	
+
 	private static class ViewHolder
 	{
 		TextView caption;
 	}
-	
+
 	private class CategorizedListAdapterDataSetObserver extends DataSetObserver
 	{
 		@Override
@@ -208,15 +208,15 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 		{
 			CategorizedListAdapter.this.notifyDataSetChanged();
 		}
-		
+
 		@Override
 		public void onInvalidated()
 		{
 			CategorizedListAdapter.this.notifyDataSetInvalidated();
 		}
 	}
-	
-	
+
+
 	private static class AdapterDescriptor
 	{
 		int numViewTypes;
@@ -227,7 +227,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 	{
 		String classname;
 		AdapterDescriptor descriptor;
-		
+
 		classname = adapter.getClass().getName();
 		descriptor = _adapterDescriptors.get(classname);
 		if(descriptor != null)
@@ -240,15 +240,15 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 			descriptor.numViewTypes = adapter.getViewTypeCount();
 			descriptor.adapters.add(adapter);
 			descriptor.viewTypeIdBase = this._viewTypeIdCounter;
-			
+
 			// Increment the internal view type counter.
 			this._viewTypeIdCounter += descriptor.numViewTypes;
-			
+
 			// Register the class type.
 			_adapterDescriptors.put(classname, descriptor);
 		}
 	}
-	
+
 	@Override
 	public int getViewTypeCount()
 	{
@@ -257,16 +257,16 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 		{
 			result += _adapterDescriptors.get(key).numViewTypes;
 		}
-		
+
 		return result;
 	}
-	
+
 	@Override
 	public boolean areAllItemsEnabled()
 	{
 		return false;
 	}
-	
+
 	@Override
 	public boolean isEnabled(int position)
 	{
@@ -284,7 +284,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 			return ps.adapter.isEnabled(ps.position);
 		}
 	}
-	
+
 	protected PositionSpec getInternalPosition(final int position)
 	{
 		int cpos = position;
@@ -293,12 +293,12 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 		ListAdapter c_adapter;
 		int sect_len;
 		int sect_size = _adapters.size();
-		
+
 		while(sect_index < sect_size)
 		{
 			c_adapter = _adapters.get(sect_index);
 			sect_len = c_adapter.getCount();
-			
+
 			// Sections with size of 0 are ignored.
 			if(sect_len > 0)
 			{
@@ -334,7 +334,7 @@ public class CategorizedListAdapter extends BaseAdapter implements OnItemClickLi
 		ListAdapter adapter;
 		int position;
 	}
-	
+
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 	{
 		PositionSpec pos_spec = getInternalPosition(position);

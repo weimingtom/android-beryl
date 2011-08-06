@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reflection {
-	
+
 	public static final ArrayList<Class<?>> ZeroParameters = new ArrayList<Class<?>>();
 	/**
 	 * Basically Class.getMethod but allows for a list of parameter types instead of a variable arguments list.
@@ -15,14 +15,14 @@ public class Reflection {
 	public static Method findDeclaredMethod(final Class<?> clazz, final String methodName, List<Class<?>> paramTypes) throws SecurityException, NoSuchMethodException {
 		Method method = null;
 		Method [] methods = clazz.getDeclaredMethods();
-		
+
 		if(paramTypes == null) {
 			paramTypes = ZeroParameters;
 		}
-		
+
 		for(Method candidate : methods) {
 			if(candidate.getName().equals(methodName)) {
-				
+
 				Class<?>[] candidateParamTypes = candidate.getParameterTypes();
 				if(candidateParamTypes.length == paramTypes.size()) {
 					final int length = candidateParamTypes.length;
@@ -40,7 +40,7 @@ public class Reflection {
 				}
 			}
 		}
-		
+
 		/* Try this to:
 		method = clazz.getDeclaredMethod(methodName, (Class<?>[]) paramTypes.toArray());
 		if(method != null) {

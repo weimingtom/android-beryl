@@ -20,7 +20,7 @@ public class Web {
 		public void prepareIntent(Context context) {
 			// Do Nothing
 		}
-		
+
 		public boolean isChoosable() {
 			return false;
 		}
@@ -28,12 +28,12 @@ public class Web {
 		public CharSequence getChooserTitle() {
 			return "View Website with";
 		}
-		
+
 		public boolean isValid() {
 			return Url != null;
 		}
 	}
-	
+
 	public static final Intent viewUrl(final String url) {
 		View viewer = new View();
 		viewer.Url = url;

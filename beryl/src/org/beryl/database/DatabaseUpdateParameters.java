@@ -12,7 +12,7 @@ public class DatabaseUpdateParameters {
 	public final Context context;
 	public final SQLiteDatabase db;
 	public final Log log;
-	
+
 	DatabaseUpdateParameters(Context context, SQLiteDatabase db, Log log) {
 		this.context = context;
 		this.db = db;

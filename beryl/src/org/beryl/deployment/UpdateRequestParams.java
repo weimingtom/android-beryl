@@ -12,17 +12,17 @@ class UpdateRequestParams {
 	private final String manifestUrl;
 	private final String applicationPackage;
 	private final int versionCode;
-	
+
 	public final String type;
 	private String versionName = null;
-	
+
 	private UpdateRequestParams(String manifestUrl, String packageName, int versionCode, String type) {
 		this.manifestUrl = manifestUrl;
 		this.applicationPackage = packageName;
 		this.versionCode = versionCode;
 		this.type = type;
 	}
-	
+
 	public String getVersionName() {
 		if(versionName != null && versionName.length() > 0) {
 			return versionName;
@@ -53,7 +53,7 @@ class UpdateRequestParams {
 		PackageInfo pkgInfo;
 		int versionCode = 0;
 		String versionName = null;
-		
+
 		try {
 			pkgInfo = pm.getPackageInfo(packageName, 0);
 			versionCode = pkgInfo.versionCode;
@@ -61,10 +61,10 @@ class UpdateRequestParams {
 		} catch (NameNotFoundException e) {
 			ExceptionReporter.report(e);
 		}
-		
+
 		final UpdateRequestParams params = new UpdateRequestParams(manifestUrl, packageName, versionCode, type);
 		params.versionName = versionName;
-		
+
 		return params;
 	}
 }

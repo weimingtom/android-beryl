@@ -23,16 +23,16 @@ public class Log implements ILogWriter {
 		this.logDelegate = new LogCatLogWriter();
 		this.tag = tag;
 	}
-	
+
 	public Log(ILogWriter delegate, String tag) {
 		this.logDelegate = delegate;
 		this.tag = tag;
 	}
-	
+
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-	
+
 	public void d(String tag, Object obj) {
 		logDelegate.d(tag, StringUtils.objectToStringNoNull(obj));
 	}
@@ -48,7 +48,7 @@ public class Log implements ILogWriter {
 	public void w(String tag, Object obj) {
 		logDelegate.w(tag, StringUtils.objectToStringNoNull(obj));
 	}
-	
+
 	public void d(String tag, String msg) {
 		logDelegate.d(tag, msg);
 	}
@@ -64,7 +64,7 @@ public class Log implements ILogWriter {
 	public void w(String tag, String msg) {
 		logDelegate.w(tag, msg);
 	}
-	
+
 	public void d(String msg) {
 		logDelegate.d(tag, msg);
 	}
@@ -72,7 +72,7 @@ public class Log implements ILogWriter {
 	public void e(Exception e) {
 		logDelegate.e(tag, e);
 	}
-	
+
 	public void e(Throwable tr) {
 		logDelegate.e(tag, tr);
 	}
@@ -88,11 +88,11 @@ public class Log implements ILogWriter {
 	public void w(String msg) {
 		logDelegate.w(tag, msg);
 	}
-	
+
 	public void e(String tag, Exception e) {
 		logDelegate.e(tag, e);
 	}
-	
+
 	public void e(String tag, Throwable tr) {
 		logDelegate.e(tag, tr);
 	}
@@ -112,7 +112,7 @@ public class Log implements ILogWriter {
 	public void w(Object obj) {
 		logDelegate.w(tag, StringUtils.objectToStringNoNull(obj));
 	}
-	
+
 	/** Prints out all the details of the Intent object. */
 	public void d(Intent intent) {
 		d("Action", intent.getAction());
@@ -130,7 +130,7 @@ public class Log implements ILogWriter {
 		final Bundle extras = intent.getExtras();
 		d(extras);
 	}
-	
+
 	public void d(Bundle bundle) {
 		Object obj;
 		if (bundle == null) {
@@ -173,7 +173,7 @@ public class Log implements ILogWriter {
 
 	/**
 	 * Reads all the data from the cursor and reports it to the log.
-	 * 
+	 *
 	 * @param cur
 	 */
 	public void inspectQueryResult(final Cursor cur) {
@@ -187,7 +187,7 @@ public class Log implements ILogWriter {
 	/**
 	 * Reports the current cursor item's data to the log. The cursor location is
 	 * not affected by this call.
-	 * 
+	 *
 	 * @param cur
 	 */
 	public void inspectCursorData(final Cursor cur) {
@@ -197,20 +197,20 @@ public class Log implements ILogWriter {
 					+ column_names[i], cur.getString(i));
 		}
 	}
-	
+
 	public void probe(final Object obj) {
 		String objProbeString = "";
-		
+
 		if(obj != null) {
 			objProbeString = probeObjectToString(obj);
 		}
-		
+
 		d("Probe Object", objProbeString);
 	}
-	
+
 	/** Probe's an object's fields . */
 	public static String probeObjectToString(Object obj) {
-		
+
 		String msg = "";
 		if (obj != null) {
 			final StringBuilder sb = new StringBuilder();
@@ -220,7 +220,7 @@ public class Log implements ILogWriter {
 				field.setAccessible(true);
 				sb.append(field.getName());
 				sb.append("= ");
-				
+
 				try {
 					final Object fieldData = field.get(obj);
 					if(fieldData == null) {
@@ -233,7 +233,7 @@ public class Log implements ILogWriter {
 				}
 				sb.append(" | ");
 			}
-			
+
 			msg = sb.toString();
 		}
 		return msg;

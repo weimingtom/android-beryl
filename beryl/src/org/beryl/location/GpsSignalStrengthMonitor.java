@@ -10,7 +10,7 @@ import android.os.Bundle;
 public class GpsSignalStrengthMonitor implements LocationListener {
 
 	private int _numSatellites = 0;
-	
+
 	public void onLocationChanged(Location location) {
 	}
 
@@ -39,11 +39,11 @@ public class GpsSignalStrengthMonitor implements LocationListener {
 	public boolean isAvailable() {
 		return _numSatellites != 0;
 	}
-	
+
 	public int getSatellites() {
 		return _numSatellites;
 	}
-	
+
 	/** Provides a 0-5 bar rating for the signal strength of GPS. Similar to the bars that indicate cellphone reception. */
 	public int getZeroFiveBarRating() {
 		if(_numSatellites < 3)
