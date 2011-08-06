@@ -16,6 +16,11 @@ import android.webkit.MimeTypeMap;
  * The 2 advantages of this class are:
  *  1. MediaScanner runs in a separate thread.
  *  2. Service is self-contained and will no leak on close of application.
+
+<b>To use this class you will need to register it in the AndroidManifest.xml.</b>
+<pre class="code"><code class="xml">
+&lt;service android:name="org.beryl.media.RegisterMediaIntentService" /&gt;
+</code></pre>
  */
 public class RegisterMediaIntentService extends IntentService {
 

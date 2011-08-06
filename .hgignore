@@ -2,6 +2,7 @@ syntax: glob
 *.class
 *.suo
 *.apk
+make.cmd
 
 syntax: regexp
 ^bin\\*
