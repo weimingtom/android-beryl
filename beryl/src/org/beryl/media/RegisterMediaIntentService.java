@@ -13,11 +13,13 @@ import android.webkit.MimeTypeMap;
 /**
  * Android Service that offloads the scanning of new media in a new thread.
  * This parallels the functionality of the SDK's MediaScannerConnection.scanFile method.
- * The 2 advantages of this class are:
- *  1. MediaScanner runs in a separate thread.
- *  2. Service is self-contained and will no leak on close of application.
+<h4>The 2 advantages of this class are:</h4>
+<ul>
+	<li>MediaScanner runs in a separate thread.</li>
+	<li>Service is self-contained and will no leak on close of application.</li>
+</ul>
 
-<b>To use this class you will need to register it in the AndroidManifest.xml.</b>
+<h3>To use this class you will need to register it in the AndroidManifest.xml.</h3>
 <pre class="code"><code class="xml">
 &lt;service android:name="org.beryl.media.RegisterMediaIntentService" /&gt;
 </code></pre>
