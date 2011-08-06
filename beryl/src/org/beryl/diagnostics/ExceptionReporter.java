@@ -3,7 +3,7 @@ package org.beryl.diagnostics;
 /** Handler for manually caught exceptions that probably need to be reported somewhere.
  * Use this class for situations where exceptions can be thrown that should at least be mentioned somewhere.
  * This allows for easy swapping of generic exception handling.
- * The default is no action but all non-critical exceptions can be reported by calling logExceptions(). */
+ * The default is no action but all non-critical exceptions can be reported by calling enable(). */
 public class ExceptionReporter {
 
 	public static final NonCriticalThrowableHandler suppressExceptionHandler = new DoNothingHandler();
@@ -11,11 +11,11 @@ public class ExceptionReporter {
 	
 	public static NonCriticalThrowableHandler globalHandler = suppressExceptionHandler;
 	
-	public static void ignoreExceptions() {
+	public static void disable() {
 		globalHandler = suppressExceptionHandler;
 	}
 	
-	public static void logExceptions() {
+	public static void enable() {
 		globalHandler = logcatExceptionHandler;
 	}
 	

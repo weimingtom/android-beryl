@@ -42,7 +42,7 @@ public class PreferGpsLocationMonitorController extends LocationMonitorControlle
 	}
 
 	public void onLocationChanged(Location location) {
-		if(location.equals(LocationManager.GPS_PROVIDER)) {
+		if(location.getProvider().equals(LocationManager.GPS_PROVIDER)) {
 			disableNonGpsProviders();
 		}
 	}

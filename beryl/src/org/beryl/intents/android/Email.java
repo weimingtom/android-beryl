@@ -20,7 +20,7 @@ public class Email {
 
 		public Intent getIntent() {
 			final Intent intent = new Intent(Intent.ACTION_SEND);
-	    	intent.putExtra(Intent.EXTRA_EMAIL, (String[])sendToEmailAddress.toArray());
+	    	intent.putExtra(Intent.EXTRA_EMAIL, (String[])sendToEmailAddress.toArray(new String[sendToEmailAddress.size()]));
 	    	if(subject != null) intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 	    	if(body != null) intent.putExtra(Intent.EXTRA_TEXT, body);
 	    	intent.setType("message/rfc822");
@@ -28,6 +28,7 @@ public class Email {
 	    	return intent;
 		}
 
+		
 		public boolean isChoosable() {
 			return true;
 		}
