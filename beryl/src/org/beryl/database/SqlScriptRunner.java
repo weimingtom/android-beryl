@@ -1,5 +1,6 @@
 package org.beryl.database;
 
+import org.beryl.diagnostics.ExceptionReporter;
 import org.beryl.diagnostics.Log;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -46,6 +47,7 @@ public class SqlScriptRunner {
 			db.setTransactionSuccessful();
 			success = true;
 		} catch(Exception e) {
+			ExceptionReporter.report(e);
 			success = false;
 			transactionException = e;
 		} finally {

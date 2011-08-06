@@ -4,9 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.beryl.diagnostics.ILogWriter;
-import org.beryl.diagnostics.Log;
-import org.beryl.diagnostics.SuppressLogWriter;
+import org.beryl.diagnostics.ExceptionReporter;
 
 import android.content.res.Resources;
 import android.view.View;
@@ -18,7 +16,6 @@ class GenericViewBinder implements IViewBindable {
 	final View rootView;
 	final Resources res;
 	final String packageName;
-	Log logger = new Log(new SuppressLogWriter());
 
 	GenericViewBinder(Object object, View rootView, String packageName) {
 		this.object = object;
@@ -26,11 +23,6 @@ class GenericViewBinder implements IViewBindable {
 		this.rootView = rootView;
 		res = rootView.getResources();
 		this.packageName = packageName;
-	}
-
-	public void setLogger(ILogWriter logWriter) {
-		logger = new Log(logWriter);
-		logger.setTag("GenericViewBinder");
 	}
 
 	protected View getRootView() {
@@ -70,8 +62,7 @@ class GenericViewBinder implements IViewBindable {
 				try {
 					views.add(new ViewData(field));
 				} catch(final Exception e){
-					logger.e("Failed to assign field=" + field.getName());
-					logger.e(e);
+					ExceptionReporter.report("Failed to assign field= " + field.getName(), e);
 				}
 			}
 		}
@@ -91,8 +82,7 @@ class GenericViewBinder implements IViewBindable {
 				final int rId = getRdotId(viewName);
 				bindView(root, viewData, rId);
 			} catch(final Exception e) {
-				logger.e("Failed to bind on View " + viewName);
-				logger.e(e);
+				ExceptionReporter.report("Failed to bind on View " + viewName, e);
 			}
 		}
 	}

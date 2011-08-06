@@ -3,6 +3,7 @@ package org.beryl.io;
 import java.io.File;
 
 import org.beryl.app.AndroidVersion;
+import org.beryl.diagnostics.ExceptionReporter;
 
 import android.content.Context;
 import android.os.Environment;
@@ -79,6 +80,7 @@ public class DirectoryUtils {
 			try {
 				directory.mkdirs();
 			} catch(Exception e) {
+				ExceptionReporter.report(e);
 				// Ignore, banking on the fact that developers should check the storage state before using file IO.
 			}
 		}

@@ -19,6 +19,12 @@ public class LogCatLogWriter implements ILogWriter {
 		android.util.Log.e(tag, e.getMessage(), e);
 	}
 
+	public void e(String tag, Throwable tr) {
+		if(tag == null) tag = "";
+		if(tr == null) tr = new Throwable("");
+		android.util.Log.e(tag, tr.getMessage(), tr);
+	}
+	
 	public void e(String tag, String msg) {
 		if(tag == null) tag = "";
 		if(msg == null) msg = "";

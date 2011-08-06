@@ -2,6 +2,8 @@ package org.beryl.app;
 
 import java.util.ArrayList;
 
+import org.beryl.diagnostics.ExceptionReporter;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -93,7 +95,7 @@ public class IntentChooser extends Activity implements OnDismissListener {
 			final int iconResId = getChooserIconResId();
 			showChooser(title, iconResId, choosables);
 		} catch(IllegalArgumentException e) {
-			
+			ExceptionReporter.report(e);
 			finish();
 		} finally {
 			

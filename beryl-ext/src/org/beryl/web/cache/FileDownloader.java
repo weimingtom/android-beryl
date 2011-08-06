@@ -10,6 +10,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.beryl.diagnostics.ExceptionReporter;
 
 public class FileDownloader {
 
@@ -27,7 +28,9 @@ public class FileDownloader {
 					result = EntityUtils.toByteArray(entity);
 				}
 			}
-		} catch(Exception e) {}
+		} catch(Exception e) {
+			ExceptionReporter.report(e);
+		}
 		
 		return result;
 	}
@@ -44,6 +47,7 @@ public class FileDownloader {
 			
 		} catch(Exception e) {
 			result = null;
+			ExceptionReporter.report(e);
 		}
 		return result;
 	}

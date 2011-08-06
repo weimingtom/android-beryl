@@ -1,6 +1,6 @@
 package org.beryl.intents;
 
-import org.beryl.diagnostics.Logger;
+import org.beryl.diagnostics.ExceptionReporter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -35,7 +35,7 @@ public class ActivityResultTask extends AsyncTask<Void, Void, Void> {
 				handler.onResultCustomCode(resultCode);
 			}
 		} catch(Exception e) {
-			Logger.e(e);
+			ExceptionReporter.report(e);
 		} finally {
 			launcher = null;
 			handler = null;

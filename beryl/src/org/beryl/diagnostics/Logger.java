@@ -54,6 +54,10 @@ public class Logger {
 	public static void e(Exception e) {
 		logDelegate.e(e);
 	}
+	
+	public static void e(Throwable tr) {
+		logDelegate.e(tr);
+	}
 
 	public static void e(String msg) {
 		logDelegate.e(msg);
@@ -82,8 +86,13 @@ public class Logger {
 	public static void w(Object obj) {
 		logDelegate.w(obj);
 	}
+	
 	public static void e(String tag, Exception e) {
 		logDelegate.e(tag, e);
+	}
+	
+	public static void e(String tag, Throwable tr) {
+		logDelegate.e(tag, tr);
 	}
 
 	public static void d(Intent intent) {

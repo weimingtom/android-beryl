@@ -1,5 +1,7 @@
 package org.beryl.app;
 
+import org.beryl.diagnostics.ExceptionReporter;
+
 /** Convenience class for retrieving the current Android version that's running on the device.
  * 
  * Code example on how to use AndroidVersion to load a multi-versioned class at runtime for backwards compatibility without using reflection.
@@ -28,7 +30,9 @@ public class AndroidVersion {
 		try {
 			android_sdk = Integer.parseInt(android.os.Build.VERSION.SDK);
 		}
-		catch (Exception e) {}
+		catch (Exception e) {
+			ExceptionReporter.report(e);
+		}
 		finally {}
 		
 		_ANDROID_SDK_VERSION = android_sdk;

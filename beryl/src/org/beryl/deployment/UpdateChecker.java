@@ -5,6 +5,7 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.beryl.diagnostics.ExceptionReporter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -56,6 +57,7 @@ public class UpdateChecker {
 					callback.onUpdateNotAvailable(upToDateApplication);
 				}
 			} catch(Exception e) {
+				ExceptionReporter.report(e);
 				callback.onError(e);
 			} finally {
 				
