@@ -15,58 +15,13 @@
 	
 	<target name="build-projects">
 		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-core" />
+			<param name="projectdir" value="beryl" />
 			<param name="package" value="org.beryl" />
 			<param name="classpathid" value="default-classpath" />
 		</antcall>
 		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-io" />
-			<param name="package" value="org.beryl.io" />
-			<param name="classpathid" value="default-berylcore-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-content" />
-			<param name="package" value="org.beryl.content" />
-			<param name="classpathid" value="default-berylcore-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-database" />
-			<param name="package" value="org.beryl.database" />
-			<param name="classpathid" value="default-berylcore-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-location" />
-			<param name="package" value="org.beryl.location" />
-			<param name="classpathid" value="default-berylcore-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-intents" />
-			<param name="package" value="org.beryl.intents" />
-			<param name="classpathid" value="beryl-intents-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-web" />
-			<param name="package" value="org.beryl.web" />
-			<param name="classpathid" value="default-berylcore-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-deployment" />
-			<param name="package" value="org.beryl.deployment" />
-			<param name="classpathid" value="default-berylcore-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-webapis" />
-			<param name="package" value="org.beryl.webapis" />
-			<param name="classpathid" value="default-berylweb-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-webcache" />
-			<param name="package" value="org.beryl.web.cache" />
-			<param name="classpathid" value="default-berylweb-database-classpath" />
-		</antcall>
-		<antcall target="beryl-build">
-			<param name="projectdir" value="beryl-widget" />
-			<param name="package" value="org.beryl.widget" />
+			<param name="projectdir" value="beryl-ext" />
+			<param name="package" value="org.beryl.ext" />
 			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
 	</target>
