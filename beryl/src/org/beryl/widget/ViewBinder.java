@@ -1,6 +1,6 @@
 package org.beryl.widget;
 
-import org.beryl.diagnostics.ILogWriter;
+import org.beryl.diagnostics.ExceptionReporter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -90,21 +90,8 @@ public class ViewBinder {
 		IViewBindable bindable = new GenericViewBinder(object, root, packageName);
 		bindable.bindViews();
 	}
-	/**
-	 * Same as bind() but with an option to output debugging information as the Views are being bound. Useful for Proguard debugging.
-	 */
-	public static void bind(View root, Object object, String packageName, ILogWriter logWriter) {
-		IViewBindable bindable = new GenericViewBinder(object, root, packageName);
-		bindable.setLogger(logWriter);
-		bindable.bindViews();
-	}
-	
 	public static void bind(View root, Object object, Class<?> rDotId) {
 		bind(root, object, rDotId.getPackage().getName());
-	}
-	
-	public static void bind(View root, Object object, Class<?> rDotId, ILogWriter logWriter) {
-		bind(root, object, rDotId.getPackage().getName(), logWriter);
 	}
 
 	/**
@@ -168,7 +155,9 @@ public View getView(int position, View convertView, ViewGroup parent) {
 				final Object tag = viewHolderClass.newInstance();
 				ViewBinder.bind(convertView, tag, rDotId);
 				convertView.setTag(tag);
-			} catch(Exception e) {}
+			} catch(Exception e) {
+				ExceptionReporter.report(e);
+			}
 		}
 		
 		return convertView;

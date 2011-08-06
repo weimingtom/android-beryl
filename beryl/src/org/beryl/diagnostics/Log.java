@@ -72,6 +72,10 @@ public class Log implements ILogWriter {
 	public void e(Exception e) {
 		logDelegate.e(tag, e);
 	}
+	
+	public void e(Throwable tr) {
+		logDelegate.e(tag, tr);
+	}
 
 	public void e(String msg) {
 		logDelegate.e(tag, msg);
@@ -87,6 +91,10 @@ public class Log implements ILogWriter {
 	
 	public void e(String tag, Exception e) {
 		logDelegate.e(tag, e);
+	}
+	
+	public void e(String tag, Throwable tr) {
+		logDelegate.e(tag, tr);
 	}
 
 	public void d(Object obj) {

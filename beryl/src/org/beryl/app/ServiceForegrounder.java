@@ -2,6 +2,8 @@ package org.beryl.app;
 
 import java.lang.reflect.Method;
 
+import org.beryl.diagnostics.ExceptionReporter;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -83,6 +85,7 @@ public class ServiceForegrounder {
 			try {
 				try_service_setForeground = Service.class.getMethod("setForeground", service_setForegroundSignature);
 			} catch (Exception e) {
+				ExceptionReporter.report(e);
 				try_service_setForeground = null;
 			}
 			service_setForeground = try_service_setForeground;
@@ -99,7 +102,7 @@ public class ServiceForegrounder {
 			try {
 				service_setForeground.invoke(service, service_setForeground_Args);
 			} catch(Exception e) {
-				
+				ExceptionReporter.report(e);
 			}
 		}
 		

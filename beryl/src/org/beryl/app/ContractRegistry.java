@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.beryl.diagnostics.ExceptionReporter;
+
 /**
  * Registry of interfaces that can be queried by other objects. The primary goal is to provide a way to decouple {@link android.app.Fragment}s while allowing them to communicate with each other through these exposed interfaces.
  * This class is not specific to Activities and Fragments but can be used in any situation where multiple components need to communicate.
@@ -135,7 +137,7 @@ public final class ContractRegistry {
 					attach(contractMember);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				ExceptionReporter.report(e);
 			}
 		}
 	}
@@ -146,7 +148,7 @@ public final class ContractRegistry {
 			try {
 				detach(field.get(obj));
 			} catch (Exception e) {
-				e.printStackTrace();
+				ExceptionReporter.report(e);
 			}
 		}
 	}
@@ -209,6 +211,7 @@ public final class ContractRegistry {
 		try {
 			registry = ((IContractMediator)maybeContractMediator).getContractRegistry();
 		} catch(ClassCastException e) {
+			ExceptionReporter.report(e);
 			throw new ClassCastException("Parameter must implement interface, " + IContractMediator.class.getName());
 		}
 		

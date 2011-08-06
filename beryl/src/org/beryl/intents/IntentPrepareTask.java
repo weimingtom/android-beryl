@@ -1,6 +1,6 @@
 package org.beryl.intents;
 
-import org.beryl.diagnostics.Logger;
+import org.beryl.diagnostics.ExceptionReporter;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -60,7 +60,7 @@ public class IntentPrepareTask extends AsyncTask<Void, Void, Void> {
 				}
 			}
 		} catch(Exception e) {
-			Logger.e(e);
+			ExceptionReporter.report(e);
 		} finally {
 			launcher.onLaunchTaskComplete();
 			

@@ -1,5 +1,6 @@
 package org.beryl.intents.android;
 
+import org.beryl.diagnostics.ExceptionReporter;
 import org.beryl.graphics.BitmapLoader;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
@@ -50,6 +51,7 @@ public class Camera {
 				final ContentResolver cr = context.getContentResolver();
 				this.imageUri = cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 			} catch(Exception e) {
+				ExceptionReporter.report(e);
 				this.imageUri = null;
 			}
 		}

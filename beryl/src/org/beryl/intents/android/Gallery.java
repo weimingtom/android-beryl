@@ -3,6 +3,7 @@ package org.beryl.intents.android;
 import java.io.File;
 
 import org.beryl.app.AndroidVersion;
+import org.beryl.diagnostics.ExceptionReporter;
 import org.beryl.graphics.BitmapLoader;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
@@ -59,7 +60,7 @@ public class Gallery {
 				filePath = cursor.getString(data_index);
 			}
 		} catch(Exception e) {
-			
+			ExceptionReporter.report(e);
 		} finally {
 			if (cursor != null) {
 				cursor.close();
@@ -110,6 +111,7 @@ public class Gallery {
 				intent.setClassName(StockAndroidGalleryPackageName, StockAndroidGallery3dClassName);
 				success = true;
 			} catch (Exception e) {
+				ExceptionReporter.report(e);
 				success = false;
 				// Delete the file if create failed.
 			}

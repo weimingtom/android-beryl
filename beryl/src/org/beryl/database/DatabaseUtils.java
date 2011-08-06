@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.beryl.diagnostics.ExceptionReporter;
+
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -34,6 +36,7 @@ public class DatabaseUtils {
 			SqlScriptRunner sqlRunner = new SqlScriptRunner(db, script);
 			success = sqlRunner.run();
 		} catch(Exception e) {
+			ExceptionReporter.report(e);
 			success = false;
 		}
 		

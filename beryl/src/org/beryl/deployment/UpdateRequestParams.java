@@ -1,5 +1,7 @@
 package org.beryl.deployment;
 
+import org.beryl.diagnostics.ExceptionReporter;
+
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -56,7 +58,9 @@ class UpdateRequestParams {
 			pkgInfo = pm.getPackageInfo(packageName, 0);
 			versionCode = pkgInfo.versionCode;
 			versionName = pkgInfo.versionName;
-		} catch (NameNotFoundException e) {}
+		} catch (NameNotFoundException e) {
+			ExceptionReporter.report(e);
+		}
 		
 		final UpdateRequestParams params = new UpdateRequestParams(manifestUrl, packageName, versionCode, type);
 		params.versionName = versionName;

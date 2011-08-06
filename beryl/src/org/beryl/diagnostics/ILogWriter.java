@@ -6,6 +6,9 @@ public interface ILogWriter {
 	/** Log an exception, with the stack trace, exception type and message. */
 	void e(String tag, Exception e);
 	
+	/** Log a throwable, with the stack trace, exception type and message. */
+	void e(String tag, Throwable tr);
+	
 	/** Log an error message. */
 	void e(String tag, String msg);
 	

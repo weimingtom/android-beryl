@@ -20,4 +20,7 @@ public class SuppressLogWriter implements ILogWriter {
 
 	public void w(String tag, String msg) {
 	}
+
+	public void e(String tag, Throwable tr) {
+	}
 }
