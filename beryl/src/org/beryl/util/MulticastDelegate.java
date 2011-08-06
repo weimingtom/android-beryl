@@ -113,10 +113,8 @@ public class MulticastDelegate {
 
 	private void compact(final ArrayList<WeakReference<Object>> deadObjects) {
 		if(deadObjects != null) {
-			if(deadObjects != null) {
-				for(WeakReference<Object> weakRef : deadObjects) {
-					delegates.remove(weakRef);
-				}
+			for(WeakReference<Object> weakRef : deadObjects) {
+				delegates.remove(weakRef);
 			}
 		}
 	}

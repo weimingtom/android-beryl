@@ -16,7 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class CategorizedListAdapter extends BaseAdapter implements OnItemClickListener
 {
-	private final int ITEM_ID_HEADER = 0;
+	private final static int ITEM_ID_HEADER = 0;
 	private final ArrayList<String> _headers = new ArrayList<String>();
 	private final ArrayList<ListAdapter> _adapters = new ArrayList<ListAdapter>();
 	private final Context _context;

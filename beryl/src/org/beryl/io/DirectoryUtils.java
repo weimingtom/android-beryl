@@ -3,7 +3,6 @@ package org.beryl.io;
 import java.io.File;
 
 import org.beryl.app.AndroidVersion;
-import org.beryl.diagnostics.ExceptionReporter;
 
 import android.content.Context;
 import android.os.Environment;
@@ -63,26 +62,20 @@ public class DirectoryUtils {
 	}
 	
 	public static File createPictureLibraryFolder(String libraryName, boolean autoCreate) {
-		File basePicturesPath = getPublicPictures();
-		File libraryPath = appendDirectoryName(basePicturesPath, libraryName);
-
+		final File basePicturesPath = getPublicPictures();
+		final File libraryPath = appendDirectoryName(basePicturesPath, libraryName);
+		attemptAutoCreate(autoCreate, libraryPath);
 		return libraryPath;
 	}
 	
 	public static File appendDirectoryName(File baseDir, String appendDirName) {
 		File appendedDir = new File(baseDir, appendDirName);
-		appendedDir.mkdirs();
 		return appendedDir;
 	}
 	
 	private static void attemptAutoCreate(boolean autoCreate, File directory) {
 		if(autoCreate || directory != null) {
-			try {
-				directory.mkdirs();
-			} catch(Exception e) {
-				ExceptionReporter.report(e);
-				// Ignore, banking on the fact that developers should check the storage state before using file IO.
-			}
+			FileUtils.createDirectory(directory);
 		}
 	}
 }
