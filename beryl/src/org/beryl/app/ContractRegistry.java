@@ -7,9 +7,9 @@ import java.util.HashMap;
 import org.beryl.diagnostics.ExceptionReporter;
 
 /**
- * Registry of interfaces that can be queried by other objects. The primary goal is to provide a way to decouple {@link android.app.Fragment}s while allowing them to communicate with each other through these exposed interfaces.
- * This class is not specific to Activities and Fragments but can be used in any situation where multiple components need to communicate.
- *
+Registry of interfaces that can be queried by other objects. The primary goal is to provide a way to decouple {@link android.app.Fragment}s while allowing them to communicate with each other through these exposed interfaces.
+This class is not specific to Activities and Fragments but can be used in any situation where multiple components need to communicate with each other.
+
 <h2>Pattern Setup</h2>
 <ol>
 	<li>Create a class that implements the {@link org.beryl.app.IContractMediator} interface. This class will hold the ContractRegistry object.</li>
@@ -18,7 +18,10 @@ import org.beryl.diagnostics.ExceptionReporter;
 	<li>When wiring up the objects together get the handle of the ContractsRegistry from the class that implements {@link org.beryl.app.IContractMediator}. Add the object to the registry via the .add(Object) method.</li>
 	<li>Likewise when removing the object call .remove(object) against the registry otherwise a GC memory-leak will occur.</li>
 </ol>
-
+<div class="diagram">
+<img src="doc-files/ContractRegistry.png" />
+Figure illustrates how the components are connected to each other via the ContractRegistry and their respective Contracts.
+</div>
 <h2>Example</h2>
 <pre class="code"><code class="java">
 

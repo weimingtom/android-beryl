@@ -172,11 +172,7 @@ public class Gallery {
 	}
 
 	public static void deleteImageUri(Context context, Uri imageUri) {
-		String filePath = uriToPhysicalPath(context, imageUri);
 		final ContentResolver cr = context.getContentResolver();
 		cr.delete(imageUri, null, null);
-		if(filePath != null) {
-			FileUtils.delete(filePath);
-		}
 	}
 }

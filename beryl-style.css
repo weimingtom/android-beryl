@@ -76,6 +76,23 @@ table
 th { border: 1px }
 tr { border: 1px solid; border-color: #AAAAAA; }
 td {  }
+
+.diagram
+{
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #AAAAAA;
+    background: #F7F7F7;
+    min-width: 500px;
+    
+}
+.diagram img
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Colour Lovers
 http://www.colourlovers.com/palette/1392493/Android
 Smog: #464D5C
