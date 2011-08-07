@@ -32,7 +32,7 @@
 	</target>
 	
 	<target name="javadoc">
-		<javadoc destdir="${beryl.javadoc.path}" author="true" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API" additionalparam="-notimestamp" stylesheetfile="beryl-style.css" useexternalfile="true">
+		<javadoc destdir="${beryl.javadoc.path}" author="false" packagenames="org.beryl" version="true" use="true" windowtitle="Beryl API" additionalparam="-notimestamp" docfilessubdirs="true" stylesheetfile="beryl-style.css" useexternalfile="true">
 			<header>
 			<![CDATA[<script type="text/javascript" src="http://docs.android-beryl.googlecode.com/hg/resources/jquery.js"></script>     
 <script type="text/javascript" src="http://docs.android-beryl.googlecode.com/hg/resources/jquery.beautyOfCode.js"></script> 
@@ -53,6 +53,9 @@ $.beautyOfCode.init({
 			<link href="http://developer.android.com/reference/" offline="true" packagelistloc="${android.sdk.javadoc.offline}" />
 				<link href="http://download.oracle.com/javase/1.5.0/docs/api/" />
 		</javadoc>
+		<copy todir="javadoc">
+            <fileset dir="beryl-javadoc-assets" />
+		</copy>
 	</target>
 	
 	<target name="beryl-build" depends="java-jar">
@@ -115,7 +118,6 @@ $.beautyOfCode.init({
 	<fileset id="all-project-java-files" dir="">
 		<include name="**/*.java" />
 	</fileset>
-	
 	<!--
 	References:
 	http://ant.apache.org/manual/toc.html
