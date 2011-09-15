@@ -23,7 +23,12 @@ public class ExceptionReporter {
 		globalHandler = handler;
 	}
 
+	public static void report(Throwable tr) {
+		globalHandler.onThrow(tr);
+	}
+	
 	public static void report(String message, Throwable tr) {
+		globalHandler.onException(new Exception(message));
 		globalHandler.onThrow(tr);
 	}
 
@@ -32,9 +37,9 @@ public class ExceptionReporter {
 	}
 
 	public static void report(String message, Exception e) {
+		globalHandler.onException(new Exception(message));
 		globalHandler.onException(e);
 	}
-
 
 	static class DoNothingHandler implements NonCriticalThrowableHandler {
 		public void onThrow(Throwable tr) {
