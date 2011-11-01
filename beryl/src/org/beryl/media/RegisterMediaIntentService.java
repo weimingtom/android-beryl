@@ -51,7 +51,7 @@ public class RegisterMediaIntentService extends IntentService {
 		client.waitForScanComplete();
 	}
 
-	static class MediaScannerClient implements MediaScannerConnectionClient {
+	class MediaScannerClient implements MediaScannerConnectionClient {
 
 		private MediaScannerConnection scanner;
 		private String filePath;
@@ -82,8 +82,11 @@ public class RegisterMediaIntentService extends IntentService {
 		}
 
 		public void onScanCompleted(String path, Uri uri) {
-			scanner.disconnect();
-			hasScanCompleted.set(true);
+			if(hasScanCompleted.get() == false) {
+				hasScanCompleted.set(true);
+				scanner.disconnect();
+				notifyScanCompleted(path, uri);
+			}
 		}
 	}
 
@@ -92,6 +95,10 @@ public class RegisterMediaIntentService extends IntentService {
 		final String extension = getFileExtension(filePath);
 		final String mimeType = mimeMap.getMimeTypeFromExtension(extension);
 		addFileToAndroidMediaCollection(context, filePath, mimeType);
+	}
+
+	public void notifyScanCompleted(String path, Uri uri) {
+		MediaRegisteredReceiver.sendBroadcast(this, path, uri);
 	}
 
 	public static final void addFileToAndroidMediaCollection(Context context, String filePath, String mimeType) {

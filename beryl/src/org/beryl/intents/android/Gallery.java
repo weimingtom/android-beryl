@@ -5,7 +5,6 @@ import org.beryl.graphics.BitmapLoader;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 import org.beryl.intents.IntentHelper;
-import org.beryl.io.FileUtils;
 
 import android.content.ContentResolver;
 import android.content.Context;

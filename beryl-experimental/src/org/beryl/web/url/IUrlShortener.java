@@ -1,7 +1,7 @@
 package org.beryl.web.url;
 
 /** Interface for URL Shortening providers.
- * URL Shortening services take very long URLs and converts them to an auto-redirecting short URL appropriate for posting data on sites like facebook and twitter.
+ * URL Shortening services take very long URLs and converts them to an auto-redirecting short URL appropriate for posting data on sites like twitter.
  * Requires: android.permission.INTERNET */
 public interface IUrlShortener {
 	
