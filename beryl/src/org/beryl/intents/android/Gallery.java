@@ -160,7 +160,6 @@ public class Gallery {
 			}
 
 			if(imageUri != null) {
-
 				filePath = uriToPhysicalPath(context, imageUri);
 
 				if(filePath != null) {

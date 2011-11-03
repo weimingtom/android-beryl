@@ -8,7 +8,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
 public class BitmapLoader {
+	
+	private static final int NUM_INSTANCES = 4;
 
+	public static Bitmap tryDecodeBitmapFileConsideringInstances(String filePath) {
+		return tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
+	}
+	
 	public static Bitmap tryDecodeBitmapFileConsideringInstances(String filePath, int numPossibleInstances) {
 		return tryDecodeBitmapFile(filePath, Memory.getReasonableMemoryCushion(), numPossibleInstances);
 	}
