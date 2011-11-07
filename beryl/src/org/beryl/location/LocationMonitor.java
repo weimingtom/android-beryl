@@ -88,7 +88,6 @@ public class LocationMonitor implements LocationListener {
 		return lm.getProviders(true);
 	}
 
-	
 	/** Returns true if any location provider is enabled on the device at this time. */
 	public boolean isAnyProviderEnabled() {
 		return getEnabledProviders().size() > 0;

@@ -29,11 +29,11 @@ public class ProviderSelectors {
 	private static class AllFreeProviders implements IProviderListSelector {
 
 		public List<String> getProviders(LocationManager lm) {
-			return lm.getProviders(FreeProviderCriteria, true);
+			return lm.getProviders(FreeProviderCriteria, false);
 		}
 
 		public String getBestProvider(LocationManager lm) {
-			return lm.getBestProvider(FreeProviderCriteria, true);
+			return lm.getBestProvider(FreeProviderCriteria, false);
 		}
 	}
 
@@ -41,11 +41,11 @@ public class ProviderSelectors {
 			IProviderListSelector {
 
 		public List<String> getProviders(LocationManager lm) {
-			return lm.getProviders(FreeProviderCriteria, false);
+			return lm.getProviders(FreeProviderCriteria, true);
 		}
 
 		public String getBestProvider(LocationManager lm) {
-			return lm.getBestProvider(FreeProviderCriteria, false);
+			return lm.getBestProvider(FreeProviderCriteria, true);
 		}
 	}
 
