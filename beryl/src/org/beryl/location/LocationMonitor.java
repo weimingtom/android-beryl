@@ -8,6 +8,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
 
 public class LocationMonitor implements LocationListener {
@@ -63,6 +64,22 @@ public class LocationMonitor implements LocationListener {
 		lm.removeUpdates(this);
 	}
 
+	/** Returns true if the device supports the specified location provider. */
+	public boolean isProviderSupported(String providerName) {
+		final LocationProvider provider = lm.getProvider(providerName);
+		return provider == null;
+	}
+	
+	/** Returns true if the device is GPS capable. */
+	public boolean isGpsSupported() {
+		return isProviderSupported(LocationManager.GPS_PROVIDER);
+	}
+	
+	/** Returns true if the device can geo-locate based on network. */
+	public boolean isNetworkSupported() {
+		return isProviderSupported(LocationManager.NETWORK_PROVIDER);
+	}
+	
 	/** Returns true if GPS is available and enabled on the device. */
 	public boolean isGpsEnabled() {
 		return lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
