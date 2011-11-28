@@ -10,7 +10,11 @@ import android.os.Environment;
 //http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES
 public class DirectoryUtils {
 
-	/** */
+	/** Returns the absolute path to the directory on the external filesystem (that is somewhere on Environment.getExternalStorageDirectory()) where the application can place persistent files it owns. These files are private to the applications, and not typically visible to the user as media. */
+	public static File getApplicationExternalStorageDirectory(Context context) {
+		return getApplicationExternalStorageDirectory(context, null);
+	}
+	
 	public static File getApplicationExternalStorageDirectory(Context context, String type) {
 		File directory = null;
 		if(AndroidVersion.isFroyoOrHigher()) {

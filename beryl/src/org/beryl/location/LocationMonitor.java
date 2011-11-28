@@ -27,6 +27,22 @@ public class LocationMonitor implements LocationListener {
 		providerSelector = selector;
 	}
 	
+	public boolean hasAtLeastOneEnabledProvider() {
+		return getNumberOfEnabledSelectedProviders() > 0;
+	}
+	
+	public int getNumberOfEnabledSelectedProviders() {
+		List<String> providers = providerSelector.getProviders(lm);
+		int enabledCount = 0;
+		for(String provider : providers) {
+			if(lm.isProviderEnabled(provider)) {
+				enabledCount++;
+			}
+		}
+		
+		return enabledCount;
+	}
+	
 	public void addListener(LocationListener listener) {
 		
 		// TODO: Controllers should obtain the controller class here.
