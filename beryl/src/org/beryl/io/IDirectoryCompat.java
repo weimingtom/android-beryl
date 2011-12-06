@@ -8,13 +8,13 @@ interface IDirectoryCompat {
 	
 	File getPublicApplication(Context context);
 	File getPublicMusic(final boolean autoCreate);
-	File getPublicPodcast(final boolean autoCreate);
-	File getPublicRingtone(final boolean autoCreate);
-	File getPublicAlarm(final boolean autoCreate);
-	File getPublicNotification(final boolean autoCreate);
-	File getPublicPicture(final boolean autoCreate);
-	File getPublicMovie(final boolean autoCreate);
-	File getPublicDownload(final boolean autoCreate);
+	File getPublicPodcasts(final boolean autoCreate);
+	File getPublicRingtones(final boolean autoCreate);
+	File getPublicAlarms(final boolean autoCreate);
+	File getPublicNotifications(final boolean autoCreate);
+	File getPublicPictures(final boolean autoCreate);
+	File getPublicMovies(final boolean autoCreate);
+	File getPublicDownloads(final boolean autoCreate);
 
 	File getPublicPictureLibrary(final String libraryName);
 }
