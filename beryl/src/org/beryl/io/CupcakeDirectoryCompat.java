@@ -12,37 +12,37 @@ class CupcakeDirectoryCompat implements IDirectoryCompat {
 		return directory;
 	}
 
-	public File getPublicPodcast(final boolean autoCreate) {
+	public File getPublicPodcasts(final boolean autoCreate) {
 		File directory = getPublicDirectoryByName("Podcasts", autoCreate);
 		return directory;
 	}
 	
-	public File getPublicRingtone(final boolean autoCreate) {
+	public File getPublicRingtones(final boolean autoCreate) {
 		File directory = getPublicDirectoryByName("Ringtones", autoCreate);
 		return directory;
 	}
 	
-	public File getPublicAlarm(final boolean autoCreate) {
+	public File getPublicAlarms(final boolean autoCreate) {
 		File directory = getPublicDirectoryByName("Alarms", autoCreate);
 		return directory;
 	}
 	
-	public File getPublicNotification(final boolean autoCreate) {
+	public File getPublicNotifications(final boolean autoCreate) {
 		File directory = getPublicDirectoryByName("Notifications", autoCreate);
 		return directory;
 	}
 	
-	public File getPublicPicture(final boolean autoCreate) {
+	public File getPublicPictures(final boolean autoCreate) {
 		File directory = getPublicDirectoryByName("Pictures", autoCreate);
 		return directory;
 	}
 	
-	public File getPublicMovie(final boolean autoCreate) {
+	public File getPublicMovies(final boolean autoCreate) {
 		File directory = getPublicDirectoryByName("Movies", autoCreate);
 		return directory;
 	}
 	
-	public File getPublicDownload(final boolean autoCreate) {
+	public File getPublicDownloads(final boolean autoCreate) {
 		File directory = getPublicDirectoryByName("Download", autoCreate);
 		return directory;
 	}
@@ -62,7 +62,7 @@ class CupcakeDirectoryCompat implements IDirectoryCompat {
 	}
 	
 	public File getPublicPictureLibrary(final String libraryName) {
-		final File basePicturesPath = getPublicPicture(true);
+		final File basePicturesPath = getPublicPictures(true);
 		final File libraryPath = appendDirectoryName(basePicturesPath, libraryName);
 		attemptAutoCreate(true, libraryPath);
 		return libraryPath;

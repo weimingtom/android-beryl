@@ -39,8 +39,8 @@ public class DirectoryUtils {
 	 * If the directory does not exist it will be created automatically.
 	 * @return Reference to public pictures directory.
 	 * */
-	public static File getPublicPicture() {
-		return getPublicPicture(true);
+	public static File getPublicPictures() {
+		return getPublicPictures(true);
 	}
 
 	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application.
@@ -48,8 +48,8 @@ public class DirectoryUtils {
 	 * @param autoCreate Automatically create the directory if it does not exist.
 	 * @return Reference to public pictures directory.
 	 */
-	public static File getPublicPicture(boolean autoCreate) {
-		return directoryCompat.getPublicPicture(autoCreate);
+	public static File getPublicPictures(boolean autoCreate) {
+		return directoryCompat.getPublicPictures(autoCreate);
 	}
 
 	public static File getPublicPictureLibrary(String libraryName) {
