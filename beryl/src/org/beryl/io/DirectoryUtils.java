@@ -5,77 +5,55 @@ import java.io.File;
 import org.beryl.app.AndroidVersion;
 
 import android.content.Context;
-import android.os.Environment;
 
-//http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES
+/** Collection of directory manipulation method that are compatible with all versions of Android. 
+ * Reference implementation: http://developer.android.com/guide/topics/data/data-storage.html
+ * */
 public class DirectoryUtils {
 
+	private static final IDirectoryCompat directoryCompat;
+	
+	static {
+		if(AndroidVersion.isBeforeFroyo()) {
+			directoryCompat = new CupcakeDirectoryCompat();
+		} else {
+			directoryCompat = new FroyoDirectoryCompat();
+		}
+	}
+	
+	public static File getPublicMusic() {
+		return getPublicMusic(true);
+	}
+	public static File getPublicMusic(boolean autoCreate) {
+		return directoryCompat.getPublicMusic(autoCreate);
+	}
+	
 	/** */
-	public static File getApplicationExternalStorageDirectory(Context context, String type) {
-		File directory = null;
-		if(AndroidVersion.isFroyoOrHigher()) {
-			directory = context.getExternalFilesDir(type);
-		} else {
-			String privateDataDirectory = "/Android/data/" + context.getPackageName() + "/files/";
-			File baseDirectory = Environment.getExternalStorageDirectory();
-			directory = appendDirectoryName(baseDirectory, privateDataDirectory);
-		}
-
-		return directory;
+	public static File getPublicApplication(Context context) {
+		return directoryCompat.getPublicApplication(context);
 	}
 
-	public static File getExternalStoragePublicDirectoryByType(String type, boolean autoCreate) {
-		File directory = null;
-		directory = Environment.getExternalStoragePublicDirectory(type);
-		attemptAutoCreate(autoCreate, directory);
-
-		return directory;
+	/* Special Folders */
+	
+	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application.
+	 * If the directory does not exist it will be created automatically.
+	 * @return Reference to public pictures directory.
+	 * */
+	public static File getPublicPicture() {
+		return getPublicPicture(true);
 	}
 
-	public static File getExternalStoragePublicDirectoryByName(String name, boolean autoCreate) {
-		File directory = null;
-		File baseDirectory = Environment.getExternalStorageDirectory();
-		directory = appendDirectoryName(baseDirectory, name);
-		attemptAutoCreate(autoCreate, directory);
-
-		return directory;
+	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application.
+	 * 
+	 * @param autoCreate Automatically create the directory if it does not exist.
+	 * @return Reference to public pictures directory.
+	 */
+	public static File getPublicPicture(boolean autoCreate) {
+		return directoryCompat.getPublicPicture(autoCreate);
 	}
 
-	public static File getPublicPictures() {
-		return getPublicPictures(true);
+	public static File getPublicPictureLibrary(String libraryName) {
+		return directoryCompat.getPublicPictureLibrary(libraryName);
 	}
 
-	public static File getPublicPictures(boolean autoCreate) {
-		File directory = null;
-
-		if(AndroidVersion.isFroyoOrHigher()) {
-			directory = getExternalStoragePublicDirectoryByType(Environment.DIRECTORY_PICTURES, autoCreate);
-		} else {
-			directory = getExternalStoragePublicDirectoryByName("Pictures", autoCreate);
-		}
-
-		return directory;
-	}
-
-	public static File createPictureLibraryFolder(String libraryName) {
-		return createPictureLibraryFolder(libraryName, true);
-	}
-
-	public static File createPictureLibraryFolder(String libraryName, boolean autoCreate) {
-		final File basePicturesPath = getPublicPictures();
-		final File libraryPath = appendDirectoryName(basePicturesPath, libraryName);
-		attemptAutoCreate(autoCreate, libraryPath);
-		return libraryPath;
-	}
-
-	public static File appendDirectoryName(File baseDir, String appendDirName) {
-		File appendedDir = new File(baseDir, appendDirName);
-		return appendedDir;
-	}
-
-	private static void attemptAutoCreate(boolean autoCreate, File directory) {
-		if(autoCreate || directory != null) {
-			FileUtils.createDirectory(directory);
-		}
-	}
 }
