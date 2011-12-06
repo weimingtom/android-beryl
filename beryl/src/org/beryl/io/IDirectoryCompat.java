@@ -6,7 +6,8 @@ import android.content.Context;
 
 interface IDirectoryCompat {
 	
-	File getPublicApplication(Context context);
+	File getPublicApplication(final Context context);
+	File getPublicApplication(final Context context, final String directoryName);
 	File getPublicMusic(final boolean autoCreate);
 	File getPublicPodcasts(final boolean autoCreate);
 	File getPublicRingtones(final boolean autoCreate);

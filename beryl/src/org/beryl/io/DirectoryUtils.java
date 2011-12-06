@@ -21,39 +21,38 @@ public class DirectoryUtils {
 		}
 	}
 	
+	/** Gets a reference to the public music directory. */
 	public static File getPublicMusic() {
 		return getPublicMusic(true);
 	}
-	public static File getPublicMusic(boolean autoCreate) {
+	public static File getPublicMusic(final boolean autoCreate) {
 		return directoryCompat.getPublicMusic(autoCreate);
 	}
 	
-	/** */
-	public static File getPublicApplication(Context context) {
+	/** Gets a reference to the application specific directory. This directory is public and is stored on the sd card. */
+	public static File getPublicApplication(final Context context) {
 		return directoryCompat.getPublicApplication(context);
+	}
+	
+	/** Gets a reference to the application specific directory. This directory is public and is stored on the sd card. */
+	public static File getPublicApplication(final Context context, final String subdirectory) {
+		return directoryCompat.getPublicApplication(context, subdirectory);
 	}
 
 	/* Special Folders */
 	
-	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application.
-	 * If the directory does not exist it will be created automatically.
-	 * @return Reference to public pictures directory.
-	 * */
+	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application. */
 	public static File getPublicPictures() {
 		return getPublicPictures(true);
 	}
 
-	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application.
-	 * 
-	 * @param autoCreate Automatically create the directory if it does not exist.
-	 * @return Reference to public pictures directory.
-	 */
-	public static File getPublicPictures(boolean autoCreate) {
+	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application. */
+	public static File getPublicPictures(final boolean autoCreate) {
 		return directoryCompat.getPublicPictures(autoCreate);
 	}
 
-	public static File getPublicPictureLibrary(String libraryName) {
+	/** Gets a reference to a directory within the public pictures directory. This will be displayed as a album within the Gallery application. */
+	public static File getPublicPictureLibrary(final String libraryName) {
 		return directoryCompat.getPublicPictureLibrary(libraryName);
 	}
-
 }

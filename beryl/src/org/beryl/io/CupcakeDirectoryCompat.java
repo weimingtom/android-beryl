@@ -61,6 +61,12 @@ class CupcakeDirectoryCompat implements IDirectoryCompat {
 		return directory;
 	}
 	
+	public File getPublicApplication(final Context context, final String directoryName) {
+		File baseDirectory = getPublicApplication(context);
+		File directory = appendDirectoryName(baseDirectory, directoryName);
+		return directory;
+	}
+	
 	public File getPublicPictureLibrary(final String libraryName) {
 		final File basePicturesPath = getPublicPictures(true);
 		final File libraryPath = appendDirectoryName(basePicturesPath, libraryName);
