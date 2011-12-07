@@ -51,6 +51,7 @@ class FroyoDirectoryCompat extends CupcakeDirectoryCompat {
 	public File getPublicApplication(final Context context) {
 		File directory;
 		directory = context.getExternalFilesDir(null);
+		attemptAutoCreate(true, directory);
 		return directory;
 	}
 	
