@@ -5,81 +5,58 @@ import java.io.File;
 import org.beryl.app.AndroidVersion;
 
 import android.content.Context;
-import android.os.Environment;
 
-//http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES
+/** Collection of directory manipulation method that are compatible with all versions of Android. 
+ * Reference implementation: http://developer.android.com/guide/topics/data/data-storage.html
+ * */
 public class DirectoryUtils {
 
-	/** Returns the absolute path to the directory on the external filesystem (that is somewhere on Environment.getExternalStorageDirectory()) where the application can place persistent files it owns. These files are private to the applications, and not typically visible to the user as media. */
+	private static final IDirectoryCompat directoryCompat;
 	public static File getApplicationExternalStorageDirectory(Context context) {
 		return getApplicationExternalStorageDirectory(context, null);
 	}
 	
-	public static File getApplicationExternalStorageDirectory(Context context, String type) {
-		File directory = null;
-		if(AndroidVersion.isFroyoOrHigher()) {
-			directory = context.getExternalFilesDir(type);
+	
+	static {
+		if(AndroidVersion.isBeforeFroyo()) {
+			directoryCompat = new CupcakeDirectoryCompat();
 		} else {
-			String privateDataDirectory = "/Android/data/" + context.getPackageName() + "/files/";
-			File baseDirectory = Environment.getExternalStorageDirectory();
-			directory = appendDirectoryName(baseDirectory, privateDataDirectory);
+			directoryCompat = new FroyoDirectoryCompat();
 		}
-
-		return directory;
+	}
+	
+	/** Gets a reference to the public music directory. */
+	public static File getPublicMusic() {
+		return getPublicMusic(true);
+	}
+	public static File getPublicMusic(final boolean autoCreate) {
+		return directoryCompat.getPublicMusic(autoCreate);
+	}
+	
+	/** Gets a reference to the application specific directory. This directory is public and is stored on the sd card. */
+	public static File getPublicApplication(final Context context) {
+		return directoryCompat.getPublicApplication(context);
+	}
+	
+	/** Gets a reference to the application specific directory. This directory is public and is stored on the sd card. */
+	public static File getPublicApplication(final Context context, final String subdirectory) {
+		return directoryCompat.getPublicApplication(context, subdirectory);
 	}
 
-	public static File getExternalStoragePublicDirectoryByType(String type, boolean autoCreate) {
-		File directory = null;
-		directory = Environment.getExternalStoragePublicDirectory(type);
-		attemptAutoCreate(autoCreate, directory);
-
-		return directory;
-	}
-
-	public static File getExternalStoragePublicDirectoryByName(String name, boolean autoCreate) {
-		File directory = null;
-		File baseDirectory = Environment.getExternalStorageDirectory();
-		directory = appendDirectoryName(baseDirectory, name);
-		attemptAutoCreate(autoCreate, directory);
-
-		return directory;
-	}
-
+	/* Special Folders */
+	
+	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application. */
 	public static File getPublicPictures() {
 		return getPublicPictures(true);
 	}
 
-	public static File getPublicPictures(boolean autoCreate) {
-		File directory = null;
-
-		if(AndroidVersion.isFroyoOrHigher()) {
-			directory = getExternalStoragePublicDirectoryByType(Environment.DIRECTORY_PICTURES, autoCreate);
-		} else {
-			directory = getExternalStoragePublicDirectoryByName("Pictures", autoCreate);
-		}
-
-		return directory;
+	/** Gets a reference to the public pictures directory. This directory is monitored by the Gallery application. */
+	public static File getPublicPictures(final boolean autoCreate) {
+		return directoryCompat.getPublicPictures(autoCreate);
 	}
 
-	public static File createPictureLibraryFolder(String libraryName) {
-		return createPictureLibraryFolder(libraryName, true);
-	}
-
-	public static File createPictureLibraryFolder(String libraryName, boolean autoCreate) {
-		final File basePicturesPath = getPublicPictures();
-		final File libraryPath = appendDirectoryName(basePicturesPath, libraryName);
-		attemptAutoCreate(autoCreate, libraryPath);
-		return libraryPath;
-	}
-
-	public static File appendDirectoryName(File baseDir, String appendDirName) {
-		File appendedDir = new File(baseDir, appendDirName);
-		return appendedDir;
-	}
-
-	private static void attemptAutoCreate(boolean autoCreate, File directory) {
-		if(autoCreate || directory != null) {
-			FileUtils.createDirectory(directory);
-		}
+	/** Gets a reference to a directory within the public pictures directory. This will be displayed as a album within the Gallery application. */
+	public static File getPublicPictureLibrary(final String libraryName) {
+		return directoryCompat.getPublicPictureLibrary(libraryName);
 	}
 }
