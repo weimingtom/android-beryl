@@ -124,9 +124,8 @@ public class Log implements ILogWriter {
 		}
 
 		d("DataString", intent.getDataString());
-		d("Package", intent.getPackage());
+		//d("Package", intent.getPackage());
 		d("Scheme", intent.getScheme());
-		d("Package", intent.getPackage());
 		final Bundle extras = intent.getExtras();
 		d(extras);
 	}
