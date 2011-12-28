@@ -12,11 +12,7 @@ import android.content.Context;
 public class DirectoryUtils {
 
 	private static final IDirectoryCompat directoryCompat;
-	public static File getApplicationExternalStorageDirectory(Context context) {
-		return getApplicationExternalStorageDirectory(context, null);
-	}
-	
-	
+
 	static {
 		if(AndroidVersion.isBeforeFroyo()) {
 			directoryCompat = new CupcakeDirectoryCompat();
