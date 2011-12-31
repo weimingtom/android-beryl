@@ -87,7 +87,27 @@ public class AndroidVersion {
 	public static boolean isHoneycombMr2OrHigher() {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.HONEYCOMB_MR2;
 	}
+	
+	/** Returns true if running on Android 4.0 or higher. */
+	public static boolean isIceCreamSandwichOrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+	}
+	
+	/** Returns true if running on Android 4.0.3 or higher. */
+	public static boolean isIceCreamSandwichMr1OrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1;
+	}
 
+	/** Returns true if running on an earlier version than Android 3.2. */
+	public static boolean isBeforeIceCreamSandwichMr1() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1;
+	}
+	
+	/** Returns true if running on an earlier version than Android 3.2. */
+	public static boolean isBeforeIceCreamSandwich() {
+		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+	}
+	
 	/** Returns true if running on an earlier version than Android 3.2. */
 	public static boolean isBeforeHoneycombMr2() {
 		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.HONEYCOMB_MR2;

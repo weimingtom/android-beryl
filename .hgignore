@@ -6,6 +6,7 @@ syntax: glob
 *.dex
 *.ap_
 *.suo
+ *.orig
  
 syntax: regexp
 ^(.*[\\/])?gen[\\/].*
