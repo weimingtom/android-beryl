@@ -9,6 +9,6 @@ import android.location.LocationListener;
 public interface ILocationMonitorController extends LocationListener {
 	
 	/** Called when this controller is bound to a LocationMonitor.
-	 * Hold this object to . */
+	 * Hold this object to control the monitor. */
 	void obtainController(LocationMonitor.Controller controller);
 }
