@@ -41,6 +41,7 @@ public class BitmapLoader {
 		if(AndroidVersion.isGingerbreadMr1OrHigher()) {
 			options.inPreferQualityOverSpeed = true;
 		}
+		
 		BitmapFactory.decodeFile(filePath, options);
 
 		BitmapMetrics metrics = new BitmapMetrics(options);
