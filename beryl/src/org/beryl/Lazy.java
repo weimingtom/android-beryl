@@ -1,4 +1,4 @@
-package org.beryl.util;
+package org.beryl;
 
 /**
  * Variable that is not set immediately but when it is first necessary.

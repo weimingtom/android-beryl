@@ -1,7 +1,6 @@
 package org.beryl.intents.android;
 
-import org.beryl.diagnostics.ExceptionReporter;
-import org.beryl.graphics.BitmapLoader;
+import org.beryl.graphics.BitmapWrapper;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 import org.beryl.intents.IntentHelper;
@@ -9,26 +8,19 @@ import org.beryl.intents.IntentHelper;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 
 public class Gallery {
 	private static final int NUM_INSTANCES = 4;
 
-	public static final Bitmap loadBitmapFromUri(Context context, Uri fileUri) {
-		Bitmap result = null;
-		String filePath = uriToPhysicalPath(context, fileUri);
-
-		if (filePath != null) {
-			result = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
-		}
-
+	public static final BitmapWrapper loadBitmapFromUri(Context context, Uri fileUri) {
+		BitmapWrapper result = new BitmapWrapper(fileUri);
+		result.conservativeLoad(context, NUM_INSTANCES);
 		return result;
 	}
-
+/*
 	public static String uriToPhysicalPath(Context context, Uri fileUri) {
 		String filePath = null;
 		if (fileUri.getScheme().equals("file")) {
@@ -62,7 +54,7 @@ public class Gallery {
 
 		return filePath;
 	}
-
+*/
 	// http://stackoverflow.com/questions/5944282/retrieve-picasa-image-for-upload-from-gallery
 	public static class GetImage implements IIntentBuilderForResult {
 		public String TypeFilter = "image/*";
@@ -137,7 +129,7 @@ public class Gallery {
 
 	public abstract static class SendImageResult implements IActivityResultHandler {
 
-		public Bitmap bitmapResult = null;
+		public BitmapWrapper bitmapResult = null;
 
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			Uri dataUri = data.getParcelableExtra(Intent.EXTRA_STREAM);
@@ -147,12 +139,11 @@ public class Gallery {
 
 	public abstract static class GetImageResult implements IActivityResultHandler {
 
-		public Bitmap bitmapResult = null;
+		public BitmapWrapper bitmapResult = null;
 
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			bitmapResult = null;
 			Uri imageUri = null;
-			String filePath = null;
 
 			// NOTE: Picasa support used to be around here. Look at previous versions to see the code.
 			if(data != null) {
@@ -160,11 +151,8 @@ public class Gallery {
 			}
 
 			if(imageUri != null) {
-				filePath = uriToPhysicalPath(context, imageUri);
-
-				if(filePath != null) {
-					bitmapResult = BitmapLoader.tryDecodeBitmapFileConsideringInstances(filePath, NUM_INSTANCES);
-				}
+				bitmapResult = BitmapWrapper.create(imageUri);
+				bitmapResult.conservativeLoad(context, NUM_INSTANCES);
 			}
 		}
 	}
