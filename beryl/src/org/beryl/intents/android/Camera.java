@@ -1,6 +1,7 @@
 package org.beryl.intents.android;
 
 import org.beryl.diagnostics.ExceptionReporter;
+import org.beryl.graphics.BitmapWrapper;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
 
@@ -9,7 +10,6 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -84,7 +84,7 @@ public class Camera {
 
 	public abstract static class GetCameraCaptureResult implements IActivityResultHandler {
 
-		public Bitmap bitmapResult = null;
+		public BitmapWrapper bitmapResult = null;
 
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			Uri imageUri = null;

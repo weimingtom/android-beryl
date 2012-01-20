@@ -2,6 +2,7 @@ package org.beryl.util;
 
 import java.util.Locale;
 
+/** Helper class for dealing with memory related functions. */
 public class Memory {
 
 	public static final long KB_IN_BYTES = 1024;
@@ -14,6 +15,7 @@ public class Memory {
 	final static long [] sizeArray = { TB_IN_BYTES, GB_IN_BYTES, MB_IN_BYTES, KB_IN_BYTES, 1 };
 	final static String [] sizeUnitsArray = { "TB", "GB", "MB", "KB", "bytes" };
 
+	/** Reasonable amount of memory to leave available when loading large objects. (4 MB) */
 	public static long getReasonableMemoryCushion() {
 		return FOUR_MB_IN_BYTES;
 	}
@@ -39,6 +41,7 @@ public class Memory {
 		return rt.freeMemory();
 	}
 
+	/** The maximum amount of memory available to this VM instance. */
 	public static long memoryLimit() {
 		final Runtime rt = Runtime.getRuntime();
 		return rt.maxMemory();
@@ -48,6 +51,7 @@ public class Memory {
 		return freeMemory() / (double)memoryLimit();
 	}
 
+	/** Converts number of bytes into a download size remaining style size string. */
 	public static String toString(long bytes) {
 		String byteSizeString = "<unknown> bytes";
 		final int length = sizeArray.length;
@@ -64,5 +68,18 @@ public class Memory {
 		}
 
 		return byteSizeString;
+	}
+	
+	/** Calculates a reasonable maximum size limit based on the following memory constraints. */
+	public static long getSizeLimit(long numExpectedInstances) {
+		return getSizeLimit(64 * KB_IN_BYTES, memoryLimit(), getReasonableMemoryCushion(), numExpectedInstances);
+	}
+	
+	/** Calculates a reasonable maximum size limit based on the following memory constraints. */
+	public static long getSizeLimit(long minSize, long maxSize, long cushionSize, long numExpectedInstances) {
+		return Math.max(minSize,
+				Math.min(maxSize,
+						(Memory.memoryLimit() - cushionSize) / numExpectedInstances
+				));
 	}
 }
