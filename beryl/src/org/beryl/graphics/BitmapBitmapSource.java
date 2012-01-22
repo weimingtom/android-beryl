@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory.Options;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/** A bitmap source that is a wrapper for an already in memory bitmap. */
 public class BitmapBitmapSource extends AbstractBitmapSource {
 
 	public BitmapBitmapSource(Bitmap bitmap) {

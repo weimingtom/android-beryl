@@ -53,9 +53,14 @@ public class AndroidVersion {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.DONUT;
 	}
 
-	/** Returns true if running on Android 2.1 or higher. */
+	/** Returns true if running on Android 2.0 or higher. */
 	public static boolean isEclairOrHigher() {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.ECLAIR;
+	}
+	
+	/** Returns true if running on Android 2.1-update1 or higher. */
+	public static boolean isEclairMr1OrHigher() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.ECLAIR_MR1;
 	}
 
 	/** Returns true if running on Android 2.2 or higher. */
@@ -98,12 +103,12 @@ public class AndroidVersion {
 		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1;
 	}
 
-	/** Returns true if running on an earlier version than Android 3.2. */
+	/** Returns true if running on an earlier version than Android 4.0.3. */
 	public static boolean isBeforeIceCreamSandwichMr1() {
 		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1;
 	}
 	
-	/** Returns true if running on an earlier version than Android 3.2. */
+	/** Returns true if running on an earlier version than Android 4.0. */
 	public static boolean isBeforeIceCreamSandwich() {
 		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
 	}
@@ -138,7 +143,12 @@ public class AndroidVersion {
 		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.FROYO;
 	}
 
-	/** Returns true if running on an earlier version than Android 2.1. */
+	/** Returns true if running on an earlier version than Android 2.1-update. */
+	public static boolean isBeforeEclairMr1() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.ECLAIR_MR1;
+	}
+	
+	/** Returns true if running on an earlier version than Android 2.0. */
 	public static boolean isBeforeEclair() {
 		return _ANDROID_SDK_VERSION < android.os.Build.VERSION_CODES.ECLAIR;
 	}

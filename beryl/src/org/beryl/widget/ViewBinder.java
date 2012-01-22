@@ -77,7 +77,9 @@ class MyFragment extends Fragment {
 	public void TestDeleteButton_onClick(View view) { android.util.Log.i("Test", "Clicked TestDeleteButton"); }
 }
 </code></pre>
+@deprecated Use Android Annotations instead. http://androidannotations.org/
  */
+@Deprecated
 public class ViewBinder {
 
 	/**

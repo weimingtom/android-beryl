@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory.Options;
 
+/** Holder for attributes and metrics of a Bitmap object. */
 public class BitmapProperties {
 
 	public static final long RGBA8888_BYTES_PER_PIXEL = 4;
@@ -17,7 +18,6 @@ public class BitmapProperties {
 	public long width = 0;
 	public long height = 0;
 	public long bytesPerPixel = RGBA8888_BYTES_PER_PIXEL;
-	public String mimeType = "";
 	
 	public BitmapProperties() {
 		
@@ -36,7 +36,6 @@ public class BitmapProperties {
 	public void fromBitmapOptions(Options options) {
 		width = options.outWidth;
 		height = options.outHeight;
-		mimeType = options.outMimeType;
 	}
 	
 	public long getNumPixels() {
@@ -69,6 +68,7 @@ public class BitmapProperties {
 		return freeMem - withMemoryRemaining - imageSize / sampleSize > 0;
 	}
 	
+	/** Gets the recommended sample size to load this bitmap at based on the memory constraint. */
 	public int getRecommendedSampleSize(long maxMemorySize) {
 		int sampleSize = 1;
 
@@ -79,6 +79,7 @@ public class BitmapProperties {
 		return sampleSize;
 	}
 	
+	/** Gets the bytes-per-pixel based on the Bitmap.Config value. */
 	public static long bitmapConfigToBytesPerPixel(Config config) {
 		switch(config) {
 			case ALPHA_8: return ALPHA8_BYTES_PER_PIXEL;
@@ -89,18 +90,22 @@ public class BitmapProperties {
 		}
 	}
 	
+	/** Gets the number of pixels based on the width and height. */
 	public static long getNumberOfPixels(final long width, final long height) {
 		return width * height;
 	}
 
+	/** Gets the memory size based on an RGBA_8888 (32-bit) bitmap. */
 	public static long getMemoryFootprintForRgba8888(final long width, final long height) {
 		return getMemoryFootprint(width, height, RGBA8888_BYTES_PER_PIXEL);
 	}
 	
+	/** Gets the memory used based on the parameters. */
 	public static long getMemoryFootprint(final long width, final long height, final long bytesPerPixel) {
 		return getNumberOfPixels(width, height) * bytesPerPixel;
 	}
 
+	/** Gets the size in bytes of the bitmap. */
 	public static long getSizeInBytes(final Bitmap bitmap) {
 		if(AndroidVersion.isHoneycombMr1OrHigher()) {
 			return bitmap.getByteCount();
@@ -109,12 +114,14 @@ public class BitmapProperties {
 		}
 	}
 	
+	/** Gets the load options for a decode-only load when calling BitmapFactory.decode*() */
 	public static Options getDecodeOnlyOptions() {
 		Options options = new Options();
 		options.inJustDecodeBounds = true;
 		return options;
 	}
 	
+	/** Gets load options for the highest quality bitmap. */
 	public static Options getRecommendedOptions() {
 		Options options = new Options();
 
