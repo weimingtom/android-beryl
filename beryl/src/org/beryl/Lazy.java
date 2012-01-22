@@ -1,13 +1,11 @@
 package org.beryl;
 
-/**
- * Variable that is not set immediately but when it is first necessary.
- */
+/** (thread-safe) Support class for lazy initialization. */
 public abstract class Lazy<T> {
 
 	private volatile T data = null;
 	
-	/** Gets the value of the variable. */
+	/** (thread-safe) Gets the lazy initialized value. */
 	public synchronized T get() {
 		
 		T result = data;
@@ -23,7 +21,6 @@ public abstract class Lazy<T> {
 		return result;
 	}
 	
-	/** Callback to get the value of the variable when it is time to get it.
-	 * This method will only be called once. */
-	public abstract T onSet();
+	/** Callback method to set the lazy-initialized variable. */
+	protected abstract T onSet();
 }

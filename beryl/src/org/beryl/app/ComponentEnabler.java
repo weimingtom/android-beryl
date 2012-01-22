@@ -7,7 +7,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 
 /** Enables and disables component classes from the AndroidManifest.xml
- * This is useful for disabling components to save power. */
+ * Settings are persistent across reboots.
+ * Useful for disabling components to save power. */
 public class ComponentEnabler {
 
 	private final Context context;
@@ -20,6 +21,16 @@ public class ComponentEnabler {
 	
 	protected ComponentName toComponentName(final Class<?> componentClass) {
 		return new ComponentName(context, componentClass);
+	}
+	
+	/** Sets the component to its default state. */
+	public void setDefault(final Class<?> componentClass) {
+		setDefault(toComponentName(componentClass));
+	}
+	
+	/** Sets the component to its default state. */
+	public void setDefault(final ComponentName componentName) {
+		pm.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
 	}
 	
 	/** Enables the component. */

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory.Options;
 
+/** Recommended base class for implementing an IBitmapSource. */
 public abstract class AbstractBitmapSource implements IBitmapSource {
 
 	protected Bitmap bitmap = null;
