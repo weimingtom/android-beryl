@@ -115,7 +115,12 @@ public class BitmapWrapper implements IBitmapSource {
 	}
 	
     public static IBitmapSource createSource(Uri uri) {
-		return new UriBitmapSource(uri);
+    	
+    	if(uri.getScheme().toLowerCase().startsWith("http")) {
+    		return new HttpBitmapSource(uri);
+    	} else {
+    		return new UriBitmapSource(uri);
+    	}
 	}
 	
 	public static IBitmapSource createSource(Bitmap bitmap) {

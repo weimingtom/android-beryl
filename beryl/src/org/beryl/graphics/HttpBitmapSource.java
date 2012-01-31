@@ -1,6 +1,7 @@
 package org.beryl.graphics;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 
 import org.beryl.net.SimpleFileDownloader;
@@ -16,7 +17,7 @@ import android.os.Parcelable;
 public class HttpBitmapSource extends AbstractBitmapSource {
 
 	private Uri remoteUri;
-	private Uri localUri = null;
+	private String localPath = null;
 	
 	public HttpBitmapSource(final Uri uri) {
 		this.remoteUri = uri;
@@ -28,13 +29,13 @@ public class HttpBitmapSource extends AbstractBitmapSource {
 	
 	public boolean load(Context context, Options options) {
 		boolean success = false;
-		if(localUri == null) {
+		if(localPath == null) {
 			downloadFile(context);
 		}
 		
 		if(! isAvailable() || options.inJustDecodeBounds) {
 			try {
-				final InputStream is = context.getContentResolver().openInputStream(this.localUri);
+				final InputStream is = new FileInputStream(this.localPath);
 				final Bitmap tempBitmap = BitmapFactory.decodeStream(is, null, options);
 				
 				if(! options.inJustDecodeBounds) {
@@ -55,8 +56,8 @@ public class HttpBitmapSource extends AbstractBitmapSource {
 
 	private void downloadFile(final Context context) {
 		SimpleFileDownloader downloader = new SimpleFileDownloader();
-		File dest = downloader.download(context, remoteUri.getPath());
-		localUri = Uri.parse(dest.getAbsolutePath());
+		File dest = downloader.download(context, remoteUri.toString());
+		localPath = dest.getAbsolutePath();
 	}
 
 	public int describeContents() {
@@ -65,13 +66,13 @@ public class HttpBitmapSource extends AbstractBitmapSource {
 
 	public void writeToParcel(Parcel dest, int flags) {
     	dest.writeParcelable(remoteUri, flags);
-    	dest.writeParcelable(localUri, flags);
+    	dest.writeString(localPath);
     	dest.writeParcelable(bitmap, flags);
     }
 
     public void readFromParcel(Parcel in) {
     	remoteUri = in.readParcelable(null);
-    	localUri = in.readParcelable(null);
+    	localPath = in.readString();
     	bitmap = in.readParcelable(null);
     }
 
