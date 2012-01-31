@@ -20,41 +20,7 @@ public class Gallery {
 		result.conservativeLoad(context, NUM_INSTANCES);
 		return result;
 	}
-/*
-	public static String uriToPhysicalPath(Context context, Uri fileUri) {
-		String filePath = null;
-		if (fileUri.getScheme().equals("file")) {
-			filePath = fileUri.getPath();
-		} else if (fileUri.getScheme().equals("content")) {
-			filePath = findPictureFilePath(context, fileUri);
-		}
 
-		return filePath;
-	}
-
-	public static final String findPictureFilePath(Context context, Uri dataUri) {
-		String filePath = null;
-		final String[] projection = { MediaStore.Images.Media.DATA };
-		Cursor cursor = null;
-		try {
-			final ContentResolver cr = context.getContentResolver();
-			cursor = cr.query(dataUri, projection, null, null, null);
-			int data_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-			if (cursor.moveToFirst()) {
-				filePath = cursor.getString(data_index);
-			}
-		} catch(Exception e) {
-			ExceptionReporter.report(e);
-		} finally {
-			if (cursor != null) {
-				cursor.close();
-			}
-		}
-
-		return filePath;
-	}
-*/
 	// http://stackoverflow.com/questions/5944282/retrieve-picasa-image-for-upload-from-gallery
 	public static class GetImage implements IIntentBuilderForResult {
 		public String TypeFilter = "image/*";
@@ -150,9 +116,15 @@ public class Gallery {
 				imageUri = data.getData();
 			}
 
-			if(imageUri != null) {
-				bitmapResult = BitmapWrapper.create(imageUri);
-				bitmapResult.conservativeLoad(context, NUM_INSTANCES);
+			try {
+				if(imageUri != null) {
+					bitmapResult = BitmapWrapper.create(imageUri);
+					bitmapResult.conservativeLoad(context, NUM_INSTANCES);
+				}
+			} catch(Exception e) {
+				if(bitmapResult != null) {
+					bitmapResult.dispose();
+				}
 			}
 		}
 	}
