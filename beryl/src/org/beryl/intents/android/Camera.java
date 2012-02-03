@@ -60,6 +60,7 @@ public class Camera {
 			final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 			intent.putExtra(MediaStore.EXTRA_OUTPUT, this.imageUri);
 			intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, pictureQualityMode);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 			return intent;
 		}
 
