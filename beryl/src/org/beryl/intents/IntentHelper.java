@@ -35,6 +35,7 @@ public class IntentHelper {
 	public static final Intent getContentByType(String mimeType) {
 		final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setType(mimeType);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 		return intent;
 	}
 }
