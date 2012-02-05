@@ -12,6 +12,7 @@ import android.os.Parcelable;
 
 public class BitmapWrapper implements IBitmapSource {
 
+	public static final BitmapWrapper Empty = new BitmapWrapper(new EmptyBitmapSource());
 	protected IBitmapSource source;
 	
 	public BitmapWrapper(Parcel in) {

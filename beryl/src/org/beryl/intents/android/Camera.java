@@ -85,7 +85,7 @@ public class Camera {
 
 	public abstract static class GetCameraCaptureResult implements IActivityResultHandler {
 
-		public BitmapWrapper bitmapResult = null;
+		public BitmapWrapper bitmapResult = BitmapWrapper.Empty;
 
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			Uri imageUri = null;
