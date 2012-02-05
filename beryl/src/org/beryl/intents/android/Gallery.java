@@ -96,7 +96,7 @@ public class Gallery {
 
 	public abstract static class SendImageResult implements IActivityResultHandler {
 
-		public BitmapWrapper bitmapResult = null;
+		public BitmapWrapper bitmapResult = BitmapWrapper.Empty;
 
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			Logger.d(data);
@@ -112,7 +112,7 @@ public class Gallery {
 
 	public abstract static class GetImageResult implements IActivityResultHandler {
 
-		public BitmapWrapper bitmapResult = null;
+		public BitmapWrapper bitmapResult = BitmapWrapper.Empty;
 
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
 			bitmapResult = null;
