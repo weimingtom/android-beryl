@@ -33,6 +33,20 @@ public class ComponentEnabler {
 		pm.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
 	}
 	
+	/** Sets the enabled state of the component based on the enabled boolean. */
+	public void toggle(final Class<?> componentClass, boolean enabled) {
+		toggle(toComponentName(componentClass), enabled);
+	}
+	
+	/** Sets the enabled state of the component based on the enabled boolean. */
+	public void toggle(final ComponentName componentName, boolean enabled) {
+		if(enabled) {
+			enable(componentName);
+		} else {
+			disable(componentName);
+		}
+	}
+	
 	/** Enables the component. */
 	public void enable(final Class<?> componentClass) {
 		enable(toComponentName(componentClass));
@@ -45,7 +59,7 @@ public class ComponentEnabler {
 	
 	/** Disables the component. */
 	public void disable(final Class<?> componentClass) {
-		enable(toComponentName(componentClass));
+		disable(toComponentName(componentClass));
 	}
 	
 	/** Disables the component. */

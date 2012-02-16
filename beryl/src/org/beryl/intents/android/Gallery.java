@@ -118,7 +118,6 @@ public class Gallery {
 			bitmapResult = null;
 			Uri imageUri = null;
 
-			// NOTE: Picasa support used to be around here. Look at previous versions to see the code.
 			if(data != null) {
 				imageUri = data.getData();
 			}
