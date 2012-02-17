@@ -20,12 +20,14 @@ public abstract class ServiceBase extends Service {
 	// platform.  On 2.0 or later we override onStartCommand() so this
 	// method will not be called.
 	@Override
-	public void onStart(Intent intent, int startId) {
+	public final void onStart(Intent intent, int startId) {
+		super.onStart(intent, startId);
 	    handleOnStartCommand(intent, 0, startId);
 	}
 
 	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
+	public final int onStartCommand(Intent intent, int flags, int startId) {
+		super.onStartCommand(intent, flags, startId);
 	    return handleOnStartCommand(intent, flags, startId);
 	}
 
