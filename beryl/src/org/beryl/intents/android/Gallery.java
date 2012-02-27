@@ -1,6 +1,5 @@
 package org.beryl.intents.android;
 
-import org.beryl.diagnostics.Logger;
 import org.beryl.graphics.BitmapWrapper;
 import org.beryl.intents.IActivityResultHandler;
 import org.beryl.intents.IIntentBuilderForResult;
@@ -99,14 +98,16 @@ public class Gallery {
 		public BitmapWrapper bitmapResult = BitmapWrapper.Empty;
 
 		public void prepareResult(Context context, Bundle resultBundle, int resultCode, Intent data) {
-			Logger.d(data);
+
 			Uri dataUri = data.getParcelableExtra(Intent.EXTRA_STREAM);
 			if(dataUri == null) {
 				try {
 					dataUri = Uri.parse(data.getStringExtra(Intent.EXTRA_TEXT));
 				} catch (Exception e) {}
 			}
-			bitmapResult = Gallery.loadBitmapFromUri(context, dataUri);
+			if(dataUri != null) {
+				bitmapResult = Gallery.loadBitmapFromUri(context, dataUri);
+			}
 		}
 	}
 
