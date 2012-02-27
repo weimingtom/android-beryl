@@ -26,7 +26,7 @@ public class Camera {
 		public static final int PICTUREQUALITY_Highest = 1;
 
 		public String title = "Camera Picture";
-		public String displayName = null;
+		public String displayName = "";
 		public String fileName = "";
 		public String description = "Camera Picture";
 		public int pictureQualityMode = PICTUREQUALITY_Highest;
