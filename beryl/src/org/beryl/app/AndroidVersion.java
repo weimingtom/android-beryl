@@ -1,7 +1,5 @@
 package org.beryl.app;
 
-import org.beryl.diagnostics.ExceptionReporter;
-
 /** Convenience class for retrieving the current Android version that's running on the device.
  *
  * Code example on how to use AndroidVersion to load a multi-versioned class at runtime for backwards compatibility without using reflection.
@@ -24,20 +22,26 @@ public class StrictModeEnabler {
 </code></pre>*/
 public class AndroidVersion {
 	private static final int _ANDROID_SDK_VERSION;
-
+	private static final int ANDROID_SDK_VERSION_PREVIEW = Integer.MAX_VALUE;
+	
 	static {
 		int android_sdk = 3; // 3 is Android 1.5 (Cupcake) which is the earliest Android SDK available.
 		try {
 			android_sdk = Integer.parseInt(android.os.Build.VERSION.SDK);
 		}
 		catch (Exception e) {
-			ExceptionReporter.report(e);
+			android_sdk = ANDROID_SDK_VERSION_PREVIEW;
 		}
 		finally {}
 
 		_ANDROID_SDK_VERSION = android_sdk;
 	}
 
+	/** Returns true if running on development or preview version of Android. */
+	public static boolean isPreviewVersion() {
+		return _ANDROID_SDK_VERSION >= android.os.Build.VERSION_CODES.CUR_DEVELOPMENT;
+	}
+	
 	/** Gets the SDK Level available to the device. */
 	public static int getSdkVersion() {
 		return _ANDROID_SDK_VERSION;

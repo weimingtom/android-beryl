@@ -107,7 +107,11 @@ public class BitmapProperties {
 
 	/** Gets the size in bytes of the bitmap. */
 	public static long getSizeInBytes(final Bitmap bitmap) {
-		if(AndroidVersion.isHoneycombMr1OrHigher()) {
+		if(bitmap == null) {
+			return 0;
+		} else if(bitmap.isRecycled()) {
+			return 0;
+		} else if(AndroidVersion.isHoneycombMr1OrHigher()) {
 			return bitmap.getByteCount();
 		} else {
 			return bitmap.getRowBytes() * bitmap.getHeight();
