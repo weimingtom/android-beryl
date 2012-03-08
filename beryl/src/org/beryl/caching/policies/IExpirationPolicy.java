@@ -1,4 +1,4 @@
-package org.beryl.caching;
+package org.beryl.caching.policies;
 
 /** Contract for the expiration of an object. */
 public interface IExpirationPolicy {

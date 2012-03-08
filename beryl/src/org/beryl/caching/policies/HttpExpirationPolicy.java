@@ -1,4 +1,4 @@
-package org.beryl.caching;
+package org.beryl.caching.policies;
 
 /** Cache expiration policy based on Http Header information. */
 public class HttpExpirationPolicy extends ExpirationPolicy {

@@ -3,7 +3,7 @@ package org.beryl.caching;
 import java.lang.ref.SoftReference;
 
 /** Container for a cached item. */
-public class CachedItem<T> {
+public class CachedItem<T> implements ICachedItem {
 
 	protected final SoftReference<T> value;
 	
