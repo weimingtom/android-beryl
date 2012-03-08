@@ -1,5 +1,7 @@
 package org.beryl.caching;
 
+import org.beryl.caching.policies.IExpirationPolicy;
+
 /** Cached object that can expire based on an expiration policy. */
 public class ExpiringCachedItem<T> extends CachedItem<T> {
 

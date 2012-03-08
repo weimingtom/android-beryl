@@ -1,4 +1,4 @@
-package org.beryl.caching;
+package org.beryl.caching.policies;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
