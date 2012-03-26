@@ -5,15 +5,20 @@ public abstract class Lazy<T> {
 
 	private volatile T data = null;
 	
+	/** Returns true if the variable has been initialized. */
+	public boolean isValid() {
+		return this.data != null;
+	}
+	
 	/** (thread-safe) Gets the lazy initialized value. */
-	public synchronized T get() {
+	public T get() {
 		
-		T result = data;
+		T result = this.data;
 		if(result == null) {
 			synchronized(this) {
-				result = data;
+				result = this.data;
 				if(result == null) {
-					data = result = onSet();
+					this.data = result = onSet();
 				}
 			}
 		}

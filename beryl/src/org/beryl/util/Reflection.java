@@ -6,6 +6,30 @@ import java.util.List;
 
 public class Reflection {
 
+	/**
+	 * Gets a list of all interfaces implemented by the class. This includes super-classes.
+	 */
+	public static Class<?> [] getAllInterfaces(final Class<?> clazz) {
+		List<Class<?>> interfaces = new ArrayList<Class<?>>();
+		Class<?> cur = clazz;
+		while(cur != Object.class && cur != null) {
+			final Class<?>[] ifaces = cur.getInterfaces();
+			final int size = ifaces.length;
+			for(int i = 0; i < size; i++) {
+				interfaces.add(ifaces[i]);
+			}
+			cur = cur.getSuperclass();
+		}
+		
+		final int size = interfaces.size();
+		Class<?> [] result = new Class<?>[size];
+		for(int i = 0; i < size; i++) {
+			result[i] = interfaces.get(i);
+		}
+		
+		return result;
+	}
+	
 	public static final ArrayList<Class<?>> ZeroParameters = new ArrayList<Class<?>>();
 	/**
 	 * Basically Class.getMethod but allows for a list of parameter types instead of a variable arguments list.

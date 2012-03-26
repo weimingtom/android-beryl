@@ -55,7 +55,7 @@ public class UpdateManifestApplication {
 		return updateUrl;
 	}
 
-	public boolean getMandatory() {
+	public boolean isMandatory() {
 		return mandatory;
 	}
 

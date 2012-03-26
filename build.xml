@@ -29,6 +29,13 @@
 			<param name="package" value="org.beryl.ext" />
 			<param name="classpathid" value="default-berylcore-classpath" />
 		</antcall>
+		<!--
+		<antcall target="beryl-build">
+			<param name="projectdir" value="beryl-market" />
+			<param name="package" value="org.beryl.billing" />
+			<param name="classpathid" value="default-berylcore-classpath" />
+		</antcall>
+		-->
 	</target>
 	
 	<target name="javadoc">
@@ -51,7 +58,7 @@ $.beautyOfCode.init({
 			<classpath refid="default-googleapi-classpath" />
 			<!-- TODO: stylesheetfile -->
 			<link href="http://developer.android.com/reference/" offline="true" packagelistloc="${android.sdk.javadoc.offline}" />
-				<link href="http://download.oracle.com/javase/1.5.0/docs/api/" />
+				<link href="http://download.oracle.com/javase/1.6.0/docs/api/" />
 		</javadoc>
 		<copy todir="javadoc">
       <fileset dir="beryl-javadoc-assets" />
@@ -78,12 +85,12 @@ $.beautyOfCode.init({
 	
 	<target name="java-jar" depends="java-compile,java-jar-clean">
 		<!-- Build 1 jar with sources and binaries. -->
-		<jar jarfile="${beryl.jar.path}/${package}.jar" basedir="${projectdir}/bin" includes="**/*.class" compress="true" />
-	  	<jar jarfile="${beryl.jar.sourcepath}/${package}${beryl.jar.postfix}.jar" basedir="${projectdir}/src" includes="**/*" compress="true">
-        	<zipfileset includes="**/*.class" src="${beryl.jar.path}/${package}.jar"/>
-	  	</jar>
-	  	<copy file="proguard.cfg" tofile="jars/proguard.cfg" />
-	  	<copy file="proguard.cfg" tofile="jar-sources/proguard.cfg" />
+		<jar jarfile="${beryl.jar.path}/${package}.jar" basedir="${projectdir}/bin" includes="**/*.class,**/*.aidl" compress="true" />
+    <jar jarfile="${beryl.jar.sourcepath}/${package}${beryl.jar.postfix}.jar" basedir="${projectdir}/src" includes="**/*" compress="true">
+        <zipfileset includes="**/*.class,**/*.aidl" src="${beryl.jar.path}/${package}.jar"/>
+    </jar>
+    <copy file="proguard.cfg" tofile="jars/proguard.cfg" />
+    <copy file="proguard.cfg" tofile="jar-sources/proguard.cfg" />
 	</target>
 	
 	<target name="jar-clean">
