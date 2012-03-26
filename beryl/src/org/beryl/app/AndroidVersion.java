@@ -20,6 +20,7 @@ public class StrictModeEnabler {
     }
 }
 </code></pre>*/
+@SuppressWarnings("deprecation")
 public class AndroidVersion {
 	private static final int _ANDROID_SDK_VERSION;
 	private static final int ANDROID_SDK_VERSION_PREVIEW = Integer.MAX_VALUE;

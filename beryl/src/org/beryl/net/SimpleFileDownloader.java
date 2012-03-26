@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -13,17 +14,21 @@ import org.beryl.io.FileUtils;
 
 import android.content.Context;
 
-/** Downloads a file from a web server to a file. */
+/** Downloads a file from a web server to a file.
+ * As the class implies it is a simple implementation. It does not support resuming or chunking of data. */
 public class SimpleFileDownloader {
 
 	/** Download to a random file in the public application directory. */
-	public File download(Context context, String urlPath) {
+	public File download(Context context, String urlPath) throws ConnectException {
 		return download(context, urlPath, null);
 	}
 	
 	/** Download to a random file in the public application directory with a specific extension. */
-	public File download(Context context, String urlPath, String extension) {
+	public File download(Context context, String urlPath, String extension) throws ConnectException {
 		File result = null;
+		if(! NetworkUtils.isConnected(context)) {
+			throw new ConnectException("No connection is available to download.");
+		}
 		try {
 			File targetDirectory = DirectoryUtils.getPublicApplication(context, "downloads");
 			result = File.createTempFile("download", extension, targetDirectory);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.beryl.diagnostics.ExceptionReporter;
+import org.beryl.util.Reflection;
 
 /**
 Registry of interfaces that can be queried by other objects. The primary goal is to provide a way to decouple {@link android.app.Fragment}s while allowing them to communicate with each other through these exposed interfaces.
@@ -111,7 +112,7 @@ public final class ContractRegistry {
 	@SuppressWarnings("unchecked")
 	private void attach(Object object) {
 		Class<?> clazz = object.getClass();
-		Class<?> [] ifaces = clazz.getInterfaces();
+		Class<?> [] ifaces = Reflection.getAllInterfaces(clazz);
 		for(Class<?> iface : ifaces) {
 			if(isRegisterableContractInterface(iface)) {
 				@SuppressWarnings("rawtypes")

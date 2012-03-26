@@ -3,7 +3,9 @@ package org.beryl.graphics;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.SocketException;
 
+import org.beryl.diagnostics.ExceptionReporter;
 import org.beryl.net.SimpleFileDownloader;
 
 import android.content.Context;
@@ -33,7 +35,7 @@ public class HttpBitmapSource extends AbstractBitmapSource {
 			downloadFile(context);
 		}
 		
-		if(! isAvailable() || options.inJustDecodeBounds) {
+		if((! isAvailable() || options.inJustDecodeBounds) && localPath != null) {
 			try {
 				final InputStream is = new FileInputStream(this.localPath);
 				final Bitmap tempBitmap = BitmapFactory.decodeStream(is, null, options);
@@ -56,8 +58,13 @@ public class HttpBitmapSource extends AbstractBitmapSource {
 
 	private void downloadFile(final Context context) {
 		SimpleFileDownloader downloader = new SimpleFileDownloader();
-		File dest = downloader.download(context, remoteUri.toString());
-		localPath = dest.getAbsolutePath();
+		try {
+			File dest = downloader.download(context, remoteUri.toString());
+			localPath = dest.getAbsolutePath();
+		} catch(SocketException e) {
+			ExceptionReporter.report(e);
+			localPath = null;
+		}
 	}
 
 	public int describeContents() {
